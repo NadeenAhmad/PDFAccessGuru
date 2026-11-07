@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="128" height="128" viewBox="0 0 128 128" role="img" aria-labelledby="pag-icon-title" aria-describedby="pag-icon-desc">
+  <title id="pag-icon-title">PDFAccessGuru app icon</title>
+  <desc id="pag-icon-desc">A folded-corner document with an outstretched person in a circle and a check badge.</desc>
+  <defs>
+    <clipPath id="pag-icon-page-clip"><path d="M0 0H128V70H99a29 29 0 0 0 0 58H0Z"/></clipPath>
+  </defs>
+  <g id="pag-icon-symbol">
+    <g id="pag-icon-document" clip-path="url(#pag-icon-page-clip)">
+      <path d="M16 12H68L92 36V104a4 4 0 0 1-4 4H16a4 4 0 0 1-4-4V16a4 4 0 0 1 4-4Z M92 36H72a4 4 0 0 1-4-4V12" fill="#FFFFFF" stroke="#0B2A5B" stroke-width="8"
+            stroke-linecap="round" stroke-linejoin="round"/>
+    </g>
+    <path id="pag-icon-accessibility" d="M26 69a26 26 0 1 0 52 0a26 26 0 1 0 -52 0Z M47 52a5 5 0 1 0 10 0a5 5 0 1 0 -10 0Z M39 64H65a4 4 0 0 1 0 8H56v2l7.328 7.328a4 4 0 0 1-5.656 5.656L52 81.313l-5.672 5.671a4 4 0 0 1-5.656-5.656L48 74v-2h-9a4 4 0 0 1 0-8Z"
+          fill="#0B2A5B" fill-rule="evenodd"/>
+    <g id="pag-icon-check-badge">
+      <circle cx="99" cy="99" r="21" fill="#00796B"/>
+      <path d="M85.172 98.828l8 8a4 4 0 0 0 5.656 0l12-12a4 4 0 0 0-5.656-5.656L96 98.343l-5.172-5.171a4 4 0 0 0-5.656 5.656Z" fill="#FFFFFF"/>
+    </g>
+  </g>
+</svg>

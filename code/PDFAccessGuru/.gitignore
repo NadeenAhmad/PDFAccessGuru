@@ -1,0 +1,20 @@
+
+## vscode
+.vscode
+
+## cursor 
+.cursor/
+
+## Environment
+.env
+
+## Python specific ignores
+.venv/
+__pycache__/
+*.pyc
+*.pyo
+.pytest-cache/
+
+## PDF cache
+pdf_cache/*.pdf
+pdf_cache/*.json

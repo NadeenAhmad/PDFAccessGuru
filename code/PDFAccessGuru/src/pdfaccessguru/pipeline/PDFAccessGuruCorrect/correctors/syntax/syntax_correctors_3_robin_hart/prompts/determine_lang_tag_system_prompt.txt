@@ -1,0 +1,23 @@
+Determine the natural language of the provided sentences.
+The language is to be provided as a language code. That is a single element 
+out of the following list, which matches the sentences the best:
+"
+{{LANGUAGE_CODES}}
+"
+
+Do only provide exactly one selected language code, do not provide any 
+explanation or other output. Only provide the language code! 
+
+Do never provide a language code that is not part of the prior list of all
+language codes. Online provide a language code out of the prior list.
+
+Examples:
+
+#1 
+- sentences: "Annual Financial Performance Review."
+- your output: "en"
+
+#2 
+- sentences: "Vorstellung eines Paper über nachhaltiges Nutzen von KI 
+Infrastruktur. Das Paper wurde 2024 veröffentlicht." 
+- your output: "de"

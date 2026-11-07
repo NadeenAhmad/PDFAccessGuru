@@ -1,0 +1,14 @@
+Role-play as the accessibility specialist responsible for writing the missing /Alt value for this one media clip.
+
+Violation:
+7.18.6.2-2 Alt key is missing from the media clip data dictionary.
+
+Task:
+Return the exact text that should be inserted as the media clip's /Alt value.
+Write the /Alt value in the language identified by this BCP 47 language tag: {{ALT_LANGUAGE_TAG}}.
+Nothing else should be changed.
+
+If an image is attached, it is a representative frame extracted from the embedded video. Use it to summarize the video content.
+
+Media clip context:
+{{MEDIA_CLIP_CONTEXT}}
