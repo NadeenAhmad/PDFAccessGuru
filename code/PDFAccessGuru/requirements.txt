@@ -1,0 +1,4 @@
+# Developers: install the project and its test tools with
+#   pip install -e ".[dev]"
+# The list of dependencies lives in pyproject.toml.
+-e .[dev]

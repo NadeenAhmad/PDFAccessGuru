@@ -1,0 +1,68 @@
+name: Release
+
+# Publishing a version: set the version in code/PDFAccessGuru/pyproject.toml, merge to main,
+# then push a tag "vX.Y.Z". This workflow builds the package, publishes it to PyPI and creates
+# a GitHub release with the installers. Users' apps then show "A new version is available".
+#
+# It only runs in the public repository; in any other copy (e.g. the private development
+# repository) the jobs are skipped, so nothing can be published by accident.
+
+on:
+  push:
+    tags: ["v*"]
+
+jobs:
+  build:
+    if: github.repository == 'NadeenAhmad/PDFAccessGuru'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: astral-sh/setup-uv@v6
+      - name: Check that the tag matches the package version
+        working-directory: code/PDFAccessGuru
+        run: |
+          version="$(grep -m1 '^version = ' pyproject.toml | cut -d'"' -f2)"
+          test "v$version" = "$GITHUB_REF_NAME" || { echo "::error::Tag $GITHUB_REF_NAME does not match version $version"; exit 1; }
+      - name: Build
+        working-directory: code/PDFAccessGuru
+        run: uv build -o ../../dist
+      - uses: actions/upload-artifact@v4
+        with:
+          name: dist
+          path: dist/
+
+  publish-pypi:
+    needs: build
+    runs-on: ubuntu-latest
+    environment: pypi
+    permissions:
+      id-token: write   # trusted publishing: no PyPI password stored in GitHub
+    steps:
+      - uses: actions/download-artifact@v4
+        with:
+          name: dist
+          path: dist/
+      - uses: pypa/gh-action-pypi-publish@release/v1
+
+  github-release:
+    needs: publish-pypi
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/download-artifact@v4
+        with:
+          name: dist
+          path: dist/
+      - name: Create the release
+        env:
+          GH_TOKEN: ${{ github.token }}
+        # Plain-language notes from docs/release-notes/<tag>.md if they exist (users see them
+        # through the app's update notice), otherwise notes generated from the pull requests.
+        run: |
+          notes="docs/release-notes/${GITHUB_REF_NAME}.md"
+          if [ -f "$notes" ]; then how=(--notes-file "$notes"); else how=(--generate-notes); fi
+          gh release create "$GITHUB_REF_NAME" dist/* \
+            code/PDFAccessGuru/installers/install.sh code/PDFAccessGuru/installers/install.ps1 \
+            --title "PDFAccessGuru $GITHUB_REF_NAME" "${how[@]}"

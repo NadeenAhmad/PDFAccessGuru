@@ -1,0 +1,11 @@
+Role-play as the accessibility specialist responsible for writing the missing /Contents value for this one link annotation.
+
+Violation:
+7.18.5-2 Link annotation missing alternate description in /Contents.
+
+Task:
+Return the exact text that should be inserted as the annotation's /Contents value.
+Nothing else should be changed.
+
+Link annotation context:
+{{LINK_ANNOTATION_CONTEXT}}

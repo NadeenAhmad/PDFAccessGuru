@@ -1,0 +1,77 @@
+[build-system]
+requires = ["hatchling>=1.25"]
+build-backend = "hatchling.build"
+
+[project]
+name = "pdfaccessguru"
+version = "1.0.0"
+description = "Makes PDF files accessible to everyone, including people with disabilities: finds and fixes PDF/UA problems, on your own computer."
+readme = "README-pypi.md"
+license = "AGPL-3.0-only"
+requires-python = ">=3.12"
+authors = [
+    { name = "Aran Moradi" },
+    { name = "Babett Ludwig" },
+    { name = "Brian Karle" },
+    { name = "Florian Walcher" },
+    { name = "Marwa Ayache" },
+    { name = "Riard Qupevaj" },
+    { name = "Robin Hart" },
+    { name = "Siju Li" },
+]
+keywords = ["pdf", "accessibility", "pdf/ua", "screen reader", "remediation"]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: End Users/Desktop",
+    "Programming Language :: Python :: 3",
+    "Topic :: Text Processing",
+]
+dependencies = [
+    "pikepdf>=8.0",
+    "pymupdf>=1.28,<2",
+    "pdfplumber>=0.11",
+    "fonttools>=4.50",
+    "lxml>=5.0",
+    "Pillow>=10.0",
+    "av>=12.0",
+    "opencv-python-headless>=4.8",
+    "requests>=2.32",
+    "python-dotenv>=1.0",
+    "platformdirs>=4.0",
+    "sortedcontainers>=2.4",
+    "py3langid>=0.3",          # recognises the language of text without an AI
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=9.0",
+    "pytest-xdist>=3.8",
+    "pytest-cov>=7.1",
+    "pyright",
+]
+
+[project.urls]
+Homepage = "https://github.com/NadeenAhmad/PDFAccessGuru"
+Source = "https://github.com/NadeenAhmad/PDFAccessGuru"
+Issues = "https://github.com/NadeenAhmad/PDFAccessGuru/issues"
+"Release notes" = "https://github.com/NadeenAhmad/PDFAccessGuru/releases"
+
+[project.scripts]
+pdfaccessguru = "pdfaccessguru.cli:main"
+
+[project.gui-scripts]
+# Starts the app without a terminal window on Windows (used by the desktop shortcut).
+pdfaccessguru-app = "pdfaccessguru.app:main"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/pdfaccessguru"]
+
+[tool.hatch.build.targets.sdist]
+include = ["src/pdfaccessguru", "README-pypi.md", "LICENSE", "pyproject.toml"]
+
+[tool.pytest.ini_options]
+pythonpath = ["src"]
+testpaths = ["src/test"]
+markers = [
+    "llm: test sends real requests to an LLM API (skipped without OPENROUTER_API_KEY)",
+]

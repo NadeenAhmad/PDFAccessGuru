@@ -1,0 +1,2 @@
+This file is needed for a test in verapdf_runner_test.py 
+(test_error_case_run_verapdf_pdf_path_does_point_to_non_pdf_file())
