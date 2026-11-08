@@ -99,12 +99,12 @@ def update_command() -> list[str] | None:
     # uv and pipx leave a receipt file in every tool environment they create.
     uv = shutil.which("uv") or _default_uv()
     if (prefix / "uv-receipt.toml").is_file() and uv:
-        return [uv, "tool", "upgrade", "--no-build", PACKAGE]
+        return [uv, "tool", "upgrade", "--no-build", "--refresh", PACKAGE]     # --refresh: ask PyPI again
     pipx = shutil.which("pipx")
     if (prefix / "pipx_metadata.json").is_file() and pipx:
         return [pipx, "upgrade", PACKAGE]
     if "site-packages" in Path(__file__).resolve().as_posix():
-        return [sys.executable, "-m", "pip", "install", "--upgrade", "--only-binary", ":all:", PACKAGE]
+        return [sys.executable, "-m", "pip", "install", "--upgrade", "--no-cache-dir", "--only-binary", ":all:", PACKAGE]
     return None  # running from a source checkout: update with git instead
 
 
@@ -122,12 +122,40 @@ def manual_update_hint() -> str:
     )
 
 
-def run_update_now() -> bool:
-    """Update in this process (macOS/Linux command line). Returns True on success."""
+# Right after a release, PyPI's servers can still give out the old version list for a few
+# minutes. So after updating, the installed version is checked, and the update is tried again.
+UPDATE_ATTEMPTS = 4
+UPDATE_WAIT_SECONDS = 60
+_INSTALLED_VERSION = (f"import importlib.metadata as m, sys; t = lambda s: tuple(int(x) for x in "
+                      f"s.split('+')[0].split('.')[:3] if x.isdigit()); "
+                      f"sys.exit(0 if t(m.version('{PACKAGE}')) >= t(sys.argv[1]) else 1)")
+
+
+def installed_version_is(expected: str) -> bool:
+    """True if the version installed now is `expected` or newer (this process still runs the old one)."""
+    try:
+        return subprocess.run([sys.executable, "-c", _INSTALLED_VERSION, expected], timeout=120).returncode == 0
+    except (OSError, subprocess.SubprocessError):
+        return False
+
+
+def run_update_now(expected: str | None = None, say=print) -> str:
+    """
+    Update in this process (macOS/Linux command line). Returns "done", "not_ready" (the new
+    version is not on the server yet; tried for a few minutes) or "failed".
+    """
     command = update_command()
     if command is None:
-        return False
-    return subprocess.run(command).returncode == 0
+        return "failed"
+    for attempt in range(UPDATE_ATTEMPTS):
+        if subprocess.run(command).returncode != 0:
+            return "failed"
+        if expected is None or installed_version_is(expected):
+            return "done"
+        if attempt < UPDATE_ATTEMPTS - 1:
+            say("The new version is not ready on the server yet. Trying again in a minute ...")
+            time.sleep(UPDATE_WAIT_SECONDS)
+    return "not_ready"
 
 
 def uninstall_command() -> list[str] | None:
@@ -144,24 +172,31 @@ def uninstall_command() -> list[str] | None:
     return None
 
 
-def start_update_after_exit(reopen_app: bool) -> bool:
+def start_update_after_exit(reopen_app: bool, expected: str | None = None) -> bool:
     """
     Start the update in a separate process that waits a moment for this program to close,
-    then updates and (optionally) opens the app again. Returns False if no update command exists.
+    then updates and (optionally) opens the app again. On macOS and Linux it checks the
+    installed version afterwards and tries again for a few minutes if the new version was not
+    on the server yet. Returns False if no update command exists.
     """
     command = update_command()
-    return command is not None and start_after_exit(command, reopen_app)
+    return command is not None and start_after_exit(command, reopen_app, expected)
 
 
-def start_after_exit(command: list[str], reopen_app: bool = False) -> bool:
+def start_after_exit(command: list[str], reopen_app: bool = False, expected: str | None = None) -> bool:
     """Run a command in a separate process a few seconds after this program has closed."""
     if platform.system() == "Windows":
         reopen = " & start \"\" pdfaccessguru-app" if reopen_app else ""
         line = "timeout /t 3 /nobreak >nul & " + subprocess.list2cmdline(command) + reopen
         subprocess.Popen(["cmd", "/c", line], creationflags=0x00000008 | 0x00000200)  # DETACHED, NEW_PROCESS_GROUP
     else:
-        reopen = " && (pdfaccessguru-app >/dev/null 2>&1 &)" if reopen_app else ""
-        line = "sleep 2; " + " ".join(_shell_quote(part) for part in command) + reopen
+        run = " ".join(_shell_quote(part) for part in command)
+        if expected:
+            check = " ".join(_shell_quote(part) for part in (sys.executable, "-c", _INSTALLED_VERSION, expected))
+            run = (f"n=0; while :; do {run}; {check} && break; n=$((n+1)); "
+                   f"[ $n -ge {UPDATE_ATTEMPTS} ] && break; sleep {UPDATE_WAIT_SECONDS}; done")
+        reopen = "; (pdfaccessguru-app >/dev/null 2>&1 &)" if reopen_app else ""
+        line = "sleep 2; " + run + reopen
         subprocess.Popen(["/bin/sh", "-c", line], start_new_session=True,
                          stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
     return True

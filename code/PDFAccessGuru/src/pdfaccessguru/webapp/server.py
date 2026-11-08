@@ -676,6 +676,9 @@ def _handler(app: App):
             if parts in ([], [""]):
                 self._send(200, app.form(self._language()))
                 return
+            if parts == ["alive"]:                       # a second start asks whether this app runs
+                self._send(204, b"")
+                return
             if len(parts) == 2 and parts[0] == "static":
                 kinds = {".woff2": "font/woff2", ".svg": "image/svg+xml", ".txt": "text/plain; charset=utf-8"}
                 path = STATIC / parts[1]
@@ -757,7 +760,8 @@ def _handler(app: App):
             if parts == ["update"]:
                 language = self._language()
                 from pdfaccessguru.updates import start_update_after_exit
-                if app.running_job() is None and start_update_after_exit(reopen_app=True):
+                if app.running_job() is None and start_update_after_exit(
+                        reopen_app=True, expected=app.update.latest if app.update else None):
                     self._send(200, page(language, "PDFAccessGuru",
                                          f"<h1>PDFAccessGuru</h1><p role=\"status\">{TEXT[language]['updating']}</p>",
                                          token=app.token))
@@ -803,6 +807,32 @@ def _handler(app: App):
     return Handler
 
 
+def _running_app_file() -> Path:
+    """Where a running app leaves its address, so a second start can open it instead (user only)."""
+    from platformdirs import user_cache_dir
+
+    return Path(user_cache_dir("pdfaccessguru")) / "running-app.json"
+
+
+def open_running_app(open_browser: bool = True) -> bool:
+    """
+    If the app is already running, open it in the browser (a new tab) and return True. Clicking
+    the app icon again then always shows the app, instead of starting a second one.
+    """
+    import urllib.request
+
+    try:
+        url = json.loads(_running_app_file().read_text(encoding="utf-8"))["url"]
+        with urllib.request.urlopen(url + "alive", timeout=2) as reply:
+            if reply.status != 204:
+                return False
+    except Exception:                      # no file, an old file, or the app has stopped
+        return False
+    if open_browser:
+        webbrowser.open(url)
+    return True
+
+
 def serve(open_browser: bool = True, port: int = 0) -> None:
     """Start the app and (by default) open it in the browser. Returns when the app is closed."""
     from pdfaccessguru.pipeline.reporting.console import set_console_output
@@ -811,6 +841,13 @@ def serve(open_browser: bool = True, port: int = 0) -> None:
     app = App()
     app.server = ThreadingHTTPServer(("127.0.0.1", port), _handler(app))
     url = f"http://127.0.0.1:{app.server.server_address[1]}/{app.token}/"
+    running = _running_app_file()
+    try:
+        running.parent.mkdir(parents=True, exist_ok=True)
+        running.write_text(json.dumps({"url": url, "pid": os.getpid()}), encoding="utf-8")
+        running.chmod(0o600)
+    except OSError:
+        running = None
     print(f"PDFAccessGuru is open in your browser. If not, open this address: {url}", flush=True)
     print("To close the app, use the button 'Close the app' on the page, or press Ctrl+C here.", flush=True)
 
@@ -831,3 +868,8 @@ def serve(open_browser: bool = True, port: int = 0) -> None:
     finally:
         app.server.server_close()
         shutil.rmtree(app.work, ignore_errors=True)
+        try:
+            if running is not None and json.loads(running.read_text(encoding="utf-8")).get("pid") == os.getpid():
+                running.unlink()
+        except (OSError, ValueError):
+            pass

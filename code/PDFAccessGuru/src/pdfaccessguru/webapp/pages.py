@@ -134,7 +134,7 @@ TEXT = {
         "update": "A new version of PDFAccessGuru is available: {version}.",
         "update_button": "Update now",
         "update_help": "PDFAccessGuru closes, installs the new version and opens again. This takes about a minute.",
-        "updating": "PDFAccessGuru is being updated and opens again in about a minute. You can close this tab.",
+        "updating": "PDFAccessGuru is being updated and opens again in about a minute (a few minutes on the day a new version comes out). You can close this tab.",
         "update_manual": "The update could not be started automatically. Run this in a terminal: pdfaccessguru update",
         "tools_needed": "Before the first use, PDFAccessGuru needs two free helper programs and some free fonts "
                         "(Java, veraPDF and the Liberation fonts, about 77 MB). They are downloaded once into "
@@ -303,7 +303,7 @@ TEXT = {
         "update": "Eine neue Version von PDFAccessGuru ist verfügbar: {version}.",
         "update_button": "Jetzt aktualisieren",
         "update_help": "PDFAccessGuru schließt sich, installiert die neue Version und öffnet sich wieder. Das dauert etwa eine Minute.",
-        "updating": "PDFAccessGuru wird aktualisiert und öffnet sich in etwa einer Minute wieder. Sie können diesen Tab schließen.",
+        "updating": "PDFAccessGuru wird aktualisiert und öffnet sich in etwa einer Minute wieder (am Tag einer neuen Version einige Minuten). Sie können diesen Tab schließen.",
         "update_manual": "Die Aktualisierung ließ sich nicht automatisch starten. Geben Sie im Terminal ein: pdfaccessguru update",
         "tools_needed": "Vor der ersten Verwendung braucht PDFAccessGuru zwei kostenlose Hilfsprogramme und einige "
                         "kostenlose Schriften (Java, veraPDF und die Liberation-Schriften, etwa 77 MB). Sie werden "
