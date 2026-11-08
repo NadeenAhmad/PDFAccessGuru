@@ -4,7 +4,7 @@ build-backend = "hatchling.build"
 
 [project]
 name = "pdfaccessguru"
-version = "1.0.0"
+version = "1.0.1"
 description = "Makes PDF files accessible to everyone, including people with disabilities: finds and fixes PDF/UA problems, on your own computer."
 readme = "README-pypi.md"
 license = "AGPL-3.0-only"

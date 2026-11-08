@@ -14,7 +14,7 @@ import re
 from dataclasses import dataclass
 from urllib.parse import unquote, urlparse
 
-import fitz
+import pymupdf as fitz
 import pikepdf
 from pikepdf import Array, Dictionary, Name, Pdf
 

@@ -60,7 +60,7 @@ def report_language(pdf_path: str | Path) -> str:
     if base.isalpha() and 2 <= len(base) <= 3 and base not in _NOT_A_LANGUAGE:
         return base
     try:
-        import fitz
+        import pymupdf as fitz
         from pdfaccessguru.LLM.fallback import detect_language
 
         with fitz.open(pdf_path) as document:

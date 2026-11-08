@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-import fitz
+import pymupdf as fitz
 import pikepdf
 
 from pdfaccessguru.pipeline.meaning import MeaningResult, check_meaning, clear_empty_descriptions

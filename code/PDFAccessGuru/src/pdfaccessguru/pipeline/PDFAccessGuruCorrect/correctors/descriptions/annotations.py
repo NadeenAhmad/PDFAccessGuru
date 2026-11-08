@@ -16,7 +16,7 @@ import io
 import re
 from dataclasses import dataclass
 
-import fitz
+import pymupdf as fitz
 import pikepdf
 from pikepdf import Array, Dictionary, Name, Pdf
 

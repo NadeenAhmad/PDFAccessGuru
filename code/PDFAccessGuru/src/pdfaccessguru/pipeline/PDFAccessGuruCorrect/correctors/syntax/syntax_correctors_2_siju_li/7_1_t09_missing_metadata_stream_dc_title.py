@@ -226,7 +226,7 @@ def _title_from_layout(pdf: Pdf) -> str | None:
     page 1 (at least 3 letters, at most 3 lines). Works without an AI.
     """
     import io
-    import fitz
+    import pymupdf as fitz
 
     if len(pdf.pages) == 0:
         return None

@@ -223,7 +223,7 @@ _URL = re.compile(r"^(https?://[^\s<>\"]{3,}|www\.[^\s<>\"]+\.[a-z]{2,}[^\s<>\"]
 def _link_visible_addresses(pdf: pikepdf.Pdf, texts, roles, elements: list, result: MeaningResult) -> None:
     """A web address written in the text but not clickable becomes a real link: the address says
     exactly where it goes. It gets a description and a Link tag inside the paragraph it is in."""
-    import fitz
+    import pymupdf as fitz
 
     from pdfaccessguru.pipeline.PDFAccessGuruCorrect.correctors.descriptions.links import _WORDS, _language, _short_url
 
@@ -285,7 +285,7 @@ def _link_visible_addresses(pdf: pikepdf.Pdf, texts, roles, elements: list, resu
 
 def _text_under_link(pdf: pikepdf.Pdf, element, texts) -> str:
     """The visible text of a link whose tag only points to the link area (no text of its own)."""
-    import fitz
+    import pymupdf as fitz
 
     value = element.get("/K")
     for kid in (list(value) if isinstance(value, Array) else [value] if value is not None else []):

@@ -5,7 +5,7 @@ from __future__ import annotations
 import json
 from collections import Counter
 
-import fitz
+import pymupdf as fitz
 import pikepdf
 import pytest
 

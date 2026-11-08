@@ -40,7 +40,7 @@ def test_tabs_without_a_glyph_are_removed_and_the_letters_stay_in_place(tmp_path
     the font gives them is kept as a text shift, so no letter moves."""
     from collections import Counter
 
-    import fitz
+    import pymupdf as fitz
     import pikepdf
 
     from pdfaccessguru.pipeline.PDFAccessGuruDetect.verapdf.verapdf_runner import run_verapdf

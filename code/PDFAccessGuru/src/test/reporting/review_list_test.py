@@ -1,7 +1,7 @@
 import base64
 import io
 
-import fitz
+import pymupdf as fitz
 from PIL import Image
 
 from pdfaccessguru.reporting.customer_report import (
