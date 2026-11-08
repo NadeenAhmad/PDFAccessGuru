@@ -24,7 +24,7 @@ Free, on your own computer, in a few minutes.</strong></p>
   <a href="docs/media/demo-short.mp4?raw=true">
     <picture>
       <source media="(prefers-reduced-motion: reduce)" srcset="docs/media/demo-poster.png">
-      <img src="docs/media/demo-preview.gif" width="800" alt=" Animated preview, 18 seconds, no sound: a PDF file is chosen; done, it passes the automatic check with 155 problems fixed; the picture description the AI wrote is reviewed and corrected; the corrections appear in the report; the reading order as screen readers present it.">
+      <img src="docs/media/demo-preview.gif" width="800" alt="Animated preview, 18 seconds, no sound: a PDF file is chosen; done, it passes the automatic check with 155 problems fixed; the picture description the AI wrote is reviewed and corrected; the corrections appear in the report; the reading order as screen readers present it.">
     </picture>
   </a>
   <br>
@@ -93,7 +93,7 @@ The first time, it asks you to download two free helper programs and a few free 
 2. Choose one or more PDF files.
 3. Choose the options. Every option has a short explanation:
    - **Who writes the descriptions:** an AI on your computer or simple rules (nothing leaves your computer), or an online AI like ChatGPT.
-   - ** Colors:** "Improve color contrast" makes text that is hard to read a little darker or lighter (WCAG AA). It is off by default because many templates, including official ones, must keep their colors. Text with too little contrast is listed in the report either way.
+   - **Colors:** "Improve color contrast" makes text that is hard to read a little darker or lighter (WCAG AA). It is off by default because many templates, including official ones, must keep their colors. Text with too little contrast is listed in the report either way.
    - **Report:** You always get a report on the changes. You can add a review list of everything the tool decided on its own.
 4. Click **Make the PDF accessible**.
 5. Download the new PDF and the report. For several files, everything comes in a single ZIP file.
