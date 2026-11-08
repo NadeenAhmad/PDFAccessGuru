@@ -156,7 +156,10 @@ for example with the free [OCRmyPDF](https://ocrmypdf.readthedocs.io), then use 
 **Which languages?** Any language in the PDF. The report is written in the language of the PDF: English and
 German are built in; other languages are translated by the AI.
 
-**Other questions?** Write to [nadeen.fathallah@ki.uni-stuttgart.de](mailto:nadeen.fathallah@ki.uni-stuttgart.de).
+## 📬 Contact
+
+For inquiries, feel free to contact:
+[nadeen.fathallah@ki.uni-stuttgart.de](mailto:nadeen.fathallah@ki.uni-stuttgart.de).
 
 ## Updates
 
