@@ -24,7 +24,7 @@ Free, on your own computer, in a few minutes.</strong></p>
   <a href="docs/media/demo-short.mp4?raw=true">
     <picture>
       <source media="(prefers-reduced-motion: reduce)" srcset="docs/media/demo-poster.png">
-      <img src="docs/media/demo-preview.gif" width="800" alt="Animated preview, 18 seconds, no sound: a PDF file is chosen; done, it passes the automatic check with 155 problems fixed; the picture description the AI wrote is reviewed and corrected; the corrections appear in the report; the reading order as screen readers present it.">
+      <img src="docs/media/demo-preview.gif" width="800" alt=" Animated preview, 18 seconds, no sound: a PDF file is chosen; done, it passes the automatic check with 155 problems fixed; the picture description the AI wrote is reviewed and corrected; the corrections appear in the report; the reading order as screen readers present it.">
     </picture>
   </a>
   <br>
@@ -50,9 +50,9 @@ PDFAccessGuru does most of the work for you. For example, a lecture handout from
 
 - **It fixes, not only checks.** Many tools list the problems. PDFAccessGuru repairs them, then checks the result against PDF/UA, the international standard for accessible PDF.
 - **Private.** Everything runs on your computer. Even the AI can run on your computer; only if you choose an online AI does anything leave it.
-- **Safe.** Your original file is never changed. Every fix is checked, and undone if it would make the file worse or change how a page looks.
-- **You stay in control.** Review and correct everything the tool decided by itself, and get a report in plain words, in the language of the PDF.
-- **Fit for official templates.** Colours stay exactly as they are, unless you switch on the contrast fix.
+- **Safe.** Your original file is never changed. Every fix is checked and undone if it would make the file worse or change how a page looks.
+- **You stay in control.** Review and correct everything the tool decided on its own, and get a report in plain words, in the language of the PDF.
+- **Fit for official templates.** Colors stay exactly as they are, unless you switch on the contrast fix.
 - **Accessible itself.** Works with a keyboard and with screen readers, in light and dark mode, and starts with a short guided tour.
 
 ## Demo
@@ -84,46 +84,46 @@ powershell -ExecutionPolicy ByPass -c "irm https://raw.githubusercontent.com/Nad
 curl -LsSf https://raw.githubusercontent.com/NadeenAhmad/PDFAccessGuru/main/code/PDFAccessGuru/installers/install.sh | sh
 ```
 
-When it says "Done", open **PDFAccessGuru** from the Start menu (Windows), the Applications folder in your home folder (Mac) or your app menu (Linux).
-The first time, it asks to download two free helper programs and a few free fonts (about 77 MB). This happens only once.
+When it says "Done", open **PDFAccessGuru** from the Start menu (Windows), the Applications folder in your home folder (Mac), or your app menu (Linux).
+The first time, it asks you to download two free helper programs and a few free fonts (about 77 MB). This happens only once.
 
 ## Use
 
-1. Open PDFAccessGuru. It opens in your web browser, but runs only on your computer. The first time, a short guided tour shows the steps; you can skip it, and open it again at any time with **Guided tour** at the top.
+1. Open PDFAccessGuru. It opens in your web browser, but runs only on your computer. The first time, a short guided tour shows the steps; you can skip it and reopen it at any time by selecting **Guided tour** at the top.
 2. Choose one or more PDF files.
 3. Choose the options. Every option has a short explanation:
    - **Who writes the descriptions:** an AI on your computer or simple rules (nothing leaves your computer), or an online AI like ChatGPT.
-   - **Colours:** "Improve colour contrast" makes text that is hard to read a little darker or lighter (WCAG AA). It is off by default, because many templates, for example official ones, must keep their colours. Text with too little contrast is listed in the report either way.
-   - **Report:** you always get a report on the changes. You can add a review list of everything the tool decided by itself.
+   - ** Colors:** "Improve color contrast" makes text that is hard to read a little darker or lighter (WCAG AA). It is off by default because many templates, including official ones, must keep their colors. Text with too little contrast is listed in the report either way.
+   - **Report:** You always get a report on the changes. You can add a review list of everything the tool decided on its own.
 4. Click **Make the PDF accessible**.
-5. Download the new PDF and the report. With several files, everything comes in one ZIP file.
-6. Optional: **review and correct** the texts the tool wrote, see what it hid as decoration, and look at the **reading order**. Your corrections go into the new PDF and into the report.
+5. Download the new PDF and the report. For several files, everything comes in a single ZIP file.
+6. Optional: **review and correct** the text the tool wrote, see what it hid as decoration, and look at the **reading order**. Your corrections go into the new PDF and into the report.
 
 The report says in plain words what was fixed and what you still need to do. It is written in the
 language of the PDF: English and German are built in; other languages are translated by the AI.
-The app works with a keyboard and with screen readers, in light and dark mode.
+The app works with a keyboard and screen readers, in both light and dark modes.
 
 In a terminal:
 
 ```sh
 pdfaccessguru fix your-file.pdf                  # writes your-file_accessible.pdf and a report next to it
 pdfaccessguru fix a.pdf b.pdf                    # several files; a folder name fixes every PDF in it
-pdfaccessguru fix your-file.pdf --fix-contrast   # also improve colour contrast (changes text colours)
+pdfaccessguru fix your-file.pdf --fix-contrast   # also improve color contrast (changes text colors)
 pdfaccessguru check your-file.pdf                # only checks, changes nothing
 ```
 
 ## What it does
 
-- **Tags:** files without tags get them (headings, paragraphs, lists, tables, pictures, links, reading order). Headers, footers and page numbers become decoration.
-- **Descriptions:** pictures, formulas, links and form fields get a description. With an AI it describes what it sees; without one it uses the caption or the text in the picture.
-- **Language and title:** the document language (also for passages in another language) and a title.
-- **Fonts and characters:** missing fonts are embedded; characters get their text values.
-- **Structure repairs:** lists, tables, headings, table of contents, links, comments and form fields.
-- **Meaning:** it lists what a person should look at, such as link texts like "click here", very long picture descriptions, or bullet lines that are not marked as a list.
-- **Colour contrast:** always measured; changed only if you switch it on.
-- **Protected files:** with the owner password, it allows screen readers to read the file and keeps the protection.
+- **Tags:** files without tags get them (headings, paragraphs, lists, tables, pictures, links, reading order). Headers, footers, and page numbers become decoration.
+- **Descriptions:** pictures, formulas, links, and form fields get a description. With an AI, it describes what it sees; without one, it uses the caption or the text in the picture.
+- **Language and title:** The document language (also for passages in another language) and a title.
+- **Fonts and characters:** Missing fonts are embedded; characters get their text values.
+- **Structure repairs:** Lists, tables, headings, table of contents, links, comments, and form fields.
+- **Meaning:** It lists what a person should look at, such as link text like "click here", very long picture descriptions, or bullet lines that are not marked as a list.
+- **Colour contrast:** Always measured; changed only if you switch it on.
+- **Protected files:** With the owner password, it allows screen readers to read the file and keeps the protection.
 
-Every change is checked: if a fix would make the file worse or change how a page looks, it is undone (only the colour change you switch on changes colours).
+Every change is checked: if a fix would make the file worse or change how a page looks, it is undone (only the color change you switch on changes colors).
 Some things only a person can judge, such as whether a picture description is right; the report lists them.
 See [known limits](docs/known-limits.md).
 
@@ -132,29 +132,29 @@ See [known limits](docs/known-limits.md).
 Without an AI, PDFAccessGuru uses simple rules, and the report says so. With an AI, these texts are usually better:
 
 - **On your own computer (free, private):** install [Ollama](https://ollama.com), then run `ollama pull gemma3:4b`. PDFAccessGuru finds it by itself. Nothing leaves your computer.
-- **An online AI like ChatGPT:** put `OPENAI_API_KEY=your-key` (OpenAI) or `OPENROUTER_API_KEY=your-key` (OpenRouter: Claude, Gemini and others) into the settings file. The app and `pdfaccessguru doctor` show where it is. Pictures and text from your file are then sent to that company. Your key stays in the settings file on your computer: PDFAccessGuru sends it only to that company and never puts it into the PDF or the report.
+- **An online AI like ChatGPT:** put `OPENAI_API_KEY=your-key` (OpenAI) or `OPENROUTER_API_KEY=your-key` (OpenRouter: Claude, Gemini, and others) into the settings file. The app and `pdfaccessguru doctor` show where it is. Pictures and text from your file are then sent to that company. Your key stays in the settings file on your computer: PDFAccessGuru sends it only to that company and never puts it into the PDF or the report.
 
 In the app, only the online AI sends anything over the internet, and it is never chosen for you. In a terminal, `pdfaccessguru fix --local-only FILE` makes sure nothing is sent.
 
 ## Questions
 
-**Is it free?** Yes. It is open source, and the AI on your computer (Ollama) is free too.
+**Is it free?** Yes. It is open-source, and the AI on your computer (Ollama) is free, too.
 
 **Are my files uploaded?** No. PDFAccessGuru runs on your computer; the web browser only shows its pages.
 Only if you choose an online AI are pictures and text from your file sent to that AI company.
 
 **Is my PDF then fully accessible?** Often it passes the automatic check, but no tool can judge everything:
-a person should review the descriptions and the reading order. The app shows you what to review, and the
+A person should review the descriptions and the reading order. The app shows you what to review, and the
 report lists it.
 
 **Does it change how my pages look?** No. Pages look the same as before. Only the contrast fix, which you
-switch on yourself, changes text colours.
+switch on yourself, changes text colors.
 
 **Does it work with scanned PDFs?** A scanned page is only a picture of text. Run text recognition (OCR) first,
 for example with the free [OCRmyPDF](https://ocrmypdf.readthedocs.io), then use PDFAccessGuru.
 
 **Which languages?** Any language in the PDF. The report is written in the language of the PDF: English and
-German are built in, other languages are translated by the AI.
+German are built in; other languages are translated by the AI.
 
 **Other questions?** Write to [nadeen.fathallah@ki.uni-stuttgart.de](mailto:nadeen.fathallah@ki.uni-stuttgart.de).
 
@@ -176,7 +176,7 @@ Questions and inquiries: [nadeen.fathallah@ki.uni-stuttgart.de](mailto:nadeen.fa
 
 The code is in [`code/PDFAccessGuru`](code/PDFAccessGuru). See its [README](code/PDFAccessGuru/README.md) for setup and tests.
 
-## Contributors and licence
+## Contributors and license
 
 PDFAccessGuru was first built at the University of Stuttgart by Aran Moradi, Babett Ludwig, Brian Karle,
 Florian Walcher, Marwa Ayache, Riard Qupevaj, Robin Hart and Siju Li (see [CONTRIBUTORS](CONTRIBUTORS.md)).
