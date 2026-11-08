@@ -1,5 +1,5 @@
 import io
-import fitz  # PyMuPDF
+import pymupdf as fitz  # PyMuPDF
 import pikepdf
 from pikepdf import Pdf, String
 from pdfaccessguru.model.detected_violation import DetectedViolation

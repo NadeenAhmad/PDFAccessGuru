@@ -8,7 +8,7 @@ import time
 from pathlib import Path
 from urllib.parse import urlencode
 
-import fitz
+import pymupdf as fitz
 import pikepdf
 import pytest
 

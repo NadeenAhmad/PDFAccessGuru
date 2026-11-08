@@ -19,7 +19,7 @@ import io
 from collections import Counter
 from dataclasses import dataclass
 
-import fitz
+import pymupdf as fitz
 import numpy
 import pikepdf
 

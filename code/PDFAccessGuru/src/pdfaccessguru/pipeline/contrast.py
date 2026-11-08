@@ -28,7 +28,7 @@ import colorsys
 import io
 from dataclasses import dataclass, field
 
-import fitz
+import pymupdf as fitz
 import pikepdf
 from pikepdf import Dictionary, Name, Operator
 

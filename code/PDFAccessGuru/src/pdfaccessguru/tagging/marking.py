@@ -13,7 +13,7 @@ from __future__ import annotations
 
 from dataclasses import dataclass, field
 
-import fitz
+import pymupdf as fitz
 import pikepdf
 from pikepdf import Array, Dictionary, Name, Operator
 

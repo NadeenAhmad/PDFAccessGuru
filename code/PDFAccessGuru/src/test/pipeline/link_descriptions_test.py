@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-import fitz
+import pymupdf as fitz
 import pikepdf
 
 from pdfaccessguru.pipeline.PDFAccessGuruCorrect.correctors.descriptions.links import describe_links

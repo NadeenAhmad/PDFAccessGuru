@@ -15,7 +15,7 @@ import pikepdf
 
 def page_text(page_or_element: object) -> str | None:
     """Decoded text of a page (pikepdf Page or page dictionary); None for anything else or on failure."""
-    import fitz
+    import pymupdf as fitz
 
     if isinstance(page_or_element, pikepdf.Page):
         page = page_or_element

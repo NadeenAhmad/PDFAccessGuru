@@ -11,7 +11,7 @@ from __future__ import annotations
 import io
 import re
 
-import fitz
+import pymupdf as fitz
 import pikepdf
 
 _IMAGE = re.compile(r"^!\[([^\]]*)\]\(([^)\s]+)\)\s*$", re.MULTILINE)

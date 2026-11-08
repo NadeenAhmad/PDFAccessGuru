@@ -10,7 +10,7 @@ import re
 from collections import Counter
 from dataclasses import dataclass, field
 
-import fitz
+import pymupdf as fitz
 
 from pdfaccessguru.pipeline.PDFAccessGuruCorrect.correctors.descriptions.pictures import CAPTION_START
 from pdfaccessguru.pipeline.PDFAccessGuruCorrect.correctors.structure_repair.lists import looks_like_marker

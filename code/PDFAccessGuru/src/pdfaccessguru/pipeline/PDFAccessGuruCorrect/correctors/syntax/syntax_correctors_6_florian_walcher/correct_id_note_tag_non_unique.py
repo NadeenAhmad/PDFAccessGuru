@@ -1,7 +1,7 @@
 import io
 import json
 import requests
-import fitz  # PyMuPDF
+import pymupdf as fitz  # PyMuPDF
 import pikepdf
 from pikepdf import Pdf
 from pdfaccessguru.model.detected_violation import DetectedViolation
