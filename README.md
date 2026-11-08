@@ -181,7 +181,7 @@ The code is in [`code/PDFAccessGuru`](code/PDFAccessGuru). See its [README](code
 
 ## Contributors and license
 
-PDFAccessGuru was first built at the University of Stuttgart by Aran Moradi, Babett Ludwig, Brian Karle,
+PDFAccessGuru was first built at the University of Stuttgart by [Aran Moradi](mailto:armoradi05@gmail.com), Babett Ludwig, Brian Karle,
 Florian Walcher, Marwa Ayache, Riard Qupevaj, Robin Hart and Siju Li (see [CONTRIBUTORS](CONTRIBUTORS.md)).
 
 Licensed under the [GNU Affero General Public License v3.0](LICENSE).
