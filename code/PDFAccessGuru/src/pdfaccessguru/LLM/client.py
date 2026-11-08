@@ -18,7 +18,7 @@ from __future__ import annotations
 import base64
 import os
 from collections import Counter
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 
 import requests
 
@@ -49,7 +49,7 @@ class LLMNotConfigured(OpenRouterConnectionFailedException):
 class LLMSettings:
     provider: str               # one of PROVIDERS, or "none"
     url: str = ""
-    api_key: str = ""
+    api_key: str = field(default="", repr=False)   # never shown in logs or messages
     text_model: str = ""
     vision_model: str = ""      # "" if the service has no model that reads pictures
     reason: str = ""            # why no AI is used (plain language)
@@ -132,6 +132,20 @@ def _cloud_settings(provider: str) -> LLMSettings:
     text = os.environ.get("PDFACCESSGURU_TEXT_MODEL", text)
     vision = os.environ.get("PDFACCESSGURU_VISION_MODEL", vision)
     return LLMSettings(provider, _CLOUD_URLS[provider], key, text, vision)
+
+
+def local_model() -> str:
+    """The Ollama model this computer would use (pictures first), or "" if Ollama has none. For the app."""
+    installed = _ollama_models(_ollama_url())
+    return _pick(installed, _OLLAMA_VISION) or _pick(installed, _OLLAMA_TEXT) or (installed[0] if installed else "")
+
+
+def online_key_service() -> str:
+    """The online AI service a key is set up for ("OpenRouter", "OpenAI"), or "". Never returns the key."""
+    load_environment_variables()
+    if os.environ.get("OPENROUTER_API_KEY"):
+        return "OpenRouter"
+    return "OpenAI" if os.environ.get("OPENAI_API_KEY") else ""
 
 
 _settings: LLMSettings | None = None

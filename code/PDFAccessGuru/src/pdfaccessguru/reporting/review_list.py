@@ -167,6 +167,8 @@ class ReviewItem:
     context: str | None = None
     # Picture of the element (base64 PNG) - shown to sighted reviewers next to the value.
     image_png_base64: str | None = None
+    # What the user wrote instead, on the review page of the app (Phase 12c).
+    changed_to: str | None = None
 
 
 @dataclass
@@ -174,10 +176,16 @@ class ReviewGroup:
     key: str
     info: ReviewGroupInfo
     items: list[ReviewItem] = field(default_factory=list)
+    reviewed: bool = False          # the user marked the whole group as reviewed in the app
 
     @property
     def total(self) -> int:
         return sum(item.occurrences for item in self.items)
+
+    @property
+    def pending(self) -> list[ReviewItem]:
+        """Items a person still has to look at: not in a reviewed group, not changed by the user."""
+        return [] if self.reviewed else [item for item in self.items if item.changed_to is None]
 
 
 def build_review_groups(report: dict[str, Any]) -> list[ReviewGroup]:
@@ -204,12 +212,36 @@ def build_review_groups(report: dict[str, Any]) -> list[ReviewGroup]:
                 if isinstance(page, int) and page not in item.pages:
                     item.pages.append(page)
     order = list(_GROUPS)
-    return sorted(groups.values(), key=lambda g: (not g.info.check_first, order.index(g.key)))
+    result = sorted(groups.values(), key=lambda g: (not g.info.check_first, order.index(g.key)))
+    _apply_user_review(result, report.get("user_review") or {})
+    return result
+
+
+# Groups of the app's review page (webapp/review.py) -> groups of this list.
+APP_GROUPS = {"title": "title", "lang": "language", "pictures": "images", "formulas": "formulas",
+              "links": "links", "fields": "forms"}
+
+
+def _same(a: str, b: str) -> bool:
+    return " ".join(a.split()) == " ".join(b.split())
+
+
+def _apply_user_review(groups: list[ReviewGroup], user_review: dict[str, Any]) -> None:
+    """Mark what the user changed or reviewed in the app (report["user_review"], Phase 12c)."""
+    reviewed = set(user_review.get("reviewed", []))
+    for group in groups:
+        group.reviewed = group.key in reviewed
+        for change in user_review.get("changes", []):
+            if change.get("group") != group.key:
+                continue
+            for item in group.items:
+                if _same(item.value, change.get("old", "")):
+                    item.changed_to = change.get("new")
 
 
 def estimated_minutes(groups: list[ReviewGroup]) -> int:
     """Rough time to go through the review list: check-first items fully, spot-check groups by sample."""
-    items = sum(len(g.items) if g.info.check_first else min(len(g.items), EXAMPLES_PER_GROUP) for g in groups)
+    items = sum(len(g.pending) if g.info.check_first else min(len(g.pending), EXAMPLES_PER_GROUP) for g in groups)
     return max(1, round(items * SECONDS_PER_ITEM / 60)) if items else 0
 
 
@@ -257,21 +289,25 @@ def review_list_markdown(groups: list[ReviewGroup], include_pictures: bool = Tru
     minutes = estimated_minutes(groups)
     if de:
         intro = [
-            "## Zu prüfende Texte", "",
-            f"Diese Texte hat das Werkzeug selbst geschrieben. Die Prüfung dauert etwa {minutes} Minute{'' if minutes == 1 else 'n'}.", "",
-            "Beginnen Sie mit den Teilen „Bitte prüfen“. Bei den Teilen „Stichprobe“ reicht es, 2 oder 3 anzusehen.", "",
+            "## Texte zum Durchsehen", "",
+            (f"Diese Texte hat das Werkzeug selbst geschrieben. Das Durchsehen dauert etwa {minutes} Minute{'' if minutes == 1 else 'n'}."
+             if minutes else "Diese Texte hat das Werkzeug selbst geschrieben. Sie haben alle in der App durchgesehen."), "",
+            "Beginnen Sie mit den Teilen „Bitte durchsehen“. Bei den Teilen „Stichprobe“ reicht es, 2 oder 3 anzusehen.", "",
         ]
     else:
         intro = [
-            "## Things to Check", "",
-            f"The tool wrote these texts itself. Checking them takes about {minutes} minute{'' if minutes == 1 else 's'}.", "",
-            "Start with the parts marked “Please check”. For the parts marked “Check a few”, looking at 2 or 3 is enough.", "",
+            "## Things to Review", "",
+            (f"The tool wrote these texts itself. Reviewing them takes about {minutes} minute{'' if minutes == 1 else 's'}."
+             if minutes else "The tool wrote these texts itself. You have reviewed all of them in the app."), "",
+            "Start with the parts marked “Please review”. For the parts marked “Review a few”, looking at 2 or 3 is enough.", "",
         ]
     lines = intro
     for group in groups:
         title, why, how = _GROUPS_DE.get(group.key, (group.info.title, group.info.why, group.info.how_to_check)) if de \
             else (group.info.title, group.info.why, group.info.how_to_check)
-        label = ("Bitte prüfen" if de else "Please check") if group.info.check_first else ("Stichprobe" if de else "Check a few")
+        label = ("Bitte durchsehen" if de else "Please review") if group.info.check_first else ("Stichprobe" if de else "Review a few")
+        if group.reviewed:
+            label = "von Ihnen durchgesehen" if de else "reviewed by you"
         lines.extend([f"### {title} ({label})", "", f"{'Warum' if de else 'Why'}: {why}", "",
                       f"{'Wie' if de else 'How'}: {how}", ""])
         shown = _shown_items(group)
@@ -288,6 +324,9 @@ def review_list_markdown(groups: list[ReviewGroup], include_pictures: bool = Tru
             wrote = "Das Werkzeug schrieb" if de else "The tool wrote"
             quote = f"„{item.value}“" if de else f"“{item.value}”"
             lines.append(f"- {where}. {wrote}: {quote}{repeated}")
+            if item.changed_to is not None:
+                yours = f"„{item.changed_to}“" if de else f"“{item.changed_to}”"
+                lines.append(f"  - {'Von Ihnen geändert in' if de else 'Changed by you to'}: {yours}")
             if item.context:
                 compare = "Vergleichen Sie mit:" if de else "Compare with the"
                 context = item.context if de else item.context[0].lower() + item.context[1:]

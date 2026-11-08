@@ -329,8 +329,8 @@ TODO: dict[str, tuple[str, str]] = {
                "accessibility' in the security settings.",
                "Starten Sie das Werkzeug erneut mit dem Besitzerkennwort, oder bitten Sie den Autor, in den "
                "Sicherheitseinstellungen 'Kopieren von Inhalten für Barrierefreiheit' zu erlauben."),
-    "7.3-1": ("Check the descriptions the tool wrote, or add your own in the program that made the PDF.",
-              "Prüfen Sie die Beschreibungen des Werkzeugs, oder fügen Sie eigene im Ursprungsprogramm hinzu."),
+    "7.3-1": ("Review the descriptions the tool wrote, or add your own in the program that made the PDF.",
+              "Sehen Sie die Beschreibungen des Werkzeugs durch, oder fügen Sie eigene im Ursprungsprogramm hinzu."),
     "7.21.4.1-1": ("Embed all fonts when making the PDF (in Word: options, 'Embed fonts in the file').",
                    "Betten Sie beim Erstellen alle Schriften ein (in Word: Optionen, 'Schriftarten in der Datei einbetten')."),
     "7.21.7-1": ("Use common fonts, or set up an AI model so the tool can identify the characters.",

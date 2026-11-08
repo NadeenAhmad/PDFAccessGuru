@@ -19,12 +19,12 @@ FALLBACK_NOTES = {
     "language": "The language of some short texts could not be recognised without an AI model, "
                 "so the language of the whole document was used for them.",
     "alt_text": "Picture descriptions were written from the text in and around each picture, "
-                "without an AI model. Please check them.",
+                "without an AI model. Please review them.",
     "link_text": "Link descriptions were made from each link's text or address, without an AI model.",
     "title": "The document title was taken from its first heading or first line, without an AI model.",
     "unicode": "Some characters could not be identified without an AI model; they are listed as still open.",
-    "form_field": "Form field descriptions were made from the field names, without an AI model. Please check them.",
-    "formula": "Formula descriptions were made from the text of each formula, without an AI model. Please check them.",
+    "form_field": "Form field descriptions were made from the field names, without an AI model. Please review them.",
+    "formula": "Formula descriptions were made from the text of each formula, without an AI model. Please review them.",
     "table": "Some table rows could not be worked out without an AI model; they are listed as still open.",
 }
 
@@ -82,12 +82,12 @@ def detect_language(text: str | None, min_confidence: float = 0.9) -> str | None
 _NOTES_DE = {
     "language": "Die Sprache einiger kurzer Texte ließ sich ohne KI-Modell nicht erkennen; für sie wurde die "
                 "Sprache des ganzen Dokuments verwendet.",
-    "alt_text": "Bildbeschreibungen wurden ohne KI-Modell aus dem Text in und um jedes Bild erstellt. Bitte prüfen Sie sie.",
+    "alt_text": "Bildbeschreibungen wurden ohne KI-Modell aus dem Text in und um jedes Bild erstellt. Bitte sehen Sie sie durch.",
     "link_text": "Linkbeschreibungen wurden ohne KI-Modell aus dem Text oder der Adresse jedes Links erstellt.",
     "title": "Der Dokumenttitel wurde ohne KI-Modell aus der ersten Überschrift oder ersten Zeile übernommen.",
     "unicode": "Einige Zeichen ließen sich ohne KI-Modell nicht bestimmen; sie stehen bei den offenen Problemen.",
-    "form_field": "Beschreibungen von Formularfeldern wurden ohne KI-Modell aus den Feldnamen erstellt. Bitte prüfen Sie sie.",
-    "formula": "Formelbeschreibungen wurden ohne KI-Modell aus dem Text jeder Formel erstellt. Bitte prüfen Sie sie.",
+    "form_field": "Beschreibungen von Formularfeldern wurden ohne KI-Modell aus den Feldnamen erstellt. Bitte sehen Sie sie durch.",
+    "formula": "Formelbeschreibungen wurden ohne KI-Modell aus dem Text jeder Formel erstellt. Bitte sehen Sie sie durch.",
     "table": "Einige Tabellenzeilen ließen sich ohne KI-Modell nicht bestimmen; sie stehen bei den offenen Problemen.",
 }
 

@@ -24,7 +24,7 @@ from pathlib import Path
 from urllib.parse import parse_qs, quote, urlparse
 
 from pdfaccessguru.webapp.markdown_html import markdown_to_html
-from pdfaccessguru.webapp.pages import TEXT, page
+from pdfaccessguru.webapp.pages import TEXT, choice, page, tour
 
 MAX_UPLOAD = 300 * 1024 * 1024          # 300 MB
 STATIC = Path(__file__).with_name("static")
@@ -46,6 +46,8 @@ class Result:
     language: str = "en"                 # language of the report (= of the PDF)
     files: dict[str, str] = field(default_factory=dict)    # kind (pdf, report_pdf, report_md) -> key in Job.files
     report_html: str = ""
+    report: dict | None = None           # the pipeline report; the user's review is added to it
+    review_list: bool = False            # the user asked for the review list in the report
     checked: set[str] = field(default_factory=set)          # groups of texts the user marked as checked
     preview: str = ""                                       # "what a screen reader reads", made on request
 
@@ -131,14 +133,13 @@ class App:
         return job
 
     def _run(self, job: Job, options: dict[str, str]) -> None:
-        ai = options.get("ai", "auto")
-        os.environ["PDFACCESSGURU_AI"] = ai if ai in ("auto", "ollama", "none") else "auto"
-        if ai == "cloud":
+        ai = options.get("ai", "none")
+        if ai == "cloud":                                   # the only choice that sends anything away
             os.environ["PDFACCESSGURU_AI"] = "openrouter" if os.environ.get("OPENROUTER_API_KEY") else "openai"
-        if options.get("local_only") == "on":
-            os.environ["PDFACCESSGURU_PRIVACY"] = "local"
-        else:
             os.environ.pop("PDFACCESSGURU_PRIVACY", None)
+        else:                                               # Ollama or simple rules: nothing leaves the computer
+            os.environ["PDFACCESSGURU_AI"] = "ollama" if ai == "ollama" else "none"
+            os.environ["PDFACCESSGURU_PRIVACY"] = "local"
         t = TEXT[job.language]
         count = len(job.results)
         for index, result in enumerate(job.results):
@@ -172,11 +173,8 @@ class App:
 
     def _fix_one(self, job: Job, number: int, result: Result, options: dict[str, str], progress) -> None:
         from pdfaccessguru.pipeline.pipeline import run_pipeline
-        from pdfaccessguru.reporting import (
-            build_customer_report_images, build_customer_report_markdown, build_customer_report_pdf,
-            build_report_metrics,
-        )
-        from pdfaccessguru.reporting.report_language import report_language, text_direction
+        from pdfaccessguru.reporting import build_report_metrics
+        from pdfaccessguru.reporting.report_language import report_language
 
         source = result.source
         output = source.with_name(f"{source.stem}_accessible.pdf")
@@ -184,26 +182,41 @@ class App:
                               owner_password=options.get("password") or None,
                               fix_contrast=options.get("fix_contrast") == "on")
         progress(TEXT[job.language]["writing_report"], 0.97)
-        review = options.get("review") == "on"
-        pictures = review and options.get("pictures") == "on"
+        job.files[f"{number}/{output.name}"] = output
+        result.files["pdf"] = f"{number}/{output.name}"
+        result.report, result.review_list = report, options.get("review") == "on"
         result.language = report_language(output)
-        markdown = build_customer_report_markdown(report, review, pictures, result.language)
+        metrics = build_report_metrics(report)
+        result.passes, result.fixed, result.still_open = metrics.passes_verapdf, metrics.corrected_count, metrics.remaining_count
+        self._write_report(job, number, result)
+
+    def _write_report(self, job: Job, number: int, result: Result) -> None:
+        """
+        The report (text, PDF, pictures of the review list) and its view on the result page, from
+        result.report. Written again whenever the user saves on the review page, so the report
+        always includes their changes (Phase 12c). The review list always shows the pictures.
+        """
+        from pdfaccessguru.reporting import (
+            build_customer_report_images, build_customer_report_markdown, build_customer_report_pdf,
+        )
+        from pdfaccessguru.reporting.report_language import text_direction
+        from pdfaccessguru.reporting.review_list import build_review_groups
+
+        report, review, source = result.report, result.review_list, result.source
+        markdown = build_customer_report_markdown(report, review, review, result.language)
         report_md = source.with_name(f"{source.stem}_report.md")
         report_md.write_text(markdown, encoding="utf-8")
         report_pdf = source.with_name(f"{source.stem}_report.pdf")
-        report_pdf.write_bytes(build_customer_report_pdf(report, review, pictures, result.language))
-        for relative, data in (build_customer_report_images(report) if pictures else {}).items():
+        report_pdf.write_bytes(build_customer_report_pdf(report, review, review, result.language))
+        for relative, data in (build_customer_report_images(report) if review else {}).items():
             target = source.parent / relative
             target.parent.mkdir(parents=True, exist_ok=True)
             target.write_bytes(data)
             job.files[f"{number}/{relative}"] = target
-        for kind, path in (("pdf", output), ("report_pdf", report_pdf), ("report_md", report_md)):
+        for kind, path in (("report_pdf", report_pdf), ("report_md", report_md)):
             job.files[f"{number}/{path.name}"] = path
             result.files[kind] = f"{number}/{path.name}"
-        metrics = build_report_metrics(report)
-        result.passes, result.fixed, result.still_open = metrics.passes_verapdf, metrics.corrected_count, metrics.remaining_count
-        from pdfaccessguru.reporting.review_list import build_review_groups
-        result.to_check = sum(len(group.items) for group in build_review_groups(report))   # as in the report
+        result.to_check = sum(len(group.pending) for group in build_review_groups(report))   # as in the report
         prefix = f"/{self.token}/job/{job.job_id}/file/{number}/"
         body = markdown.split("\n", 1)[1] if markdown.startswith("# ") else markdown   # the page has its own title
         offset = 1 if len(job.results) == 1 else 2
@@ -218,6 +231,8 @@ class App:
         with zipfile.ZipFile(archive, "w", zipfile.ZIP_DEFLATED) as bundle:
             for key, path in job.files.items():
                 number, _, relative = key.partition("/")
+                if not relative:                           # the ZIP file itself
+                    continue
                 result = job.results[int(number) - 1]
                 bundle.write(path, f"{number} {Path(result.name).stem}/{relative}")
         job.files["PDFAccessGuru.zip"] = archive
@@ -226,8 +241,6 @@ class App:
 
     def form(self, language: str, message: str = "") -> bytes:
         t = TEXT[language]
-        from pdfaccessguru.LLM.client import settings
-        status = settings(refresh=True).describe(language)
         other = "de" if language == "en" else "en"
         busy = self.running_job() is not None
         alert = f'<div class="alert" role="alert">{html.escape(message)}</div>' if message else ""
@@ -257,45 +270,54 @@ class App:
 {f'<div class="status" role="status">{t["busy"]}</div>' if busy and not tools_needed else ''}
 <form method="post" action="/{self.token}/start" enctype="multipart/form-data">
 <input type="hidden" name="language_ui" value="{language}">
-<fieldset class="card"><legend><h2><span class="num" aria-hidden="true">1</span>{t['file_legend'][3:]}</h2></legend>
+<fieldset class="card" id="tour-1"><legend><h2><span class="num" aria-hidden="true">1</span>{t['file_legend'][3:]}</h2></legend>
   <div class="drop">
   <label for="file">{t['file_label']}</label>
   <p class="help" id="file-help">{t['file_help']}</p>
   <input type="file" id="file" name="file" accept="application/pdf,.pdf" multiple required aria-describedby="file-help">
   </div>
 </fieldset>
-<fieldset class="card" aria-describedby="ai-status"><legend><h2><span class="num" aria-hidden="true">2</span>{t['ai_legend'][3:]}</h2></legend>
-  <p class="help" id="ai-status">{t['ai_status'].format(status=html.escape(status))}</p>
-  <div class="choice"><input type="radio" id="ai-auto" name="ai" value="auto" checked><label for="ai-auto">{t['ai_auto']}</label></div>
-  <div class="choice"><input type="radio" id="ai-ollama" name="ai" value="ollama"><label for="ai-ollama">{t['ai_ollama']}</label></div>
-  <div class="choice"><input type="radio" id="ai-cloud" name="ai" value="cloud"><label for="ai-cloud">{t['ai_cloud']}</label></div>
-  <div class="choice"><input type="radio" id="ai-none" name="ai" value="none"><label for="ai-none">{t['ai_none']}</label></div>
-  <div class="choice"><input type="checkbox" id="local" name="local_only" aria-describedby="local-help"><label for="local">{t['local_label']}</label></div>
-  <p class="help choices-help" id="local-help">{t['local_help']}</p>
+<fieldset class="card" id="tour-2" aria-describedby="ai-intro"><legend><h2><span class="num" aria-hidden="true">2</span>{t['ai_legend'][3:]}</h2></legend>
+  <p class="help" id="ai-intro">{t['ai_intro']}</p>
+{self._ai_choices(t)}
 </fieldset>
-<fieldset class="card"><legend><h2><span class="num" aria-hidden="true">3</span>{t['contrast_legend'][3:]}</h2></legend>
-  <div class="choice"><input type="checkbox" id="fix-contrast" name="fix_contrast" aria-describedby="contrast-help"><label for="fix-contrast">{t['contrast_label']}</label></div>
-  <p class="help choices-help" id="contrast-help">{t['contrast_help']}</p>
+<fieldset class="card" id="tour-3"><legend><h2><span class="num" aria-hidden="true">3</span>{t['contrast_legend'][3:]}</h2></legend>
+{choice("checkbox", "fix_contrast", "on", "fix-contrast", t['contrast_label'], [t['contrast_help']])}
 </fieldset>
-<fieldset class="card" aria-describedby="report-language"><legend><h2><span class="num" aria-hidden="true">4</span>{t['report_legend'][3:]}</h2></legend>
+<fieldset class="card" id="tour-4" aria-describedby="report-language"><legend><h2><span class="num" aria-hidden="true">4</span>{t['report_legend'][3:]}</h2></legend>
   <p class="help" id="report-language">{t['report_language']}</p>
-  <div class="choice"><input type="checkbox" id="review" name="review" aria-describedby="review-help"><label for="review">{t['review_label']}</label></div>
-  <p class="help choices-help" id="review-help">{t['review_help']}</p>
-  <div class="choice"><input type="checkbox" id="pictures" name="pictures" checked aria-describedby="pictures-help"><label for="pictures">{t['pictures_label']}</label></div>
-  <p class="help choices-help" id="pictures-help">{t['pictures_help']}</p>
+{choice("checkbox", "review", "on", "review", t['review_label'], [t['review_help']])}
 </fieldset>
-<fieldset class="card"><legend><h2><span class="num" aria-hidden="true">5</span>{t['protected_legend'][3:]}</h2></legend>
+<fieldset class="card" id="tour-5"><legend><h2><span class="num" aria-hidden="true">5</span>{t['protected_legend'][3:]}</h2></legend>
   <label for="password">{t['password_label']}</label>
   <p class="help" id="password-help">{t['password_help']}</p>
   <input type="password" id="password" name="password" autocomplete="off" aria-describedby="password-help">
 </fieldset>
-<div class="actions"><button type="submit" class="big"{' disabled' if busy else ''}>{t['start']} <span aria-hidden="true">→</span></button></div>
+<div class="actions" id="tour-6"><button type="submit" class="big"{' disabled' if busy else ''}>{t['start']} <span aria-hidden="true">→</span></button></div>
 </form>
 <form method="post" action="/{self.token}/quit"><p><button type="submit" class="secondary">{t['quit']}</button></p></form>
 """
         nav = (f'<nav aria-label="{t["lang_nav"]}"><a href="/{self.token}/?lang={other}" lang="{other}">'
                f'{"Deutsch" if other == "de" else "English"}</a></nav>')
+        body += tour(language, self.token, auto=not tour_seen())
         return page(language, t["title"], body, token=self.token, nav=nav)
+
+    def _ai_choices(self, t: dict) -> str:
+        """Section 2: what stays on this computer, and what is sent over the internet. Each box says
+        what is set up; an option that is not set up cannot be chosen. The safe choice is preselected."""
+        from pdfaccessguru.LLM.client import local_model, online_key_service
+        from pdfaccessguru.utils.environment_variables import user_env_file
+
+        model, service = local_model(), online_key_service()
+        ollama_state = t["ai_ollama_found"].format(model=model) if model else t["ai_ollama_missing"]
+        key_state = t["ai_key_found"].format(name=service) if service else t["ai_key_missing"].format(path=_shown_path(user_env_file()))
+        return f"""  <div role="group" aria-labelledby="ai-local"><h3 class="group" id="ai-local">{t['ai_group_local']}</h3>
+{choice("radio", "ai", "ollama", "ai-ollama", t['ai_ollama'], [t['ai_ollama_help'], ollama_state], checked=bool(model), disabled=not model)}
+{choice("radio", "ai", "none", "ai-none", t['ai_none'], [t['ai_none_help']], checked=not model)}
+  </div>
+  <div role="group" aria-labelledby="ai-online"><h3 class="group" id="ai-online">{t['ai_group_online']}</h3>
+{choice("radio", "ai", "cloud", "ai-cloud", t['ai_cloud'], [t['ai_cloud_help'], t['ai_key_promise'], key_state], disabled=not service)}
+  </div>"""
 
     def job_page(self, job: Job) -> bytes:
         t = TEXT[job.language]
@@ -305,7 +327,7 @@ class App:
 <h1>{html.escape(t['working_title'].format(name=job.name))}</h1>
 <p class="lead">{t['working_help']}</p>
 <section class="card">
-<label for="bar">{t['progress_label']}</label>
+<div class="progress-head"><label for="bar">{t['progress_label']}</label><span id="percent" aria-hidden="true">{percent}%</span></div>
 <progress id="bar" max="100" value="{percent}">{percent}%</progress>
 <div class="status" role="status" aria-live="polite" id="status">{html.escape(job.text or '…')}</div>
 <form method="post" action="/{self.token}/job/{job.job_id}/cancel"><p><button type="submit" class="secondary">{t['cancel']}</button></p></form>
@@ -318,7 +340,9 @@ class App:
   function poll() {{
     fetch("/{self.token}/job/{job.job_id}/status").then(function (r) {{ return r.json(); }}).then(function (s) {{
       if (s.state !== "running") {{ window.location.reload(); return; }}
-      document.getElementById("bar").value = Math.round(s.fraction * 100);
+      var percent = Math.round(s.fraction * 100);
+      document.getElementById("bar").value = percent;
+      document.getElementById("percent").textContent = percent + "%";
       if (s.text && s.text !== last) {{ document.getElementById("status").textContent = s.text; last = s.text; }}
       setTimeout(poll, 1500);
     }}).catch(function () {{ setTimeout(poll, 3000); }});
@@ -458,7 +482,7 @@ class App:
         if len(entries) <= 2:
             parts.append(f"<p>{t['nothing_written']}</p>")
         parts.append(f'<div class="actions"><button type="submit" class="big" name="accept" value="">{t["save"]}</button></div></form>')
-        parts.append(f'<p>{t["report_stays"]}</p><p><a href="{back}">{t["back"]}</a></p>')
+        parts.append(f'<p><a href="{back}">{t["back"]}</a></p>')
         return page(job.language, t["check_title"].format(name=result.name), "\n".join(parts), token=self.token)
 
     def _hidden_section(self, job: Job, number: int, fixed: Path) -> str:
@@ -493,13 +517,14 @@ class App:
         return "\n".join(parts)
 
     def save_checks(self, job: Job, number: int, fields: dict[str, str]) -> bytes:
-        from pdfaccessguru.webapp.review import EditError, apply, version
+        from pdfaccessguru.webapp.review import EditError, apply, collect, version
 
         t = TEXT[job.language]
         result = job.results[number - 1]
         fixed = self._fixed(job, result)
         if fields.get("version") != version(fixed):
             return self.check_page(job, number, t["changed_meanwhile"], alert=True)
+        before = {entry.key: entry for entry in collect(fixed, result.source)}
         changes = {key: value for key, value in fields.items()
                    if key not in ("version", "accept") and not key.startswith(("show-", "describe-"))}
         show = {key[len("show-"):]: fields.get("describe-" + key[len("show-"):], "")
@@ -513,9 +538,11 @@ class App:
         if fields.get("accept"):
             result.checked.add(fields["accept"])
         result.preview = ""
-        if changed and "PDFAccessGuru.zip" in job.files:
+        if result.report is not None and _remember_review(result.report, before, changes, show, fields.get("accept", "")):
+            self._write_report(job, number, result)
+        if "PDFAccessGuru.zip" in job.files:
             self._zip_all(job)
-        return self.check_page(job, number, t["saved"].format(n=changed))
+        return self.check_page(job, number, t["saved"])
 
     def preview_page(self, job: Job, number: int) -> bytes:
         from pdfaccessguru.webapp.preview import preview_html
@@ -528,6 +555,81 @@ class App:
                 f"<section class=\"card\">{result.preview}</section>"
                 f"<p><a href=\"/{self.token}/job/{job.job_id}\">{t['back']}</a></p>")
         return page(job.language, t["preview_title"].format(name=result.name), body, token=self.token)
+
+
+def _shown_path(path: Path) -> str:
+    """A path as shown on a page: the home folder as ~ on Mac and Linux (shorter, and the user name
+    does not end up in screenshots people share)."""
+    home = str(Path.home())
+    text = str(path)
+    if os.name != "nt" and text.startswith(home + os.sep):
+        return "~" + text[len(home):]
+    return text
+
+
+def tour_seen() -> bool:
+    """True once the guided tour was shown (kept in the app's settings file, not in the browser:
+    the app opens at a new address every time, so the browser would forget it)."""
+    from pdfaccessguru.updates import settings_file
+
+    try:
+        return bool(json.loads(settings_file().read_text(encoding="utf-8")).get("tour_seen"))
+    except (OSError, ValueError):
+        return False
+
+
+def mark_tour_seen() -> None:
+    from pdfaccessguru.updates import settings_file
+
+    path = settings_file()
+    try:
+        settings = json.loads(path.read_text(encoding="utf-8"))
+    except (OSError, ValueError):
+        settings = {}
+    if not isinstance(settings, dict):
+        settings = {}
+    settings["tour_seen"] = True
+    try:
+        path.parent.mkdir(parents=True, exist_ok=True)
+        path.write_text(json.dumps(settings, indent=1), encoding="utf-8")
+    except OSError:                                     # then it shows again next time; nothing breaks
+        pass
+
+
+def _remember_review(report: dict, before: dict, changes: dict[str, str], show: dict[str, str], accept: str) -> bool:
+    """
+    Add what the user changed or reviewed on the review page to report["user_review"], so the
+    report can say it (Phase 12c). `before` are the review page's entries before saving. A text
+    changed twice keeps the tool's text as "old"; changed back to the tool's text, it is dropped.
+    Returns True if anything was added.
+    """
+    from pdfaccessguru.reporting.review_list import APP_GROUPS
+
+    review = report.setdefault("user_review", {"changes": [], "reviewed": [], "shown": 0})
+    added = False
+    for key, text in changes.items():
+        entry = before.get(key)
+        new = " ".join(text.split())
+        if entry is None or new == " ".join(entry.text.split()):
+            continue
+        group = APP_GROUPS[entry.key] if entry.key in ("title", "lang") else APP_GROUPS.get(entry.group, "other")
+        earlier = next((change for change in review["changes"]
+                        if change["group"] == group and change["new"] == " ".join(entry.text.split())), None)
+        if earlier is None:
+            review["changes"].append({"group": group, "page": entry.page, "old": entry.text, "new": new})
+        elif new == " ".join(earlier["old"].split()):
+            review["changes"].remove(earlier)
+        else:
+            earlier["new"] = new
+        added = True
+    shown = sum(1 for description in show.values() if description.strip())
+    if shown:
+        review["shown"] += shown
+        added = True
+    if accept in APP_GROUPS and APP_GROUPS[accept] not in review["reviewed"]:
+        review["reviewed"].append(APP_GROUPS[accept])
+        added = True
+    return added
 
 
 def _handler(app: App):
@@ -644,6 +746,10 @@ def _handler(app: App):
                               parse_qs(self.rfile.read(length).decode("utf-8", "replace"), keep_blank_values=True).items()}
                     self._send(200, app.save_checks(job, number, fields))
                     return
+            if parts == ["tour-seen"]:
+                mark_tour_seen()
+                self._send(204, b"")
+                return
             if parts == ["install"]:
                 app.install_tools()
                 self._redirect(f"/{app.token}/?lang={self._language()}")

@@ -27,11 +27,11 @@ TEXT = {
         "title": "Accessibility Report", "file": "File", "new_file": "New file", "result": "Result",
         "numbers": "In Numbers", "passes": "Passes the automatic check", "yes": "Yes", "no": "No",
         "readable": "Text that assistive technologies can read", "found": "Problems found", "fixed": "Problems fixed",
-        "open": "Problems still open", "to_check": "Texts the tool wrote for you to check",
+        "open": "Problems still open", "to_check": "Texts the tool wrote for you to review",
         "on_purpose": "Not fixed on purpose", "see_below": " (see below why)",
         "good_to_know": "Good to know: one problem is often counted many times, for example once for every line "
                         "of text. So the number of problems does not show how much work is left. Passing the "
-                        "automatic check is a good sign, but a person should still check the reading order and the texts.",
+                        "automatic check is a good sign, but a person should still review the reading order and the texts.",
         "what_found": "What Was Found",
         "table_found": "| Problem | Found | Fixed | Still open | What it means |",
         "what_open": "What Is Still Open",
@@ -44,7 +44,18 @@ TEXT = {
         "table_not_fixed": "| Problem | How often | Why it was not fixed |",
         "unknown": "unknown", "before_after": "{before} before, {after} after", "none": "none",
         "minutes": "about {n} minute{s}", "review_on": "{items} (takes {time}, see the list below)",
-        "review_off": "{items} (takes {time}; turn on “Show a list of things to check” to see them)",
+        "review_off": "{items} (takes {time}; turn on “Add a review list to the report” to see them)",
+        "review_done": "none left: you reviewed them in the app",
+        "yours_title": "Your Changes",
+        "yours_intro": "You reviewed what the tool did and corrected it in the app. The new PDF contains your changes.",
+        "yours_changed": "{what}: changed by you to “{new}” (the tool wrote “{old}”)",
+        "yours_reviewed": "{what}: reviewed by you",
+        "yours_shown": "Pictures you showed again with a description: {n}",
+        "one_title": "Title", "one_language": "Language", "one_images": "Picture description",
+        "one_formulas": "Formula description", "one_links": "Link description", "one_forms": "Form field description",
+        "all_images": "Picture descriptions", "all_formulas": "Formula descriptions", "all_links": "Link descriptions",
+        "all_forms": "Form field descriptions",
+        "on_page": "{what} on page {page}",
         "new": "{n} new", "page": "page", "pages": "pages", "and_more": " and {n} more", "whole": "whole document",
         "untagged": "Most of the text in this file has no tags. Without tags, assistive technologies such as screen readers cannot present the file "
                     "well.\n\nWhat you can do: open the original file in Word. Choose File > Save As > PDF > Options "
@@ -63,14 +74,14 @@ TEXT = {
         "contrast_off": "Places with too little contrast between the text and its background (WCAG 2.2, 1.4.3, level AA): {n}, on {pages}. The colours were not changed, because the option “Improve colour contrast” was off. Turn it on if the colours of this file may change. For templates with fixed colours, ask the owner of the template.",
         "contrast_fixed": "Places with too little contrast whose text colour was made just dark or light enough, keeping its hue: {n}. Nothing else was changed.",
         "contrast_left": "Places that still have too little contrast: {n}, on {pages}. Their text colour could not be changed safely (for example white text on a mid-tone background needs a different background). Please fix them in the original file.",
-        "contrast_unclear": "Text on pictures or colour gradients, whose contrast cannot be measured automatically: {n}. Please check it by eye.",
+        "contrast_unclear": "Text on pictures or colour gradients, whose contrast cannot be measured automatically: {n}. Please look at it yourself.",
         "contrast_undone": "The colour changes were undone, because they would have changed more than the colours.",
         "contrast_example": "Examples:",
         "meaning_title": "Meaning and Structure",
         "meaning_intro": "These checks go beyond the automatic PDF/UA check.",
         "meaning_ok": "No problems with meaning or structure were found.",
         "meaning_fixed": "Fixed:",
-        "meaning_check": "Please check:",
+        "meaning_check": "Please review:",
         "m_alt_cleared": "Picture descriptions that said nothing (like “image” or a file name), written anew: {n}.",
         "m_alt_prefix": "Picture descriptions that started with “Image of …”, shortened: {n}.",
         "m_language": "Passages in another language than the document: {n} ({langs}). They got their language, so screen readers switch to the right voice.",
@@ -91,12 +102,12 @@ TEXT = {
         "numbers": "In Zahlen", "passes": "Besteht die automatische Prüfung", "yes": "Ja", "no": "Nein",
         "readable": "Text, den assistive Technologien lesen können", "found": "Gefundene Probleme",
         "fixed": "Behobene Probleme", "open": "Noch offene Probleme",
-        "to_check": "Texte, die das Werkzeug geschrieben hat und die Sie prüfen sollten",
+        "to_check": "Texte, die das Werkzeug geschrieben hat und die Sie durchsehen sollten",
         "on_purpose": "Absichtlich nicht behoben", "see_below": " (warum, steht unten)",
         "good_to_know": "Gut zu wissen: Ein Problem wird oft vielfach gezählt, zum Beispiel einmal pro Textzeile. "
                         "Die Zahl der Probleme zeigt also nicht, wie viel Arbeit bleibt. Das Bestehen der "
                         "automatischen Prüfung ist ein gutes Zeichen, aber ein Mensch sollte Lesereihenfolge und "
-                        "Texte trotzdem prüfen.",
+                        "Texte trotzdem durchsehen.",
         "what_found": "Was gefunden wurde",
         "table_found": "| Problem | Gefunden | Behoben | Noch offen | Was es bedeutet |",
         "what_open": "Was noch offen ist",
@@ -110,7 +121,18 @@ TEXT = {
         "table_not_fixed": "| Problem | Wie oft | Warum es nicht behoben wurde |",
         "unknown": "unbekannt", "before_after": "vorher {before}, nachher {after}", "none": "keine",
         "minutes": "etwa {n} Minute{s}", "review_on": "{items} (dauert {time}, siehe Liste unten)",
-        "review_off": "{items} (dauert {time}; schalten Sie „Liste der zu prüfenden Texte zeigen“ ein, um sie zu sehen)",
+        "review_off": "{items} (dauert {time}; schalten Sie „Eine Liste zum Durchsehen in den Bericht aufnehmen“ ein, um sie zu sehen)",
+        "review_done": "keine mehr: Sie haben sie in der App durchgesehen",
+        "yours_title": "Ihre Änderungen",
+        "yours_intro": "Sie haben in der App durchgesehen, was das Werkzeug getan hat, und es korrigiert. Die neue PDF enthält Ihre Änderungen.",
+        "yours_changed": "{what}: von Ihnen geändert in „{new}“ (das Werkzeug schrieb „{old}“)",
+        "yours_reviewed": "{what}: von Ihnen durchgesehen",
+        "yours_shown": "Bilder, die Sie mit einer Beschreibung wieder gezeigt haben: {n}",
+        "one_title": "Titel", "one_language": "Sprache", "one_images": "Bildbeschreibung",
+        "one_formulas": "Formelbeschreibung", "one_links": "Linkbeschreibung", "one_forms": "Beschreibung eines Formularfelds",
+        "all_images": "Bildbeschreibungen", "all_formulas": "Formelbeschreibungen", "all_links": "Linkbeschreibungen",
+        "all_forms": "Beschreibungen von Formularfeldern",
+        "on_page": "{what} auf Seite {page}",
         "new": "{n} neu", "page": "Seite", "pages": "Seiten", "and_more": " und {n} weitere", "whole": "ganzes Dokument",
         "untagged": "Der meiste Text in dieser Datei hat keine Tags. Ohne Tags können assistive Technologien wie Screenreader die Datei nicht "
                     "gut wiedergeben.\n\nWas Sie tun können: Öffnen Sie die Originaldatei in Word. Wählen Sie Datei > "
@@ -129,14 +151,14 @@ TEXT = {
         "contrast_off": "Stellen mit zu wenig Kontrast zwischen Text und Hintergrund (WCAG 2.2, 1.4.3, Stufe AA): {n}, auf {pages}. Die Farben wurden nicht geändert, weil die Option „Farbkontrast verbessern“ ausgeschaltet war. Schalten Sie sie ein, wenn sich die Farben dieser Datei ändern dürfen. Bei Vorlagen mit festen Farben wenden Sie sich an die Stelle, die die Vorlage verantwortet.",
         "contrast_fixed": "Stellen mit zu wenig Kontrast, deren Textfarbe gerade so viel dunkler oder heller wurde wie nötig, im gleichen Farbton: {n}. Sonst wurde nichts geändert.",
         "contrast_left": "Stellen, die noch zu wenig Kontrast haben: {n}, auf {pages}. Ihre Textfarbe ließ sich nicht sicher ändern (zum Beispiel braucht weißer Text auf mittlerem Hintergrund einen anderen Hintergrund). Bitte beheben Sie sie in der Originaldatei.",
-        "contrast_unclear": "Text auf Bildern oder Farbverläufen, dessen Kontrast sich nicht automatisch messen lässt: {n}. Bitte prüfen Sie ihn mit dem Auge.",
+        "contrast_unclear": "Text auf Bildern oder Farbverläufen, dessen Kontrast sich nicht automatisch messen lässt: {n}. Bitte sehen Sie ihn sich selbst an.",
         "contrast_undone": "Die Farbänderungen wurden rückgängig gemacht, weil sie mehr als nur die Farben verändert hätten.",
         "contrast_example": "Beispiele:",
         "meaning_title": "Bedeutung und Struktur",
         "meaning_intro": "Diese Prüfungen gehen über die automatische PDF/UA-Prüfung hinaus.",
         "meaning_ok": "Es wurden keine Probleme mit Bedeutung oder Struktur gefunden.",
         "meaning_fixed": "Behoben:",
-        "meaning_check": "Bitte prüfen:",
+        "meaning_check": "Bitte durchsehen:",
         "m_alt_cleared": "Bildbeschreibungen, die nichts aussagten (etwa „Bild“ oder ein Dateiname), neu geschrieben: {n}.",
         "m_alt_prefix": "Bildbeschreibungen, die mit „Bild von …“ begannen, gekürzt: {n}.",
         "m_language": "Abschnitte in einer anderen Sprache als das Dokument: {n} ({langs}). Sie haben ihre Sprache erhalten, damit Screenreader zur richtigen Stimme wechseln.",
@@ -209,6 +231,7 @@ def build_customer_report_markdown(
         "",
         t("good_to_know"),
         "",
+        *_user_section(report.get("user_review") or {}, language),
         *_ai_section(report, language),
         f"## {t('what_found')}",
         "",
@@ -255,6 +278,25 @@ def build_customer_report_markdown(
             title, _, rest = markdown.partition("\n")
             markdown = f"{title}\n\n{note}\n{rest}"
     return markdown
+
+
+def _user_section(user_review: dict, language: str) -> list[str]:
+    """What the user changed or reviewed on the app's review page (Phase 12c); nothing if nothing."""
+    changes, reviewed, shown = user_review.get("changes", []), user_review.get("reviewed", []), user_review.get("shown", 0)
+    if not (changes or reviewed or shown):
+        return []
+    t = lambda key, **values: _t(language, key, **values)
+    lines = [f"## {t('yours_title')}", "", t("yours_intro"), ""]
+    for change in changes:
+        what = t("one_" + change.get("group", "images"))
+        if change.get("page"):
+            what = t("on_page", what=what, page=change["page"])
+        lines.append("- " + t("yours_changed", what=what, new=change.get("new", ""), old=change.get("old", "")))
+    for group in reviewed:
+        lines.append("- " + t("yours_reviewed", what=t("all_" + group)))
+    if shown:
+        lines.append("- " + t("yours_shown", n=shown))
+    return lines + [""]
 
 
 def _meaning_section(meaning: dict | None, language: str) -> list[str]:
@@ -386,9 +428,11 @@ def _reason_sentence(reason: str) -> str:
 
 
 def _review_summary(groups: list, include_review_list: bool, language: str = "en") -> str:
-    items = sum(len(group.items) for group in groups)
-    if not items:
+    if not any(group.items for group in groups):
         return _t(language, "none")
+    items = sum(len(group.pending) for group in groups)
+    if not items:
+        return _t(language, "review_done")
     minutes = estimated_minutes(groups)
     plural = ("" if minutes == 1 else "s") if language == "en" else ("" if minutes == 1 else "n")
     time_text = _t(language, "minutes", n=minutes, s=plural)

@@ -85,10 +85,11 @@ def test_the_preview_reads_like_a_screen_reader(tmp_path):
 
 def test_the_app_lets_people_check_change_and_preview(app):  # noqa: F811
     pdf = (RESOURCES / "veraPDF_corpus/7.3-t01-fail-a.pdf").read_bytes()
-    status, headers = _upload(app, pdf, language_ui="en")
+    status, headers = _upload(app, pdf, language_ui="en", review="on")
     job_path = headers["Location"]
     assert _wait(app, job_path)["state"] == "done"
     page = _request(app, "GET", job_path)[2].decode()
+    to_review_before = _to_review(page)
     check = re.search(r'href="([^"]+/check/1)"', page).group(1)
     preview = re.search(r'href="([^"]+/preview/1)"', page).group(1)
 
@@ -101,13 +102,28 @@ def test_the_app_lets_people_check_change_and_preview(app):  # noqa: F811
               "title": "Test page", "lang": "en", picture_key: "Company logo"}
     body = urlencode(values).encode()
     saved = _request(app, "POST", check, body, {"Content-Type": "application/x-www-form-urlencoded"})[2].decode()
-    assert "Saved. Texts changed:" in saved and "Picture descriptions (1) – checked" in saved
-    assert "Company logo" in saved
+    assert "Saved. The new PDF and the report now include your changes." in saved
+    assert "Picture descriptions (1) – reviewed" in saved and "Company logo" in saved
+    assert "still shows the texts as the tool wrote them" not in saved
+
+    # Phase 12c: the report now says what the user changed and reviewed, and less is left to review
+    page = _request(app, "GET", job_path)[2].decode()
+    report_link = re.search(r'href="([^"]+_report\.md)"', page).group(1)
+    report = _request(app, "GET", report_link)[2].decode()
+    assert "## Your Changes" in report and "- Picture descriptions: reviewed by you" in report
+    assert re.search(r"- Picture description on page 1: changed by you to “Company logo” \(the tool wrote “.+”\)", report)
+    assert "- Title: changed by you to “Test page”" in report
+    assert "(reviewed by you)" in report and "Changed by you to: “Company logo”" in report
+    assert _to_review(page) < to_review_before
     again = _request(app, "POST", check, body, {"Content-Type": "application/x-www-form-urlencoded"})[2].decode()
     assert 'role="alert"' in again and "changed in the meantime" in again        # an old form is not applied
 
     shown = _request(app, "GET", preview)[2].decode()
     assert shown.count("<h1>") == 1 and "[Picture: Company logo]" in shown
+
+
+def _to_review(page: str) -> int:
+    return int(re.search(r"Texts to review</dt>\s*<dd>(\d+)</dd>", page).group(1))
 
 
 def _logo_pdf(path: Path) -> Path:
@@ -151,3 +167,22 @@ def test_pictures_hidden_as_decoration_can_be_shown_with_a_description(tmp_path)
     rules = Counter(v.rule_id for v in run_verapdf(str(fixed)))
     # tags, decoration and picture descriptions are all right (title and metadata are set by the pipeline)
     assert not [rule for rule in rules if rule.startswith(("7.1-", "7.2-", "7.3-")) and rule not in ("7.1-8", "7.1-10")], rules
+
+
+def test_a_text_changed_twice_keeps_the_tools_text_and_a_change_back_is_dropped():
+    from pdfaccessguru.webapp.review import Entry
+    from pdfaccessguru.webapp.server import _remember_review
+
+    report: dict = {}
+    first = Entry("5-0-Alt", "pictures", "Picture", page=2)
+    assert _remember_review(report, {first.key: first}, {first.key: "Logo"}, {}, "")
+    second = Entry("7-0-Alt", "pictures", "Logo", page=2)            # keys change when the file is saved
+    _remember_review(report, {second.key: second}, {second.key: "University logo"}, {}, "")
+    assert report["user_review"]["changes"] == [{"group": "images", "page": 2, "old": "Picture", "new": "University logo"}]
+    third = Entry("9-0-Alt", "pictures", "University logo", page=2)
+    _remember_review(report, {third.key: third}, {third.key: "Picture"}, {}, "")
+    assert report["user_review"]["changes"] == []
+    unchanged = Entry("9-0-Alt", "pictures", "Picture", page=2)
+    assert not _remember_review(report, {unchanged.key: unchanged}, {unchanged.key: " Picture "}, {}, "")
+    assert _remember_review(report, {}, {}, {"3-0": "A logo"}, "pictures")
+    assert report["user_review"]["shown"] == 1 and report["user_review"]["reviewed"] == ["images"]
