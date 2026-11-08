@@ -11,7 +11,12 @@ if __package__ in (None, ""):
 
 
 def main(open_browser: bool = True) -> None:
-    from pdfaccessguru.webapp.server import serve
+    from pdfaccessguru.shortcuts import refresh_after_update
+    from pdfaccessguru.webapp.server import open_running_app, serve
+
+    refresh_after_update()                    # after an update: newest icon and program in the shortcut
+    if open_running_app(open_browser):        # already running: show it again instead of a second app
+        return
 
     serve(open_browser=open_browser)
 

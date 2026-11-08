@@ -249,12 +249,17 @@ def _cmd_update(_args: argparse.Namespace) -> int:
         return EXIT_OK
     _say(f"Updating PDFAccessGuru from {info.current} to {info.latest} ...")
     if platform.system() == "Windows":
-        if start_update_after_exit(reopen_app=False):
+        if start_update_after_exit(reopen_app=False, expected=info.latest):
             _say("The update starts in a few seconds, after this window has finished. Then run your command again.")
             return EXIT_OK
-    elif run_update_now():
-        _say("Done. PDFAccessGuru is up to date.")
-        return EXIT_OK
+    else:
+        result = run_update_now(info.latest, say=_say)
+        if result == "done":
+            _say("Done. PDFAccessGuru is up to date.")
+            return EXIT_OK
+        if result == "not_ready":
+            _say("The new version is not ready on the server yet. Please try again in a few minutes: pdfaccessguru update")
+            return EXIT_ERROR
     _say(manual_update_hint())
     return EXIT_ERROR
 

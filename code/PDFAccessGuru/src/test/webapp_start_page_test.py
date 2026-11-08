@@ -134,3 +134,46 @@ def test_the_tour_link_is_on_every_page_and_the_tour_speaks_german(app, monkeypa
 
     other = make_page("en", "Result", "<h1>Result</h1>", token="abc").decode()
     assert '<a class="tour-link" id="tour-open" href="/abc/?lang=en&amp;tour=1">Guided tour</a>' in other
+
+
+def test_a_second_start_shows_the_running_app_instead_of_starting_another(app, monkeypatch, tmp_path):  # noqa: F811
+    import json
+
+    from pdfaccessguru.webapp import server
+
+    note = tmp_path / "running-app.json"
+    monkeypatch.setattr(server, "_running_app_file", lambda: note)
+    opened = []
+    monkeypatch.setattr(server.webbrowser, "open", opened.append)
+    assert server.open_running_app() is False                       # nothing runs yet
+    url = f"http://127.0.0.1:{app.server.server_address[1]}/{app.token}/"
+    assert _request(app, "GET", f"/{app.token}/alive")[0] == 204
+    note.write_text(json.dumps({"url": url, "pid": 1}))
+    assert server.open_running_app() is True and opened == [url]     # the running app is shown again
+    note.write_text(json.dumps({"url": "http://127.0.0.1:9/old-key/", "pid": 1}))
+    assert server.open_running_app() is False                       # an old note from a stopped app
+
+
+def test_the_app_leaves_a_note_while_it_runs_and_removes_it_when_closed(monkeypatch, tmp_path):
+    import json
+    import threading
+    import time
+    import urllib.request
+
+    from pdfaccessguru.webapp import server
+
+    note = tmp_path / "running-app.json"
+    monkeypatch.setattr(server, "_running_app_file", lambda: note)
+    monkeypatch.setattr("pdfaccessguru.updates.settings_file", lambda: tmp_path / "settings.json")
+    monkeypatch.setenv("PDFACCESSGURU_NO_UPDATE_CHECK", "1")
+    thread = threading.Thread(target=server.serve, kwargs={"open_browser": False}, daemon=True)
+    thread.start()
+    for _ in range(100):
+        if note.exists():
+            break
+        time.sleep(0.05)
+    url = json.loads(note.read_text())["url"]
+    assert (note.stat().st_mode & 0o777) == 0o600                   # the address holds the app's key
+    urllib.request.urlopen(urllib.request.Request(url + "quit", data=b"", method="POST"), timeout=10).read()
+    thread.join(timeout=20)
+    assert not thread.is_alive() and not note.exists()
