@@ -18,7 +18,7 @@ The easiest way is the one-line installer, see
 With [uv](https://docs.astral.sh/uv/):
 
 ```sh
-uv tool install pdfaccessguru
+uv tool install --no-build pdfaccessguru
 pdfaccessguru app
 ```
 

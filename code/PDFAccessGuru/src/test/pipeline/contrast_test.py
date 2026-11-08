@@ -126,7 +126,7 @@ def test_the_report_says_what_happened_in_plain_words(tmp_path):
            "pages": [1], "low": [{"page": 1, "text": "Yellow text on white", "ratio": 1.38, "large": False}]}
     text = "\n".join(_contrast_section(off, "en"))
     assert "option “Improve colour contrast” was off" in text and "“Yellow text on white” (page 1, 1.38:1)" in text
-    assert "check it by eye" in text and "level AA): 3, on page 1" in text and _contrast_line(off, "en") == ["- Text with too little contrast: 3"]
+    assert "Please look at it yourself" in text and "level AA): 3, on page 1" in text and _contrast_line(off, "en") == ["- Text with too little contrast: 3"]
     on = dict(off, switched_on=True, fixed=3, low_count=0, low=[], pages=[])
     assert "keeping its hue: 3." in "\n".join(_contrast_section(on, "en"))
     assert "Farbton" in "\n".join(_contrast_section(on, "de"))

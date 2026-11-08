@@ -137,7 +137,7 @@ def test_the_report_says_what_was_fixed_and_what_to_check():
                "long_headings": [], "long_headings_count": 0, "no_headings": False, "list_like": [],
                "list_like_count": 0, "tiny_figures": 0, "tables_without_headers": 1}
     text = "\n".join(_meaning_section(meaning, "en"))
-    assert "## Meaning and Structure" in text and "Fixed:" in text and "Please check:" in text
+    assert "## Meaning and Structure" in text and "Fixed:" in text and "Please review:" in text
     assert "(de: 1)" in text and "on page 4" in text and "Tables without header cells: 1." in text
     assert "Bedeutung und Struktur" in "\n".join(_meaning_section(meaning, "de"))
 

@@ -16,6 +16,22 @@ TEXT = {
     "en": {
         "title": "PDFAccessGuru",
         "skip": "Skip to the main content",
+        "tour_link": "Guided tour",
+        "tour_count": "Step {n} of {total}",
+        "tour_back": "Back",
+        "tour_next": "Next",
+        "tour_done": "Done",
+        "tour_skip": "Skip the tour",
+        "tour_steps": [
+            ("Choose files", "Choose one or more PDF files. Your originals are never changed."),
+            ("Descriptions", "Choose who writes the descriptions. For confidential files, choose one that stays on "
+                             "your computer."),
+            ("Colours", "Switch this on only if the colours of your file may change."),
+            ("Report", "You always get a report. Add a review list if someone should review what the tool decided."),
+            ("Protected files", "Only needed if your PDF has a password."),
+            ("Start", "Click here. Then you can download the new PDF, review and correct the descriptions, and "
+                      "see the reading order."),
+        ],
         "home_label": "PDFAccessGuru, start page",
         "lang_nav": "Language",
         "hidden_title": "Hidden as decoration",
@@ -34,41 +50,50 @@ TEXT = {
         "badge_warn": "Some problems are still open",
         "n_fixed": "Problems fixed",
         "n_open": "Still open",
-        "n_check": "Texts to check",
+        "n_check": "Texts to review",
         "next_steps": "Next steps",
         "download_pdf_short": "The accessible PDF",
         "report_pdf_note": "The report as an accessible PDF",
         "report_md_note": "The report as plain text, for editing or sharing",
         "check_note": "Picture descriptions, link texts, title, language, and what was hidden as decoration",
         "preview_note": "The new PDF as assistive technologies present it: in reading order, with headings and picture descriptions",
-        "footer": "PDFAccessGuru {version}. Runs only on this computer. Free and open source.",
+        "footer": "PDFAccessGuru {version}. Runs only on your computer. Free and open source.",
         "hero_title": "Make PDF files accessible",
-        "promise_local": "Your files stay on this computer, unless you choose an online AI service",
+        "promise_local": "Your files stay on your computer, unless you choose an online AI",
         "promise_standard": "Checked against PDF/UA, the standard for accessible PDF",
         "promise_original": "The original is never changed",
         "promise_free": "Free and open source",
-        "intro": "Makes PDF files accessible to everyone, including people with disabilities. PDFAccessGuru adds "
-                 "what assistive technologies such as screen readers, screen magnifiers and read-aloud tools need: "
-                 "headings, lists and tables, a reading order, descriptions of pictures, and the language.",
+        "intro": "Makes PDF files accessible to everyone.",
         "file_legend": "1. Choose PDF files",
         "file_label": "One or more PDF files",
         "file_help": "The original files are not changed. You get a new, improved copy of each. To choose several files, hold Ctrl (on a Mac: Cmd) while you click.",
-        "ai_legend": "2. Who writes texts like picture descriptions?",
-        "ai_auto": "Automatic (recommended): an online AI if you have set up a key for one, otherwise an AI on this computer (Ollama), otherwise simple rules",
-        "ai_ollama": "An AI that runs only on this computer (Ollama: free and private; it must be installed)",
-        "ai_cloud": ("An online AI like ChatGPT (from OpenAI), or Claude, Gemini and others (through OpenRouter). Pictures "
-                    "and text from your file are sent over the internet to that company. You need an account key from them."),
-        "ai_none": "No AI: simple rules only (fast, but the texts are less helpful)",
-        "ai_status": "Right now: {status}.",
-        "local_label": "Never send anything from my file to the internet",
-        "local_help": "Use this for confidential files. Then only an AI on this computer (Ollama), or simple rules, are used.",
+        "ai_legend": "2. Choose who writes the descriptions",
+        "ai_intro": "Descriptions tell people who can't see a picture what it shows, for example blind people who use "
+                    "a screen reader. The tool also writes them for formulas, links and form fields.",
+        "ai_group_local": "Stays on your computer (recommended for confidential files)",
+        "ai_group_online": "Sent over the internet",
+        "ai_ollama": "An AI on your computer (Ollama)",
+        "ai_ollama_help": "Free and private. Nothing leaves your computer.",
+        "ai_ollama_found": "Found on your computer: {model}",
+        "ai_ollama_missing": "Not installed or not running. To use it, install Ollama from ollama.com, then run: "
+                             "ollama pull gemma3:4b",
+        "ai_none": "No AI: simple rules",
+        "ai_none_help": "Nothing leaves your computer. Fast, but the texts are less helpful.",
+        "ai_cloud": "An online AI like ChatGPT",
+        "ai_cloud_help": "Or Claude, Gemini and others through OpenRouter. Pictures and text from your file are sent "
+                         "to that company. You need a key from them.",
+        "ai_key_promise": "Your key stays in the settings file on your computer. PDFAccessGuru sends it only to that "
+                          "company and never puts it into the PDF or the report.",
+        "ai_key_found": "Key found: {name}",
+        "ai_key_missing": "No key set up yet. Write OPENAI_API_KEY=your-key (or OPENROUTER_API_KEY=your-key) into "
+                          "this file, then reload this page: {path}",
         "contrast_legend": "3. Colours",
         "contrast_label": "Improve colour contrast (changes text colours)",
-        "contrast_help": "Makes text that is hard to read a little darker or lighter, just enough. Leave this off for "
-                         "templates whose colours must not change, for example official templates. Text with too "
-                         "little contrast is listed in the report either way.",
-        "report_legend": "4. Report",
-        "report_language": "Each report is written in the language of its PDF.",
+        "contrast_help": "Makes text that is hard to read a little darker or lighter. Leave this off for "
+                         "templates whose colours must not change, for example official templates.",
+        "report_legend": "4. Report on the changes",
+        "report_language": "With the new PDF you also get a report: a short document that says in plain words what "
+                           "the tool fixed and what you still need to do. It is written in the language of the PDF.",
         "writing_report": "Writing the report",
         "n_files": "{n} files",
         "file_n_of": "File {n} of {total} ({name})",
@@ -77,11 +102,10 @@ TEXT = {
         "yes": "yes", "no": "no",
         "show_report": "Show the report",
         "not_done": "Not processed, because the work was stopped.",
-        "review_label": "Add a list of everything the tool decided by itself, to check it",
-        "review_help": "For example picture descriptions, the title, the language and the headings. Takes a few "
-                       "minutes. Every entry can be checked without seeing the page.",
-        "pictures_label": "Show the pictures in that list",
-        "pictures_help": "For sighted readers. Without pictures, every entry still has a text to compare with.",
+        "review_label": "Add a review list to the report",
+        "review_help": "A list of everything the tool decided by itself, for example picture descriptions, the "
+                       "title, the language and headings, so a person can review it. Going through it takes a few "
+                       "minutes. You can also review and correct everything in the app after fixing.",
         "protected_legend": "5. Only for protected PDFs (optional)",
         "password_label": "Owner password of the PDF",
         "password_help": "Only needed if the file is protected and blocks screen readers and other assistive "
@@ -90,7 +114,7 @@ TEXT = {
         "start": "Make the PDF accessible",
         "busy": "Another file is being worked on. Please wait until it is finished.",
         "working_title": "Working on {name}",
-        "working_help": "This can take a few minutes for long files. You can leave this page open; it updates by itself.",
+        "working_help": "This can take a few minutes for long files.",
         "progress_label": "Progress",
         "cancel": "Stop",
         "done_title": "Done: {name}",
@@ -99,7 +123,7 @@ TEXT = {
         "download_report_pdf": "Report (PDF)",
         "download_report_md": "Report (Markdown text)",
         "report": "Report",
-        "again": "Check another file",
+        "again": "Make another PDF accessible",
         "error_title": "Something went wrong",
         "error_help": "The file could not be processed. The message below says why.",
         "stopped": "Stopped. Nothing was saved.",
@@ -119,13 +143,13 @@ TEXT = {
         "tools_working": "Downloading the helper programs: {text}",
         "tools_failed": "The helper programs could not be downloaded: {error}",
         "tools_done": "The helper programs are ready.",
-        "check_link": "Check and correct the tool's choices",
+        "check_link": "Review and correct the tool's choices",
         "preview_link": "Show the reading order",
-        "check_title": "Check the tool's choices: {name}",
+        "check_title": "Review the tool's choices: {name}",
         "check_intro": "The tool wrote these texts and made these choices by itself. Correct anything that is wrong, then save. Your changes go "
-                       "straight into the new PDF. To check a text, compare it with the text under its name "
+                       "straight into the new PDF. To review a text, compare it with the text under its name "
                        "(the caption, the text nearby, or where a link goes).",
-        "checked": "checked",
+        "checked": "reviewed",
         "group_document": "Title and language of the document",
         "group_pictures": "Picture descriptions ({n})",
         "group_formulas": "Formula descriptions ({n})",
@@ -138,18 +162,17 @@ TEXT = {
         "label_formulas": "Formula on page {page}",
         "label_links": "Link on page {page}",
         "label_fields": "Form field on page {page}",
-        "accept_pictures": "Save, and mark all picture descriptions as checked",
-        "accept_formulas": "Save, and mark all formula descriptions as checked",
-        "accept_links": "Save, and mark all link descriptions as checked",
-        "accept_fields": "Save, and mark all form field descriptions as checked",
+        "accept_pictures": "Save, and mark all picture descriptions as reviewed",
+        "accept_formulas": "Save, and mark all formula descriptions as reviewed",
+        "accept_links": "Save, and mark all link descriptions as reviewed",
+        "accept_fields": "Save, and mark all form field descriptions as reviewed",
         "nothing_written": "The tool did not write any other texts for this file.",
         "save": "Save my changes",
-        "report_stays": "The report still shows the texts as the tool wrote them.",
         "back": "Back to the results",
-        "changed_meanwhile": "The file was changed in the meantime, for example in another tab. Nothing was saved. Please check the texts again.",
+        "changed_meanwhile": "The file was changed in the meantime, for example in another tab. Nothing was saved. Please review the texts again.",
         "empty_text": "A text cannot be empty. Nothing was saved.",
         "bad_language": "The language must be a short code like en, de or en-GB. Nothing was saved.",
-        "saved": "Saved. Texts changed: {n}.",
+        "saved": "Saved. The new PDF and the report now include your changes.",
         "preview_title": "Reading order: {name}",
         "preview_intro": "This is the new PDF as screen readers and read-aloud tools present it, in this order. Decoration is left out. Check "
                          "that the order and the headings make sense. Pictures are shown by their description.",
@@ -157,6 +180,23 @@ TEXT = {
     "de": {
         "title": "PDFAccessGuru",
         "skip": "Zum Hauptinhalt springen",
+        "tour_link": "Rundgang",
+        "tour_count": "Schritt {n} von {total}",
+        "tour_back": "Zurück",
+        "tour_next": "Weiter",
+        "tour_done": "Fertig",
+        "tour_skip": "Rundgang überspringen",
+        "tour_steps": [
+            ("Dateien wählen", "Wählen Sie eine oder mehrere PDF-Dateien. Ihre Originale werden nie verändert."),
+            ("Beschreibungen", "Wählen Sie, wer die Beschreibungen schreibt. Für vertrauliche Dateien wählen Sie "
+                               "eine Möglichkeit, die auf Ihrem Computer bleibt."),
+            ("Farben", "Schalten Sie dies nur ein, wenn sich die Farben Ihrer Datei ändern dürfen."),
+            ("Bericht", "Sie erhalten immer einen Bericht. Nehmen Sie eine Liste zum Durchsehen auf, wenn jemand "
+                        "durchsehen soll, was das Werkzeug entschieden hat."),
+            ("Geschützte Dateien", "Nur nötig, wenn Ihre PDF ein Kennwort hat."),
+            ("Start", "Klicken Sie hier. Danach können Sie die neue PDF herunterladen, die Beschreibungen "
+                      "durchsehen und korrigieren und die Lesereihenfolge ansehen."),
+        ],
         "home_label": "PDFAccessGuru, Startseite",
         "lang_nav": "Sprache",
         "hidden_title": "Als Dekoration ausgeblendet",
@@ -176,42 +216,53 @@ TEXT = {
         "badge_warn": "Einige Probleme sind noch offen",
         "n_fixed": "Behobene Probleme",
         "n_open": "Noch offen",
-        "n_check": "Zu prüfende Texte",
+        "n_check": "Texte zum Durchsehen",
         "next_steps": "Nächste Schritte",
         "download_pdf_short": "Die barrierefreie PDF",
         "report_pdf_note": "Der Bericht als barrierefreie PDF",
         "report_md_note": "Der Bericht als reiner Text, zum Bearbeiten oder Weitergeben",
         "check_note": "Bildbeschreibungen, Linktexte, Titel, Sprache und was als Dekoration ausgeblendet wurde",
         "preview_note": "Die neue PDF so, wie assistive Technologien sie wiedergeben: in Lesereihenfolge, mit Überschriften und Bildbeschreibungen",
-        "footer": "PDFAccessGuru {version}. Läuft nur auf diesem Computer. Kostenlos und quelloffen.",
+        "footer": "PDFAccessGuru {version}. Läuft nur auf Ihrem Computer. Kostenlos und quelloffen.",
         "hero_title": "PDF-Dateien barrierefrei machen",
-        "promise_local": "Ihre Dateien bleiben auf diesem Computer, außer Sie wählen einen Online-KI-Dienst",
+        "promise_local": "Ihre Dateien bleiben auf Ihrem Computer, außer Sie wählen eine Online-KI",
         "promise_standard": "Geprüft nach PDF/UA, dem Standard für barrierefreie PDF",
         "promise_original": "Das Original wird nie verändert",
         "promise_free": "Kostenlos und quelloffen",
-        "intro": "Macht PDF-Dateien barrierefrei: für alle nutzbar, auch für Menschen mit Behinderungen. "
-                 "PDFAccessGuru ergänzt, was assistive Technologien wie Screenreader, Vergrößerungssoftware und "
-                 "Vorlesefunktionen brauchen: Überschriften, Listen und Tabellen, eine Lesereihenfolge, "
-                 "Bildbeschreibungen und die Sprache.",
+        "intro": "Macht PDF-Dateien für alle zugänglich.",
         "file_legend": "1. PDF-Dateien wählen",
         "file_label": "Eine oder mehrere PDF-Dateien",
         "file_help": "Die Originaldateien werden nicht verändert. Sie erhalten von jeder eine neue, verbesserte Kopie. Für mehrere Dateien halten Sie beim Klicken Strg gedrückt (auf dem Mac: Cmd).",
-        "ai_legend": "2. Wer schreibt Texte wie Bildbeschreibungen?",
-        "ai_auto": "Automatisch (empfohlen): eine Online-KI, falls Sie einen Schlüssel dafür eingerichtet haben, sonst eine KI auf diesem Computer (Ollama), sonst einfache Regeln",
-        "ai_ollama": "Eine KI, die nur auf diesem Computer läuft (Ollama: kostenlos und privat; muss installiert sein)",
-        "ai_cloud": ("Eine Online-KI wie ChatGPT (von OpenAI) oder Claude, Gemini und andere (über OpenRouter). Bilder und "
-                    "Text aus Ihrer Datei werden über das Internet an diese Firma gesendet. Sie brauchen einen Zugangsschlüssel von ihr."),
-        "ai_none": "Keine KI: nur einfache Regeln (schnell, aber die Texte sind weniger hilfreich)",
-        "ai_status": "Derzeit: {status}.",
-        "local_label": "Nichts aus meiner Datei ins Internet senden",
-        "local_help": "Für vertrauliche Dateien. Dann wird nur eine KI auf diesem Computer (Ollama) oder einfache Regeln verwendet.",
+        "ai_legend": "2. Wählen Sie, wer die Beschreibungen schreibt",
+        "ai_intro": "Beschreibungen sagen Menschen, die ein Bild nicht sehen können, was es zeigt, zum Beispiel "
+                    "blinden Menschen, die einen Screenreader nutzen. Das Werkzeug schreibt sie auch für Formeln, "
+                    "Links und Formularfelder.",
+        "ai_group_local": "Bleibt auf Ihrem Computer (empfohlen für vertrauliche Dateien)",
+        "ai_group_online": "Wird über das Internet gesendet",
+        "ai_ollama": "Eine KI auf Ihrem Computer (Ollama)",
+        "ai_ollama_help": "Kostenlos und privat. Nichts verlässt Ihren Computer.",
+        "ai_ollama_found": "Auf Ihrem Computer gefunden: {model}",
+        "ai_ollama_missing": "Nicht installiert oder nicht gestartet. Installieren Sie dafür Ollama von ollama.com "
+                             "und geben Sie dann ein: ollama pull gemma3:4b",
+        "ai_none": "Keine KI: einfache Regeln",
+        "ai_none_help": "Nichts verlässt Ihren Computer. Schnell, aber die Texte sind weniger hilfreich.",
+        "ai_cloud": "Eine Online-KI wie ChatGPT",
+        "ai_cloud_help": "Oder Claude, Gemini und andere über OpenRouter. Bilder und Text aus Ihrer Datei werden an "
+                         "diese Firma gesendet. Sie brauchen einen Schlüssel von ihr.",
+        "ai_key_promise": "Ihr Schlüssel bleibt in der Einstellungsdatei auf Ihrem Computer. PDFAccessGuru sendet ihn "
+                          "nur an diese Firma und schreibt ihn nie in die PDF oder den Bericht.",
+        "ai_key_found": "Schlüssel gefunden: {name}",
+        "ai_key_missing": "Noch kein Schlüssel eingerichtet. Schreiben Sie OPENAI_API_KEY=Ihr-Schlüssel (oder "
+                          "OPENROUTER_API_KEY=Ihr-Schlüssel) in diese Datei und laden Sie dann diese Seite neu: {path}",
         "contrast_legend": "3. Farben",
         "contrast_label": "Farbkontrast verbessern (ändert Textfarben)",
-        "contrast_help": "Macht schwer lesbaren Text etwas dunkler oder heller, gerade so viel wie nötig. Lassen Sie "
+        "contrast_help": "Macht schwer lesbaren Text etwas dunkler oder heller. Lassen Sie "
                          "dies aus bei Vorlagen, deren Farben sich nicht ändern dürfen, zum Beispiel amtlichen "
-                         "Vorlagen. Text mit zu wenig Kontrast steht so oder so im Bericht.",
-        "report_legend": "4. Bericht",
-        "report_language": "Jeder Bericht wird in der Sprache seiner PDF geschrieben.",
+                         "Vorlagen.",
+        "report_legend": "4. Bericht über die Änderungen",
+        "report_language": "Zusammen mit der neuen PDF erhalten Sie einen Bericht: ein kurzes Dokument, das in "
+                           "einfachen Worten sagt, was das Werkzeug repariert hat und was Sie noch tun müssen. Er ist "
+                           "in der Sprache der PDF geschrieben.",
         "writing_report": "Der Bericht wird geschrieben",
         "n_files": "{n} Dateien",
         "file_n_of": "Datei {n} von {total} ({name})",
@@ -220,11 +271,10 @@ TEXT = {
         "yes": "ja", "no": "nein",
         "show_report": "Bericht zeigen",
         "not_done": "Nicht bearbeitet, weil die Arbeit abgebrochen wurde.",
-        "review_label": "Eine Liste von allem hinzufügen, was das Werkzeug selbst entschieden hat, um es zu prüfen",
-        "review_help": "Zum Beispiel Bildbeschreibungen, Titel, Sprache und Überschriften. Das Durchgehen dauert einige "
-                       "Minuten. Jeder Eintrag lässt sich prüfen, ohne die Seite zu sehen.",
-        "pictures_label": "Bilder in dieser Liste zeigen",
-        "pictures_help": "Für sehende Leser. Ohne Bilder hat jeder Eintrag trotzdem einen Vergleichstext.",
+        "review_label": "Eine Liste zum Durchsehen in den Bericht aufnehmen",
+        "review_help": "Alles, was das Werkzeug selbst entschieden hat, zum Beispiel Bildbeschreibungen, Titel, "
+                       "Sprache und Überschriften, damit eine Person es durchsehen kann. Das Durchgehen dauert einige "
+                       "Minuten. Sie können nach dem Reparieren auch alles in der App durchsehen und korrigieren.",
         "protected_legend": "5. Nur für geschützte PDFs (optional)",
         "password_label": "Besitzerkennwort der PDF",
         "password_help": "Nur nötig, wenn die Datei geschützt ist und Screenreader und andere assistive Technologien "
@@ -233,7 +283,7 @@ TEXT = {
         "start": "PDF barrierefrei machen",
         "busy": "Gerade wird eine andere Datei bearbeitet. Bitte warten Sie, bis sie fertig ist.",
         "working_title": "{name} wird bearbeitet",
-        "working_help": "Bei langen Dateien kann das einige Minuten dauern. Lassen Sie diese Seite offen; sie aktualisiert sich selbst.",
+        "working_help": "Bei langen Dateien kann das einige Minuten dauern.",
         "progress_label": "Fortschritt",
         "cancel": "Abbrechen",
         "done_title": "Fertig: {name}",
@@ -242,7 +292,7 @@ TEXT = {
         "download_report_pdf": "Bericht (PDF)",
         "download_report_md": "Bericht (Markdown-Text)",
         "report": "Bericht",
-        "again": "Weitere Datei prüfen",
+        "again": "Weitere PDF barrierefrei machen",
         "error_title": "Etwas ist schiefgegangen",
         "error_help": "Die Datei konnte nicht bearbeitet werden. Die Meldung unten sagt, warum.",
         "stopped": "Abgebrochen. Es wurde nichts gespeichert.",
@@ -262,13 +312,13 @@ TEXT = {
         "tools_working": "Die Hilfsprogramme werden geladen: {text}",
         "tools_failed": "Die Hilfsprogramme konnten nicht geladen werden: {error}",
         "tools_done": "Die Hilfsprogramme sind bereit.",
-        "check_link": "Die Entscheidungen des Werkzeugs prüfen und korrigieren",
+        "check_link": "Die Entscheidungen des Werkzeugs durchsehen und korrigieren",
         "preview_link": "Lesereihenfolge zeigen",
-        "check_title": "Entscheidungen prüfen: {name}",
+        "check_title": "Entscheidungen durchsehen: {name}",
         "check_intro": "Diese Texte und Entscheidungen stammen vom Werkzeug selbst. Korrigieren Sie, was nicht stimmt, und "
-                       "speichern Sie. Ihre Änderungen kommen direkt in die neue PDF. Zum Prüfen vergleichen Sie den "
+                       "speichern Sie. Ihre Änderungen kommen direkt in die neue PDF. Zum Durchsehen vergleichen Sie den "
                        "Text mit dem Text unter seinem Namen (Bildunterschrift, Text in der Nähe oder Linkziel).",
-        "checked": "geprüft",
+        "checked": "durchgesehen",
         "group_document": "Titel und Sprache des Dokuments",
         "group_pictures": "Bildbeschreibungen ({n})",
         "group_formulas": "Formelbeschreibungen ({n})",
@@ -281,18 +331,17 @@ TEXT = {
         "label_formulas": "Formel auf Seite {page}",
         "label_links": "Link auf Seite {page}",
         "label_fields": "Formularfeld auf Seite {page}",
-        "accept_pictures": "Speichern und alle Bildbeschreibungen als geprüft markieren",
-        "accept_formulas": "Speichern und alle Formelbeschreibungen als geprüft markieren",
-        "accept_links": "Speichern und alle Linkbeschreibungen als geprüft markieren",
-        "accept_fields": "Speichern und alle Beschreibungen von Formularfeldern als geprüft markieren",
+        "accept_pictures": "Speichern und alle Bildbeschreibungen als durchgesehen markieren",
+        "accept_formulas": "Speichern und alle Formelbeschreibungen als durchgesehen markieren",
+        "accept_links": "Speichern und alle Linkbeschreibungen als durchgesehen markieren",
+        "accept_fields": "Speichern und alle Beschreibungen von Formularfeldern als durchgesehen markieren",
         "nothing_written": "Das Werkzeug hat für diese Datei keine weiteren Texte geschrieben.",
         "save": "Meine Änderungen speichern",
-        "report_stays": "Der Bericht zeigt weiterhin die Texte, wie das Werkzeug sie geschrieben hat.",
         "back": "Zurück zu den Ergebnissen",
-        "changed_meanwhile": "Die Datei wurde inzwischen geändert, zum Beispiel in einem anderen Tab. Es wurde nichts gespeichert. Bitte prüfen Sie die Texte erneut.",
+        "changed_meanwhile": "Die Datei wurde inzwischen geändert, zum Beispiel in einem anderen Tab. Es wurde nichts gespeichert. Bitte sehen Sie die Texte erneut durch.",
         "empty_text": "Ein Text darf nicht leer sein. Es wurde nichts gespeichert.",
         "bad_language": "Die Sprache muss ein kurzer Code sein, z. B. de, en oder de-AT. Es wurde nichts gespeichert.",
-        "saved": "Gespeichert. Geänderte Texte: {n}.",
+        "saved": "Gespeichert. Die neue PDF und der Bericht enthalten jetzt Ihre Änderungen.",
         "preview_title": "Lesereihenfolge: {name}",
         "preview_intro": "So geben Screenreader und Vorlesefunktionen die neue PDF wieder, in dieser Reihenfolge. Dekoration wird ausgelassen. "
                          "Prüfen Sie, ob Reihenfolge und Überschriften Sinn ergeben. Bilder erscheinen als ihre Beschreibung.",
@@ -335,7 +384,7 @@ body { margin: 0; background: var(--paper); color: var(--ink);
 .logo .page { fill: var(--logo-paper); stroke: var(--logo-ink); } .logo .check { fill: var(--logo-check); }
 .top nav a { font-weight: 700; }
 main { padding-top: 1.75rem; padding-bottom: 2rem; }
-footer { color: var(--muted); font-size: 1rem; padding-bottom: 2rem; }
+footer { color: var(--muted); font-size: 1.2rem; padding-bottom: 2rem; }
 a { color: var(--link); text-underline-offset: .18em; }
 a:hover { text-decoration-thickness: 2px; }
 :focus-visible { outline: 3px solid var(--focus); outline-offset: 3px; border-radius: .2rem; }
@@ -365,12 +414,20 @@ input[type=file] { width: 100%; font: inherit; font-size: 1.05rem; padding: 1.2r
 input[type=file]:focus-visible { outline: none; }
 input[type=file]::file-selector-button { font: inherit; font-weight: 700; margin-right: 1rem; padding: .6rem 1.1rem;
        border-radius: .5rem; border: 2px solid var(--teal); background: var(--card); color: var(--link); cursor: pointer; }
-.choice { display: flex; gap: .75rem; align-items: flex-start; margin: .5rem 0; padding: .7rem .9rem;
+.choice { position: relative; display: flex; gap: .75rem; align-items: flex-start; margin: .6rem 0; padding: .8rem 1rem;
           border: 2px solid var(--soft); border-radius: .7rem; }
 .choice:has(input:checked) { border-color: var(--teal); background: var(--ok-bg); }
-.choice input { width: 1.35rem; height: 1.35rem; margin-top: .2rem; flex: none; accent-color: var(--teal); }
-.choice label { font-weight: 600; }
-.choices-help { margin-top: -.2rem; }
+.choice:has(input:focus-visible) { outline: 3px solid var(--focus); outline-offset: 3px; }
+.choice:has(input:disabled) { border-style: dashed; }
+.choice input { width: 1.35rem; height: 1.35rem; margin-top: .25rem; flex: none; accent-color: var(--teal); }
+.choice input:focus-visible { outline: none; }
+.choice label { font-weight: 700; }
+.choice label::after { content: ""; position: absolute; inset: 0; cursor: pointer; }   /* the whole box is clickable */
+.choice:has(input:disabled) label::after { display: none; }   /* so the set-up hint can be selected and copied */
+.choice .help { margin: .2rem 0 0; }
+.choice .help span { display: block; margin-top: .25rem; }
+.choice .help .state { color: var(--ink); font-weight: 700; }
+h3.group { font-size: 1.1rem; margin: 1.1rem 0 .2rem; }
 input[type=password], input[type=text], textarea, select {
        width: 100%; font: inherit; font-size: 1.05rem; padding: .6rem .7rem; border: 2px solid var(--line);
        border-radius: .5rem; background: var(--card); color: var(--ink); }
@@ -386,6 +443,8 @@ button:disabled { opacity: .55; cursor: not-allowed; }
 .alert { background: var(--card); border: 2px solid var(--error); color: var(--error); padding: .9rem 1.1rem;
          border-radius: .7rem; margin: 0 0 1.25rem; font-weight: 700; }
 progress { width: 100%; height: 1.5rem; accent-color: var(--teal); }
+.progress-head { display: flex; justify-content: space-between; align-items: baseline; gap: 1rem; margin-bottom: .3rem; }
+#percent { font-weight: 700; font-size: 1.2rem; color: var(--navy); font-variant-numeric: tabular-nums; }
 .badge { display: inline-flex; align-items: center; gap: .55rem; font-weight: 700; font-size: 1.15rem;
          padding: .45rem 1rem; border-radius: 2rem; margin: 0 0 1rem; }
 .badge.ok { background: var(--ok-bg); color: var(--ok-ink); }
@@ -413,6 +472,23 @@ thead th { background: var(--paper); }
 .preview .missing { color: var(--error); font-weight: 700; }
 .preview ul { list-style: none; padding-left: 1.2rem; }      /* the PDF's own bullet or number is in the text */
 textarea { field-sizing: content; min-height: 3.4em; }
+[hidden] { display: none !important; }
+.top .tools { display: flex; align-items: center; gap: 1.4rem; flex-wrap: wrap; }
+.tour-link { font-weight: 700; }
+dialog.tour { position: fixed; margin: 0; top: 6rem; left: 50%; width: min(26rem, calc(100% - 2rem)); padding: 1.2rem 1.4rem;
+              border: 2px solid var(--teal); border-radius: 1rem; background: var(--card); color: var(--ink);
+              box-shadow: 0 12px 32px rgba(0, 0, 0, .35); }
+dialog.tour::backdrop { background: transparent; }
+dialog.tour h2 { margin: .15rem 0 .4rem; }
+dialog.tour p { margin: 0; }
+.tour-count { color: var(--muted); font-size: 1rem; }
+.tour-buttons { display: flex; flex-wrap: wrap; gap: .6rem; margin-top: 1.1rem; }
+.tour-buttons button { font-size: 1.05rem; padding: .6rem 1.1rem; }
+button.plain { background: none; border-color: transparent; color: var(--link); text-decoration: underline; }
+.tour-spot { position: absolute; z-index: 50; border-radius: 1rem; pointer-events: none;
+             box-shadow: 0 0 0 200vmax rgba(8, 14, 24, .62); outline: 3px solid var(--focus); outline-offset: 2px; }
+@media (prefers-reduced-motion: no-preference) { .tour-spot { transition: top .25s, left .25s, width .25s, height .25s; } }
+@media (max-width: 40rem) { dialog.tour { top: auto !important; bottom: 1rem; left: 1rem !important; width: calc(100% - 2rem); } }
 @media (max-width: 40rem) { h1 { font-size: 1.7rem; } .card { padding: 1rem; } button.big { width: 100%; justify-content: center; } }
 @media (forced-colors: active) { .num, .badge, .choice, .card { border: 1px solid CanvasText; } }
 @media (prefers-reduced-motion: reduce) { * { transition: none !important; animation: none !important; } }
@@ -439,6 +515,21 @@ def _logo() -> str:
 LOGO = _logo()
 
 
+def choice(kind: str, name: str, value: str, ident: str, label: str, lines: list[str], checked: bool = False,
+           disabled: bool = False) -> str:
+    """
+    One option box: the input, its bold label and its explanation inside the box (connected with
+    aria-describedby). The whole box can be clicked. With more than one line, the last line says
+    what is set up on this computer.
+    """
+    parts = [f'<span class="state">{html.escape(line)}</span>' if index == len(lines) - 1 and len(lines) > 1
+             else f"<span>{html.escape(line)}</span>" for index, line in enumerate(lines)]
+    flags = (" checked" if checked else "") + (" disabled" if disabled else "")
+    return (f'  <div class="choice"><input type="{kind}" id="{ident}" name="{name}" value="{value}"{flags} '
+            f'aria-describedby="{ident}-help"><div><label for="{ident}">{html.escape(label)}</label>'
+            f'<p class="help" id="{ident}-help">{"".join(parts)}</p></div></div>')
+
+
 def page(language: str, title: str, body: str, refresh_script: str = "", token: str = "", nav: str = "") -> bytes:
     from pdfaccessguru import __version__
 
@@ -447,6 +538,7 @@ def page(language: str, title: str, body: str, refresh_script: str = "", token: 
     home = f"/{token}/?lang={language}" if token else "#main"
     faces = FONT_FACES.replace("{static}", static) if token else ""
     icon = f'<link rel="icon" type="image/svg+xml" href="{static}icon.svg">' if token else ""
+    tour = f'<a class="tour-link" id="tour-open" href="/{token}/?lang={language}&amp;tour=1">{t["tour_link"]}</a>' if token else ""
     document = f"""<!doctype html>
 <html lang="{language}">
 <head>
@@ -461,7 +553,7 @@ def page(language: str, title: str, body: str, refresh_script: str = "", token: 
 <a class="skip" href="#main">{t['skip']}</a>
 <header class="top"><div class="bar">
 <a class="brand" href="{home}" aria-label="{t['home_label']}">{LOGO}</a>
-{nav}
+<div class="tools">{tour}{nav}</div>
 </div></header>
 <main id="main" tabindex="-1">
 {body}
@@ -471,3 +563,92 @@ def page(language: str, title: str, body: str, refresh_script: str = "", token: 
 </body>
 </html>"""
     return document.encode("utf-8")
+
+
+def tour(language: str, token: str, auto: bool) -> str:
+    """
+    The guided tour of the start page (Phase 12c): a dialog next to each part, the rest of the page
+    shaded. It starts by itself the first time (auto) and from the "Guided tour" link at any time.
+    Keyboard and screen reader: a modal dialog (Esc closes it, focus stays inside and returns
+    afterwards); each new step is announced politely. No movement for people who turn motion off.
+    """
+    import json
+
+    t = TEXT[language]
+    data = json.dumps({"steps": t["tour_steps"], "count": t["tour_count"], "next": t["tour_next"],
+                       "done": t["tour_done"], "auto": auto, "seen": f"/{token}/tour-seen"})
+    return f"""<dialog class="tour" id="tour" aria-labelledby="tour-title" aria-describedby="tour-text">
+<div aria-live="polite"><p class="tour-count" id="tour-count"></p><h2 id="tour-title"></h2><p id="tour-text"></p></div>
+<div class="tour-buttons"><button type="button" class="secondary" id="tour-back">{t['tour_back']}</button>
+<button type="button" id="tour-next">{t['tour_next']}</button>
+<button type="button" class="plain" id="tour-skip">{t['tour_skip']}</button></div>
+</dialog>
+<div class="tour-spot" id="tour-spot" hidden></div>
+<script>
+(function () {{
+  var data = {data};
+  var dialog = document.getElementById("tour"), spot = document.getElementById("tour-spot");
+  if (!dialog || !dialog.showModal) return;
+  var $ = function (id) {{ return document.getElementById(id); }};
+  var reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  var index = 0, opener = null, total = data.steps.length;
+  function target() {{ return $("tour-" + (index + 1)); }}
+  var wide = function () {{ return window.innerWidth > 640; }};
+  function place() {{
+    var element = target();
+    if (!element || !dialog.open) return;
+    var box = element.getBoundingClientRect(), pad = 8;
+    spot.style.top = (box.top + window.scrollY - pad) + "px";
+    spot.style.left = (box.left + window.scrollX - pad) + "px";
+    spot.style.width = (box.width + 2 * pad) + "px";
+    spot.style.height = (box.height + 2 * pad) + "px";
+    if (wide()) {{                        /* above the part if there is room, else below, else at the top */
+      var height = dialog.offsetHeight, width = dialog.offsetWidth;
+      var top = box.top - pad - 14 - height;
+      if (top < 8) top = box.bottom + pad + 14 + height < window.innerHeight - 8 ? box.bottom + pad + 14 : 8;
+      dialog.style.top = top + "px";
+      dialog.style.left = Math.max(8, Math.min(box.left, window.innerWidth - width - 8)) + "px";
+    }}
+  }}
+  function bring() {{                     /* scroll the part to just below the dialog (or to the top on phones) */
+    var element = target(), offset = wide() ? dialog.offsetHeight + 36 : 16;
+    var top = element.getBoundingClientRect().top + window.scrollY - offset;
+    window.scrollTo({{top: Math.max(0, top), behavior: reduce ? "auto" : "smooth"}});
+  }}
+  function show(number) {{
+    index = number;
+    $("tour-count").textContent = data.count.replace("{{n}}", number + 1).replace("{{total}}", total);
+    $("tour-title").textContent = data.steps[number][0];
+    $("tour-text").textContent = data.steps[number][1];
+    $("tour-back").hidden = number === 0;
+    $("tour-skip").hidden = number === total - 1;
+    $("tour-next").textContent = number === total - 1 ? data.done : data.next;
+    bring();
+    spot.hidden = false;
+    place();
+    setTimeout(place, reduce ? 0 : 450);
+    $("tour-next").focus();
+  }}
+  function start() {{
+    opener = document.activeElement;
+    if (!dialog.open) dialog.showModal();
+    show(0);
+    fetch(data.seen, {{method: "POST"}}).catch(function () {{}});
+  }}
+  dialog.addEventListener("close", function () {{
+    spot.hidden = true;
+    var back = $("tour-open");
+    (opener && opener !== document.body ? opener : back).focus();
+  }});
+  $("tour-next").addEventListener("click", function () {{ if (index < total - 1) show(index + 1); else dialog.close(); }});
+  $("tour-back").addEventListener("click", function () {{ if (index > 0) show(index - 1); }});
+  $("tour-skip").addEventListener("click", function () {{ dialog.close(); }});
+  window.addEventListener("resize", place);
+  window.addEventListener("scroll", place, {{passive: true}});
+  var link = $("tour-open");
+  if (link) link.addEventListener("click", function (event) {{ event.preventDefault(); start(); }});
+  var asked = new URLSearchParams(window.location.search).get("tour") === "1";
+  if (asked) history.replaceState(null, "", window.location.pathname + "?lang=" + document.documentElement.lang);
+  if (data.auto || asked) start();
+}})();
+</script>"""

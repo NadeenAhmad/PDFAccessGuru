@@ -155,8 +155,7 @@ def _fix_one(source: Path, args: argparse.Namespace) -> int:
     except Exception as error:  # the pipeline reports details in the log; the user gets one clear line
         return _fail(f"The file could not be processed: {error}")
 
-    include_review = args.review_list
-    include_pictures = include_review and not args.no_pictures
+    include_review = include_pictures = args.review_list       # the review list always shows the pictures
     language = args.language if args.language and args.language != "auto" else report_language(output)
     report_base = output.with_name(f"{output.stem}_report")
     report_base.with_suffix(".md").write_text(
@@ -177,7 +176,7 @@ def _fix_one(source: Path, args: argparse.Namespace) -> int:
     _say(f"Passes the automatic check: {'Yes' if metrics.passes_verapdf else 'No'}")
     _say(f"Problems fixed: {metrics.corrected_count}. Still open: {metrics.remaining_count}.")
     if metrics.review_items:
-        _say(f"Texts the tool wrote for you to check: {len(metrics.review_items)}"
+        _say(f"Texts the tool wrote for you to review: {len(metrics.review_items)}"
              + ("" if include_review else " (add --review-list to list them in the report)"))
     _say(f"New file: {output}")
     _say(f"Report:   {report_base.with_suffix('.md')} (in {language_name(language)}, the language of the PDF)"
@@ -332,8 +331,7 @@ def build_parser() -> argparse.ArgumentParser:
     fix.add_argument("file", nargs="+", help="the PDF files to fix, or a folder (the originals are not changed)")
     fix.add_argument("-o", "--output", help="name of the new file (default: NAME_accessible.pdf)")
     fix.add_argument("--overwrite", action="store_true", help="replace the new file if it already exists")
-    fix.add_argument("--review-list", action="store_true", help="add a list of the texts the tool wrote, to check them")
-    fix.add_argument("--no-pictures", action="store_true", help="leave pictures out of that list")
+    fix.add_argument("--review-list", action="store_true", help="add a review list to the report: everything the tool decided by itself")
     fix.add_argument("--pdf-report", action="store_true", help="also write the report as a PDF")
     fix.add_argument("--fix-contrast", action="store_true",
                      help="make text with too little colour contrast darker or lighter (changes text colours; "

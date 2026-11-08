@@ -64,8 +64,8 @@ def test_review_items_are_grouped_and_deduplicated():
 def test_review_list_is_optional_and_pictures_can_be_switched_off():
     report = _report()
     without_list = build_customer_report_markdown(report)
-    assert "## Things to Check" not in without_list
-    assert "turn on “Show a list of things to check”" in without_list
+    assert "## Things to Review" not in without_list
+    assert "turn on “Add a review list to the report”" in without_list
 
     with_pictures = build_customer_report_markdown(report, include_review_list=True, include_pictures=True)
     assert "![Picture from page 12." in with_pictures
