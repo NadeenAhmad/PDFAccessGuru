@@ -24,6 +24,37 @@ _GENERIC_TEXTS = {
 }
 
 
+_LATEX_SYMBOLS = {
+    "rightarrow": "→", "to": "→", "leftarrow": "←", "gets": "←", "leftrightarrow": "↔", "Rightarrow": "⇒",
+    "Leftarrow": "⇐", "Leftrightarrow": "⇔", "uparrow": "↑", "downarrow": "↓", "times": "×", "cdot": "·",
+    "pm": "±", "leq": "≤", "le": "≤", "geq": "≥", "ge": "≥", "neq": "≠", "ne": "≠", "approx": "≈",
+    "sim": "~", "infty": "∞", "degree": "°", "circ": "°", "%": "%", "&": "&",
+}
+_LATEX_COMMAND = re.compile(r"\\(" + "|".join(re.escape(name) for name in sorted(_LATEX_SYMBOLS, key=len, reverse=True))
+                            + r")(?![A-Za-z])")
+_DEGREE = re.compile(r"\^\{?\\circ\}?")
+_INLINE_MATH = re.compile(r"(?<!\\)\$(?!\s)([^$\n]{1,120}?)(?<![\s\\])\$")
+_MARKDOWN = re.compile(r"(\*\*|__|`)(.+?)\1")
+
+
+def spoken_text(text: str) -> str:
+    """
+    Turns maths notation and Markdown that some models write into plain text that a screen reader
+    reads well: 'PDF $\\rightarrow$ Tags' becomes 'PDF → Tags', '**Chart**' becomes 'Chart'.
+    Amounts such as '$5 to $10' stay as they are.
+    """
+    def maths(match: re.Match) -> str:
+        inner = match.group(1)
+        if not any(sign in inner for sign in "\\^_{"):
+            return match.group(0)                                    # not maths, e.g. an amount of money
+        return inner.replace("{", "").replace("}", "")
+    text = _DEGREE.sub("°", text)
+    text = _INLINE_MATH.sub(maths, text)
+    text = _LATEX_COMMAND.sub(lambda match: _LATEX_SYMBOLS[match.group(1)], text)
+    text = _MARKDOWN.sub(r"\2", text)
+    return " ".join(text.split())
+
+
 def clean_llm_text(text: str | None) -> str:
     """Strip whitespace and surrounding quotes from a model reply."""
     if not text:

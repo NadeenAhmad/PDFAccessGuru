@@ -72,7 +72,7 @@ def run_setup_checks() -> list[SetupCheck]:
         "AI model (optional)", ai.available, ai.describe(),
         "" if ai.available else (
             "Optional. Without it, picture descriptions and similar texts are made with simple rules. "
-            "Free and private: install Ollama (https://ollama.com) and run 'ollama pull gemma3:4b'. "
+            "Free and private: install Ollama (https://ollama.com) and run 'ollama pull gemma4:e4b'. "
             f"Or put OPENROUTER_API_KEY=... or OPENAI_API_KEY=... into {user_env_file()}. "
             "PDFACCESSGURU_PRIVACY=local there makes sure nothing is sent to the internet."
         ),

@@ -10,6 +10,27 @@ TEST_ROOT = Path(__file__).resolve().parent
 _DELETED_OUTPUT_DIR_PARTS = ("resources", "test_results")
 FORBIDDEN_OUTPUT_DIR = TEST_ROOT.joinpath(*_DELETED_OUTPUT_DIR_PARTS)
 
+
+def _hide_the_installed_tools_settings() -> None:
+    """
+    Tests never read the settings file of the installed tool (e.g. ~/Library/Application Support/
+    pdfaccessguru/.env): a key there would make ordinary tests send paid requests. Live LLM tests
+    use the developer's code/PDFAccessGuru/.env only.
+    """
+    from dotenv import dotenv_values
+
+    from pdfaccessguru.utils import environment_variables
+
+    real = environment_variables.user_env_file()
+    environment_variables.user_env_file = lambda: TEST_ROOT / "no-user-settings" / ".env"   # never exists
+    if real.is_file():
+        for name, value in dotenv_values(real).items():
+            if value and os.environ.get(name) == value:              # loaded before this ran
+                del os.environ[name]
+
+
+_hide_the_installed_tools_settings()
+
 # Load the developer's local .env (if any) so that live LLM tests run when a key is configured.
 load_dotenv(TEST_ROOT.parents[1] / ".env")
 
