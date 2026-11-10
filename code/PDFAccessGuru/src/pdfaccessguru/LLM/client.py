@@ -33,12 +33,14 @@ _CLOUD_URLS = {
     "openai": "https://api.openai.com/v1/chat/completions",
 }
 _DEFAULT_MODELS = {
-    "openrouter": ("google/gemma-4-26b-a4b-it", "google/gemma-4-26b-a4b-it"),
-    "openai": ("gpt-4.1-mini", "gpt-4.1-mini"),
+    "openrouter": ("openai/gpt-6-luna", "openai/gpt-6-luna"),
+    "openai": ("gpt-6-luna", "gpt-6-luna"),
 }
 # Ollama models that can read pictures, best first; text tasks use the first installed model.
-_OLLAMA_VISION = ("gemma3", "qwen2.5vl", "llama3.2-vision", "llava", "minicpm-v")
-_OLLAMA_TEXT = ("gemma3", "qwen2.5", "llama3", "mistral")
+_OLLAMA_VISION = ("gemma4", "gemma3", "qwen2.5vl", "llama3.2-vision", "llava", "minicpm-v")
+_OLLAMA_TEXT = ("gemma4", "gemma3", "qwen2.5", "llama3", "mistral")
+# Settings a model refused with "not supported" (some newer models only take their own); asked again without.
+_REFUSED: dict[str, set[str]] = {}
 
 
 class LLMNotConfigured(OpenRouterConnectionFailedException):
@@ -190,13 +192,24 @@ class LLMClient:
     def _post(self, model: str, messages: list, json_mode: bool, kind: str) -> str:
         if not self.config.available:
             raise LLMNotConfigured(self.config.reason)
-        payload = {"model": model, "messages": messages, "temperature": 0.2}
+        optional = {"temperature": 0.2}
+        if self.config.local:            # thinking makes local models ~8x slower (Gemma 4 E4B: 4 s vs 33 s a picture)
+            optional["reasoning_effort"] = "none"
+        payload = {"model": model, "messages": messages}
+        payload.update({name: value for name, value in optional.items() if name not in _REFUSED.get(model, ())})
         if json_mode:
             payload["response_format"] = {"type": "json_object"}
         headers = {"Authorization": f"Bearer {self.config.api_key}", "Content-Type": "application/json"}
         timeout = (5, 600) if self.config.local else (15, 180)    # local models run on the processor
         try:
             response = requests.post(self.config.url, headers=headers, json=payload, timeout=timeout)
+            refused = [name for name in optional if name in payload and name in response.text] \
+                if response.status_code == 400 else []
+            if refused:                                             # ask again with the model's own settings
+                _REFUSED.setdefault(model, set()).update(refused)
+                for name in refused:
+                    del payload[name]
+                response = requests.post(self.config.url, headers=headers, json=payload, timeout=timeout)
             response.raise_for_status()
             usage[kind] += 1
             return response.json()["choices"][0]["message"]["content"] or ""

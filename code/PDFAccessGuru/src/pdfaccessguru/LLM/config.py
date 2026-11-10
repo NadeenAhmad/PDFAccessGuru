@@ -18,10 +18,10 @@ OPENROUTER_API_KEY = os.environ.get("OPENROUTER_API_KEY", "")
 OPENROUTER_BASE_URL = "https://openrouter.ai/api/v1/chat/completions"
 
 # The model used for normal requests.
-DEFAULT_MODEL = os.environ.get("DEFAULT_MODEL", "google/gemma-4-26b-a4b-it")
+DEFAULT_MODEL = os.environ.get("DEFAULT_MODEL", "openai/gpt-6-luna")
 
 # The vision-capable model used for prompts that include an image.
-DEFAULT_IMAGE_MODEL = os.environ.get("DEFAULT_IMAGE_MODEL", "google/gemma-4-26b-a4b-it:free")
+DEFAULT_IMAGE_MODEL = os.environ.get("DEFAULT_IMAGE_MODEL", "openai/gpt-6-luna")
 
 # A more capable model for tasks that need higher accuracy.
 PREMIUM_MODEL = os.environ.get("PREMIUM_MODEL", DEFAULT_MODEL)

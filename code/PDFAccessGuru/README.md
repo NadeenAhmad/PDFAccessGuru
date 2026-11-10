@@ -16,7 +16,7 @@ pdfaccessguru doctor --install       # downloads Java and veraPDF into your user
 ```
 
 Optional AI: copy `.env.example` to `.env` and add a key (`OPENAI_API_KEY` or `OPENROUTER_API_KEY`),
-or install [Ollama](https://ollama.com) and run `ollama pull gemma3:4b`.
+or install [Ollama](https://ollama.com) and run `ollama pull gemma4:e4b`.
 Never put a key into a source file, a test or a commit.
 
 ## Run

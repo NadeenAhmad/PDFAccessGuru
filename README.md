@@ -131,7 +131,7 @@ See [known limits](docs/known-limits.md).
 
 Without an AI, PDFAccessGuru uses simple rules, and the report says so. With an AI, these texts are usually better:
 
-- **On your own computer (free, private):** install [Ollama](https://ollama.com), then run `ollama pull gemma3:4b`. PDFAccessGuru finds it by itself. Nothing leaves your computer.
+- **On your own computer (free, private):** install [Ollama](https://ollama.com), then run `ollama pull gemma4:e4b`. PDFAccessGuru finds it by itself. Nothing leaves your computer.
 - **An online AI like ChatGPT:** put `OPENAI_API_KEY=your-key` (OpenAI) or `OPENROUTER_API_KEY=your-key` (OpenRouter: Claude, Gemini, and others) into the settings file. The app and `pdfaccessguru doctor` show where it is. Pictures and text from your file are then sent to that company. Your key stays in the settings file on your computer: PDFAccessGuru sends it only to that company and never puts it into the PDF or the report.
 
 In the app, only the online AI sends anything over the internet, and it is never chosen for you. In a terminal, `pdfaccessguru fix --local-only FILE` makes sure nothing is sent.
@@ -182,7 +182,7 @@ The code is in [`code/PDFAccessGuru`](code/PDFAccessGuru). See its [README](code
 ## Contributors and license
 
 PDFAccessGuru was first built at the University of Stuttgart by [Aran Moradi](mailto:armoradi05@gmail.com), Babett Ludwig, Brian Karle,
-Florian Walcher, [Marwa Ayache](mailto:marwa.ayache9@gmail.com), Riard Qupevaj, [Robin Hart](mailto:mailto:st192860@stud.uni-stuttgart.de) and [Siju Li](mailto:siju.run@gmail.com) (see [CONTRIBUTORS](CONTRIBUTORS.md)).
+Florian Walcher, [Marwa Ayache](mailto:marwa.ayache9@gmail.com), Riard Qupevaj, [Robin Hart](mailto:st192860@stud.uni-stuttgart.de) and [Siju Li](mailto:siju.run@gmail.com) (see [CONTRIBUTORS](CONTRIBUTORS.md)).
 
 Licensed under the [GNU Affero General Public License v3.0](LICENSE).
 The app uses the font [Atkinson Hyperlegible](https://www.brailleinstitute.org/freefont/) by the Braille Institute of

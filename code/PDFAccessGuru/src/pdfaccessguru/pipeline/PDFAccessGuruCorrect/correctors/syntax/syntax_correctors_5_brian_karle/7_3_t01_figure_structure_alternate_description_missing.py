@@ -468,7 +468,9 @@ def _validate_alt_text(
     detected_violation: DetectedViolation,
 ) -> str:
     """Normalize the LLM description and reject empty, generic or excessive text."""
-    normalized = _clean_text(alt_text)
+    from pdfaccessguru.LLM.output_checks import spoken_text
+
+    normalized = _clean_text(spoken_text(alt_text))
     if not normalized:
         raise _correction_error(detected_violation, "LLM returned empty alt text")
     if len(normalized) > _MAX_ALT_TEXT_LENGTH:

@@ -76,7 +76,7 @@ TEXT = {
         "ai_ollama_help": "Free and private. Nothing leaves your computer.",
         "ai_ollama_found": "Found on your computer: {model}",
         "ai_ollama_missing": "Not installed or not running. To use it, install Ollama from ollama.com, then run: "
-                             "ollama pull gemma3:4b",
+                             "ollama pull gemma4:e4b",
         "ai_none": "No AI: simple rules",
         "ai_none_help": "Nothing leaves your computer. Fast, but the texts are less helpful.",
         "ai_cloud": "An online AI like ChatGPT",
@@ -243,7 +243,7 @@ TEXT = {
         "ai_ollama_help": "Kostenlos und privat. Nichts verlässt Ihren Computer.",
         "ai_ollama_found": "Auf Ihrem Computer gefunden: {model}",
         "ai_ollama_missing": "Nicht installiert oder nicht gestartet. Installieren Sie dafür Ollama von ollama.com "
-                             "und geben Sie dann ein: ollama pull gemma3:4b",
+                             "und geben Sie dann ein: ollama pull gemma4:e4b",
         "ai_none": "Keine KI: einfache Regeln",
         "ai_none_help": "Nichts verlässt Ihren Computer. Schnell, aber die Texte sind weniger hilfreich.",
         "ai_cloud": "Eine Online-KI wie ChatGPT",
