@@ -31,6 +31,16 @@ def _clean(text: str, limit: int = 200) -> str:
     return text if len(text) <= limit else text[:limit].rsplit(" ", 1)[0] + " ..."
 
 
+def _distance(picture, caption) -> float:
+    """How far a caption is from a picture on the page (unknown boxes or other pages: far away; a caption beside
+    the picture in another column: farther than one right above or below it)."""
+    if picture is None or caption is None or picture.page != caption.page:
+        return float("inf")
+    gap_y = max(caption.top - picture.bottom, picture.top - caption.bottom, 0.0)
+    overlap_x = min(picture.x1, caption.x1) - max(picture.x0, caption.x0)
+    return gap_y + (0.0 if overlap_x > 0 else 1000.0)
+
+
 def _caption_from_tags(pdf: Pdf, figure: Dictionary, layout: Layout) -> str | None:
     roles = Roles(pdf)
     candidates = [kid for kid in kids(figure) if roles.is_(kid, "Caption")]
@@ -39,11 +49,15 @@ def _caption_from_tags(pdf: Pdf, figure: Dictionary, layout: Layout) -> str | No
     for index, sibling in enumerate(siblings):
         if isinstance(sibling, Dictionary) and sibling.is_indirect and figure.is_indirect \
                 and sibling.objgen == figure.objgen:
+            neighbours = []
             for neighbour in siblings[max(0, index - 1):index] + siblings[index + 1:index + 2]:
                 if roles.is_(neighbour, "Caption"):
-                    candidates.append(neighbour)
+                    neighbours.append(neighbour)
                 elif roles.is_(neighbour, "P") and CAPTION_START.match(layout.text(neighbour, spaced=True) or ""):
-                    candidates.append(neighbour)
+                    neighbours.append(neighbour)
+            # 1.1: the caption nearest to the picture on the page, not simply the one before it (in two
+            # columns, the caption before a picture can belong to the picture at the end of the other column)
+            candidates += sorted(neighbours, key=lambda neighbour: _distance(layout.box(figure), layout.box(neighbour)))
     for candidate in candidates:
         text = layout.text(candidate, spaced=True)
         if text and sum(char.isalpha() for char in text) >= 3:

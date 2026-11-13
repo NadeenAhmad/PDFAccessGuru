@@ -146,11 +146,13 @@ def correct_formula_structure_no_alternative_description(detected_violation: Det
 
     # Attempt 3: Local context fallback (guarantees execution completion)
     from pdfaccessguru.pipeline.PDFAccessGuruCorrect.correctors.structure_repair.layout import Layout
+    from pdfaccessguru.tagging.formulas import formula_spoken_text
     own_text = " ".join((Layout(pdf).text(affected_element) or "").split())[:200]
+    spoken_text = formula_spoken_text(own_text) if len(own_text) >= 2 else ""
     if generated_alt_text and len(generated_alt_text.strip()) > 0:
         clean_text = generated_alt_text.strip().replace("`", "").replace('"', '').replace("'", "")
-    elif len(own_text) >= 2:
-        clean_text = f"Formula: {own_text}"                 # the formula's own text, read aloud
+    elif spoken_text:
+        clean_text = spoken_text                            # the formula's own text, read aloud
     elif page_text_context:
         first_words = " ".join(page_text_context.split()[:5])
         clean_text = f"Mathematical formula near: '{first_words}...'"

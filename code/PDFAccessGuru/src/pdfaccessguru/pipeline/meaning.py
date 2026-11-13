@@ -40,7 +40,15 @@ _VAGUE_LINKS = {"click here", "here", "more", "read more", "link", "this link", 
 _BULLET = re.compile(r"^\s*([•◦▪▫●○■□‣⁃–—\-*·∙⋅\uf0b7\uf0a7\uf0d8\uf0fc]|\(?\d{1,2}[.)]|\(?[a-z][.)])\s+\S")
 _LINK_OWNERS = ("P", "H", "H1", "H2", "H3", "H4", "H5", "H6", "LBody", "TD", "TH", "Caption", "Quote",
                 "BlockQuote", "Note")
-_LONG_DESCRIPTION = 125            # characters (taxonomy: verbose-alt-text)
+_LONG_DESCRIPTION = 125            # characters (taxonomy: verbose-alt-text); 1.1: the chosen level's limit
+
+
+def _long_description() -> int:
+    """A description is too long above the limit of the chosen level of detail (LLM/descriptions.py)."""
+    from pdfaccessguru.LLM.descriptions import length_limit
+
+    return length_limit()
+
 _LONG_HEADING = 150                # characters
 _LANGUAGE_LETTERS = 60             # a passage needs this many letters before its language is set
 _TEXT_HOLDERS = ("P", "H", "H1", "H2", "H3", "H4", "H5", "H6", "LBody", "LI", "TD", "TH", "Caption", "Quote",
@@ -69,7 +77,7 @@ class MeaningResult:
                 "language_parts": self.language_parts, "languages": self.languages,
                 "table_scope": self.table_scope, "vague_links": self.vague_links[:20],
                 "vague_links_count": len(self.vague_links), "long_alt": self.long_alt[:20],
-                "long_alt_count": len(self.long_alt), "long_headings": self.long_headings[:10],
+                "long_alt_count": len(self.long_alt), "long_alt_limit": _long_description(), "long_headings": self.long_headings[:10],
                 "long_headings_count": len(self.long_headings), "no_headings": self.no_headings,
                 "list_like": self.list_like[:10], "list_like_count": len(self.list_like),
                 "tiny_figures": self.tiny_figures, "tables_without_headers": self.tables_without_headers,
@@ -158,7 +166,7 @@ def check_meaning(pdf: pikepdf.Pdf, result: MeaningResult) -> None:
                 result.long_headings.append((page_of(element), text[:60]))
         elif role in ("Figure", "Formula"):
             alt = element.get("/Alt")
-            if isinstance(alt, pikepdf.String) and len(_norm(alt)) > _LONG_DESCRIPTION:
+            if isinstance(alt, pikepdf.String) and len(_norm(alt)) > _long_description():
                 result.long_alt.append((page_of(element), len(_norm(alt))))
             box = texts.box(element)
             if role == "Figure" and box is not None and (min(box.x1 - box.x0, box.bottom - box.top) < 3

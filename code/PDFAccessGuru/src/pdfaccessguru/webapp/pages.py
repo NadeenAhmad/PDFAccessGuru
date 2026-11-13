@@ -24,8 +24,8 @@ TEXT = {
         "tour_skip": "Skip the tour",
         "tour_steps": [
             ("Choose files", "Choose one or more PDF files. Your originals are never changed."),
-            ("Descriptions", "Choose who writes the descriptions. For confidential files, choose one that stays on "
-                             "your computer."),
+            ("Descriptions", "Choose who writes the descriptions and how detailed they are. For confidential "
+                             "files, choose one that stays on your computer."),
             ("Colours", "Switch this on only if the colours of your file may change."),
             ("Report", "You always get a report. Add a review list if someone should review what the tool decided."),
             ("Protected files", "Only needed if your PDF has a password."),
@@ -87,6 +87,15 @@ TEXT = {
         "ai_key_found": "Key found: {name}",
         "ai_key_missing": "No key set up yet. Write OPENAI_API_KEY=your-key (or OPENROUTER_API_KEY=your-key) into "
                           "this file, then reload this page: {path}",
+        "detail_group": "How detailed should picture descriptions be?",
+        "detail_note": "This applies when an AI writes the descriptions.",
+        "detail_brief": "Brief",
+        "detail_brief_help": "One sentence for every picture.",
+        "detail_standard": "Standard (recommended)",
+        "detail_standard_help": "Short for simple pictures, fuller for charts and diagrams.",
+        "detail_detailed": "Detailed",
+        "detail_detailed_help": "More values and parts are described, for example for teaching material or reports "
+                                "in which charts matter.",
         "contrast_legend": "3. Colours",
         "contrast_label": "Improve colour contrast (changes text colours)",
         "contrast_help": "Makes text that is hard to read a little darker or lighter. Leave this off for "
@@ -188,8 +197,8 @@ TEXT = {
         "tour_skip": "Rundgang überspringen",
         "tour_steps": [
             ("Dateien wählen", "Wählen Sie eine oder mehrere PDF-Dateien. Ihre Originale werden nie verändert."),
-            ("Beschreibungen", "Wählen Sie, wer die Beschreibungen schreibt. Für vertrauliche Dateien wählen Sie "
-                               "eine Möglichkeit, die auf Ihrem Computer bleibt."),
+            ("Beschreibungen", "Wählen Sie, wer die Beschreibungen schreibt und wie ausführlich sie sind. Für "
+                               "vertrauliche Dateien wählen Sie eine Möglichkeit, die auf Ihrem Computer bleibt."),
             ("Farben", "Schalten Sie dies nur ein, wenn sich die Farben Ihrer Datei ändern dürfen."),
             ("Bericht", "Sie erhalten immer einen Bericht. Nehmen Sie eine Liste zum Durchsehen auf, wenn jemand "
                         "durchsehen soll, was das Werkzeug entschieden hat."),
@@ -254,6 +263,15 @@ TEXT = {
         "ai_key_found": "Schlüssel gefunden: {name}",
         "ai_key_missing": "Noch kein Schlüssel eingerichtet. Schreiben Sie OPENAI_API_KEY=Ihr-Schlüssel (oder "
                           "OPENROUTER_API_KEY=Ihr-Schlüssel) in diese Datei und laden Sie dann diese Seite neu: {path}",
+        "detail_group": "Wie ausführlich sollen Bildbeschreibungen sein?",
+        "detail_note": "Das gilt, wenn eine KI die Beschreibungen schreibt.",
+        "detail_brief": "Kurz",
+        "detail_brief_help": "Ein Satz für jedes Bild.",
+        "detail_standard": "Standard (empfohlen)",
+        "detail_standard_help": "Kurz für einfache Bilder, ausführlicher für Diagramme und Grafiken.",
+        "detail_detailed": "Ausführlich",
+        "detail_detailed_help": "Mehr Werte und Teile werden beschrieben, zum Beispiel für Lehrmaterial oder Berichte, "
+                                "in denen Diagramme wichtig sind.",
         "contrast_legend": "3. Farben",
         "contrast_label": "Farbkontrast verbessern (ändert Textfarben)",
         "contrast_help": "Macht schwer lesbaren Text etwas dunkler oder heller. Lassen Sie "

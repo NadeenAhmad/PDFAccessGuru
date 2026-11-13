@@ -108,6 +108,8 @@ def _cmd_fix(args: argparse.Namespace) -> int:
 
     if getattr(args, "ai", None):
         os.environ["PDFACCESSGURU_AI"] = args.ai
+    if getattr(args, "descriptions", None):
+        os.environ["PDFACCESSGURU_DESCRIPTIONS"] = args.descriptions
     if getattr(args, "local_only", False):
         os.environ["PDFACCESSGURU_PRIVACY"] = "local"
     results = []
@@ -349,6 +351,9 @@ def build_parser() -> argparse.ArgumentParser:
     fix.add_argument("--ai", choices=["auto", "ollama", "openai", "openrouter", "none"],
                      help="which AI writes texts like picture descriptions (default: auto = a key if set, "
                           "else Ollama on this computer, else none)")
+    fix.add_argument("--descriptions", choices=["brief", "standard", "detailed"],
+                     help="how detailed picture descriptions written by an AI are: brief (one sentence), standard "
+                          "(default: short for simple pictures, fuller for charts and diagrams) or detailed")
     fix.add_argument("--ask-owner-password", action="store_true",
                      help="for protected PDFs: ask for the owner password, so that the tool can let "
                           "screen readers read the file (the password is not stored)")
