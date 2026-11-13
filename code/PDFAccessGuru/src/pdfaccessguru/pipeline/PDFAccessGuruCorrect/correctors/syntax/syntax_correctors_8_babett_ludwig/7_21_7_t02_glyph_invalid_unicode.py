@@ -71,6 +71,16 @@ def create_space_fallback_mappings(wrong_Mappings):
     ]
 
 
+def _plausible_mapping(destination: str) -> bool:
+    """A proposed destination like <0041> (one character) that is a plausible character for a document."""
+    from pdfaccessguru.LLM.output_checks import plausible_character
+
+    digits = destination.strip("<>")
+    if len(digits) not in (4, 6) or not re.fullmatch(r"[0-9A-Fa-f]+", digits):
+        return False
+    return plausible_character(int(digits, 16))
+
+
 def _debug_print(*_args, **_kwargs) -> None:
     """Debug output was printed to the user's console; it is dropped (Phase 5)."""
 
@@ -137,6 +147,10 @@ def correct_glyph_invalid_unicode(
             wrong_Mappings, corrected_Mappings
         ):
             raise ValueError("Invalid LLM output")
+        # 1.1: keep only proposals that are plausible characters; the others stay as they are (still reported)
+        corrected_Mappings = [mapping for mapping in corrected_Mappings if _plausible_mapping(mapping["dst"])]
+        if not corrected_Mappings:
+            raise ValueError("no plausible character proposed")
 
     except Exception as e:
         # No space fallback: mapping characters to spaces would silently change the

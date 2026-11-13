@@ -461,6 +461,32 @@ def _retag_if_nearly_untagged(pdf: Pdf) -> bool:
     return True
 
 
+def _tag_leftover_content(pdf: Pdf) -> None:
+    """In a partly tagged file, give the content that no tag reaches its place (1.1, once per file)."""
+    from pdfaccessguru.pipeline.reporting.writer import report_debug, report_info, report_review
+    from pdfaccessguru.tagging.leftovers import tag_leftovers
+
+    try:
+        result = tag_leftovers(pdf)
+    except Exception as error:                 # never stop the other fixes of this rule
+        report_debug(f"The untagged content could not be tagged: {error}")
+        return
+    if not result.changed:
+        return
+    kinds = ", ".join(f"{count} {tag}" for tag, count in sorted(result.elements.items()) if count)
+    parts = []
+    if kinds:
+        parts.append(f"new elements {kinds}")
+    if result.artifacts:
+        parts.append(f"{result.artifacts} header, footer, page number or decoration piece(s) marked as decoration")
+    if result.linked:
+        parts.append(f"{result.linked} element(s) outside the tag tree linked into it")
+    where = f" on {result.pages} page(s)" if result.pages else ""
+    report_info(f"Content that no tag reached was tagged{where}: {'; '.join(parts)}.")
+    report_review("Untagged content was added to the existing tags automatically. Please check its place in the "
+                  "reading order and the headings once, for example with the tags panel of your PDF program.")
+
+
 @corrector("content-neither-artifact-nor-tagged-content")
 def correct_content_neither_artifact_nor_tagged_content(detected_violation: DetectedViolation, pdf: Pdf):
     """
@@ -524,11 +550,12 @@ def correct_content_neither_artifact_nor_tagged_content(detected_violation: Dete
     The page content stream and every form XObject it references (which have their
     own content streams) are corrected by both passes.
 
-    Known limitation:
-    Untagged text and images, and dangling blocks that contain them, stay
-    unresolved. They need the structure tree to be built or repaired (creating
-    structure elements and linking them in reading order), which is done by the
-    tagging step, not by this corrector.
+    Untagged text and images, and dangling blocks that contain them, are not
+    touched by the two passes. They need the structure tree to be built or
+    repaired: a file with almost no tags is tagged anew (tagging/builder.py); in a
+    partly tagged file, tagging/leftovers.py (1.1) runs first and gives them new
+    structure elements in reading order (or marks running headers, footers and
+    page numbers as artifacts). What it cannot place safely stays reported.
     """
 
     affected_element = detected_violation.affected_element
@@ -537,6 +564,10 @@ def correct_content_neither_artifact_nor_tagged_content(detected_violation: Dete
     # tagged anew as a whole (Phase 6); that marks all its content at once.
     if _retag_if_nearly_untagged(pdf):
         return
+    # In a partly tagged file the content that no tag reaches gets its place in the existing
+    # tree (text, pictures, unknown MCIDs) or becomes decoration (headers, footers, page
+    # numbers, lines); done for the whole file at the first page (1.1).
+    _tag_leftover_content(pdf)
 
     try:
         corrected_instructions = _corrected_instructions_for(affected_element, pdf)

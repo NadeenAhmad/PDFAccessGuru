@@ -179,6 +179,33 @@ def settings(refresh: bool = False) -> LLMSettings:
     return result
 
 
+def _post_within(deadline: float, url: str, **kwargs):
+    """
+    requests.post with a limit for the WHOLE answer. requests' own timeout only limits the wait between two pieces
+    of data, and some services send a keep-alive line every few seconds while the model is busy, so a stuck request
+    could wait for hours (seen in the 1.0.3 evaluation: one request waited more than an hour). After the deadline
+    the request counts as failed: the fix falls back to its rules, like after any other connection error.
+    """
+    import threading
+
+    result: dict = {}
+
+    def work() -> None:
+        try:
+            result["response"] = requests.post(url, **kwargs)
+        except BaseException as error:        # handed to the caller below
+            result["error"] = error
+
+    worker = threading.Thread(target=work, daemon=True, name="pdfaccessguru-ai-request")
+    worker.start()
+    worker.join(deadline)
+    if worker.is_alive():
+        raise requests.Timeout(f"no complete answer within {deadline:.0f} seconds")
+    if "error" in result:
+        raise result["error"]
+    return result["response"]
+
+
 class LLMClient:
     """
     Sends prompts to the configured model. Both methods return the answer text and raise
@@ -201,15 +228,16 @@ class LLMClient:
             payload["response_format"] = {"type": "json_object"}
         headers = {"Authorization": f"Bearer {self.config.api_key}", "Content-Type": "application/json"}
         timeout = (5, 600) if self.config.local else (15, 180)    # local models run on the processor
+        deadline = 900 if self.config.local else 240             # whole answer (1.1: see _post_within)
         try:
-            response = requests.post(self.config.url, headers=headers, json=payload, timeout=timeout)
+            response = _post_within(deadline, self.config.url, headers=headers, json=payload, timeout=timeout)
             refused = [name for name in optional if name in payload and name in response.text] \
                 if response.status_code == 400 else []
             if refused:                                             # ask again with the model's own settings
                 _REFUSED.setdefault(model, set()).update(refused)
                 for name in refused:
                     del payload[name]
-                response = requests.post(self.config.url, headers=headers, json=payload, timeout=timeout)
+                response = _post_within(deadline, self.config.url, headers=headers, json=payload, timeout=timeout)
             response.raise_for_status()
             usage[kind] += 1
             return response.json()["choices"][0]["message"]["content"] or ""
