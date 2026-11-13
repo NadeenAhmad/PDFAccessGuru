@@ -14,6 +14,7 @@ import pymupdf as fitz
 import pikepdf
 from pikepdf import Array, Dictionary, Name
 
+from pdfaccessguru.tagging.figures import add_figure_attributes
 from pdfaccessguru.tagging.layout import analyse
 from pdfaccessguru.tagging.marking import mark_page
 
@@ -148,16 +149,19 @@ def tag_document(pdf: pikepdf.Pdf) -> TagResult:
             marks = mark_page(pdf, page, layout_document[index], items)
             owners: dict[int, Dictionary] = {}
             elements: dict[int, Dictionary] = {}
-            current_list: Dictionary | None = None
-            table_element, row_element, row_number = None, None, None
+            lists: list[list] = []                       # open lists: [depth, L, body of its last item]
+            table_element, row_element, row_number, table_number = None, None, None, None
             for item_index, item in enumerate(items):
                 mcids = marks.mcids.get(item_index)
+                labels = marks.labels.get(item_index, []) if item.kind == "LI" else []
+                if item.kind == "LI" and not mcids and labels:
+                    mcids, labels = labels, []
                 if item.kind == "Table":
-                    current_list = None
+                    lists = []
                     table_element = _element(pdf, "Table", document, page.obj)
                     table_element["/K"] = Array()
                     children.append(table_element)
-                    row_element, row_number = None, None
+                    row_element, row_number, table_number = None, None, item.table
                     result.elements["Table"] += 1
                     continue
                 if item.kind == "Cell" and table_element is not None:
@@ -183,25 +187,51 @@ def tag_document(pdf: pikepdf.Pdf) -> TagResult:
                     result.elements["TH" if item.header else "TD"] += 1
                     continue
                 if not mcids:
-                    current_list = None if item.kind != "Artifact" else current_list
+                    lists = lists if item.kind == "Artifact" else []
                     continue
                 if item.kind == "LI":
-                    if current_list is None:
-                        current_list = _element(pdf, "L", document, page.obj)
-                        current_list["/K"] = Array()
-                        children.append(current_list)
+                    # L > LI > (Lbl, LBody); a deeper item starts a list inside the body of the item before
+                    while lists and lists[-1][0] > item.depth:
+                        lists.pop()
+                    if not lists or item.depth > lists[-1][0]:
+                        parent = lists[-1][2] if lists else document
+                        new_list = _element(pdf, "L", parent, page.obj)
+                        new_list["/K"] = Array()
+                        if lists:
+                            parent.K.append(new_list)
+                        else:
+                            children.append(new_list)
+                        lists.append([item.depth, new_list, None])
                         result.elements["L"] += 1
+                    current_list = lists[-1][1]
                     list_item = _element(pdf, "LI", current_list, page.obj)
+                    parts = []
+                    if labels:
+                        label = _element(pdf, "Lbl", list_item, page.obj, labels)
+                        parts.append(label)
+                        for mcid in labels:
+                            owners[mcid] = label
+                        result.elements["Lbl"] += 1
                     body = _element(pdf, "LBody", list_item, page.obj, mcids)
-                    list_item["/K"] = Array([body])
+                    parts.append(body)
+                    list_item["/K"] = Array(parts)
                     current_list.K.append(list_item)
+                    lists[-1][2] = body
                     owner = body
                     elements[item_index] = body
                     result.elements["LI"] += 1
+                elif item.kind == "Caption" and item.table >= 0 and item.table == table_number and table_element is not None:
+                    lists = []                                 # the caption of a table: its first or last child
+                    owner = _element(pdf, "Caption", table_element, page.obj, mcids)
+                    table_element.K.append(owner)
+                    elements[item_index] = owner
+                    result.elements["Caption"] += 1
                 else:
-                    current_list = None
+                    lists = []
                     tag = f"H{item.level}" if item.kind == "H" else item.kind
                     owner = _element(pdf, tag, document, page.obj, mcids)
+                    if item.kind in ("Figure", "Formula"):
+                        add_figure_attributes(owner, item, layout_document[index])
                     children.append(owner)
                     elements[item_index] = owner
                     result.elements[tag] += 1

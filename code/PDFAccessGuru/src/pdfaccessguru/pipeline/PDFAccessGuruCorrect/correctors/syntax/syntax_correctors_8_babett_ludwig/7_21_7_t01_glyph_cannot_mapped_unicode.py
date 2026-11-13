@@ -10,6 +10,7 @@ from pikepdf import Dictionary, Name, Pdf, parse_content_stream
 from pdfaccessguru.exceptions.corrector_exceptions.could_not_correct_detected_violation_exception import (
     CouldNotCorrectDetectedViolationException,
 )
+from pdfaccessguru.LLM.output_checks import plausible_character
 from pdfaccessguru.LLM.providers.openrouter_provider import OpenRouterBaseProvider
 from pdfaccessguru.model.detected_violation import DetectedViolation
 from pdfaccessguru.pipeline.PDFAccessGuruCorrect.correctors.corrector import corrector
@@ -237,6 +238,29 @@ def resolve_glyph_name(font, code):
     return None
 
 
+def _glyphname_to_unicode_mupdf(glyph_name) -> str | None:
+    """
+    The character MuPDF reads for this glyph name (its list also knows TeX and other names the Adobe Glyph List
+    lacks). Text extraction already shows this character, so using it keeps the text that readers get, instead of
+    letting an AI guess a different one (1.1: in the 1.0.3 evaluation an AI turned a vector arrow into "~").
+    """
+    if not glyph_name or not isinstance(glyph_name, str):
+        return None
+    try:
+        import pymupdf
+
+        name = glyph_name.lstrip("/")
+        try:                      # the low-level call: PyMuPDF 1.28's wrapper answers U+FFFD for most names
+            codepoint = pymupdf.mupdf.fz_unicode_from_glyph_name(name)
+        except Exception:
+            codepoint = pymupdf.glyph_name_to_unicode(name)
+    except Exception:
+        return None
+    if not codepoint or codepoint == 0xFFFD or not plausible_character(codepoint):
+        return None
+    return f"U+{codepoint:04X}"
+
+
 def glyphname_to_unicode_agl(glyph_name: str):
     """Attempts to translate a glyph name directly into a Unicode string using the Adobe Glyph List (AGL)."""
     if not glyph_name:
@@ -284,7 +308,8 @@ def resolve_simplefont_unicode_with_fallback(
     glyph_name = resolve_result.get("glyph_name")
     code = resolve_result.get("code")
 
-    unicode_char = glyphname_to_unicode_agl(glyph_name) or unicode_from_font_program(pdf_font, code)
+    unicode_char = glyphname_to_unicode_agl(glyph_name) or unicode_from_font_program(pdf_font, code) \
+        or _glyphname_to_unicode_mupdf(glyph_name)
 
     from pdfaccessguru.LLM.fallback import ai_available, note_fallback
 
@@ -311,7 +336,8 @@ def resolve_simplefont_unicode_with_fallback(
             if response:
                 response = response.strip()
 
-                if re.fullmatch(r"U\+[0-9A-Fa-f]{4,6}", response) and response.upper() != "U+0020":
+                # 1.1: only a character that fits a document (no control, private or rare technical sign)
+                if re.fullmatch(r"U\+[0-9A-Fa-f]{4,6}", response) and plausible_character(int(response[2:], 16)):
                     unicode_char = response.upper()
                     report_review(
                         f"Character code {code} (glyph {glyph_name!r}) was mapped to {unicode_char} by a language model. Please check the text."

@@ -91,7 +91,7 @@ def test_correct_figure_structure_alternate_description_missing(
     mock_generate_alt_text.assert_called_once()
     call_args = mock_generate_alt_text.call_args
     assert call_args is not None
-    context_json, figure_image = call_args.args
+    context_json, figure_image = call_args.args[:2]          # 1.1: then the document's abbreviations
     assert isinstance(context_json, str)
     assert isinstance(figure_image, Image)
     assert figure_image.image_data.startswith(b"\x89PNG\r\n\x1a\n")

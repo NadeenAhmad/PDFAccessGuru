@@ -40,6 +40,7 @@ class _FigureCorrectionCache:
     extracted_pdf: PdfPlumberDocument
     page_text_by_index: dict[int, str | None]
     alt_text_by_request: dict[str, str]
+    abbreviations: list[str] | None = None
 
     def __del__(self) -> None:
         """Release the cached pdfplumber document when its pikepdf owner is gone."""
@@ -61,6 +62,7 @@ class _RenderedFigure:
     page_index: int
     crop_bbox: tuple[float, float, float, float]
     page_text: str | None
+    pdf: Pdf | None = None
 
 
 @corrector("figure-structure-alternate-description-missing")
@@ -144,16 +146,17 @@ def _alt_text_from_ai(context_json: str, rendered_figure, detected_violation) ->
     if not ai_available():
         return None
     try:
-        alt_text = generate_figure_alt_text(context_json, rendered_figure.image)
+        abbreviations = _document_abbreviations(rendered_figure.pdf) if rendered_figure.pdf is not None else None
+        alt_text = generate_figure_alt_text(context_json, rendered_figure.image, abbreviations)
         return _validate_alt_text(alt_text, detected_violation)
     except (OpenRouterConnectionFailedException, CouldNotCorrectDetectedViolationException):
         return None
 
 
-def generate_figure_alt_text(context_json: str, figure_image: Image) -> str:
+def generate_figure_alt_text(context_json: str, figure_image: Image, abbreviations: list[str] | None = None) -> str:
     """Ask a vision-capable LLM for a concise, meaningful alternative text."""
     provider = OpenRouterBaseProvider()
-    system_prompt, user_prompt = build_prompt_generate_figure_alt_text(context_json)
+    system_prompt, user_prompt = build_prompt_generate_figure_alt_text(context_json, abbreviations)
     try:
         response = provider.send_message_with_image(
             system_prompt,
@@ -181,22 +184,12 @@ def generate_figure_alt_text(context_json: str, figure_image: Image) -> str:
     return alt_text
 
 
-def build_prompt_generate_figure_alt_text(context_json: str) -> tuple[str, str]:
-    """Build the vision prompt while keeping PDF-derived data in the user role."""
-    system_prompt = """You create accessible alternative text for a PDF/UA Figure.
-Describe the visible Figure accurately and concisely in the language indicated by the
-PDF context. State the information or function conveyed by the Figure, not its styling.
-For a logo, identify it as a logo and include readable organization text. For a chart,
-state its subject, axes, trend, and important values. For an icon, state its function.
-Do not start with phrases such as 'image of' or 'picture of'. Do not repeat the caption.
-Keep it short: at most 125 characters where possible. Do not guess details that are not
-visible. The supplied image is the rendered Figure crop; the JSON provides its
-structure element and surrounding page context.
+def build_prompt_generate_figure_alt_text(context_json: str, abbreviations: list[str] | None = None) -> tuple[str, str]:
+    """Build the vision prompt while keeping PDF-derived data in the user role (1.1: the chosen level of detail
+    and the abbreviations the document defines, see LLM/descriptions.py)."""
+    from pdfaccessguru.LLM import descriptions
 
-Return only JSON in this exact form:
-{"alt_text": "Concise meaningful description"}"""
-    user_prompt = f"Figure structure and page context:\n{context_json}"
-    return system_prompt, user_prompt
+    return descriptions.system_prompt(), descriptions.user_prompt(context_json, abbreviations)
 
 
 def _render_figure(
@@ -231,6 +224,7 @@ def _render_figure(
         page_index=page_index,
         crop_bbox=crop_bbox,
         page_text=page_text or None,
+        pdf=pdf,
     )
 
 
@@ -257,6 +251,22 @@ def _get_figure_correction_cache(pdf: Pdf) -> _FigureCorrectionCache:
     )
     setattr(pdf, _PDF_CACHE_ATTRIBUTE, cache)
     return cache
+
+
+def _document_abbreviations(pdf: Pdf) -> list[str]:
+    """The abbreviations the whole document defines, worked out once per run (PyMuPDF: fast)."""
+    cache = _get_figure_correction_cache(pdf)
+    if cache.abbreviations is None:
+        from pdfaccessguru.LLM.descriptions import abbreviation_definitions
+        try:
+            import pymupdf
+
+            with pymupdf.open(stream=cache.snapshot.getvalue(), filetype="pdf") as document:
+                text = " ".join(page.get_text() for page in document)
+            cache.abbreviations = abbreviation_definitions(" ".join(text.split()))
+        except Exception:
+            cache.abbreviations = []
+    return cache.abbreviations
 
 
 def _alt_text_request_key(context_json: str, image: Image) -> str:
@@ -470,11 +480,15 @@ def _validate_alt_text(
     """Normalize the LLM description and reject empty, generic or excessive text."""
     from pdfaccessguru.LLM.output_checks import spoken_text
 
+    from pdfaccessguru.LLM.descriptions import length_limit, shorten
+
     normalized = _clean_text(spoken_text(alt_text))
     if not normalized:
         raise _correction_error(detected_violation, "LLM returned empty alt text")
-    if len(normalized) > _MAX_ALT_TEXT_LENGTH:
+    if len(normalized) > _MAX_ALT_TEXT_LENGTH * 3:
         raise _correction_error(detected_violation, "LLM alt text is too long")
+    # longer than the chosen level allows: keep the whole sentences that fit (the main message comes first)
+    normalized = shorten(normalized, min(length_limit(), _MAX_ALT_TEXT_LENGTH * 2))
     if normalized.casefold() in {
         "image",
         "figure",
