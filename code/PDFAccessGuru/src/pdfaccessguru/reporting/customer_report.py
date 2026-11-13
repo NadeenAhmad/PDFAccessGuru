@@ -89,7 +89,7 @@ TEXT = {
         "m_links_made": "Web addresses in the text that were not clickable, made into links: {n}.",
         "m_doc_language": "The language of the document was corrected from “{was}” to “{now}”, because most of the text is in “{now}”.",
         "m_vague_links": "Links that only say something like “click here”: {n} (for example on {pages}). Write link texts that say where the link goes.",
-        "m_long_alt": "Picture descriptions longer than 125 characters: {n} (for example on {pages}). Shorter descriptions are easier to listen to.",
+        "m_long_alt": "Picture descriptions longer than {limit} characters: {n} (for example on {pages}). Shorter descriptions are easier to listen to.",
         "m_long_headings": "Very long headings: {n} (for example on {pages}). They may be paragraphs marked as headings.",
         "m_no_headings": "The document has no headings. People who use screen readers cannot jump from section to section.",
         "m_list_like": "Groups of lines that start with bullets or numbers but are not marked as a list: {n} (for example on {pages}).",
@@ -166,7 +166,7 @@ TEXT = {
         "m_links_made": "Webadressen im Text, die nicht anklickbar waren, als Links angelegt: {n}.",
         "m_doc_language": "Die Sprache des Dokuments wurde von „{was}“ auf „{now}“ korrigiert, weil der meiste Text in „{now}“ ist.",
         "m_vague_links": "Links, die nur etwas wie „hier klicken“ sagen: {n} (zum Beispiel auf {pages}). Schreiben Sie Linktexte, die sagen, wohin der Link führt.",
-        "m_long_alt": "Bildbeschreibungen mit mehr als 125 Zeichen: {n} (zum Beispiel auf {pages}). Kürzere Beschreibungen sind leichter anzuhören.",
+        "m_long_alt": "Bildbeschreibungen mit mehr als {limit} Zeichen: {n} (zum Beispiel auf {pages}). Kürzere Beschreibungen sind leichter anzuhören.",
         "m_long_headings": "Sehr lange Überschriften: {n} (zum Beispiel auf {pages}). Vielleicht sind es als Überschrift markierte Absätze.",
         "m_no_headings": "Das Dokument hat keine Überschriften. Screenreader-Nutzer können nicht von Abschnitt zu Abschnitt springen.",
         "m_list_like": "Gruppen von Zeilen, die mit Aufzählungszeichen oder Nummern beginnen, aber nicht als Liste markiert sind: {n} (zum Beispiel auf {pages}).",
@@ -329,7 +329,8 @@ def _meaning_section(meaning: dict | None, language: str) -> list[str]:
     if meaning.get("vague_links_count"):
         check.append(t("m_vague_links", n=meaning["vague_links_count"], pages=pages(meaning.get("vague_links", []))))
     if meaning.get("long_alt_count"):
-        check.append(t("m_long_alt", n=meaning["long_alt_count"], pages=pages(meaning.get("long_alt", []))))
+        check.append(t("m_long_alt", n=meaning["long_alt_count"], limit=meaning.get("long_alt_limit", 125),
+                          pages=pages(meaning.get("long_alt", []))))
     if meaning.get("long_headings_count"):
         check.append(t("m_long_headings", n=meaning["long_headings_count"], pages=pages(meaning.get("long_headings", []))))
     if meaning.get("no_headings"):

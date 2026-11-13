@@ -122,7 +122,8 @@ def test_things_to_check_are_listed(tmp_path):
             kids[index:index + 1] = paragraphs
             break
     document.K = pikepdf.Array(kids)
-    _elements(pdf, "/Figure")[0].Alt = pikepdf.String("A very long description " * 8)
+    # longer than the limit of the chosen level (1.1: standard = 600 characters)
+    _elements(pdf, "/Figure")[0].Alt = pikepdf.String("A very long description " * 30)
     result = MeaningResult()
     check_meaning(pdf, result)
     assert result.no_headings and [text for _, text in result.vague_links] == ["click here"]

@@ -3,12 +3,12 @@
 **Makes PDF files accessible to everyone, including people with disabilities.**
 
 PDFAccessGuru adds what assistive technologies such as screen readers, screen magnifiers and
-read-aloud tools need: headings, lists and tables, a reading order, descriptions of pictures and
-links, and the language. It checks the result against PDF/UA, the standard for accessible PDF.
+read-aloud tools need: headings, lists and tables, captions, a reading order, descriptions of pictures,
+charts, formulas and links, and the language. It checks the result against PDF/UA, the standard for accessible PDF.
 
 - Runs on your own computer, in your web browser. Your files are not uploaded anywhere, unless you choose an online AI.
 - The original file is never changed: you get a new, improved copy and a report in plain words.
-- Optional: picture descriptions written by an AI on your computer (Ollama) or online (like ChatGPT).
+- Optional: picture descriptions written by an AI on your computer (Ollama) or online (like ChatGPT), brief, standard or detailed.
 - Optional: better colour contrast (off by default, for templates with fixed colours).
 
 ## Install

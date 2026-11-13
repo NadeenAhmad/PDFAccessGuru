@@ -68,6 +68,8 @@ The videos have captions and no sound. Download and watch:
 | ![The review page: the picture with its caption, and the description the AI wrote for it, ready to correct](docs/media/check.png) | ![The reading order: the document's headings, paragraphs, lists and picture descriptions in order](docs/media/preview.png) |
 | **Review and correct** what the tool wrote. | **Reading order**, as screen readers present it. |
 
+<p align="center"><img src="docs/media/descriptions.png" width="560" alt="Box 2 of the start page: who writes the descriptions (an AI on your computer, simple rules, or an online AI) and how detailed picture descriptions should be (Brief, Standard, or Detailed; Standard is chosen)."><br><strong>Descriptions:</strong> who writes them, and how detailed they are.</p>
+
 ## Install
 
 You need about 5 minutes and an internet connection. You do not need admin rights or Python.
@@ -93,6 +95,7 @@ The first time, it asks you to download two free helper programs and a few free 
 2. Choose one or more PDF files.
 3. Choose the options. Every option has a short explanation:
    - **Who writes the descriptions:** an AI on your computer or simple rules (nothing leaves your computer), or an online AI like ChatGPT.
+   - **How detailed picture descriptions are:** Brief (one sentence for every picture), Standard (short for simple pictures, fuller for charts and diagrams; the default), or Detailed (more values and parts). This applies when an AI writes them.
    - **Colors:** "Improve color contrast" makes text that is hard to read a little darker or lighter (WCAG AA). It is off by default because many templates, including official ones, must keep their colors. Text with too little contrast is listed in the report either way.
    - **Report:** You always get a report on the changes. You can add a review list of everything the tool decided on its own.
 4. Click **Make the PDF accessible**.
@@ -109,13 +112,14 @@ In a terminal:
 pdfaccessguru fix your-file.pdf                  # writes your-file_accessible.pdf and a report next to it
 pdfaccessguru fix a.pdf b.pdf                    # several files; a folder name fixes every PDF in it
 pdfaccessguru fix your-file.pdf --fix-contrast   # also improve color contrast (changes text colors)
+pdfaccessguru fix your-file.pdf --descriptions brief   # shorter picture descriptions (or: standard, detailed)
 pdfaccessguru check your-file.pdf                # only checks, changes nothing
 ```
 
 ## What it does
 
-- **Tags:** files without tags get them (headings, paragraphs, lists, tables, pictures, links, reading order). Headers, footers, and page numbers become decoration.
-- **Descriptions:** pictures, formulas, links, and form fields get a description. With an AI, it describes what it sees; without one, it uses the caption or the text in the picture.
+- **Tags:** files without tags get them (headings with their levels, paragraphs, lists, tables, captions, pictures and charts, formulas, links, reading order); in files with tags for only part of their content, the rest is tagged too. Headers, footers, and page numbers become decoration.
+- **Descriptions:** pictures, formulas, links, and form fields get a description. With an AI, it says what a picture means, not how it looks (for a chart: its main message, then the key values), spells out abbreviations that the document defines, and keeps to the level of detail you chose. Without an AI, it uses the caption or the text in the picture.
 - **Language and title:** The document language (also for passages in another language) and a title.
 - **Fonts and characters:** Missing fonts are embedded; characters get their text values.
 - **Structure repairs:** Lists, tables, headings, table of contents, links, comments, and form fields.

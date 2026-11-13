@@ -140,6 +140,8 @@ class App:
         else:                                               # Ollama or simple rules: nothing leaves the computer
             os.environ["PDFACCESSGURU_AI"] = "ollama" if ai == "ollama" else "none"
             os.environ["PDFACCESSGURU_PRIVACY"] = "local"
+        detail = options.get("detail", "standard")         # how detailed AI picture descriptions are (1.1)
+        os.environ["PDFACCESSGURU_DESCRIPTIONS"] = detail if detail in ("brief", "standard", "detailed") else "standard"
         t = TEXT[job.language]
         count = len(job.results)
         for index, result in enumerate(job.results):
@@ -317,6 +319,12 @@ class App:
   </div>
   <div role="group" aria-labelledby="ai-online"><h3 class="group" id="ai-online">{t['ai_group_online']}</h3>
 {choice("radio", "ai", "cloud", "ai-cloud", t['ai_cloud'], [t['ai_cloud_help'], t['ai_key_promise'], key_state], disabled=not service)}
+  </div>
+  <div role="radiogroup" aria-labelledby="detail-head" aria-describedby="detail-note"><h3 class="group" id="detail-head">{t['detail_group']}</h3>
+  <p class="help" id="detail-note">{t['detail_note']}</p>
+{choice("radio", "detail", "brief", "detail-brief", t['detail_brief'], [t['detail_brief_help']])}
+{choice("radio", "detail", "standard", "detail-standard", t['detail_standard'], [t['detail_standard_help']], checked=True)}
+{choice("radio", "detail", "detailed", "detail-detailed", t['detail_detailed'], [t['detail_detailed_help']])}
   </div>"""
 
     def job_page(self, job: Job) -> bytes:

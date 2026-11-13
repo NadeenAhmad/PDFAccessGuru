@@ -177,3 +177,13 @@ def test_the_app_leaves_a_note_while_it_runs_and_removes_it_when_closed(monkeypa
     urllib.request.urlopen(urllib.request.Request(url + "quit", data=b"", method="POST"), timeout=10).read()
     thread.join(timeout=20)
     assert not thread.is_alive() and not note.exists()
+
+
+def test_box_2_offers_three_levels_of_detail_with_standard_chosen(app, monkeypatch):  # noqa: F811
+    page = _start_page(app, monkeypatch)
+    radios = {value: re.search(rf'<input type="radio" id="detail-{value}"[^>]*>', page).group(0)
+              for value in ("brief", "standard", "detailed")}
+    assert "checked" in radios["standard"] and "checked" not in radios["brief"] + radios["detailed"]
+    assert "How detailed should picture descriptions be?" in page and "This applies when an AI writes" in page
+    german = _start_page(app, monkeypatch, language="de")
+    assert "Wie ausführlich sollen Bildbeschreibungen sein?" in german and "Standard (empfohlen)" in german
