@@ -30,7 +30,7 @@ Free, on your own computer, in a few minutes.</strong></p>
   <br>
   <strong>Download and watch the demo:</strong>
   <a href="docs/media/demo-short.mp4?raw=true">short, 1 minute (MP4, 1.8 MB)</a> ·
-  <a href="docs/media/demo-full.mp4?raw=true">full, 2 minutes, with the guided tour (MP4, 3.6 MB)</a>
+  <a href="docs/media/demo-full.mp4?raw=true">full, 2½ minutes, with the guided tour (MP4, 3.9 MB)</a>
 </p>
 
 ## Why
@@ -59,7 +59,7 @@ PDFAccessGuru does most of the work for you. For example, a lecture handout from
 
 The videos have captions and no sound. Download and watch:
 [short demo, 1 minute (MP4, 1.8 MB)](docs/media/demo-short.mp4?raw=true) ·
-[full demo, 2 minutes, with the guided tour (MP4, 3.6 MB)](docs/media/demo-full.mp4?raw=true).
+[full demo, 2½ minutes, with the guided tour (MP4, 3.9 MB)](docs/media/demo-full.mp4?raw=true).
 
 | | |
 |---|---|
