@@ -1,0 +1,32 @@
+{
+ "texts": {
+  "rules": "Picture with the text: Participants per year Mi Staff [i Students 50 44 40 30 20 10 2023 2024 2025 2026",
+  "local": {
+   "brief": "Bar chart showing increasing participation in the workshop from 2023 to 2026 for both staff and students.",
+   "standard": "Bar chart showing the number of participants in the workshop by year. Staff participation is shown in blue, and student participation is shown in orange. Student participation has increased significantly from 2023 to 2026, reaching 44 in 2026.",
+   "detailed": "Bar chart showing the number of participants in the workshop by year, categorized as Staff or Students. In 2023, there were 8 staff and 10 students. In 2024, there were 12 staff and 19 students. In 2025, there were 15 staff and 31 students. In 2026, there were 20 staff and 44 students."
+  },
+  "online": {
+   "brief": "Workshop participation rose each year from 2023 to 2026 among staff and students, with student numbers growing faster.",
+   "standard": "Participation in the workshop increased each year for both staff and students. The chart shows participants per year: in 2023, 8 staff and 10 students; in 2024, 12 staff and 19 students; in 2025, 15 staff and 31 students; and in 2026, 20 staff and 44 students.",
+   "detailed": "Workshop participation increased every year from 2023 to 2026 among both staff and students. The chart shows participants per year: staff numbers were 8, 12, 15, and 20; student numbers were 10, 19, 31, and 44. Student participation grew faster and remained higher than staff participation."
+  }
+ },
+ "local_model": "gemma4:e4b",
+ "online_model": "openai/gpt-6-luna",
+ "report": {
+  "summary": [
+   "Passes the automatic check: Yes",
+   "Problems fixed: 9",
+   "Texts the tool wrote for you to review: 3"
+  ],
+  "review_heading": "Descriptions of pictures (Please review)",
+  "review_item": "Page 1. The tool wrote: “Bar chart showing the number of participants in the workshop by year. Staff participation is shown in blue, and student participation is shown in orange. Student participation has increased significantly from 2023 to 2026, reaching 44 in 2026.”"
+ },
+ "contrast": {
+  "before": "#aaaaaa",
+  "after": "#757575",
+  "ratio_before": 2.3,
+  "ratio_after": 4.6
+ }
+}
