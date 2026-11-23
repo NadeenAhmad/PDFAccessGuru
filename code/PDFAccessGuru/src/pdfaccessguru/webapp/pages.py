@@ -11,6 +11,7 @@ contrast of at least 7:1 (light and dark mode); no time limits; nothing moves on
 from __future__ import annotations
 
 import html
+from pathlib import Path
 
 TEXT = {
     "en": {
@@ -18,6 +19,24 @@ TEXT = {
         "skip": "Skip to the main content",
         "tour_link": "Guided tour",
         "tour_count": "Step {n} of {total}",
+        "ex_label": "Example",
+        "ex_note": "",
+        "ex_picture_alt": "Example picture: a bar chart of workshop participants per year, staff and students. What each "
+                          "choice writes for it is shown below.",
+        "ex_who": "Who writes it",
+        "ex_rules": "No AI: simple rules",
+        "ex_local": "AI on your computer ({model})",
+        "ex_online": "Online AI ({model})",
+        "ex_how": "How detailed",
+        "ex_rules_note": "Simple rules write the same text at every level.",
+        "ex_text": "The description:",
+        "ex_before": "Before",
+        "ex_after": "After",
+        "ex_sample": "Text that is hard to read",
+        "ex_ratio": "contrast {ratio} : 1",
+        "ex_contrast_note": "WCAG AA asks for at least 4.5 : 1 for normal text. Only the shade changes, not the colour.",
+        "ex_report": "Every report has a summary, for example:",
+        "ex_review": "With a review list, it also lists what the tool wrote itself, for example:",
         "tour_back": "Back",
         "tour_next": "Next",
         "tour_done": "Done",
@@ -27,7 +46,8 @@ TEXT = {
             ("Descriptions", "Choose who writes the descriptions and how detailed they are. For confidential "
                              "files, choose one that stays on your computer. When you choose an AI, you can pick its "
                              "model below it; for an online AI, paste your key there and select Save key."),
-            ("Colours", "Switch this on only if the colours of your file may change."),
+            ("Colours", "Text with too little contrast is hard to read for people with low vision. Switch this on to "
+                        "darken such text; leave it off if your colours must not change."),
             ("Report", "You always get a report. Add a review list if someone should review what the tool decided."),
             ("Protected files", "Only needed if your PDF has a password."),
             ("Start", "Click here. Then you can download the new PDF, review and correct the descriptions, and "
@@ -110,8 +130,10 @@ TEXT = {
                                 "in which charts matter.",
         "contrast_legend": "3. Colours",
         "contrast_label": "Improve colour contrast (changes text colours)",
-        "contrast_help": "Makes text that is hard to read a little darker or lighter. Leave this off for "
-                         "templates whose colours must not change, for example official templates.",
+        "contrast_help": "Text that is too close in colour to its background, such as light grey on white, is hard to read "
+                         "for people with low vision or colour blindness. When this is on, PDFAccessGuru darkens such text "
+                         "(or lightens it on a dark background) just enough to meet WCAG AA; the colour itself stays. Leave "
+                         "it off for templates whose colours must not change, for example official templates.",
         "report_legend": "4. Report on the changes",
         "report_language": "With the new PDF you also get a report: a short document that says in plain words what "
                            "the tool fixed and what you still need to do. It is written in the language of the PDF.",
@@ -206,6 +228,25 @@ TEXT = {
         "skip": "Zum Hauptinhalt springen",
         "tour_link": "Rundgang",
         "tour_count": "Schritt {n} von {total}",
+        "ex_label": "Beispiel",
+        "ex_note": "Das Beispiel stammt aus einem englischen Dokument: Die Beschreibung ist in der Sprache des Dokuments.",
+        "ex_picture_alt": "Beispielbild: ein Balkendiagramm der Teilnehmenden pro Jahr, Beschäftigte und Studierende. Was "
+                          "jede Möglichkeit dafür schreibt, steht darunter.",
+        "ex_who": "Wer schreibt",
+        "ex_rules": "Keine KI: einfache Regeln",
+        "ex_local": "KI auf Ihrem Computer ({model})",
+        "ex_online": "Online-KI ({model})",
+        "ex_how": "Wie ausführlich",
+        "ex_rules_note": "Einfache Regeln schreiben auf jeder Stufe denselben Text.",
+        "ex_text": "Die Beschreibung:",
+        "ex_before": "Vorher",
+        "ex_after": "Nachher",
+        "ex_sample": "Schwer lesbarer Text",
+        "ex_ratio": "Kontrast {ratio} : 1",
+        "ex_contrast_note": "WCAG AA verlangt mindestens 4,5 : 1 für normalen Text. Nur die Helligkeit ändert sich, nicht "
+                            "die Farbe.",
+        "ex_report": "Jeder Bericht hat eine Zusammenfassung, zum Beispiel:",
+        "ex_review": "Mit einer Liste zum Durchsehen nennt er auch, was das Werkzeug selbst geschrieben hat, zum Beispiel:",
         "tour_back": "Zurück",
         "tour_next": "Weiter",
         "tour_done": "Fertig",
@@ -216,7 +257,9 @@ TEXT = {
                                "vertrauliche Dateien wählen Sie eine Möglichkeit, die auf Ihrem Computer bleibt. Wenn "
                                "Sie eine KI wählen, können Sie darunter ihr Modell wählen; für eine Online-KI fügen "
                                "Sie dort Ihren Schlüssel ein und wählen Schlüssel speichern."),
-            ("Farben", "Schalten Sie dies nur ein, wenn sich die Farben Ihrer Datei ändern dürfen."),
+            ("Farben", "Text mit zu wenig Kontrast ist für Menschen mit Sehbehinderung schwer lesbar. Schalten Sie dies "
+                       "ein, um solchen Text dunkler zu machen; lassen Sie es aus, wenn Ihre Farben sich nicht ändern "
+                       "dürfen."),
             ("Bericht", "Sie erhalten immer einen Bericht. Nehmen Sie eine Liste zum Durchsehen auf, wenn jemand "
                         "durchsehen soll, was das Werkzeug entschieden hat."),
             ("Geschützte Dateien", "Nur nötig, wenn Ihre PDF ein Kennwort hat."),
@@ -305,9 +348,11 @@ TEXT = {
                                 "in denen Diagramme wichtig sind.",
         "contrast_legend": "3. Farben",
         "contrast_label": "Farbkontrast verbessern (ändert Textfarben)",
-        "contrast_help": "Macht schwer lesbaren Text etwas dunkler oder heller. Lassen Sie "
-                         "dies aus bei Vorlagen, deren Farben sich nicht ändern dürfen, zum Beispiel amtlichen "
-                         "Vorlagen.",
+        "contrast_help": "Text, der sich in der Farbe zu wenig vom Hintergrund abhebt, etwa Hellgrau auf Weiß, ist für "
+                         "Menschen mit Sehbehinderung oder Farbsehschwäche schwer lesbar. Wenn dies eingeschaltet ist, macht "
+                         "PDFAccessGuru solchen Text dunkler (auf dunklem Hintergrund heller), gerade so viel, dass er WCAG AA "
+                         "erfüllt; der Farbton bleibt. Lassen Sie dies aus bei Vorlagen, deren Farben sich nicht ändern "
+                         "dürfen, zum Beispiel amtlichen Vorlagen.",
         "report_legend": "4. Bericht über die Änderungen",
         "report_language": "Zusammen mit der neuen PDF erhalten Sie einen Bericht: ein kurzes Dokument, das in "
                            "einfachen Worten sagt, was das Werkzeug repariert hat und was Sie noch tun müssen. Er ist "
@@ -540,6 +585,23 @@ dialog.tour::backdrop { background: transparent; }
 dialog.tour h2 { margin: .15rem 0 .4rem; }
 dialog.tour p { margin: 0; }
 .tour-count { color: var(--muted); font-size: 1rem; }
+dialog.tour { max-height: calc(100vh - 2rem); overflow-y: auto; }
+dialog.tour.has-example { width: min(52rem, calc(100% - 2rem)); }
+.tour-ex-grid { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 1rem; align-items: start; }
+@media (max-width: 40rem) { .tour-ex-grid { grid-template-columns: minmax(0, 1fr); } }
+.tour-buttons { position: sticky; bottom: -1.2rem; background: var(--card); padding: .6rem 0 1.2rem; margin-bottom: -1.2rem; }
+.tour-example { margin-top: .9rem; padding-top: .8rem; border-top: 1px solid var(--line); }
+.tour-ex-label { font-weight: 700; margin-bottom: .3rem !important; }
+.tour-ex-picture { display: block; width: 100%; height: auto; border: 1px solid var(--line); border-radius: .4rem; background: #fff; }
+.tour-ex-choices { border: 0; margin: .6rem 0 0; padding: 0; }
+.tour-ex-choices legend { font-weight: 700; padding: 0; margin-bottom: .2rem; font-size: 1rem; }
+.tour-ex-choices label { display: inline-flex; align-items: center; gap: .3rem; margin: 0 .9rem .25rem 0; font-size: 1rem; }
+.tour-ex-text { margin-top: .6rem !important; padding: .6rem .75rem; border-radius: .4rem; background: var(--soft, rgba(0,0,0,.05)); }
+.tour-ex-paper { background: #fff; color: #1a1a1a; border: 1px solid var(--line); border-radius: .4rem; padding: .6rem .75rem; }
+.tour-ex-paper p { margin: .2rem 0 !important; }
+.tour-ex-paper ul { margin: .2rem 0 .4rem 1.2rem; padding: 0; }
+.tour-ex-tag { display: inline-block; min-width: 4.5rem; font-weight: 700; color: #1a1a1a; }
+.tour-ex-ratio { color: #1a1a1a; font-size: .95rem; }
 .tour-buttons { display: flex; flex-wrap: wrap; gap: .6rem; margin-top: 1.1rem; }
 .tour-buttons button { font-size: 1.05rem; padding: .6rem 1.1rem; }
 button.plain { background: none; border-color: transparent; color: var(--link); text-decoration: underline; }
@@ -623,6 +685,64 @@ def page(language: str, title: str, body: str, refresh_script: str = "", token: 
     return document.encode("utf-8")
 
 
+def _tour_examples() -> dict | None:
+    """What PDFAccessGuru really writes for one example chart (made by scripts/make_tour_examples.py)."""
+    import json
+
+    try:
+        return json.loads((Path(__file__).with_name("static") / "tour-examples.json").read_text(encoding="utf-8"))
+    except (OSError, ValueError):
+        return None
+
+
+def _tour_example_html(t: dict, token: str, examples: dict) -> str:
+    esc = html.escape
+    radio = lambda name, value, label, checked=False: (
+        f'<label><input type="radio" name="{name}" value="{value}"{" checked" if checked else ""}> {esc(label)}</label>')
+    contrast = dict(examples["contrast"])
+    if t is TEXT["de"]:                                   # German writes 2,3 : 1
+        for key in ("ratio_before", "ratio_after"):
+            contrast[key] = str(contrast[key]).replace(".", ",")
+    report = examples.get("report", {})
+    note = f'<p class="help">{esc(t["ex_note"])}</p>' if t["ex_note"] else ""
+    summary = "".join(f"<li>{esc(line)}</li>" for line in report.get("summary", []))
+    review = (f'<p><strong>{esc(report["review_heading"])}</strong></p><p>{esc(report["review_item"])}</p>'
+              if report.get("review_item") else "")
+    return f"""<div class="tour-example" id="tour-ex-2" hidden>
+<p class="tour-ex-label">{esc(t['ex_label'])}</p>{note}
+<div class="tour-ex-grid"><div>
+<img class="tour-ex-picture" src="/{token}/static/tour-chart.png" width="600" height="320" alt="{esc(t['ex_picture_alt'])}">
+<p class="tour-ex-text"><strong>{esc(t['ex_text'])}</strong> <span id="tour-ex-text" lang="en" aria-live="polite"></span></p>
+</div><div>
+<fieldset class="tour-ex-choices"><legend>{esc(t['ex_who'])}</legend>
+{radio("tour-ex-ai", "rules", t['ex_rules'])}
+{radio("tour-ex-ai", "local", t['ex_local'].format(model=examples['local_model']), True)}
+{radio("tour-ex-ai", "online", t['ex_online'].format(model=examples['online_model']))}
+</fieldset>
+<fieldset class="tour-ex-choices" id="tour-ex-how"><legend>{esc(t['ex_how'])}</legend>
+{radio("tour-ex-detail", "brief", t['detail_brief'])}
+{radio("tour-ex-detail", "standard", t['detail_standard'], True)}
+{radio("tour-ex-detail", "detailed", t['detail_detailed'])}
+</fieldset>
+</div></div>
+</div>
+<div class="tour-example" id="tour-ex-3" hidden>
+<p class="tour-ex-label">{esc(t['ex_label'])}</p>
+<div class="tour-ex-paper">
+<p><span class="tour-ex-tag">{esc(t['ex_before'])}</span> <span style="color:{contrast['before']}">{esc(t['ex_sample'])}</span> <span class="tour-ex-ratio">({esc(t['ex_ratio'].format(ratio=contrast['ratio_before']))})</span></p>
+<p><span class="tour-ex-tag">{esc(t['ex_after'])}</span> <span style="color:{contrast['after']}">{esc(t['ex_sample'])}</span> <span class="tour-ex-ratio">({esc(t['ex_ratio'].format(ratio=contrast['ratio_after']))})</span></p>
+</div>
+<p class="help">{esc(t['ex_contrast_note'])}</p>
+</div>
+<div class="tour-example" id="tour-ex-4" hidden>
+<p class="tour-ex-label">{esc(t['ex_label'])}</p>
+<p class="help">{esc(t['ex_report'])}</p>
+<div class="tour-ex-paper" lang="en"><ul>{summary}</ul></div>
+<p class="help">{esc(t['ex_review'])}</p>
+<div class="tour-ex-paper" lang="en">{review}</div>
+</div>"""
+
+
 def tour(language: str, token: str, auto: bool) -> str:
     """
     The guided tour of the start page (Phase 12c): a dialog next to each part, the rest of the page
@@ -633,10 +753,14 @@ def tour(language: str, token: str, auto: bool) -> str:
     import json
 
     t = TEXT[language]
+    examples = _tour_examples()
     data = json.dumps({"steps": t["tour_steps"], "count": t["tour_count"], "next": t["tour_next"],
-                       "done": t["tour_done"], "auto": auto, "seen": f"/{token}/tour-seen"})
+                       "done": t["tour_done"], "auto": auto, "seen": f"/{token}/tour-seen",
+                       "texts": examples["texts"] if examples else None, "rules_note": t["ex_rules_note"]})
+    example_html = _tour_example_html(t, token, examples) if examples else ""
     return f"""<dialog class="tour" id="tour" aria-labelledby="tour-title" aria-describedby="tour-text">
 <div aria-live="polite"><p class="tour-count" id="tour-count"></p><h2 id="tour-title"></h2><p id="tour-text"></p></div>
+{example_html}
 <div class="tour-buttons"><button type="button" class="secondary" id="tour-back">{t['tour_back']}</button>
 <button type="button" id="tour-next">{t['tour_next']}</button>
 <button type="button" class="plain" id="tour-skip">{t['tour_skip']}</button></div>
@@ -681,12 +805,24 @@ def tour(language: str, token: str, auto: bool) -> str:
     $("tour-back").hidden = number === 0;
     $("tour-skip").hidden = number === total - 1;
     $("tour-next").textContent = number === total - 1 ? data.done : data.next;
+    document.querySelectorAll(".tour-example").forEach(function (box) {{ box.hidden = box.id !== "tour-ex-" + (number + 1); }});
+    dialog.classList.toggle("has-example", !!$("tour-ex-" + (number + 1)));
     bring();
     spot.hidden = false;
     place();
     setTimeout(place, reduce ? 0 : 450);
     $("tour-next").focus();
   }}
+  function example() {{                  /* the real text for the chosen AI and detail level */
+    if (!data.texts || !$("tour-ex-text")) return;
+    var ai = document.querySelector('input[name="tour-ex-ai"]:checked').value;
+    var level = document.querySelector('input[name="tour-ex-detail"]:checked').value;
+    $("tour-ex-text").textContent = ai === "rules" ? data.texts.rules + " (" + data.rules_note + ")" : data.texts[ai][level];
+  }}
+  document.querySelectorAll('input[name="tour-ex-ai"], input[name="tour-ex-detail"]').forEach(function (input) {{
+    input.addEventListener("change", example);
+  }});
+  example();
   function start() {{
     opener = document.activeElement;
     if (!dialog.open) dialog.showModal();
