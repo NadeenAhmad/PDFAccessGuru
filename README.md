@@ -96,7 +96,7 @@ The first time, it asks you to download two free helper programs and a few free 
 3. Choose the options. Every option has a short explanation:
    - **Who writes the descriptions:** an AI on your computer or simple rules (nothing leaves your computer), or an online AI like ChatGPT. You can choose the model and paste your key here.
    - **How detailed picture descriptions are:** Brief (one sentence for every picture), Standard (short for simple pictures, fuller for charts and diagrams; the default), or Detailed (more values and parts). This applies when an AI writes them.
-   - **Colors:** "Improve color contrast" makes text that is hard to read a little darker or lighter (WCAG AA). It is off by default because many templates, including official ones, must keep their colors. Text with too little contrast is listed in the report either way.
+   - **Colors:** text that is too close in color to its background, such as light gray on white, is hard to read for people with low vision or color blindness. "Improve color contrast" darkens such text (or lightens it on a dark background) just enough to meet WCAG AA; the color itself stays. It is off by default because many templates, including official ones, must keep their colors. Text with too little contrast is listed in the report either way.
    - **Report:** You always get a report on the changes. You can add a review list of everything the tool decided on its own.
 4. Click **Make the PDF accessible**.
 5. Download the new PDF and the report. For several files, everything comes in a single ZIP file.
