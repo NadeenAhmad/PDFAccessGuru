@@ -1,0 +1,177 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex, nofollow">
+<title>Links, Titles, Language</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible+Mono:wght@400;600&family=Atkinson+Hyperlegible+Next:wght@400;600;700&display=swap">
+<style>
+/*COMMON-CSS*/
+.pair { display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 6fr); gap: 20px; align-items: start; margin-top: 12px; }
+.versions { display: grid; gap: 10px; }
+.version { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: 12px 14px; }
+.version.complete { border-color: var(--good); }
+.version h4 { margin: 0 0 6px; font-size: var(--step-0); }
+.said { margin: 0 0 8px; }
+.said dt { font-weight: 600; color: var(--muted); font-size: var(--step--1); }
+.said dd { margin: 0 0 4px; }
+.target { word-break: break-all; font-family: var(--mono); font-size: var(--step--1); background: var(--sunk); padding: 6px 8px; border-radius: 6px; }
+.tag-no { color: var(--warn); font-weight: 700; }
+.passage { font-size: var(--step-1); background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: 14px; }
+.tabs { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 16px; }
+.tabs button { border: 1px solid var(--line); border-radius: 99px; background: var(--surface); padding: 6px 14px; font-weight: 600; cursor: pointer; }
+.tabs button[aria-pressed="true"] { background: var(--accent); color: var(--on-accent); border-color: var(--accent); }
+</style>
+</head>
+<body>
+<header class="top"><div class="wrap">
+  <h1>Part 3 of 3: Links, titles, language</h1>
+  <nav class="parts" aria-label="Parts"><a href="./">1 Pictures</a><a href="structure.html">2 Structure</a><a href="links.html" aria-current="page">3 Links, titles, language</a></nav>
+  <div class="meter" aria-hidden="true"><div class="meter-bar"><div class="meter-fill" id="meter-fill"></div></div><span class="meter-text" id="meter-text"></span></div>
+  <span class="save" id="save" role="status">Not started</span>
+</div></header>
+
+<div class="wrap">
+  <section class="intro" id="intro" aria-labelledby="intro-h">
+    <h2 id="intro-h">Links, titles and language</h2>
+    <p>Three short tasks. In each, several versions of the same document are shown in a random order without saying which
+      tool made them.</p>
+    <ol>
+      <li><strong>Links:</strong> a screen reader announces a link with its text and, if there is one, its description.
+        For each version: <em>does what it announces tell you where the link goes?</em> If a version does not make it a link
+        at all, answer <strong>no</strong>.</li>
+      <li><strong>Titles and language:</strong> does the title describe the document? Is the document's language right?</li>
+      <li><strong>Passages in another language:</strong> the tool marked these passages as written in another language than
+        the rest of the document. Is the marked language right?</li>
+    </ol>
+    <div class="facts"><span id="intro-count"></span><span>about 30 minutes</span><span>stop and continue any time</span><span>every answer is saved by itself</span></div>
+    <div id="have" hidden><p>You continue as <strong id="have-who"></strong> (participant code <strong class="code" id="have-code"></strong>).</p></div>
+    <form id="start-form" class="start-form" novalidate>
+      <label for="who">Your name or initials</label>
+      <input id="who" type="text" autocomplete="name" maxlength="60" placeholder="e.g. N.F.">
+      <label for="code-in">Participant code from Part 1 (if you have one)</label>
+      <input id="code-in" type="text" maxlength="24" placeholder="e.g. K7Q2-M9XA-3PLW-T8RE">
+      <p class="form-error" id="form-error" role="alert"></p>
+      <button class="primary" type="submit">Start Part 3</button>
+    </form>
+    <p><button class="primary" id="go" type="button">Start Part 3</button></p>
+  </section>
+
+  <main id="work" hidden>
+    <div class="tabs" role="group" aria-label="Tasks"><button type="button" data-task="links">Links</button><button type="button" data-task="titles">Titles and language</button><button type="button" data-task="passages">Passages</button></div>
+    <nav class="strip" id="strip" aria-label="Items of this task"></nav>
+    <h2 id="item-h" tabindex="-1"></h2>
+    <div id="item"></div>
+    <div class="navbtns"><button class="secondary" id="prev" type="button">Previous</button><button class="primary" id="next" type="button">Next</button></div>
+    <p class="foot">Participant: <strong id="who-show"></strong> · code <strong class="code" id="code-show"></strong> ·
+      <button class="linkish" id="backup" type="button">Download my answers (backup)</button></p>
+  </main>
+</div>
+
+<script>
+const PART = "links";
+const DATA = /*DATA*/null || { links: [], titles: [], passages: [] };
+/*COMMON-JS*/
+const TASKS = { links: DATA.links, titles: DATA.titles, passages: DATA.passages };
+const NAMES = { links: "Link", titles: "Document", passages: "Passage" };
+let task = "links", at = 0;
+function itemDone(kind, item) {
+  if (kind === "links") return item.versions.every((v) => ["yes", "partly", "no"].includes(answers[item.code + "-" + v.letter]));
+  if (kind === "titles") return item.versions.every((v) => { const a = answers[item.code + "-" + v.letter] || {}; return a.t && a.l; });
+  return ["yes", "no", "unsure"].includes(answers[item.code]);
+}
+const total = () => DATA.links.length + DATA.titles.length + DATA.passages.length;
+const doneCount = () => Object.entries(TASKS).reduce((n, [k, list]) => n + list.filter((i) => itemDone(k, i)).length, 0);
+function afterAnswer() { updateMeter(); renderStrip(); markVersions(); }
+function updateMeter() {
+  $("meter-fill").style.width = total() ? (100 * doneCount() / total()) + "%" : "0";
+  $("meter-text").textContent = `${doneCount()} of ${total()} items`;
+}
+function renderStrip() {
+  const list = TASKS[task];
+  $("strip").innerHTML = list.map((item, i) => `<button type="button" data-i="${i}" class="${itemDone(task, item) ? "done" : ""}" aria-current="${i === at}" aria-label="${NAMES[task]} ${i + 1}${itemDone(task, item) ? ", done" : ""}">${i + 1}</button>`).join("");
+  $("strip").querySelectorAll("button").forEach((b) => b.addEventListener("click", () => go(+b.dataset.i)));
+  document.querySelectorAll(".tabs button").forEach((b) => b.setAttribute("aria-pressed", String(b.dataset.task === task)));
+}
+const radio = (name, value, label, current) => `<label class="pill"><input type="radio" name="${name}" value="${value}" ${current === value ? "checked" : ""}> ${label}</label>`;
+function renderLink(item) {
+  const where = item.kind === "external"
+    ? `<p class="target">${esc(item.target)}</p>`
+    : `<p>To page ${item.target_page} of the document:</p><img class="white" src="data:image/png;base64,${item.target_picture}" alt="The place the link leads to, on page ${item.target_page}">`;
+  const versions = item.versions.map((v) => {
+    const key = item.code + "-" + v.letter;
+    const said = !v.found || !v.tagged
+      ? `<p class="tag-no">Not announced as a link (it is not tagged as a link).</p>`
+      : `<dl class="said"><dt>Announced as</dt><dd>Link: “${esc(item.text || "(no text)")}”</dd><dt>Link description</dt><dd>${v.description ? "“" + esc(v.description) + "”" : "none"}</dd></dl>`;
+    return `<div class="version" data-key="${key}" role="group" aria-labelledby="${key}-h"><h4 id="${key}-h">Version ${v.letter}</h4>${said}
+      <div class="pills" role="radiogroup" aria-label="Version ${v.letter}: does this tell you where the link goes?">${radio(key, "yes", "Yes", answers[key])}${radio(key, "partly", "Partly", answers[key])}${radio(key, "no", "No", answers[key])}</div></div>`;
+  }).join("");
+  return `<div class="pair"><section class="card"><h3>The link on the page</h3><img class="white" src="data:image/png;base64,${item.picture}" alt="Part of the page; the link is outlined in red. Its text: ${esc(item.text)}">
+      <p class="muted">Text of the link: “${esc(item.text || "(no text)")}”</p><h3>Where it really goes</h3>${where}</section>
+    <section><h3>Does what the screen reader announces tell you where the link goes?</h3><div class="versions">${versions}</div>
+      <p><label>Comment (optional)<textarea data-comment="${item.code}-c">${esc(answers[item.code + "-c"] || "")}</textarea></label></p></section></div>`;
+}
+function renderTitle(item) {
+  const versions = item.versions.map((v) => {
+    const key = item.code + "-" + v.letter, a = answers[key] || {};
+    return `<div class="version" data-key="${key}" data-kind="title" role="group" aria-labelledby="${key}-h"><h4 id="${key}-h">Version ${v.letter}</h4>
+      <dl class="said"><dt>Title</dt><dd>${v.title ? "“" + esc(v.title) + "”" : "none"}</dd><dt>Shown as the window title</dt><dd>${v.display_title ? "yes" : "no (the file name is shown instead)"}</dd><dt>Language of the document</dt><dd>${esc(v.lang)}</dd></dl>
+      <p>Does the title describe the document?</p><div class="pills" role="radiogroup" aria-label="Version ${v.letter}: does the title describe the document?">${radio(key + "-t", "yes", "Yes", a.t)}${radio(key + "-t", "partly", "Partly", a.t)}${radio(key + "-t", "no", "No", a.t)}</div>
+      <p>Is the language right?</p><div class="pills" role="radiogroup" aria-label="Version ${v.letter}: is the language right?">${radio(key + "-l", "yes", "Yes", a.l)}${radio(key + "-l", "no", "No", a.l)}</div></div>`;
+  }).join("");
+  return `<div class="pair"><section class="card"><h3>First page of the document</h3><img class="white" src="data:image/png;base64,${item.picture}" alt="First page of the document"></section>
+    <section><div class="versions">${versions}</div><p><label>Comment (optional)<textarea data-comment="${item.code}-c">${esc(answers[item.code + "-c"] || "")}</textarea></label></p></section></div>`;
+}
+function renderPassage(item) {
+  const key = item.code;
+  return `<p class="muted">Document language: ${esc(item.doc_lang)}</p><blockquote class="passage" lang="">${esc(item.text)}</blockquote>
+    <div class="version" data-key="${key}" role="group" aria-label="Marked language"><p><strong>Marked as:</strong> ${esc(item.lang)}</p>
+    <p>Is the passage written in the marked language?</p><div class="pills" role="radiogroup" aria-label="Is the passage written in the marked language?">${radio(key, "yes", "Yes", answers[key])}${radio(key, "no", "No", answers[key])}${radio(key, "unsure", "Can't tell", answers[key])}</div></div>
+    <p><label>Comment (optional)<textarea data-comment="${key}-c">${esc(answers[key + "-c"] || "")}</textarea></label></p>`;
+}
+function render() {
+  const list = TASKS[task];
+  if (!list.length) { $("item").innerHTML = "<p>Nothing in this task.</p>"; $("item-h").textContent = ""; renderStrip(); return; }
+  const item = list[at];
+  $("item-h").textContent = `${NAMES[task]} ${at + 1} of ${list.length}`;
+  $("item").innerHTML = task === "links" ? renderLink(item) : task === "titles" ? renderTitle(item) : renderPassage(item);
+  $("item").querySelectorAll("input[type=radio]").forEach((r) => r.addEventListener("change", () => {
+    if (task === "titles") {
+      const key = r.name.slice(0, -2), a = Object.assign({ t: "", l: "" }, answers[key] || {});
+      a[r.name.slice(-1)] = r.value; setAnswer(key, a);
+    } else setAnswer(r.name, r.value);
+  }));
+  $("item").querySelectorAll("textarea[data-comment]").forEach((t) => t.addEventListener("input", () => setAnswer(t.dataset.comment, t.value)));
+  markVersions(); renderStrip();
+  $("prev").disabled = at === 0 && task === "links";
+}
+function markVersions() {
+  $("item").querySelectorAll(".version[data-key]").forEach((el) => {
+    const a = answers[el.dataset.key];
+    el.classList.toggle("complete", el.dataset.kind === "title" ? !!(a && a.t && a.l) : !!a);
+  });
+}
+const ORDER = ["links", "titles", "passages"];
+function go(i) {
+  const list = TASKS[task];
+  if (i >= list.length) { const next = ORDER[ORDER.indexOf(task) + 1]; if (next) { task = next; i = 0; } else i = list.length - 1; }
+  if (i < 0) { const prev = ORDER[ORDER.indexOf(task) - 1]; if (prev) { task = prev; i = TASKS[prev].length - 1; } else i = 0; }
+  at = i; try { localStorage.setItem(PARTS_KEY + "-" + PART + "-at", JSON.stringify({ task, at })); } catch (e) { }
+  render(); window.scrollTo(0, 0); $("item-h").focus();
+}
+function begin() {
+  $("intro").hidden = true; $("work").hidden = false;
+  $("who-show").textContent = who || "–"; $("code-show").textContent = showCode(participant);
+  try { const s = JSON.parse(localStorage.getItem(PARTS_KEY + "-" + PART + "-at") || "{}"); if (TASKS[s.task]) { task = s.task; at = Math.min(s.at || 0, TASKS[task].length - 1); } } catch (e) { }
+  saveLocal(); render(); updateMeter(); loadRemote().then(() => { render(); updateMeter(); });
+}
+document.querySelectorAll(".tabs button").forEach((b) => b.addEventListener("click", () => { task = b.dataset.task; go(0); }));
+$("intro-count").textContent = `${DATA.links.length} links, ${DATA.titles.length} documents, ${DATA.passages.length} passages`;
+$("prev").addEventListener("click", () => go(at - 1));
+$("next").addEventListener("click", () => go(at + 1));
+$("backup").addEventListener("click", backup);
+readIdentity(); startForm(begin); if (!participant) $("go").hidden = true;
+updateMeter();
+</script>
+</body></html>
