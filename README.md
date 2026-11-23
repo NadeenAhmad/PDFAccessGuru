@@ -136,7 +136,7 @@ See [known limits](docs/known-limits.md).
 Without an AI, PDFAccessGuru uses simple rules, and the report says so. With an AI, these texts are usually better:
 
 - **On your own computer (free, private):** install [Ollama](https://ollama.com), then run `ollama pull gemma4:e4b`. PDFAccessGuru finds it by itself; if you have several models, choose one in the app. Nothing leaves your computer.
-- **An online AI like ChatGPT:** paste your key from OpenAI or OpenRouter (Claude, Gemini, and others) in the app, under **Choose who writes the descriptions**, and select **Save key**. You can also choose the model there. Pictures and text from your file are then sent to that company. Your key stays in the settings file on your computer: PDFAccessGuru sends it only to that company and never puts it into the PDF or the report.
+- **An online AI like ChatGPT:** get a key from OpenAI or OpenRouter (Claude, Gemini, and others). In the app, choose **An online AI like ChatGPT**, paste the key and select **Save key**. You can also choose the model there. Pictures and text from your file are then sent to that company. Your key stays in the settings file on your computer: PDFAccessGuru sends it only to that company and never puts it into the PDF or the report.
 
 In the app, only the online AI sends anything over the internet, and it is never chosen for you. In a terminal, `pdfaccessguru fix --local-only FILE` makes sure nothing is sent.
 
@@ -168,6 +168,7 @@ For inquiries, feel free to contact:
 ## Updates
 
 When a new version exists, the app shows "A new version of PDFAccessGuru is available". Click **Update now**. In a terminal: `pdfaccessguru update`.
+If the update does not work, run the install line from [Install](#install) again: it installs the newest version and keeps your settings.
 
 ## Remove
 

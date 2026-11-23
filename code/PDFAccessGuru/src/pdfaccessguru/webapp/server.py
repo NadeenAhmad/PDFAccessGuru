@@ -79,6 +79,12 @@ class App:
         self.tools_state = "idle"                 # idle, running, done, failed
         self.tools_text = ""
         self.update = None                        # UpdateInfo, if a newer version exists
+        self.update_failed = None                 # the version an earlier "Update now" did not reach
+        try:
+            from pdfaccessguru.updates import failed_update
+            self.update_failed = failed_update()
+        except Exception:                         # never stop the app because of this note
+            self.update_failed = None
         threading.Thread(target=self._check_update, daemon=True).start()
 
     def _check_update(self) -> None:
@@ -259,11 +265,16 @@ class App:
 
     # --- pages ---------------------------------------------------------------------------------
 
-    def form(self, language: str, message: str = "") -> bytes:
+    def form(self, language: str, message: str = "", ai_choice: str = "") -> bytes:
+        from pdfaccessguru.updates import install_line
+
         t = TEXT[language]
         other = "de" if language == "en" else "en"
         busy = self.running_job() is not None
         alert = f'<div class="alert" role="alert">{html.escape(message)}</div>' if message else ""
+        if self.update_failed:
+            alert += (f'<div class="alert" role="alert"><p>{html.escape(t["update_failed"].format(version=self.update_failed))}</p>'
+                      f'<p><code>{html.escape(install_line())}</code></p></div>')
         notices = ""
         if self.update is not None:
             notices += f"""<section class="status" aria-labelledby="update-text"><p id="update-text">{html.escape(t['update'].format(version=self.update.latest))}</p>
@@ -299,7 +310,7 @@ class App:
 </fieldset>
 <fieldset class="card" id="tour-2" aria-describedby="ai-intro"><legend><h2><span class="num" aria-hidden="true">2</span>{t['ai_legend'][3:]}</h2></legend>
   <p class="help" id="ai-intro">{t['ai_intro']}</p>
-{self._ai_choices(t)}
+{self._ai_choices(t, ai_choice)}
 </fieldset>
 <fieldset class="card" id="tour-3"><legend><h2><span class="num" aria-hidden="true">3</span>{t['contrast_legend'][3:]}</h2></legend>
 {choice("checkbox", "fix_contrast", "on", "fix-contrast", t['contrast_label'], [t['contrast_help']])}
@@ -324,14 +335,17 @@ class App:
         body += tour(language, self.token, auto=not tour_seen())
         return page(language, t["title"], body, token=self.token, nav=nav)
 
-    def _ai_choices(self, t: dict) -> str:
+    def _ai_choices(self, t: dict, ai_choice: str = "") -> str:
         """Section 2: what stays on this computer, and what is sent over the internet. Each box says
         what is set up; an option that is not set up cannot be chosen. The safe choice is preselected.
-        Under a box: which model to use, and (online) a field for the key, so nobody has to edit a file."""
+        Under a box: which model to use, and (online) a field for the key, so nobody has to edit a file. These open
+        when their option is chosen (without JavaScript they are always shown). The online AI can be chosen before a
+        key is saved, so the key field can be reached; starting without a key asks for it."""
         from pdfaccessguru.LLM.client import local_models, online_key_service
         from pdfaccessguru.utils.environment_variables import api_key_end
 
         models, service = local_models(), online_key_service()
+        chosen = ai_choice if ai_choice in ("ollama", "none", "cloud") else ""   # set only by the person, never a default
         model = remembered("ollama_model") if remembered("ollama_model") in models else (models[0] if models else "")
         ollama_state = t["ai_ollama_found"].format(model=model) if model else t["ai_ollama_missing"]
         if service:
@@ -345,27 +359,40 @@ class App:
   <p><button type="submit" form="key-form" class="secondary">{t['key_save']}</button></p>"""
         options = "".join(f'<option value="{html.escape(name)}"{" selected" if name == model else ""}>{html.escape(name)}</option>'
                           for name in models)
-        ollama_pick = (f"""  <div class="choice-extra"><label for="ollama-model">{t['model_label']}</label>
+        ollama_pick = (f"""  <div class="choice-extra" data-for="ai-ollama"><label for="ollama-model">{t['model_label']}</label>
   <p class="help" id="ollama-model-help">{t['ollama_model_help']}</p>
   <select id="ollama-model" name="ollama_model" aria-describedby="ollama-model-help">{options}</select></div>""" if models else "")
         default_online = "gpt-6-luna" if service == "OpenAI" else "openai/gpt-6-luna"
         online_model = remembered("online_model") or default_online
         suggestions = "".join(f'<option value="{name}"></option>' for name in
                               ("openai/gpt-6-luna", "google/gemma-4-26b-a4b-it", "gpt-6-luna"))
-        online_pick = f"""  <div class="choice-extra">{key_part}
+        online_pick = f"""  <div class="choice-extra" data-for="ai-cloud">{key_part}
   <label for="online-model">{t['model_label']}</label>
   <p class="help" id="online-model-help">{t['online_model_help']}</p>
   <input type="text" id="online-model" name="online_model" value="{html.escape(online_model)}" list="online-models" autocomplete="off" spellcheck="false" aria-describedby="online-model-help">
   <datalist id="online-models">{suggestions}</datalist></div>"""
         return f"""  <div role="group" aria-labelledby="ai-local"><h3 class="group" id="ai-local">{t['ai_group_local']}</h3>
-{choice("radio", "ai", "ollama", "ai-ollama", t['ai_ollama'], [t['ai_ollama_help'], ollama_state], checked=bool(model), disabled=not model)}
+{choice("radio", "ai", "ollama", "ai-ollama", t['ai_ollama'], [t['ai_ollama_help'], ollama_state], checked=bool(model) and chosen not in ("cloud", "none"), disabled=not model)}
 {ollama_pick}
-{choice("radio", "ai", "none", "ai-none", t['ai_none'], [t['ai_none_help']], checked=not model)}
+{choice("radio", "ai", "none", "ai-none", t['ai_none'], [t['ai_none_help']], checked=chosen == "none" or (not model and chosen != "cloud"))}
   </div>
   <div role="group" aria-labelledby="ai-online"><h3 class="group" id="ai-online">{t['ai_group_online']}</h3>
-{choice("radio", "ai", "cloud", "ai-cloud", t['ai_cloud'], [t['ai_cloud_help'], t['ai_key_promise'], key_state], disabled=not service)}
+{choice("radio", "ai", "cloud", "ai-cloud", t['ai_cloud'], [t['ai_cloud_help'], t['ai_key_promise'], key_state], checked=chosen == "cloud")}
 {online_pick}
   </div>
+<script>
+(function () {{
+  var radios = document.querySelectorAll('input[name="ai"]');
+  function show() {{
+    radios.forEach(function (radio) {{
+      var extra = document.querySelector('[data-for="' + radio.id + '"]');
+      if (extra) extra.hidden = !radio.checked;
+    }});
+  }}
+  radios.forEach(function (radio) {{ radio.addEventListener("change", show); }});
+  show();
+}})();
+</script>
   <div role="radiogroup" aria-labelledby="detail-head" aria-describedby="detail-note"><h3 class="group" id="detail-head">{t['detail_group']}</h3>
   <p class="help" id="detail-note">{t['detail_note']}</p>
 {choice("radio", "detail", "brief", "detail-brief", t['detail_brief'], [t['detail_brief_help']])}
@@ -757,7 +784,8 @@ def _handler(app: App):
             if parts is None:
                 return
             if parts in ([], [""]):
-                self._send(200, app.form(self._language()))
+                chosen = (parse_qs(urlparse(self.path).query).get("ai") or [""])[0]
+                self._send(200, app.form(self._language(), ai_choice=chosen))
                 return
             if parts == ["alive"]:                       # a second start asks whether this app runs
                 self._send(204, b"")
@@ -832,10 +860,11 @@ def _handler(app: App):
                     try:
                         save_api_key((fields.get("api_key") or [""])[0])
                     except (ValueError, OSError):
-                        self._send(400, app.form(language, TEXT[language]["key_invalid"]))
+                        self._send(400, app.form(language, TEXT[language]["key_invalid"], ai_choice="cloud"))
                         return
-                else:
-                    remove_api_keys()
+                    self._redirect(f"/{app.token}/?lang={language}&ai=cloud#tour-2")
+                    return
+                remove_api_keys()
                 self._redirect(f"/{app.token}/?lang={language}#tour-2")
                 return
             if (len(parts) == 4 and parts[0] == "job" and parts[1] in app.jobs and parts[2] == "check"
@@ -866,7 +895,8 @@ def _handler(app: App):
                                          token=app.token))
                     threading.Thread(target=app.server.shutdown, daemon=True).start()
                 else:
-                    self._send(200, app.form(language, TEXT[language]["update_manual"]))
+                    from pdfaccessguru.updates import install_line
+                    self._send(200, app.form(language, TEXT[language]["update_manual"].format(line=install_line())))
                 return
             self._send(404, b"Not found", "text/plain")
 
@@ -892,6 +922,11 @@ def _handler(app: App):
             if not uploads:
                 self._send(400, app.form(language, TEXT[language]["no_file"]))
                 return
+            if options.get("ai") == "cloud":
+                from pdfaccessguru.LLM.client import online_key_service
+                if not online_key_service():
+                    self._send(400, app.form(language, TEXT[language]["key_needed"], ai_choice="cloud"))
+                    return
             not_pdf = [Path(name).name for name, data in uploads if not data.startswith(b"%PDF")]
             if not_pdf:
                 self._send(400, app.form(language, TEXT[language]["not_pdf"].format(names=", ".join(not_pdf))))

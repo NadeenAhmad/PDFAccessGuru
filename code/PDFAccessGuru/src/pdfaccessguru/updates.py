@@ -12,6 +12,7 @@ Update check and update for PDFAccessGuru.
 
 from __future__ import annotations
 
+import importlib.util
 import json
 import os
 import platform
@@ -31,6 +32,9 @@ from pdfaccessguru import __version__
 PACKAGE = "pdfaccessguru"
 VERSION_URL = f"https://pypi.org/pypi/{PACKAGE}/json"
 RELEASE_NOTES_URL = "https://github.com/NadeenAhmad/PDFAccessGuru/releases"
+_INSTALLERS = "https://raw.githubusercontent.com/NadeenAhmad/PDFAccessGuru/main/code/PDFAccessGuru/installers/"
+INSTALL_LINE_WINDOWS = f'powershell -ExecutionPolicy ByPass -c "irm {_INSTALLERS}install.ps1 | iex"'
+INSTALL_LINE_UNIX = f"curl -LsSf {_INSTALLERS}install.sh | sh"
 _CHECK_INTERVAL_SECONDS = 24 * 60 * 60
 
 
@@ -101,22 +105,56 @@ def update_command() -> list[str] | None:
     """The command that updates this installation, depending on how it was installed."""
     prefix = Path(sys.prefix)
     # uv and pipx leave a receipt file in every tool environment they create.
-    uv = shutil.which("uv") or _default_uv()
-    if (prefix / "uv-receipt.toml").is_file() and uv:
-        return [uv, "tool", "upgrade", "--no-build", "--refresh", PACKAGE]     # --refresh: ask PyPI again
+    if (prefix / "uv-receipt.toml").is_file():
+        uv = find_uv()
+        if uv:
+            # --no-cache: ask PyPI again (uv 0.13 removed --refresh from "tool upgrade"; --no-cache works in all versions)
+            return [uv, "tool", "upgrade", "--no-build", "--no-cache", PACKAGE]
+        return installer_command()      # uv was removed: the installer puts uv back and installs the newest version
     pipx = shutil.which("pipx")
     if (prefix / "pipx_metadata.json").is_file() and pipx:
         return [pipx, "upgrade", PACKAGE]
     if "site-packages" in Path(__file__).resolve().as_posix():
+        if importlib.util.find_spec("pip") is None:
+            return None
         return [sys.executable, "-m", "pip", "install", "--upgrade", "--no-cache-dir", "--only-binary", ":all:", PACKAGE]
     return None  # running from a source checkout: update with git instead
 
 
-def _default_uv() -> str | None:
-    """uv in its default install folder (the installer puts it there; it may not be on the PATH yet)."""
+def installer_command() -> list[str]:
+    """The one-line installer from the README: installs uv if needed, then the newest PDFAccessGuru."""
+    if platform.system() == "Windows":
+        return ["powershell", "-NoProfile", "-ExecutionPolicy", "ByPass", "-c", f"irm {_INSTALLERS}install.ps1 | iex"]
+    return ["/bin/sh", "-c", INSTALL_LINE_UNIX]
+
+
+def install_line() -> str:
+    """What people can paste into PowerShell (Windows) or Terminal (Mac, Linux) to install or update by hand."""
+    return INSTALL_LINE_WINDOWS if platform.system() == "Windows" else INSTALL_LINE_UNIX
+
+
+def find_uv() -> str | None:
+    """
+    uv on the PATH or in one of its usual folders. An app opened from the Finder or the Start menu often has a
+    short PATH, so uv installed with the installer (~/.local/bin), cargo or Homebrew is looked for there too.
+    """
+    found = shutil.which("uv")
+    if found:
+        return found
     executable = "uv.exe" if platform.system() == "Windows" else "uv"
-    candidate = Path.home() / ".local" / "bin" / executable
-    return str(candidate) if candidate.is_file() else None
+    home = Path.home()
+    folders = [home / ".local" / "bin", home / ".cargo" / "bin"]
+    if platform.system() == "Windows":
+        folders.append(Path(os.environ.get("LOCALAPPDATA", str(home))) / "Programs" / "uv")
+    else:
+        folders += [Path("/opt/homebrew/bin"), Path("/usr/local/bin"), Path("/home/linuxbrew/.linuxbrew/bin")]
+    for folder in folders:
+        if (folder / executable).is_file():
+            return str(folder / executable)
+    return None
+
+
+_default_uv = find_uv     # older name
 
 
 def manual_update_hint() -> str:
@@ -165,7 +203,7 @@ def run_update_now(expected: str | None = None, say=print) -> str:
 def uninstall_command() -> list[str] | None:
     """The command that removes this installation, depending on how it was installed."""
     prefix = Path(sys.prefix)
-    uv = shutil.which("uv") or _default_uv()
+    uv = find_uv()
     if (prefix / "uv-receipt.toml").is_file() and uv:
         return [uv, "tool", "uninstall", PACKAGE]
     pipx = shutil.which("pipx")
@@ -184,7 +222,39 @@ def start_update_after_exit(reopen_app: bool, expected: str | None = None) -> bo
     on the server yet. Returns False if no update command exists.
     """
     command = update_command()
-    return command is not None and start_after_exit(command, reopen_app, expected)
+    if command is None:
+        return False
+    if expected:
+        _remember_started_update(expected)
+    return start_after_exit(command, reopen_app, expected)
+
+
+def _pending_file() -> Path:
+    return Path(user_cache_dir(PACKAGE)) / "update_started.json"
+
+
+def _remember_started_update(expected: str) -> None:
+    try:
+        _pending_file().parent.mkdir(parents=True, exist_ok=True)
+        _pending_file().write_text(json.dumps({"version": expected, "at": time.time()}), encoding="utf-8")
+    except OSError:
+        pass
+
+
+def failed_update() -> str | None:
+    """
+    The version an update was started for, if this program is still older (the update did not work), else None.
+    Asked once when the app starts: the note is removed, so the message is shown only once.
+    """
+    try:
+        expected = json.loads(_pending_file().read_text(encoding="utf-8")).get("version", "")
+    except (OSError, ValueError, AttributeError):
+        return None
+    try:
+        _pending_file().unlink()
+    except OSError:
+        pass
+    return expected if isinstance(expected, str) and expected and is_newer(expected, __version__) else None
 
 
 def start_after_exit(command: list[str], reopen_app: bool = False, expected: str | None = None) -> bool:
