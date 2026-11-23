@@ -111,3 +111,15 @@ def resources_test_results_must_not_be_created():
         f"{FORBIDDEN_OUTPUT_DIR} was created during this test run. "
         "Write outputs under src/test/test_results instead."
     )
+
+
+@pytest.fixture(autouse=True)
+def updates_never_touch_the_real_cache(tmp_path_factory, monkeypatch):
+    """Tests start the app, which checks for updates: keep that away from the developer's own installation
+    (its once-a-day timer and the note about a started update live in the real cache folder)."""
+    from pdfaccessguru import updates
+
+    folder = tmp_path_factory.mktemp("update-cache")
+    monkeypatch.setattr(updates, "_stamp_file", lambda: folder / "last_update_check")
+    monkeypatch.setattr(updates, "_pending_file", lambda: folder / "update_started.json")
+    monkeypatch.setenv("PDFACCESSGURU_NO_UPDATE_CHECK", "1")
