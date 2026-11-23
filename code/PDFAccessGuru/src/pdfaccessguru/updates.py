@@ -42,6 +42,10 @@ class UpdateInfo:
 
 
 def _version_key(version: str) -> tuple[int, ...]:
+    """1.1.0 → (1, 1, 0, 0); 1.1.0.post1 (a small fix of 1.1.0) → (1, 1, 0, 1)."""
+    match = re.match(r"(\d+)\.(\d+)\.(\d+)(?:\.post(\d+))?", version.split("+")[0])
+    if match:
+        return tuple(int(part or 0) for part in match.groups())
     return tuple(int(part) for part in re.findall(r"\d+", version.split("+")[0])[:3])
 
 
