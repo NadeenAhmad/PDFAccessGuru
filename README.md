@@ -94,7 +94,7 @@ The first time, it asks you to download two free helper programs and a few free 
 1. Open PDFAccessGuru. It opens in your web browser, but runs only on your computer. The first time, a short guided tour shows the steps; you can skip it and reopen it at any time by selecting **Guided tour** at the top.
 2. Choose one or more PDF files.
 3. Choose the options. Every option has a short explanation:
-   - **Who writes the descriptions:** an AI on your computer or simple rules (nothing leaves your computer), or an online AI like ChatGPT. You can choose the model and paste your key here.
+   - **Who writes the descriptions:** an AI on your computer or simple rules (nothing leaves your computer), or an online AI like ChatGPT. You can choose the model and paste your API key here.
    - **How detailed picture descriptions are:** Brief (one sentence for every picture), Standard (short for simple pictures, fuller for charts and diagrams; the default), or Detailed (more values and parts). This applies when an AI writes them.
    - **Colors:** text that is too close in color to its background, such as light gray on white, is hard to read for people with low vision or color blindness. "Improve color contrast" darkens such text (or lightens it on a dark background) just enough to meet WCAG AA; the color itself stays. It is off by default because many templates, including official ones, must keep their colors. Text with too little contrast is listed in the report either way.
    - **Report:** You always get a report on the changes. You can add a review list of everything the tool decided on its own.
@@ -136,7 +136,7 @@ See [known limits](docs/known-limits.md).
 Without an AI, PDFAccessGuru uses simple rules, and the report says so. With an AI, these texts are usually better:
 
 - **On your own computer (free, private):** install [Ollama](https://ollama.com), then run `ollama pull gemma4:e4b`. PDFAccessGuru finds it by itself; if you have several models, choose one in the app. Nothing leaves your computer.
-- **An online AI like ChatGPT:** get a key from OpenAI or OpenRouter (Claude, Gemini, and others). In the app, choose **An online AI like ChatGPT**, paste the key and select **Save key**. You can also choose the model there. Pictures and text from your file are then sent to that company. Your key stays in the settings file on your computer: PDFAccessGuru sends it only to that company and never puts it into the PDF or the report.
+- **An online AI like ChatGPT:** get an API key from OpenAI or OpenRouter (Claude, Gemini, and others). In the app, choose **An online AI like ChatGPT**, paste the API key and select **Save API key**. You can also choose the model there. Pictures and text from your file are then sent to that company. Your API key stays in the settings file on your computer: PDFAccessGuru sends it only to that company and never puts it into the PDF or the report.
 
 In the app, only the online AI sends anything over the internet, and it is never chosen for you. In a terminal, `pdfaccessguru fix --local-only FILE` makes sure nothing is sent.
 

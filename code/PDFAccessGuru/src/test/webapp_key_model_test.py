@@ -51,7 +51,7 @@ def test_without_a_key_the_page_has_a_key_field_outside_the_main_form(app, files
     page = _request(app, "GET", f"/{app.token}/?lang=en")[2].decode()
     assert '<input type="password" id="api-key" name="api_key" form="key-form"' in page
     assert re.search(r'</form>\s*<form id="key-form" method="post" action="/[^/]+/key\?lang=en"></form>', page)
-    assert "No key set up yet. Choose this option, then paste your key." in page and "Write OPENAI_API_KEY" not in page
+    assert "No API key set up yet. Choose this option, then paste your API key." in page and "Write OPENAI_API_KEY" not in page
 
 
 def test_pasting_a_key_saves_it_and_the_page_shows_only_its_end(app, files):  # noqa: F811
@@ -61,7 +61,7 @@ def test_pasting_a_key_saves_it_and_the_page_shows_only_its_end(app, files):  # 
     assert status in (302, 303) and headers["Location"].endswith("&ai=cloud#tour-2")   # the online AI stays chosen
     assert f"OPENAI_API_KEY={OPENAI}" in env_file.read_text(encoding="utf-8")
     page = _request(app, "GET", f"/{app.token}/?lang=en")[2].decode()
-    assert "Key found: OpenAI (ends with wxyz)" in page and OPENAI not in page and OPENAI[:12] not in page
+    assert "API key found: OpenAI (ends with wxyz)" in page and OPENAI not in page and OPENAI[:12] not in page
     assert 'form="key-remove-form"' in page and 'name="api_key"' not in page
     assert 'value="gpt-6-luna"' in page                       # the OpenAI name of the default model
     _request(app, "POST", f"/{app.token}/key-remove?lang=en", "", {"Content-Type": "application/x-www-form-urlencoded"})
@@ -72,7 +72,7 @@ def test_a_wrong_key_is_not_saved_and_the_page_says_why(app, files):  # noqa: F8
     env_file, _ = files
     status, _, body = _request(app, "POST", f"/{app.token}/key?lang=de", "api_key=hello",
                                {"Content-Type": "application/x-www-form-urlencoded"})
-    assert status == 400 and "vollständiger Schlüssel" in body.decode()
+    assert status == 400 and "vollständiger API-Schlüssel" in body.decode()
     assert not env_file.exists()
 
 
@@ -140,7 +140,7 @@ def test_starting_with_the_online_ai_without_a_key_asks_for_the_key(app, files):
 def test_the_tour_explains_the_model_and_the_key(app, files):  # noqa: F811
     from pdfaccessguru.webapp.pages import TEXT
     step = dict(TEXT["en"]["tour_steps"])["Descriptions"]
-    assert "model" in step and "key" in step and "Save key" in step
+    assert "model" in step and "key" in step and "Save API key" in step
     assert "Modell" in dict(TEXT["de"]["tour_steps"])["Beschreibungen"]
 
 
@@ -155,3 +155,39 @@ def test_a_failed_update_is_explained_with_the_line_to_paste(app, files):  # noq
 def html_escape(text):
     import html
     return html.escape(text)
+
+
+def test_the_app_checks_for_updates_at_every_start_and_shows_it_on_the_first_page(monkeypatch, files):
+    import threading
+    from http.server import ThreadingHTTPServer
+
+    from pdfaccessguru import updates
+    from pdfaccessguru.webapp.server import App, _handler
+
+    calls = []
+
+    def fake_check(**options):
+        calls.append(options)
+        return updates.UpdateInfo(current="1.1.3", latest="99.0.0")
+
+    monkeypatch.setattr(updates, "check_for_update", fake_check)
+    application = App()
+    application.server = ThreadingHTTPServer(("127.0.0.1", 0), _handler(application))
+    threading.Thread(target=application.server.serve_forever, daemon=True).start()
+    try:
+        page = _request(application, "GET", f"/{application.token}/?lang=en")[2].decode()
+    finally:
+        application.server.shutdown()
+        application.server.server_close()
+    assert calls == [{"daily": False}]
+    assert "A new version of PDFAccessGuru is available: 99.0.0." in page
+
+
+def test_heading_names_alt_text_and_detail_levels_hide_for_simple_rules(app, files):  # noqa: F811
+    page = _request(app, "GET", f"/{app.token}/?lang=en")[2].decode()
+    assert "Choose who writes the descriptions, such as alt text for images" in page
+    assert '<div role="radiogroup" id="detail-group"' in page
+    assert 'document.getElementById("detail-group").hidden = !!(none && none.checked)' in page
+    assert "Save API key" in page and "paste your API key" in page and "paste your key" not in page
+    page = _request(app, "GET", f"/{app.token}/?lang=de")[2].decode()
+    assert "etwa Alternativtexte für Bilder" in page and "API-Schlüssel speichern" in page

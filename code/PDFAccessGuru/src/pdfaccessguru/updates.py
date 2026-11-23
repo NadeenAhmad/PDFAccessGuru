@@ -74,16 +74,17 @@ def _stamp_file() -> Path:
     return Path(user_cache_dir(PACKAGE)) / "last_update_check"
 
 
-def check_for_update(force: bool = False, timeout: float = 3.0) -> UpdateInfo | None:
+def check_for_update(force: bool = False, timeout: float = 3.0, daily: bool = True) -> UpdateInfo | None:
     """
     Return information about a newer version, or None (no newer version, check switched off,
-    already checked today, or no connection). Never raises.
+    already checked today, or no connection). Never raises. The app asks every time it starts
+    (daily=False); the terminal commands ask at most once a day.
     """
     if not force:
         if not update_check_enabled():
             return None
         try:
-            if time.time() - _stamp_file().stat().st_mtime < _CHECK_INTERVAL_SECONDS:
+            if daily and time.time() - _stamp_file().stat().st_mtime < _CHECK_INTERVAL_SECONDS:
                 return None
         except OSError:
             pass
@@ -214,7 +215,8 @@ def uninstall_command() -> list[str] | None:
     return None
 
 
-def start_update_after_exit(reopen_app: bool, expected: str | None = None) -> bool:
+def start_update_after_exit(reopen_app: bool, expected: str | None = None,
+                            reopen_at: tuple[int, str] | None = None) -> bool:
     """
     Start the update in a separate process that waits a moment for this program to close,
     then updates and (optionally) opens the app again. On macOS and Linux it checks the
@@ -226,7 +228,15 @@ def start_update_after_exit(reopen_app: bool, expected: str | None = None) -> bo
         return False
     if expected:
         _remember_started_update(expected)
-    return start_after_exit(command, reopen_app, expected)
+    return start_after_exit(command, reopen_app, expected, reopen_at)
+
+
+def _app_launcher() -> str:
+    """The app's own start program, by its full path: an app opened from the Finder or the Start menu has a short
+    PATH, so the bare name may not be found after the update."""
+    name = "pdfaccessguru-app.exe" if platform.system() == "Windows" else "pdfaccessguru-app"
+    candidate = Path(sys.executable).parent / name
+    return str(candidate) if candidate.is_file() else name
 
 
 def _pending_file() -> Path:
@@ -257,10 +267,17 @@ def failed_update() -> str | None:
     return expected if isinstance(expected, str) and expected and is_newer(expected, __version__) else None
 
 
-def start_after_exit(command: list[str], reopen_app: bool = False, expected: str | None = None) -> bool:
-    """Run a command in a separate process a few seconds after this program has closed."""
+def start_after_exit(command: list[str], reopen_app: bool = False, expected: str | None = None,
+                     reopen_at: tuple[int, str] | None = None) -> bool:
+    """
+    Run a command in a separate process a few seconds after this program has closed. With reopen_at (port, key),
+    the app opens again at the same address, so the page that waits for it can show the new version in the same tab.
+    """
+    launcher = _app_launcher()
+    address = f"{reopen_at[0]}:{reopen_at[1]}" if reopen_at else ""
     if platform.system() == "Windows":
-        reopen = " & start \"\" pdfaccessguru-app" if reopen_app else ""
+        reopen = ((f' & set "PDFACCESSGURU_REOPEN={address}"' if address else "") + f' & start "" "{launcher}"'
+                  if reopen_app else "")
         line = "timeout /t 3 /nobreak >nul & " + subprocess.list2cmdline(command) + reopen
         subprocess.Popen(["cmd", "/c", line], creationflags=0x00000008 | 0x00000200)  # DETACHED, NEW_PROCESS_GROUP
     else:
@@ -269,7 +286,8 @@ def start_after_exit(command: list[str], reopen_app: bool = False, expected: str
             check = " ".join(_shell_quote(part) for part in (sys.executable, "-c", _INSTALLED_VERSION, expected))
             run = (f"n=0; while :; do {run}; {check} && break; n=$((n+1)); "
                    f"[ $n -ge {UPDATE_ATTEMPTS} ] && break; sleep {UPDATE_WAIT_SECONDS}; done")
-        reopen = "; (pdfaccessguru-app >/dev/null 2>&1 &)" if reopen_app else ""
+        environment = f"PDFACCESSGURU_REOPEN={_shell_quote(address)} " if address else ""
+        reopen = f"; ({environment}{_shell_quote(launcher)} >/dev/null 2>&1 &)" if reopen_app else ""
         line = "sleep 2; " + run + reopen
         subprocess.Popen(["/bin/sh", "-c", line], start_new_session=True,
                          stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)

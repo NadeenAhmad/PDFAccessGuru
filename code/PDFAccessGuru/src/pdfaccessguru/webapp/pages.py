@@ -32,9 +32,13 @@ TEXT = {
         "ex_text": "The description:",
         "ex_before": "Before",
         "ex_after": "After",
-        "ex_sample": "Text that is hard to read",
+        "ex_sample": "Sample text",
         "ex_ratio": "contrast {ratio} : 1",
         "ex_contrast_note": "WCAG AA asks for at least 4.5 : 1 for normal text. Only the shade changes, not the colour.",
+        "ex_colours_caption": "Pale text on white before and after the contrast fix",
+        "ex_colour_grey": "Grey",
+        "ex_colour_orange": "Orange",
+        "ex_colour_blue": "Blue",
         "ex_report": "Every report has a summary, for example:",
         "ex_review": "With a review list, it also lists what the tool wrote itself, for example:",
         "tour_back": "Back",
@@ -45,7 +49,7 @@ TEXT = {
             ("Choose files", "Choose one or more PDF files. Your originals are never changed."),
             ("Descriptions", "Choose who writes the descriptions and how detailed they are. For confidential "
                              "files, choose one that stays on your computer. When you choose an AI, you can pick its "
-                             "model below it; for an online AI, paste your key there and select Save key."),
+                             "model below it; for an online AI, paste your API key there and select Save API key."),
             ("Colours", "Text with too little contrast is hard to read for people with low vision. Switch this on to "
                         "darken such text; leave it off if your colours must not change."),
             ("Report", "You always get a report. Add a review list if someone should review what the tool decided."),
@@ -88,7 +92,7 @@ TEXT = {
         "file_legend": "1. Choose PDF files",
         "file_label": "One or more PDF files",
         "file_help": "The original files are not changed. You get a new, improved copy of each. To choose several files, hold Ctrl (on a Mac: Cmd) while you click.",
-        "ai_legend": "2. Choose who writes the descriptions",
+        "ai_legend": "2. Choose who writes the descriptions, such as alt text for images",
         "ai_intro": "Descriptions tell people who can't see a picture what it shows, for example blind people who use "
                     "a screen reader. The tool also writes them for formulas, links and form fields.",
         "ai_group_local": "Stays on your computer (recommended for confidential files)",
@@ -102,18 +106,18 @@ TEXT = {
         "ai_none_help": "Nothing leaves your computer. Fast, but the texts are less helpful.",
         "ai_cloud": "An online AI like ChatGPT",
         "ai_cloud_help": "Or Claude, Gemini and others through OpenRouter. Pictures and text from your file are sent "
-                         "to that company. You need a key from them.",
-        "ai_key_promise": "Your key stays in the settings file on your computer. PDFAccessGuru sends it only to that "
+                         "to that company. You need an API key from them.",
+        "ai_key_promise": "Your API key stays in the settings file on your computer. PDFAccessGuru sends it only to that "
                           "company and never puts it into the PDF or the report.",
-        "ai_key_found": "Key found: {name} (ends with {end})",
-        "ai_key_missing": "No key set up yet. Choose this option, then paste your key.",
-        "key_needed": "To use an online AI, paste your key under “An online AI like ChatGPT” and select Save key "
+        "ai_key_found": "API key found: {name} (ends with {end})",
+        "ai_key_missing": "No API key set up yet. Choose this option, then paste your API key.",
+        "key_needed": "To use an online AI, paste your API key under “An online AI like ChatGPT” and select Save API key "
                       "first. Or choose an option that stays on your computer.",
-        "key_label": "Your key",
-        "key_help": "You get a key from OpenAI or OpenRouter. Paste it here and select Save key.",
-        "key_save": "Save key",
-        "key_remove": "Remove key",
-        "key_invalid": "This does not look like a complete key. Please copy the whole key and try again.",
+        "key_label": "Your API key",
+        "key_help": "You get an API key from OpenAI or OpenRouter. Paste it here and select Save API key.",
+        "key_save": "Save API key",
+        "key_remove": "Remove API key",
+        "key_invalid": "This does not look like a complete API key. Please copy the whole API key and try again.",
         "model_label": "Model",
         "ollama_model_help": "The models installed on your computer. Larger models usually write better texts but "
                              "take longer.",
@@ -175,8 +179,22 @@ TEXT = {
         "quit": "Close the app",
         "quit_done": "The app is closed. You can close this browser tab.",
         "update": "A new version of PDFAccessGuru is available: {version}.",
+        "updating_title": "Updating PDFAccessGuru to version {version}",
+        "updating_title_any": "Updating PDFAccessGuru",
+        "updating_intro": "Please keep this tab open. The new version opens here by itself when it is ready.",
+        "updating_steps": ["Closing this version", "Downloading and installing the new version", "Opening the new version"],
+        "updating_states": {"done": "done", "active": "in progress", "waiting": "next", "failed": "did not work"},
+        "updating_elapsed": "{m}:{ss} so far",
+        "updating_left": "About {s} seconds left.",
+        "updating_longer": "This is taking longer than usual. On the day a new version comes out, the server may need a "
+                           "few minutes; PDFAccessGuru tries again every minute, up to 4 times.",
+        "updating_done": "Version {version} is installed. Opening it now …",
+        "updating_failed": "The update did not work. To update, paste this line into Terminal (Mac) or PowerShell "
+                           "(Windows) and press Enter. It installs the newest version:",
+        "updated_ok": "PDFAccessGuru was updated to version {version}.",
         "update_button": "Update now",
-        "update_help": "PDFAccessGuru closes, installs the new version and opens again. This takes about a minute.",
+        "update_help": "PDFAccessGuru closes, installs the new version and opens it again in this tab. This takes about "
+                       "a minute; the page shows how far it is.",
         "updating": "PDFAccessGuru is being updated and opens again in about a minute (a few minutes on the day a new version comes out). You can close this tab.",
         "update_manual": "The update could not be started automatically. To update, paste this line into Terminal "
                          "(Mac) or PowerShell (Windows) and press Enter: {line}",
@@ -241,10 +259,14 @@ TEXT = {
         "ex_text": "Die Beschreibung:",
         "ex_before": "Vorher",
         "ex_after": "Nachher",
-        "ex_sample": "Schwer lesbarer Text",
+        "ex_sample": "Beispieltext",
         "ex_ratio": "Kontrast {ratio} : 1",
         "ex_contrast_note": "WCAG AA verlangt mindestens 4,5 : 1 für normalen Text. Nur die Helligkeit ändert sich, nicht "
                             "die Farbe.",
+        "ex_colours_caption": "Blasser Text auf Weiß vor und nach der Kontrastverbesserung",
+        "ex_colour_grey": "Grau",
+        "ex_colour_orange": "Orange",
+        "ex_colour_blue": "Blau",
         "ex_report": "Jeder Bericht hat eine Zusammenfassung, zum Beispiel:",
         "ex_review": "Mit einer Liste zum Durchsehen nennt er auch, was das Werkzeug selbst geschrieben hat, zum Beispiel:",
         "tour_back": "Zurück",
@@ -256,7 +278,7 @@ TEXT = {
             ("Beschreibungen", "Wählen Sie, wer die Beschreibungen schreibt und wie ausführlich sie sind. Für "
                                "vertrauliche Dateien wählen Sie eine Möglichkeit, die auf Ihrem Computer bleibt. Wenn "
                                "Sie eine KI wählen, können Sie darunter ihr Modell wählen; für eine Online-KI fügen "
-                               "Sie dort Ihren Schlüssel ein und wählen Schlüssel speichern."),
+                               "Sie dort Ihren API-Schlüssel ein und wählen API-Schlüssel speichern."),
             ("Farben", "Text mit zu wenig Kontrast ist für Menschen mit Sehbehinderung schwer lesbar. Schalten Sie dies "
                        "ein, um solchen Text dunkler zu machen; lassen Sie es aus, wenn Ihre Farben sich nicht ändern "
                        "dürfen."),
@@ -302,7 +324,7 @@ TEXT = {
         "file_legend": "1. PDF-Dateien wählen",
         "file_label": "Eine oder mehrere PDF-Dateien",
         "file_help": "Die Originaldateien werden nicht verändert. Sie erhalten von jeder eine neue, verbesserte Kopie. Für mehrere Dateien halten Sie beim Klicken Strg gedrückt (auf dem Mac: Cmd).",
-        "ai_legend": "2. Wählen Sie, wer die Beschreibungen schreibt",
+        "ai_legend": "2. Wählen Sie, wer die Beschreibungen schreibt, etwa Alternativtexte für Bilder",
         "ai_intro": "Beschreibungen sagen Menschen, die ein Bild nicht sehen können, was es zeigt, zum Beispiel "
                     "blinden Menschen, die einen Screenreader nutzen. Das Werkzeug schreibt sie auch für Formeln, "
                     "Links und Formularfelder.",
@@ -317,20 +339,20 @@ TEXT = {
         "ai_none_help": "Nichts verlässt Ihren Computer. Schnell, aber die Texte sind weniger hilfreich.",
         "ai_cloud": "Eine Online-KI wie ChatGPT",
         "ai_cloud_help": "Oder Claude, Gemini und andere über OpenRouter. Bilder und Text aus Ihrer Datei werden an "
-                         "diese Firma gesendet. Sie brauchen einen Schlüssel von ihr.",
-        "ai_key_promise": "Ihr Schlüssel bleibt in der Einstellungsdatei auf Ihrem Computer. PDFAccessGuru sendet ihn "
+                         "diese Firma gesendet. Sie brauchen einen API-Schlüssel von ihr.",
+        "ai_key_promise": "Ihr API-Schlüssel bleibt in der Einstellungsdatei auf Ihrem Computer. PDFAccessGuru sendet ihn "
                           "nur an diese Firma und schreibt ihn nie in die PDF oder den Bericht.",
-        "ai_key_found": "Schlüssel gefunden: {name} (endet auf {end})",
-        "ai_key_missing": "Noch kein Schlüssel eingerichtet. Wählen Sie diese Möglichkeit und fügen Sie dann Ihren "
-                          "Schlüssel ein.",
-        "key_needed": "Für eine Online-KI fügen Sie zuerst Ihren Schlüssel unter „Eine Online-KI wie ChatGPT“ ein und "
-                      "wählen Schlüssel speichern. Oder wählen Sie eine Möglichkeit, die auf Ihrem Computer bleibt.",
-        "key_label": "Ihr Schlüssel",
-        "key_help": "Einen Schlüssel erhalten Sie bei OpenAI oder OpenRouter. Fügen Sie ihn hier ein und wählen Sie "
-                    "Schlüssel speichern.",
-        "key_save": "Schlüssel speichern",
-        "key_remove": "Schlüssel entfernen",
-        "key_invalid": "Das sieht nicht wie ein vollständiger Schlüssel aus. Bitte kopieren Sie den ganzen Schlüssel "
+        "ai_key_found": "API-Schlüssel gefunden: {name} (endet auf {end})",
+        "ai_key_missing": "Noch kein API-Schlüssel eingerichtet. Wählen Sie diese Möglichkeit und fügen Sie dann Ihren "
+                          "API-Schlüssel ein.",
+        "key_needed": "Für eine Online-KI fügen Sie zuerst Ihren API-Schlüssel unter „Eine Online-KI wie ChatGPT“ ein und "
+                      "wählen API-Schlüssel speichern. Oder wählen Sie eine Möglichkeit, die auf Ihrem Computer bleibt.",
+        "key_label": "Ihr API-Schlüssel",
+        "key_help": "Einen API-Schlüssel erhalten Sie bei OpenAI oder OpenRouter. Fügen Sie ihn hier ein und wählen Sie "
+                    "API-Schlüssel speichern.",
+        "key_save": "API-Schlüssel speichern",
+        "key_remove": "API-Schlüssel entfernen",
+        "key_invalid": "Das sieht nicht wie ein vollständiger API-Schlüssel aus. Bitte kopieren Sie den ganzen API-Schlüssel "
                        "und versuchen Sie es noch einmal.",
         "model_label": "Modell",
         "ollama_model_help": "Die auf Ihrem Computer installierten Modelle. Größere Modelle schreiben meist bessere "
@@ -395,8 +417,22 @@ TEXT = {
         "quit": "App schließen",
         "quit_done": "Die App ist geschlossen. Sie können diesen Browser-Tab schließen.",
         "update": "Eine neue Version von PDFAccessGuru ist verfügbar: {version}.",
+        "updating_title": "PDFAccessGuru wird auf Version {version} aktualisiert",
+        "updating_title_any": "PDFAccessGuru wird aktualisiert",
+        "updating_intro": "Bitte lassen Sie diesen Tab offen. Die neue Version öffnet sich hier von selbst, sobald sie bereit ist.",
+        "updating_steps": ["Diese Version schließen", "Neue Version herunterladen und installieren", "Neue Version öffnen"],
+        "updating_states": {"done": "erledigt", "active": "läuft", "waiting": "als Nächstes", "failed": "hat nicht geklappt"},
+        "updating_elapsed": "{m}:{ss} bisher",
+        "updating_left": "Noch etwa {s} Sekunden.",
+        "updating_longer": "Das dauert länger als sonst. Am Tag einer neuen Version braucht der Server manchmal einige "
+                           "Minuten; PDFAccessGuru versucht es jede Minute erneut, bis zu 4-mal.",
+        "updating_done": "Version {version} ist installiert. Sie wird jetzt geöffnet …",
+        "updating_failed": "Die Aktualisierung hat nicht geklappt. Fügen Sie diese Zeile in Terminal (Mac) oder PowerShell "
+                           "(Windows) ein und drücken Sie die Eingabetaste. Sie installiert die neueste Version:",
+        "updated_ok": "PDFAccessGuru wurde auf Version {version} aktualisiert.",
         "update_button": "Jetzt aktualisieren",
-        "update_help": "PDFAccessGuru schließt sich, installiert die neue Version und öffnet sich wieder. Das dauert etwa eine Minute.",
+        "update_help": "PDFAccessGuru schließt sich, installiert die neue Version und öffnet sie wieder in diesem Tab. "
+                       "Das dauert etwa eine Minute; die Seite zeigt, wie weit es ist.",
         "updating": "PDFAccessGuru wird aktualisiert und öffnet sich in etwa einer Minute wieder (am Tag einer neuen Version einige Minuten). Sie können diesen Tab schließen.",
         "update_manual": "Die Aktualisierung ließ sich nicht automatisch starten. Fügen Sie diese Zeile in Terminal "
                          "(Mac) oder PowerShell (Windows) ein und drücken Sie die Eingabetaste: {line}",
@@ -547,6 +583,20 @@ button:disabled { opacity: .55; cursor: not-allowed; }
          border-radius: .7rem; margin: 0 0 1.25rem; font-weight: 700; }
 progress { width: 100%; height: 1.5rem; accent-color: var(--teal); }
 .progress-head { display: flex; justify-content: space-between; align-items: baseline; gap: 1rem; margin-bottom: .3rem; }
+.visually-hidden { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+.up-steps { list-style: none; margin: 0 0 1.2rem; padding: 0; }
+.up-steps li { display: flex; align-items: center; gap: .6rem; margin: .45rem 0; color: var(--muted); }
+.up-mark { width: 1.4rem; height: 1.4rem; border-radius: 50%; border: 2px solid currentColor; flex: none; display: inline-grid;
+  place-items: center; font-weight: 700; font-size: .9rem; }
+.up-steps li[data-state="done"] { color: var(--ink); }
+.up-steps li[data-state="done"] .up-mark { background: var(--teal); border-color: var(--teal); color: var(--card); }
+.up-steps li[data-state="done"] .up-mark::after { content: "✓"; }
+.up-steps li[data-state="active"] { color: var(--ink); font-weight: 700; }
+.up-steps li[data-state="active"] .up-mark { border-color: var(--teal); border-top-color: transparent; }
+@media (prefers-reduced-motion: no-preference) { .up-steps li[data-state="active"] .up-mark { animation: up-turn 1s linear infinite; } }
+@keyframes up-turn { to { transform: rotate(360deg); } }
+.up-steps li[data-state="failed"] { color: var(--ink); }
+.up-steps li[data-state="failed"] .up-mark::after { content: "!"; }
 #percent { font-weight: 700; font-size: 1.2rem; color: var(--navy); font-variant-numeric: tabular-nums; }
 .badge { display: inline-flex; align-items: center; gap: .55rem; font-weight: 700; font-size: 1.15rem;
          padding: .45rem 1rem; border-radius: 2rem; margin: 0 0 1rem; }
@@ -601,6 +651,14 @@ dialog.tour.has-example { width: min(52rem, calc(100% - 2rem)); }
 .tour-ex-paper p { margin: .2rem 0 !important; }
 .tour-ex-paper ul { margin: .2rem 0 .4rem 1.2rem; padding: 0; }
 .tour-ex-tag { display: inline-block; min-width: 4.5rem; font-weight: 700; color: #1a1a1a; }
+.tour-ex-colours { width: 100%; border-collapse: collapse; }
+.tour-ex-colours th, .tour-ex-colours td { text-align: left; padding: .35rem .4rem; vertical-align: top; color: #1a1a1a; }
+.tour-ex-colours thead th { font-size: .95rem; }
+.tour-ex-colours tbody th { font-weight: 700; white-space: nowrap; }
+.tour-ex-colours td > span:nth-child(2) { font-weight: 700; display: inline; }
+.tour-ex-chip { display: inline-block; width: .95rem; height: .95rem; border-radius: .2rem; margin-right: .35rem; vertical-align: -.1rem;
+  border: 1px solid rgba(0,0,0,.25); }
+.tour-ex-colours .tour-ex-ratio { display: block; font-size: .85rem; color: #3d4550; }
 .tour-ex-ratio { color: #1a1a1a; font-size: .95rem; }
 .tour-buttons { display: flex; flex-wrap: wrap; gap: .6rem; margin-top: 1.1rem; }
 .tour-buttons button { font-size: 1.05rem; padding: .6rem 1.1rem; }
@@ -650,7 +708,8 @@ def choice(kind: str, name: str, value: str, ident: str, label: str, lines: list
             f'<p class="help" id="{ident}-help">{"".join(parts)}</p></div></div>')
 
 
-def page(language: str, title: str, body: str, refresh_script: str = "", token: str = "", nav: str = "") -> bytes:
+def page(language: str, title: str, body: str, refresh_script: str = "", token: str = "", nav: str = "",
+         tour_link: bool = True) -> bytes:
     from pdfaccessguru import __version__
 
     t = TEXT[language]
@@ -658,7 +717,8 @@ def page(language: str, title: str, body: str, refresh_script: str = "", token: 
     home = f"/{token}/?lang={language}" if token else "#main"
     faces = FONT_FACES.replace("{static}", static) if token else ""
     icon = f'<link rel="icon" type="image/svg+xml" href="{static}icon.svg">' if token else ""
-    tour = f'<a class="tour-link" id="tour-open" href="/{token}/?lang={language}&amp;tour=1">{t["tour_link"]}</a>' if token else ""
+    tour = (f'<a class="tour-link" id="tour-open" href="/{token}/?lang={language}&amp;tour=1">{t["tour_link"]}</a>'
+            if token and tour_link else "")
     document = f"""<!doctype html>
 <html lang="{language}">
 <head>
@@ -699,10 +759,16 @@ def _tour_example_html(t: dict, token: str, examples: dict) -> str:
     esc = html.escape
     radio = lambda name, value, label, checked=False: (
         f'<label><input type="radio" name="{name}" value="{value}"{" checked" if checked else ""}> {esc(label)}</label>')
-    contrast = dict(examples["contrast"])
-    if t is TEXT["de"]:                                   # German writes 2,3 : 1
-        for key in ("ratio_before", "ratio_after"):
-            contrast[key] = str(contrast[key]).replace(".", ",")
+    def ratio(value) -> str:
+        return str(value).replace(".", ",") if t is TEXT["de"] else str(value)   # German writes 2,3 : 1
+
+    def cell(colour, value) -> str:
+        return (f'<td><span class="tour-ex-chip" style="background:{colour}" aria-hidden="true"></span>'
+                f'<span style="color:{colour}">{esc(t["ex_sample"])}</span>'
+                f'<span class="tour-ex-ratio">{esc(colour)} · {esc(t["ex_ratio"].format(ratio=ratio(value)))}</span></td>')
+
+    colour_rows = "".join(f'<tr><th scope="row">{esc(t["ex_colour_" + row["name"]])}</th>{cell(row["before"], row["ratio_before"])}'
+                          f'{cell(row["after"], row["ratio_after"])}</tr>' for row in examples["contrast"])
     report = examples.get("report", {})
     note = f'<p class="help">{esc(t["ex_note"])}</p>' if t["ex_note"] else ""
     summary = "".join(f"<li>{esc(line)}</li>" for line in report.get("summary", []))
@@ -728,10 +794,9 @@ def _tour_example_html(t: dict, token: str, examples: dict) -> str:
 </div>
 <div class="tour-example" id="tour-ex-3" hidden>
 <p class="tour-ex-label">{esc(t['ex_label'])}</p>
-<div class="tour-ex-paper">
-<p><span class="tour-ex-tag">{esc(t['ex_before'])}</span> <span style="color:{contrast['before']}">{esc(t['ex_sample'])}</span> <span class="tour-ex-ratio">({esc(t['ex_ratio'].format(ratio=contrast['ratio_before']))})</span></p>
-<p><span class="tour-ex-tag">{esc(t['ex_after'])}</span> <span style="color:{contrast['after']}">{esc(t['ex_sample'])}</span> <span class="tour-ex-ratio">({esc(t['ex_ratio'].format(ratio=contrast['ratio_after']))})</span></p>
-</div>
+<div class="tour-ex-paper"><table class="tour-ex-colours"><caption class="visually-hidden">{esc(t['ex_colours_caption'])}</caption>
+<thead><tr><td></td><th scope="col">{esc(t['ex_before'])}</th><th scope="col">{esc(t['ex_after'])}</th></tr></thead>
+<tbody>{colour_rows}</tbody></table></div>
 <p class="help">{esc(t['ex_contrast_note'])}</p>
 </div>
 <div class="tour-example" id="tour-ex-4" hidden>
@@ -817,7 +882,8 @@ def tour(language: str, token: str, auto: bool) -> str:
     if (!data.texts || !$("tour-ex-text")) return;
     var ai = document.querySelector('input[name="tour-ex-ai"]:checked').value;
     var level = document.querySelector('input[name="tour-ex-detail"]:checked').value;
-    $("tour-ex-text").textContent = ai === "rules" ? data.texts.rules + " (" + data.rules_note + ")" : data.texts[ai][level];
+    $("tour-ex-how").hidden = ai === "rules";      /* simple rules write the same text at every level */
+    $("tour-ex-text").textContent = ai === "rules" ? data.texts.rules : data.texts[ai][level];
   }}
   document.querySelectorAll('input[name="tour-ex-ai"], input[name="tour-ex-detail"]').forEach(function (input) {{
     input.addEventListener("change", example);
