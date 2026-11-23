@@ -23,10 +23,27 @@
   "review_heading": "Descriptions of pictures (Please review)",
   "review_item": "Page 1. The tool wrote: “Bar chart showing the number of participants in the workshop by year. Staff participation is shown in blue, and student participation is shown in orange. Student participation has increased significantly from 2023 to 2026, reaching 44 in 2026.”"
  },
- "contrast": {
-  "before": "#aaaaaa",
-  "after": "#757575",
-  "ratio_before": 2.3,
-  "ratio_after": 4.6
- }
+ "contrast": [
+  {
+   "name": "grey",
+   "before": "#aaaaaa",
+   "after": "#757575",
+   "ratio_before": 2.3,
+   "ratio_after": 4.6
+  },
+  {
+   "name": "orange",
+   "before": "#f5a623",
+   "after": "#a16707",
+   "ratio_before": 2.0,
+   "ratio_after": 4.7
+  },
+  {
+   "name": "blue",
+   "before": "#6eaae6",
+   "after": "#2375c8",
+   "ratio_before": 2.5,
+   "ratio_after": 4.7
+  }
+ ]
 }

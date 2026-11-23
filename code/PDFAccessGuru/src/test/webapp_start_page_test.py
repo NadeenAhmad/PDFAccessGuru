@@ -35,7 +35,7 @@ def test_without_ollama_and_key_simple_rules_are_chosen_and_the_others_say_what_
     assert "disabled" in _radio(page, "ollama")
     cloud = _radio(page, "cloud")                     # can be chosen, so its key field opens; never preselected
     assert "disabled" not in cloud and "checked" not in cloud
-    assert "Not installed or not running" in page and "No key set up yet" in page
+    assert "Not installed or not running" in page and "No API key set up yet" in page
     import os
     from pathlib import Path
     if os.name != "nt":
@@ -55,7 +55,7 @@ def test_an_online_ai_is_never_preselected_and_the_key_is_never_shown(app, monke
     page = _start_page(app, monkeypatch, openai_key=SECRET)
     cloud = _radio(page, "cloud")
     assert "disabled" not in cloud and "checked" not in cloud
-    assert "Key found: OpenAI" in page and "Your key stays in the settings file on your computer" in page
+    assert "API key found: OpenAI" in page and "Your API key stays in the settings file on your computer" in page
     assert SECRET not in page and SECRET[:12] not in page
 
 
