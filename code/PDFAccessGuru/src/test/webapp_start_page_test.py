@@ -32,7 +32,9 @@ def _radio(page: str, value: str) -> str:
 def test_without_ollama_and_key_simple_rules_are_chosen_and_the_others_say_what_is_missing(app, monkeypatch):  # noqa: F811
     page = _start_page(app, monkeypatch)
     assert "checked" in _radio(page, "none")
-    assert "disabled" in _radio(page, "ollama") and "disabled" in _radio(page, "cloud")
+    assert "disabled" in _radio(page, "ollama")
+    cloud = _radio(page, "cloud")                     # can be chosen, so its key field opens; never preselected
+    assert "disabled" not in cloud and "checked" not in cloud
     assert "Not installed or not running" in page and "No key set up yet" in page
     import os
     from pathlib import Path

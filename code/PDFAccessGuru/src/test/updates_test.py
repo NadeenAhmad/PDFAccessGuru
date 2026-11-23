@@ -65,7 +65,7 @@ def test_uv_asks_pypi_again_when_updating(monkeypatch, tmp_path):
     (tmp_path / "uv-receipt.toml").write_text("")
     monkeypatch.setattr(updates.sys, "prefix", str(tmp_path))
     monkeypatch.setattr(updates.shutil, "which", lambda name: "/usr/bin/uv" if name == "uv" else None)
-    assert updates.update_command() == ["/usr/bin/uv", "tool", "upgrade", "--no-build", "--refresh", "pdfaccessguru"]
+    assert updates.update_command() == ["/usr/bin/uv", "tool", "upgrade", "--no-build", "--no-cache", "pdfaccessguru"]
 
 
 def test_the_update_is_tried_again_while_the_new_version_is_not_on_the_server(monkeypatch):
@@ -109,3 +109,29 @@ def test_the_update_after_closing_the_app_tries_again_and_reopens_it(monkeypatch
     line = _after_exit_line(monkeypatch, command, expected="0.0.1")
     subprocess.run(["/bin/sh", "-c", line[len("sleep 2; "):]], timeout=120)
     assert log.read_text().count("run") == 1                                  # already new enough: once
+
+
+def test_uv_is_found_outside_the_path_for_example_from_cargo(monkeypatch, tmp_path):
+    monkeypatch.setattr(updates.shutil, "which", lambda name: None)     # an app opened from the Finder: short PATH
+    monkeypatch.setattr(updates.Path, "home", lambda: tmp_path)
+    executable = "uv.exe" if updates.platform.system() == "Windows" else "uv"
+    (tmp_path / ".cargo" / "bin").mkdir(parents=True)
+    (tmp_path / ".cargo" / "bin" / executable).write_text("")
+    assert updates.find_uv() == str(tmp_path / ".cargo" / "bin" / executable)
+
+
+def test_a_uv_installation_without_uv_updates_with_the_installer_not_pip(monkeypatch, tmp_path):
+    (tmp_path / "uv-receipt.toml").write_text("")
+    monkeypatch.setattr(updates.sys, "prefix", str(tmp_path))
+    monkeypatch.setattr(updates, "find_uv", lambda: None)
+    command = updates.update_command()
+    assert command == updates.installer_command()
+    assert "pip" not in " ".join(command) and "install." in " ".join(command)
+
+
+def test_an_update_that_did_not_arrive_is_reported_once(monkeypatch):
+    updates._remember_started_update("99.0.0")
+    assert updates.failed_update() == "99.0.0"
+    assert updates.failed_update() is None                      # shown once
+    updates._remember_started_update("0.0.1")                   # this version is newer: the update worked
+    assert updates.failed_update() is None

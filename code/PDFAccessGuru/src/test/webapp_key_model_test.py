@@ -51,14 +51,14 @@ def test_without_a_key_the_page_has_a_key_field_outside_the_main_form(app, files
     page = _request(app, "GET", f"/{app.token}/?lang=en")[2].decode()
     assert '<input type="password" id="api-key" name="api_key" form="key-form"' in page
     assert re.search(r'</form>\s*<form id="key-form" method="post" action="/[^/]+/key\?lang=en"></form>', page)
-    assert "No key set up yet. Paste your key below." in page and "Write OPENAI_API_KEY" not in page
+    assert "No key set up yet. Choose this option, then paste your key." in page and "Write OPENAI_API_KEY" not in page
 
 
 def test_pasting_a_key_saves_it_and_the_page_shows_only_its_end(app, files):  # noqa: F811
     env_file, _ = files
     status, headers, _ = _request(app, "POST", f"/{app.token}/key?lang=en", f"api_key={OPENAI}",
                                   {"Content-Type": "application/x-www-form-urlencoded"})
-    assert status in (302, 303) and headers["Location"].endswith("#tour-2")
+    assert status in (302, 303) and headers["Location"].endswith("&ai=cloud#tour-2")   # the online AI stays chosen
     assert f"OPENAI_API_KEY={OPENAI}" in env_file.read_text(encoding="utf-8")
     page = _request(app, "GET", f"/{app.token}/?lang=en")[2].decode()
     assert "Key found: OpenAI (ends with wxyz)" in page and OPENAI not in page and OPENAI[:12] not in page
@@ -96,6 +96,8 @@ def test_the_model_menu_lists_installed_models_pictures_first_and_keeps_the_last
 ])
 def test_the_chosen_model_is_used_for_the_job_and_remembered(app, files, monkeypatch, fields, expected):  # noqa: F811
     _, settings = files
+    if fields["ai"] == "cloud":
+        monkeypatch.setenv("OPENROUTER_API_KEY", OPENROUTER)      # the online AI needs a key to start
     seen = {}
 
     def fake_fix(job, number, result, options, progress):
@@ -116,3 +118,40 @@ def test_the_chosen_model_is_used_for_the_job_and_remembered(app, files, monkeyp
         assert json.loads(settings.read_text(encoding="utf-8"))[key] == expected
     for name in ("PDFACCESSGURU_VISION_MODEL", "PDFACCESSGURU_TEXT_MODEL"):
         os.environ.pop(name, None)
+
+
+def test_model_and_key_fields_belong_to_their_option_and_open_when_it_is_chosen(app, files):  # noqa: F811
+    page = _request(app, "GET", f"/{app.token}/?lang=en")[2].decode()
+    assert re.search(r'<div class="choice-extra" data-for="ai-ollama">.*?id="ollama-model"', page, re.S)
+    assert re.search(r'<div class="choice-extra" data-for="ai-cloud">.*?id="api-key".*?id="online-model"', page, re.S)
+    assert "extra.hidden = !radio.checked" in page       # without JavaScript all fields stay visible
+    page = _request(app, "GET", f"/{app.token}/?lang=en&ai=cloud")[2].decode()
+    assert "checked" in re.search(r'<input type="radio" id="ai-cloud"[^>]*>', page).group(0)
+    assert "checked" not in re.search(r'<input type="radio" id="ai-ollama"[^>]*>', page).group(0)
+
+
+def test_starting_with_the_online_ai_without_a_key_asks_for_the_key(app, files):  # noqa: F811
+    status, _ = _upload(app, b"%PDF-1.7\n%%EOF\n", ai="cloud")
+    assert status == 400
+    page = _request(app, "GET", f"/{app.token}/?lang=en")[2].decode()   # nothing was started
+    assert app.running_job() is None
+
+
+def test_the_tour_explains_the_model_and_the_key(app, files):  # noqa: F811
+    from pdfaccessguru.webapp.pages import TEXT
+    step = dict(TEXT["en"]["tour_steps"])["Descriptions"]
+    assert "model" in step and "key" in step and "Save key" in step
+    assert "Modell" in dict(TEXT["de"]["tour_steps"])["Beschreibungen"]
+
+
+def test_a_failed_update_is_explained_with_the_line_to_paste(app, files):  # noqa: F811
+    from pdfaccessguru.updates import install_line
+    app.update_failed = "99.0.0"
+    page = _request(app, "GET", f"/{app.token}/?lang=en")[2].decode()
+    assert "The update to version 99.0.0 did not work." in page
+    assert html_escape(install_line()) in page
+
+
+def html_escape(text):
+    import html
+    return html.escape(text)

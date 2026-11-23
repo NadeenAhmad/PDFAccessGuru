@@ -31,7 +31,7 @@ def test_uv_install_is_updated_with_uv(tmp_path, monkeypatch):
     (tmp_path / "uv-receipt.toml").write_text("")
     monkeypatch.setattr(updates.sys, "prefix", str(tmp_path))
     monkeypatch.setattr(updates.shutil, "which", lambda name: f"/usr/local/bin/{name}" if name == "uv" else None)
-    assert updates.update_command() == ["/usr/local/bin/uv", "tool", "upgrade", "--no-build", "--refresh", "pdfaccessguru"]
+    assert updates.update_command() == ["/usr/local/bin/uv", "tool", "upgrade", "--no-build", "--no-cache", "pdfaccessguru"]
 
 
 @pytest.mark.skipif(platform.system() == "Windows", reason="Windows shortcuts need PowerShell; tested in CI on Windows")
