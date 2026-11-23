@@ -18,7 +18,10 @@ def test_the_examples_are_real_outputs_for_every_choice():
         assert len(texts[ai]["brief"]) < len(texts[ai]["detailed"])          # the levels really differ
     assert len(examples["contrast"]) == 3
     assert all(row["ratio_before"] < 4.5 <= row["ratio_after"] for row in examples["contrast"])
-    assert examples["report"]["summary"] and "The tool wrote" in examples["report"]["review_item"]
+    report = examples["report"]
+    assert report["summary"] and "The tool wrote" in report["review_item"]
+    assert report["passes"] is True and report["fixed"] > 0 and report["to_review"] > 0     # the same report as numbers
+    assert report["review_text"] in report["review_item"] and report["review_page"] == 1
 
 
 def test_the_tour_has_an_example_for_descriptions_colours_and_report(app):  # noqa: F811
@@ -65,6 +68,22 @@ def test_the_examples_show_without_ollama_and_without_an_api_key(app, monkeypatc
 
 def test_the_colour_example_shows_real_colours_before_and_after(app):  # noqa: F811
     page = _request(app, "GET", f"/{app.token}/?lang=en&tour=1")[2].decode()
+    step = page[page.index('id="tour-ex-3"'):page.index('id="tour-ex-4"')]
     for row in _tour_examples()["contrast"]:
-        assert f'style="color:{row["before"]}"' in page and f'style="color:{row["after"]}"' in page
-    assert '<th scope="row">Orange</th>' in page and "contrast 2.0 : 1" in page
+        assert f'style="color:{row["before"]}"' in step and f'style="color:{row["after"]}"' in step
+    assert "Before: hard to read" in step and "After: easier to read" in step and "Registration closes on 15 March." in step
+    assert "#" + "aaaaaa" not in step.replace('style="color:#aaaaaa"', "") and ": 1" not in step   # no colour codes or ratios
+
+
+def test_the_report_example_is_short_and_visual(app):  # noqa: F811
+    page = _request(app, "GET", f"/{app.token}/?lang=en&tour=1")[2].decode()
+    step = page[page.index('id="tour-ex-4"'):page.index('class="tour-buttons"')]
+    report = _tour_examples()["report"]
+    assert '<ul class="tour-ex-tiles">' in step and "passes the automatic check" in step
+    assert f'<span class="tour-ex-big">{report["fixed"]}</span> problems fixed' in step
+    assert f'<span class="tour-ex-big">{report["to_review"]}</span> texts for you to review' in step
+    assert f'src="/{app.token}/static/tour-chart.png" width="120"' in step and "Page 1 · please review" in step
+    assert "\u201cBar chart showing the number of participants in the workshop by year. \u2026\u201d" in step
+    assert "Staff participation" not in step                                   # only the first sentence
+    german = _request(app, "GET", f"/{app.token}/?lang=de&tour=1")[2].decode()
+    assert "Probleme behoben" in german and "Vorher: schwer lesbar" in german and "Seite 1 · bitte durchsehen" in german
