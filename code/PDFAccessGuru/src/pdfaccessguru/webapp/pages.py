@@ -84,9 +84,18 @@ TEXT = {
                          "to that company. You need a key from them.",
         "ai_key_promise": "Your key stays in the settings file on your computer. PDFAccessGuru sends it only to that "
                           "company and never puts it into the PDF or the report.",
-        "ai_key_found": "Key found: {name}",
-        "ai_key_missing": "No key set up yet. Write OPENAI_API_KEY=your-key (or OPENROUTER_API_KEY=your-key) into "
-                          "this file, then reload this page: {path}",
+        "ai_key_found": "Key found: {name} (ends with {end})",
+        "ai_key_missing": "No key set up yet. Paste your key below.",
+        "key_label": "Your key",
+        "key_help": "You get a key from OpenAI or OpenRouter. Paste it here and select Save key.",
+        "key_save": "Save key",
+        "key_remove": "Remove key",
+        "key_invalid": "This does not look like a complete key. Please copy the whole key and try again.",
+        "model_label": "Model",
+        "ollama_model_help": "The models installed on your computer. Larger models usually write better texts but "
+                             "take longer.",
+        "online_model_help": "For example openai/gpt-6-luna or google/gemma-4-26b-a4b-it (OpenRouter), or gpt-6-luna "
+                             "(OpenAI).",
         "detail_group": "How detailed should picture descriptions be?",
         "detail_note": "This applies when an AI writes the descriptions.",
         "detail_brief": "Brief",
@@ -260,9 +269,20 @@ TEXT = {
                          "diese Firma gesendet. Sie brauchen einen Schlüssel von ihr.",
         "ai_key_promise": "Ihr Schlüssel bleibt in der Einstellungsdatei auf Ihrem Computer. PDFAccessGuru sendet ihn "
                           "nur an diese Firma und schreibt ihn nie in die PDF oder den Bericht.",
-        "ai_key_found": "Schlüssel gefunden: {name}",
-        "ai_key_missing": "Noch kein Schlüssel eingerichtet. Schreiben Sie OPENAI_API_KEY=Ihr-Schlüssel (oder "
-                          "OPENROUTER_API_KEY=Ihr-Schlüssel) in diese Datei und laden Sie dann diese Seite neu: {path}",
+        "ai_key_found": "Schlüssel gefunden: {name} (endet auf {end})",
+        "ai_key_missing": "Noch kein Schlüssel eingerichtet. Fügen Sie Ihren Schlüssel unten ein.",
+        "key_label": "Ihr Schlüssel",
+        "key_help": "Einen Schlüssel erhalten Sie bei OpenAI oder OpenRouter. Fügen Sie ihn hier ein und wählen Sie "
+                    "Schlüssel speichern.",
+        "key_save": "Schlüssel speichern",
+        "key_remove": "Schlüssel entfernen",
+        "key_invalid": "Das sieht nicht wie ein vollständiger Schlüssel aus. Bitte kopieren Sie den ganzen Schlüssel "
+                       "und versuchen Sie es noch einmal.",
+        "model_label": "Modell",
+        "ollama_model_help": "Die auf Ihrem Computer installierten Modelle. Größere Modelle schreiben meist bessere "
+                             "Texte, brauchen aber länger.",
+        "online_model_help": "Zum Beispiel openai/gpt-6-luna oder google/gemma-4-26b-a4b-it (OpenRouter) oder "
+                             "gpt-6-luna (OpenAI).",
         "detail_group": "Wie ausführlich sollen Bildbeschreibungen sein?",
         "detail_note": "Das gilt, wenn eine KI die Beschreibungen schreibt.",
         "detail_brief": "Kurz",
@@ -443,6 +463,11 @@ input[type=file]::file-selector-button { font: inherit; font-weight: 700; margin
 .choice label::after { content: ""; position: absolute; inset: 0; cursor: pointer; }   /* the whole box is clickable */
 .choice:has(input:disabled) label::after { display: none; }   /* so the set-up hint can be selected and copied */
 .choice .help { margin: .2rem 0 0; }
+.choice-extra { margin: -.2rem 0 .8rem 3.1rem; }
+.choice-extra label { display: block; font-weight: 700; margin-top: .4rem; }
+.choice-extra .help { margin: .1rem 0 .35rem; }
+.choice-extra select, .choice-extra input[type=text] { max-width: 24rem; }
+@media (max-width: 30rem) { .choice-extra { margin-left: 1rem; } }
 .choice .help span { display: block; margin-top: .25rem; }
 .choice .help .state { color: var(--ink); font-weight: 700; }
 h3.group { font-size: 1.1rem; margin: 1.1rem 0 .2rem; }

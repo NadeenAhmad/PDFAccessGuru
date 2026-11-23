@@ -12,6 +12,7 @@ import email.policy
 import html
 import json
 import os
+import re
 import secrets
 import shutil
 import tempfile
@@ -134,6 +135,23 @@ class App:
 
     def _run(self, job: Job, options: dict[str, str]) -> None:
         ai = options.get("ai", "none")
+        model = ""
+        if ai == "ollama":
+            from pdfaccessguru.LLM.client import local_models
+
+            model = options.get("ollama_model", "") if options.get("ollama_model", "") in local_models() else ""
+            if model:
+                remember("ollama_model", model)
+        elif ai == "cloud":
+            model = options.get("online_model", "").strip()
+            model = model if re.fullmatch(r"[A-Za-z0-9._:/@-]{1,120}", model) else ""
+            if model:
+                remember("online_model", model)
+        for name in ("PDFACCESSGURU_VISION_MODEL", "PDFACCESSGURU_TEXT_MODEL"):
+            if model:
+                os.environ[name] = model
+            else:
+                os.environ.pop(name, None)                  # the automatic choice (or the settings file) applies
         if ai == "cloud":                                   # the only choice that sends anything away
             os.environ["PDFACCESSGURU_AI"] = "openrouter" if os.environ.get("OPENROUTER_API_KEY") else "openai"
             os.environ.pop("PDFACCESSGURU_PRIVACY", None)
@@ -297,6 +315,8 @@ class App:
 </fieldset>
 <div class="actions" id="tour-6"><button type="submit" class="big"{' disabled' if busy else ''}>{t['start']} <span aria-hidden="true">→</span></button></div>
 </form>
+<form id="key-form" method="post" action="/{self.token}/key?lang={language}"></form>
+<form id="key-remove-form" method="post" action="/{self.token}/key-remove?lang={language}"></form>
 <form method="post" action="/{self.token}/quit"><p><button type="submit" class="secondary">{t['quit']}</button></p></form>
 """
         nav = (f'<nav aria-label="{t["lang_nav"]}"><a href="/{self.token}/?lang={other}" lang="{other}">'
@@ -306,19 +326,45 @@ class App:
 
     def _ai_choices(self, t: dict) -> str:
         """Section 2: what stays on this computer, and what is sent over the internet. Each box says
-        what is set up; an option that is not set up cannot be chosen. The safe choice is preselected."""
-        from pdfaccessguru.LLM.client import local_model, online_key_service
-        from pdfaccessguru.utils.environment_variables import user_env_file
+        what is set up; an option that is not set up cannot be chosen. The safe choice is preselected.
+        Under a box: which model to use, and (online) a field for the key, so nobody has to edit a file."""
+        from pdfaccessguru.LLM.client import local_models, online_key_service
+        from pdfaccessguru.utils.environment_variables import api_key_end
 
-        model, service = local_model(), online_key_service()
+        models, service = local_models(), online_key_service()
+        model = remembered("ollama_model") if remembered("ollama_model") in models else (models[0] if models else "")
         ollama_state = t["ai_ollama_found"].format(model=model) if model else t["ai_ollama_missing"]
-        key_state = t["ai_key_found"].format(name=service) if service else t["ai_key_missing"].format(path=_shown_path(user_env_file()))
+        if service:
+            key_state = t["ai_key_found"].format(name=service, end=api_key_end())
+            key_part = (f'<p><button type="submit" form="key-remove-form" class="secondary">{t["key_remove"]}</button></p>')
+        else:
+            key_state = t["ai_key_missing"]
+            key_part = f"""<label for="api-key">{t['key_label']}</label>
+  <p class="help" id="api-key-help">{t['key_help']}</p>
+  <input type="password" id="api-key" name="api_key" form="key-form" autocomplete="off" spellcheck="false" aria-describedby="api-key-help">
+  <p><button type="submit" form="key-form" class="secondary">{t['key_save']}</button></p>"""
+        options = "".join(f'<option value="{html.escape(name)}"{" selected" if name == model else ""}>{html.escape(name)}</option>'
+                          for name in models)
+        ollama_pick = (f"""  <div class="choice-extra"><label for="ollama-model">{t['model_label']}</label>
+  <p class="help" id="ollama-model-help">{t['ollama_model_help']}</p>
+  <select id="ollama-model" name="ollama_model" aria-describedby="ollama-model-help">{options}</select></div>""" if models else "")
+        default_online = "gpt-6-luna" if service == "OpenAI" else "openai/gpt-6-luna"
+        online_model = remembered("online_model") or default_online
+        suggestions = "".join(f'<option value="{name}"></option>' for name in
+                              ("openai/gpt-6-luna", "google/gemma-4-26b-a4b-it", "gpt-6-luna"))
+        online_pick = f"""  <div class="choice-extra">{key_part}
+  <label for="online-model">{t['model_label']}</label>
+  <p class="help" id="online-model-help">{t['online_model_help']}</p>
+  <input type="text" id="online-model" name="online_model" value="{html.escape(online_model)}" list="online-models" autocomplete="off" spellcheck="false" aria-describedby="online-model-help">
+  <datalist id="online-models">{suggestions}</datalist></div>"""
         return f"""  <div role="group" aria-labelledby="ai-local"><h3 class="group" id="ai-local">{t['ai_group_local']}</h3>
 {choice("radio", "ai", "ollama", "ai-ollama", t['ai_ollama'], [t['ai_ollama_help'], ollama_state], checked=bool(model), disabled=not model)}
+{ollama_pick}
 {choice("radio", "ai", "none", "ai-none", t['ai_none'], [t['ai_none_help']], checked=not model)}
   </div>
   <div role="group" aria-labelledby="ai-online"><h3 class="group" id="ai-online">{t['ai_group_online']}</h3>
 {choice("radio", "ai", "cloud", "ai-cloud", t['ai_cloud'], [t['ai_cloud_help'], t['ai_key_promise'], key_state], disabled=not service)}
+{online_pick}
   </div>
   <div role="radiogroup" aria-labelledby="detail-head" aria-describedby="detail-note"><h3 class="group" id="detail-head">{t['detail_group']}</h3>
   <p class="help" id="detail-note">{t['detail_note']}</p>
@@ -586,6 +632,35 @@ def tour_seen() -> bool:
         return False
 
 
+def remembered(name: str) -> str:
+    """A choice kept in the app's settings file (e.g. the model), or "" if there is none."""
+    from pdfaccessguru.updates import settings_file
+
+    try:
+        value = json.loads(settings_file().read_text(encoding="utf-8")).get(name, "")
+    except (OSError, ValueError, AttributeError):
+        return ""
+    return value if isinstance(value, str) else ""
+
+
+def remember(name: str, value: str) -> None:
+    from pdfaccessguru.updates import settings_file
+
+    path = settings_file()
+    try:
+        settings = json.loads(path.read_text(encoding="utf-8"))
+    except (OSError, ValueError):
+        settings = {}
+    if not isinstance(settings, dict):
+        settings = {}
+    settings[name] = value
+    try:
+        path.parent.mkdir(parents=True, exist_ok=True)
+        path.write_text(json.dumps(settings, indent=1), encoding="utf-8")
+    except OSError:                                     # then the automatic choice applies next time
+        pass
+
+
 def mark_tour_seen() -> None:
     from pdfaccessguru.updates import settings_file
 
@@ -746,6 +821,22 @@ def _handler(app: App):
                 return
             if parts == ["start"]:
                 self._start()
+                return
+            if parts in (["key"], ["key-remove"]):
+                from pdfaccessguru.utils.environment_variables import remove_api_keys, save_api_key
+
+                language = "de" if parse_qs(urlparse(self.path).query).get("lang") == ["de"] else "en"
+                if parts == ["key"]:
+                    length = min(int(self.headers.get("Content-Length", 0)), 4096)
+                    fields = parse_qs(self.rfile.read(length).decode("utf-8", "replace"))
+                    try:
+                        save_api_key((fields.get("api_key") or [""])[0])
+                    except (ValueError, OSError):
+                        self._send(400, app.form(language, TEXT[language]["key_invalid"]))
+                        return
+                else:
+                    remove_api_keys()
+                self._redirect(f"/{app.token}/?lang={language}#tour-2")
                 return
             if (len(parts) == 4 and parts[0] == "job" and parts[1] in app.jobs and parts[2] == "check"
                     and parts[3].isdigit()):

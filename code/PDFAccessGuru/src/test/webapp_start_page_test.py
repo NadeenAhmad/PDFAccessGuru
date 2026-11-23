@@ -37,7 +37,7 @@ def test_without_ollama_and_key_simple_rules_are_chosen_and_the_others_say_what_
     import os
     from pathlib import Path
     if os.name != "nt":
-        assert str(Path.home()) not in page and "~/" in page          # no user name in screenshots
+        assert str(Path.home()) not in page                           # no user name in screenshots
     assert "Stays on your computer (recommended for confidential files)" in page
     assert "Sent over the internet" in page
 
