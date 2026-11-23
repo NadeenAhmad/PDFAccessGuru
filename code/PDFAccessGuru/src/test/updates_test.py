@@ -101,8 +101,8 @@ def test_the_update_after_closing_the_app_tries_again_and_reopens_it(monkeypatch
     log = tmp_path / "runs.txt"
     command = ["sh", "-c", f"echo run >> '{log}'"]
     line = _after_exit_line(monkeypatch, command, reopen_app=True, expected="99.0.0")
-    assert line.startswith("sleep 2; n=0; while :;") and line.endswith("(pdfaccessguru-app >/dev/null 2>&1 &)")
-    loop = line[len("sleep 2; "):line.index("; (pdfaccessguru-app")]
+    assert line.startswith("sleep 2; n=0; while :;") and line.endswith("pdfaccessguru-app' >/dev/null 2>&1 &)")
+    loop = line[len("sleep 2; "):line.rindex("; (")]
     subprocess.run(["/bin/sh", "-c", loop], timeout=120)        # the real loop, with a stand-in update command
     assert log.read_text().count("run") == updates.UPDATE_ATTEMPTS          # 99.0.0 never arrives: tried 4 times
     log.unlink()
@@ -135,3 +135,21 @@ def test_an_update_that_did_not_arrive_is_reported_once(monkeypatch):
     assert updates.failed_update() is None                      # shown once
     updates._remember_started_update("0.0.1")                   # this version is newer: the update worked
     assert updates.failed_update() is None
+
+
+def test_the_app_asks_every_time_but_the_terminal_once_a_day(monkeypatch, tmp_path):
+    monkeypatch.delenv("PDFACCESSGURU_NO_UPDATE_CHECK", raising=False)
+    monkeypatch.setattr(updates, "settings_file", lambda: tmp_path / "settings.json")
+    stamp = tmp_path / "stamp"
+    stamp.touch()                                               # checked a minute ago
+    monkeypatch.setattr(updates, "_stamp_file", lambda: stamp)
+
+    class Answer:
+        def json(self):
+            return {"info": {"version": "99.0.0"}}
+
+    monkeypatch.setattr(updates.requests, "get", lambda url, timeout: Answer())
+    assert updates.check_for_update() is None                   # terminal: already checked today
+    assert updates.check_for_update(daily=False).latest == "99.0.0"   # app start: asks again
+    monkeypatch.setenv("PDFACCESSGURU_NO_UPDATE_CHECK", "1")
+    assert updates.check_for_update(daily=False) is None        # switched off stays off
