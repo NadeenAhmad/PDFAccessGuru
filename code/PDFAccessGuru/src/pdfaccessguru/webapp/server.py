@@ -791,7 +791,8 @@ def _handler(app: App):
                 self._send(204, b"")
                 return
             if len(parts) == 2 and parts[0] == "static":
-                kinds = {".woff2": "font/woff2", ".svg": "image/svg+xml", ".txt": "text/plain; charset=utf-8"}
+                kinds = {".woff2": "font/woff2", ".svg": "image/svg+xml", ".txt": "text/plain; charset=utf-8",
+                         ".png": "image/png"}
                 path = STATIC / parts[1]
                 if parts[1] in STATIC_FILES and path.suffix in kinds:
                     self._send(200, path.read_bytes(), kinds[path.suffix])
