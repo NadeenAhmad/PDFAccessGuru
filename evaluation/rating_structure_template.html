@@ -1,0 +1,170 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex, nofollow">
+<title>Structure Check</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible+Mono:wght@400;600&family=Atkinson+Hyperlegible+Next:wght@400;600;700&display=swap">
+<style>
+/*COMMON-CSS*/
+.pair { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 20px; align-items: start; margin-top: 12px; }
+.pages-box, .reader-box { max-height: 78vh; overflow: auto; }
+.pages-box figure { margin: 0 0 12px; }
+.pages-box figcaption { font-weight: 700; margin-bottom: 4px; }
+.reader-box .preview { font-size: var(--step--1); line-height: 1.5; }
+.reader-box .preview h1, .reader-box .preview h2, .reader-box .preview h3, .reader-box .preview h4, .reader-box .preview h5, .reader-box .preview h6 { margin: 12px 0 4px; }
+.reader-box .preview h1::before, .reader-box .preview h2::before, .reader-box .preview h3::before, .reader-box .preview h4::before, .reader-box .preview h5::before, .reader-box .preview h6::before { content: attr(data-level); }
+.reader-box .page-marker { margin: 14px 0 6px; padding: 2px 8px; background: var(--sunk); border-radius: 6px; font-weight: 700; display: inline-block; }
+.reader-box table { border-collapse: collapse; margin: 6px 0; }
+.reader-box td, .reader-box th { border: 1px solid var(--line); padding: 2px 6px; vertical-align: top; }
+.criteria { display: grid; gap: 10px; margin-top: 16px; }
+.criterion { display: grid; grid-template-columns: minmax(0, 2fr) minmax(0, 3fr); gap: 12px; align-items: center; background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: 12px 14px; }
+.criterion .explain { display: block; font-weight: 400; color: var(--muted); font-size: var(--step--1); margin-top: 2px; }
+.criterion.complete { border-color: var(--good); }
+.inputs { display: flex; flex-wrap: wrap; gap: 8px 16px; align-items: center; }
+.inputs input[type="number"] { width: 5.5em; padding: 6px 8px; border: 1px solid var(--line); border-radius: 8px; background: var(--bg); }
+.page-row { display: flex; flex-wrap: wrap; gap: 6px; align-items: center; margin-right: 10px; }
+@media (max-width: 860px) { .criterion { grid-template-columns: 1fr; } }
+</style>
+</head>
+<body>
+<header class="top"><div class="wrap">
+  <h1>Part 2 of 3: Structure</h1>
+  <nav class="parts" aria-label="Parts"><a href="./">1 Pictures</a><a href="structure.html" aria-current="page">2 Structure</a><a href="links.html">3 Links, titles, language</a></nav>
+  <div class="meter" aria-hidden="true"><div class="meter-bar"><div class="meter-fill" id="meter-fill"></div></div><span class="meter-text" id="meter-text"></span></div>
+  <span class="save" id="save" role="status">Not started</span>
+</div></header>
+
+<div class="wrap">
+  <section class="intro" id="intro" aria-labelledby="intro-h">
+    <h2 id="intro-h">How well is each version tagged?</h2>
+    <p>Each of 4 short documents (3 pages each) was made accessible by several tools. The versions are shown in a
+      random order and don't say which tool made them. For each version you compare the <strong>original pages</strong>
+      with <strong>what a screen reader reads</strong> in that version, and score 13 criteria.</p>
+    <div class="facts"><span id="intro-count"></span><span>about 5–7 minutes per version (1.5–2 hours)</span><span>stop and continue any time</span><span>every answer is saved by itself</span></div>
+    <details><summary><strong>How to score</strong></summary>
+      <ol>
+        <li><strong>All content tagged</strong> and <strong>Reading order</strong>: answer for each page.</li>
+        <li>For every other criterion, count the elements <strong>on the 3 pages</strong>:
+          <strong>correct</strong> = tagged right; <strong>wrong or missing</strong> = tagged as the wrong thing, tagged where
+          there is no such element, or not tagged at all. If the pages have no such element, tick <strong>None on these pages</strong>.</li>
+        <li>For "levels", "structure" and "descriptions", count only the elements the version tagged, and whether their level,
+          structure or description is right.</li>
+        <li>Example: the pages have 5 headings; the version tags 4 of them as headings and also tags one long paragraph as a
+          heading → Headings: correct 4, wrong or missing 2. A figure with the description "Picture" → Figure descriptions: wrong 1.</li>
+        <li>"Tags found automatically" under the screen-reader view only helps you count; it is not the answer.</li>
+        <li>Judge each version on its own, and don't discuss the documents with the other judge until you are both done.</li>
+      </ol></details>
+    <div id="have" hidden><p>You continue as <strong id="have-who"></strong> (participant code <strong class="code" id="have-code"></strong>).</p></div>
+    <form id="start-form" class="start-form" novalidate>
+      <label for="who">Your name or initials</label>
+      <input id="who" type="text" autocomplete="name" maxlength="60" placeholder="e.g. N.F.">
+      <label for="code-in">Participant code from Part 1 (if you have one)</label>
+      <input id="code-in" type="text" maxlength="24" placeholder="e.g. K7Q2-M9XA-3PLW-T8RE">
+      <p class="form-error" id="form-error" role="alert"></p>
+      <button class="primary" type="submit">Start Part 2</button>
+    </form>
+    <p><button class="primary" id="go" type="button">Start Part 2</button></p>
+  </section>
+
+  <main id="work" hidden>
+    <nav id="strips" aria-label="Documents and versions"></nav>
+    <h2 id="v-h" tabindex="-1"></h2>
+    <div class="pair">
+      <section class="card pages-box" aria-labelledby="pages-h"><h3 id="pages-h">The original pages</h3><div id="pages"></div></section>
+      <section class="card reader-box" aria-labelledby="reader-h"><h3 id="reader-h">What a screen reader reads in this version</h3>
+        <div id="reader"></div>
+        <details><summary>Tags found automatically (only helps you count)</summary><ul id="summary"></ul></details></section>
+    </div>
+    <form id="score" class="criteria" aria-label="Scores for this version" onsubmit="return false"></form>
+    <div class="navbtns"><button class="secondary" id="prev" type="button">Previous version</button><button class="primary" id="next" type="button">Next version</button></div>
+    <p class="foot">Participant: <strong id="who-show"></strong> · code <strong class="code" id="code-show"></strong> ·
+      <button class="linkish" id="backup" type="button">Download my answers (backup)</button></p>
+  </main>
+</div>
+
+<script>
+const PART = "structure";
+const DATA = /*DATA*/null || { documents: [], criteria: [] };
+/*COMMON-JS*/
+const FLAT = DATA.documents.flatMap((d) => d.versions.map((v) => ({ doc: d, v })));
+let at = 0;
+function versionDone(doc, v) {
+  return DATA.criteria.every((c) => {
+    const a = answers[v.code + "-" + c.key];
+    if (!a) return false;
+    if (c.kind === "pages") return Array.isArray(a.pages) && doc.pages.every((_, i) => a.pages[i] === true || a.pages[i] === false);
+    return a.none === true || (Number.isInteger(a.c) && Number.isInteger(a.w));
+  });
+}
+function afterAnswer() { updateMeter(); renderStrips(); markCriteria(); }
+function updateMeter() {
+  const done = FLAT.filter((x) => versionDone(x.doc, x.v)).length;
+  $("meter-fill").style.width = FLAT.length ? (100 * done / FLAT.length) + "%" : "0";
+  $("meter-text").textContent = `${done} of ${FLAT.length} versions`;
+}
+function renderStrips() {
+  $("strips").innerHTML = DATA.documents.map((d) => `<div class="strip"><span class="label">Document ${d.number}</span>` +
+    d.versions.map((v) => { const i = FLAT.findIndex((x) => x.v.code === v.code);
+      return `<button type="button" data-i="${i}" class="${versionDone(d, v) ? "done" : ""}" aria-current="${i === at}" aria-label="Document ${d.number}, version ${v.letter}${versionDone(d, v) ? ", done" : ""}">${v.letter}</button>`; }).join("") + `</div>`).join("");
+  $("strips").querySelectorAll("button").forEach((b) => b.addEventListener("click", () => go(+b.dataset.i)));
+}
+function render() {
+  const { doc, v } = FLAT[at];
+  $("v-h").textContent = `Document ${doc.number}, version ${v.letter}`;
+  $("pages").innerHTML = doc.pages.map((src, i) => `<figure><figcaption>Page ${i + 1}</figcaption><img class="white" src="${src}" alt="Page ${i + 1} of document ${doc.number}, original"></figure>`).join("");
+  $("reader").innerHTML = v.preview;
+  $("reader").querySelectorAll("h1,h2,h3,h4,h5,h6").forEach((h) => h.setAttribute("data-level", "[" + h.tagName + "] "));
+  $("summary").innerHTML = Object.entries(v.summary).map(([k, val]) => `<li>${esc(k)}: <strong>${esc(val ?? "–")}</strong></li>`).join("");
+  $("score").innerHTML = DATA.criteria.map((c) => {
+    const key = v.code + "-" + c.key, a = answers[key] || {};
+    let inputs;
+    if (c.kind === "pages") {
+      inputs = doc.pages.map((_, i) => `<span class="page-row" role="radiogroup" aria-label="${esc(c.name)}, page ${i + 1}"><span>Page ${i + 1}:</span>` +
+        [["true", "right"], ["false", "not right"]].map(([val, label]) => `<label class="pill"><input type="radio" name="${key}-p${i}" value="${val}" ${a.pages && String(a.pages[i]) === val ? "checked" : ""}> ${label}</label>`).join("") + `</span>`).join("");
+    } else {
+      inputs = `<label>Correct <input type="number" min="0" max="999" inputmode="numeric" name="${key}-c" value="${Number.isInteger(a.c) ? a.c : ""}"></label>` +
+        `<label>Wrong or missing <input type="number" min="0" max="999" inputmode="numeric" name="${key}-w" value="${Number.isInteger(a.w) ? a.w : ""}"></label>` +
+        `<label class="pill"><input type="checkbox" name="${key}-none" ${a.none ? "checked" : ""}> None on these pages</label>`;
+    }
+    return `<div class="criterion" data-key="${key}" data-kind="${c.kind}" role="group" aria-labelledby="${key}-n"><div><strong id="${key}-n">${esc(c.name)}</strong><span class="explain">${esc(c.explain)}</span></div><div class="inputs">${inputs}</div></div>`;
+  }).join("") + `<div class="criterion"><div><strong>Comment</strong><span class="explain">Optional: anything worth knowing about this version.</span></div><div><textarea name="${v.code}-comment" aria-label="Comment on this version">${esc(answers[v.code + "-comment"] || "")}</textarea></div></div>`;
+  $("score").querySelectorAll(".criterion[data-key]").forEach((f) => f.addEventListener("input", () => readCriterion(f)));
+  $("score").querySelector("textarea").addEventListener("input", (e) => setAnswer(v.code + "-comment", e.target.value));
+  markCriteria(); renderStrips();
+  $("prev").disabled = at === 0; $("next").textContent = at === FLAT.length - 1 ? "Back to the first version" : "Next version";
+}
+function readCriterion(f) {
+  const key = f.dataset.key, { doc } = FLAT[at];
+  if (f.dataset.kind === "pages") {
+    const pages = doc.pages.map((_, i) => { const r = f.querySelector(`input[name="${key}-p${i}"]:checked`); return r ? r.value === "true" : null; });
+    setAnswer(key, { pages });
+  } else {
+    const num = (n) => { const x = f.querySelector(`input[name="${key}-${n}"]`).value.trim(); return x === "" ? null : Math.max(0, Math.min(999, parseInt(x, 10) || 0)); };
+    setAnswer(key, { c: num("c"), w: num("w"), none: f.querySelector(`input[name="${key}-none"]`).checked });
+  }
+}
+function markCriteria() {
+  const { doc, v } = FLAT[at];
+  $("score").querySelectorAll(".criterion[data-key]").forEach((f) => {
+    const a = answers[f.dataset.key];
+    const ok = a && (f.dataset.kind === "pages" ? doc.pages.every((_, i) => a.pages && (a.pages[i] === true || a.pages[i] === false)) : (a.none === true || (Number.isInteger(a.c) && Number.isInteger(a.w))));
+    f.classList.toggle("complete", !!ok);
+  });
+}
+function go(i) { at = (i + FLAT.length) % FLAT.length; try { localStorage.setItem(PARTS_KEY + "-" + PART + "-at", String(at)); } catch (e) { } render(); window.scrollTo(0, 0); $("v-h").focus(); }
+function begin() {
+  $("intro").hidden = true; $("work").hidden = false;
+  $("who-show").textContent = who || "–"; $("code-show").textContent = showCode(participant);
+  try { at = Math.min(FLAT.length - 1, Math.max(0, parseInt(localStorage.getItem(PARTS_KEY + "-" + PART + "-at") || "0", 10) || 0)); } catch (e) { }
+  saveLocal(); render(); updateMeter(); loadRemote().then(() => { render(); updateMeter(); });
+}
+$("intro-count").textContent = `${DATA.documents.length} documents, ${FLAT.length} versions`;
+$("prev").addEventListener("click", () => go(at - 1));
+$("next").addEventListener("click", () => go(at + 1));
+$("backup").addEventListener("click", backup);
+readIdentity(); startForm(begin); if (!participant) $("go").hidden = true;
+updateMeter();
+</script>
+</body></html>
