@@ -21,7 +21,12 @@
    "Texts the tool wrote for you to review: 3"
   ],
   "review_heading": "Descriptions of pictures (Please review)",
-  "review_item": "Page 1. The tool wrote: “Bar chart showing the number of participants in the workshop by year. Staff participation is shown in blue, and student participation is shown in orange. Student participation has increased significantly from 2023 to 2026, reaching 44 in 2026.”"
+  "review_item": "Page 1. The tool wrote: “Bar chart showing the number of participants in the workshop by year. Staff participation is shown in blue, and student participation is shown in orange. Student participation has increased significantly from 2023 to 2026, reaching 44 in 2026.”",
+  "passes": true,
+  "fixed": 9,
+  "to_review": 3,
+  "review_page": 1,
+  "review_text": "Bar chart showing the number of participants in the workshop by year. Staff participation is shown in blue, and student participation is shown in orange. Student participation has increased significantly from 2023 to 2026, reaching 44 in 2026."
  },
  "contrast": [
   {
