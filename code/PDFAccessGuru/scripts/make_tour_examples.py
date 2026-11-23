@@ -117,8 +117,30 @@ def report_lines(path: Path) -> dict:
     return {"summary": summary, "review_heading": heading, "review_item": item}
 
 
-def main() -> None:
+COLOURS = {"grey": (170, 170, 170), "orange": (245, 166, 35), "blue": (110, 170, 230)}   # common pale text colours
+
+
+def contrast_examples() -> list[dict]:
+    """What the contrast fix really does to pale text on white (the same function the tool uses)."""
     from pdfaccessguru.pipeline.contrast import better_color, contrast_ratio
+
+    white, rows = (255, 255, 255), []
+    for name, before in COLOURS.items():
+        after = better_color(before, white, 4.5)
+        rows.append({"name": name, "before": "#%02x%02x%02x" % before, "after": "#%02x%02x%02x" % after,
+                     "ratio_before": round(contrast_ratio(before, white), 1),
+                     "ratio_after": round(contrast_ratio(after, white), 1)})
+    return rows
+
+
+def main() -> None:
+    if "--contrast-only" in sys.argv:                 # keep the AI texts, recompute only the colour examples
+        path = STATIC / "tour-examples.json"
+        examples = json.loads(path.read_text(encoding="utf-8"))
+        examples["contrast"] = contrast_examples()
+        path.write_text(json.dumps(examples, indent=1, ensure_ascii=False) + "\n", encoding="utf-8")
+        print(json.dumps(examples["contrast"], indent=1))
+        return
 
     image = chart()
     small = image.resize((600, 320), Image.LANCZOS)
@@ -141,16 +163,12 @@ def main() -> None:
                                               level)) for level in ("brief", "standard", "detailed")},
         }
         report = report_lines(work / "local-standard" / "example_accessible_report.md")
-    before, background = (170, 170, 170), (255, 255, 255)
-    after = better_color(before, background, 4.5)
     examples = {
         "texts": texts,
         "local_model": "gemma4:e4b",
         "online_model": "openai/gpt-6-luna",
         "report": report,
-        "contrast": {"before": "#%02x%02x%02x" % before, "after": "#%02x%02x%02x" % after,
-                     "ratio_before": round(contrast_ratio(before, background), 1),
-                     "ratio_after": round(contrast_ratio(after, background), 1)},
+        "contrast": contrast_examples(),
     }
     (STATIC / "tour-examples.json").write_text(json.dumps(examples, indent=1, ensure_ascii=False) + "\n", encoding="utf-8")
     print(json.dumps(examples, indent=1, ensure_ascii=False))

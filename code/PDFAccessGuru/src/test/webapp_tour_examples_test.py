@@ -16,7 +16,8 @@ def test_the_examples_are_real_outputs_for_every_choice():
     for ai in ("local", "online"):
         assert all(texts[ai][level] for level in ("brief", "standard", "detailed"))
         assert len(texts[ai]["brief"]) < len(texts[ai]["detailed"])          # the levels really differ
-    assert examples["contrast"]["ratio_before"] < 4.5 <= examples["contrast"]["ratio_after"]
+    assert len(examples["contrast"]) == 3
+    assert all(row["ratio_before"] < 4.5 <= row["ratio_after"] for row in examples["contrast"])
     assert examples["report"]["summary"] and "The tool wrote" in examples["report"]["review_item"]
 
 
@@ -43,3 +44,27 @@ def test_the_colour_option_says_what_is_wrong_who_it_affects_and_what_changes():
     assert "light grey on white" in help_text and "low vision" in help_text and "WCAG AA" in help_text
     assert "a little darker" not in help_text
     assert "Sehbehinderung" in TEXT["de"]["contrast_help"]
+
+
+def test_the_tour_hides_the_detail_levels_for_simple_rules(app):  # noqa: F811
+    page = _request(app, "GET", f"/{app.token}/?lang=en&tour=1")[2].decode()
+    assert '$("tour-ex-how").hidden = ai === "rules";' in page
+
+
+def test_the_examples_show_without_ollama_and_without_an_api_key(app, monkeypatch):  # noqa: F811
+    monkeypatch.setattr("pdfaccessguru.LLM.client._ollama_models", lambda url: [])
+    monkeypatch.setattr("pdfaccessguru.LLM.client.load_environment_variables", lambda: None)
+    for name in ("OPENROUTER_API_KEY", "OPENAI_API_KEY"):
+        monkeypatch.delenv(name, raising=False)
+    page = _request(app, "GET", f"/{app.token}/?lang=en&tour=1")[2].decode()
+    data = json.loads(re.search(r"var data = (\{.*?\});\n", page).group(1))
+    examples = _tour_examples()["texts"]
+    assert data["texts"]["local"] == examples["local"] and data["texts"]["online"] == examples["online"]
+    assert 'value="local"' in page and 'value="online"' in page          # both AI choices can be tried in the tour
+
+
+def test_the_colour_example_shows_real_colours_before_and_after(app):  # noqa: F811
+    page = _request(app, "GET", f"/{app.token}/?lang=en&tour=1")[2].decode()
+    for row in _tour_examples()["contrast"]:
+        assert f'style="color:{row["before"]}"' in page and f'style="color:{row["after"]}"' in page
+    assert '<th scope="row">Orange</th>' in page and "contrast 2.0 : 1" in page

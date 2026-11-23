@@ -31,6 +31,7 @@ MAX_UPLOAD = 300 * 1024 * 1024          # 300 MB
 STATIC = Path(__file__).with_name("static")
 STATIC_FILES = {path.name for path in STATIC.iterdir()} if STATIC.is_dir() else set()
 IDLE_SHUTDOWN = 2 * 60 * 60              # the app stops after 2 hours without any use
+UPDATE_TYPICAL_SECONDS = 45              # an update usually takes this long (measured with uv 0.13, see release notes)
 
 
 @dataclass
@@ -85,14 +86,18 @@ class App:
             self.update_failed = failed_update()
         except Exception:                         # never stop the app because of this note
             self.update_failed = None
+        self.update_checked = threading.Event()
         threading.Thread(target=self._check_update, daemon=True).start()
 
     def _check_update(self) -> None:
+        """Every start of the app asks PyPI (in the background), so a new version shows the first time."""
         try:
             from pdfaccessguru.updates import check_for_update
-            self.update = check_for_update()
+            self.update = check_for_update(daily=False)
         except Exception:
             self.update = None
+        finally:
+            self.update_checked.set()
 
     def tools_missing(self) -> bool:
         try:
@@ -265,13 +270,92 @@ class App:
 
     # --- pages ---------------------------------------------------------------------------------
 
-    def form(self, language: str, message: str = "", ai_choice: str = "") -> bytes:
+    def updating_page(self, language: str, expected: str) -> bytes:
+        """
+        Shown while the update runs: the steps, a progress bar with the time that is probably left, and the new version
+        in this same tab when it answers (it opens again at this address). If the old version answers again after the
+        app was gone, the update did not work, and the page says what to do.
+        """
+        from pdfaccessguru import __version__
+        from pdfaccessguru.updates import install_line
+
+        t = TEXT[language]
+        title = t["updating_title"].format(version=expected) if expected else t["updating_title_any"]
+        steps = "".join(f'<li id="up-{number}" data-state="{state}"><span class="up-mark" aria-hidden="true"></span>'
+                        f'<span class="up-name">{html.escape(name)}</span><span class="visually-hidden up-said"></span></li>'
+                        for number, (name, state) in enumerate(zip(t["updating_steps"], ("done", "active", "waiting")),
+                                                               start=1))
+        data = json.dumps({"current": __version__, "expected": expected, "typical": UPDATE_TYPICAL_SECONDS,
+                           "base": f"/{self.token}/", "language": language, "left": t["updating_left"],
+                           "longer": t["updating_longer"], "done": t["updating_done"], "failed": t["updating_failed"],
+                           "line": install_line(), "states": t["updating_states"], "elapsed": t["updating_elapsed"]})
+        body = f"""
+<h1>{html.escape(title)}</h1>
+<p class="lead">{html.escape(t['updating_intro'])}</p>
+<section class="card">
+<ol class="up-steps">{steps}</ol>
+<div class="progress-head"><label for="up-bar">{t['progress_label']}</label><span id="up-elapsed" aria-hidden="true"></span></div>
+<progress id="up-bar" max="100" value="3">3%</progress>
+<p id="up-left" class="help"></p>
+<div class="status" role="status" aria-live="polite" id="up-status">{html.escape(t['updating_steps'][1])}</div>
+<div id="up-failed" class="alert" role="alert" hidden></div>
+</section>"""
+        script = """<script>
+(function () {
+  var d = %s, $ = function (id) { return document.getElementById(id); };
+  var start = Date.now(), away = false, finished = false, spoken = 0;
+  function seconds() { return Math.round((Date.now() - start) / 1000); }
+  function mark(number, state) {
+    var item = $("up-" + number); item.dataset.state = state;
+    item.querySelector(".up-said").textContent = " (" + d.states[state] + ")";
+  }
+  [1, 2, 3].forEach(function (n) { mark(n, $("up-" + n).dataset.state); });
+  function tick() {
+    if (finished) return;
+    var s = seconds(), left = d.typical - s;
+    $("up-elapsed").textContent = d.elapsed.replace("{m}", Math.floor(s / 60)).replace("{ss}", ("0" + s %% 60).slice(-2));
+    $("up-bar").value = Math.min(95, 3 + 92 * s / d.typical);
+    var text = left > 5 ? d.left.replace("{s}", Math.ceil(left / 5) * 5) : d.longer;
+    $("up-left").textContent = text;
+    if (s - spoken >= 20) { $("up-status").textContent = text; spoken = s; }   /* not every second for screen readers */
+  }
+  function done(version) {
+    finished = true; mark(2, "done"); mark(3, "done"); $("up-bar").value = 100; $("up-left").textContent = "";
+    $("up-status").textContent = d.done.replace("{version}", version);
+    setTimeout(function () { location.href = d.base + "?lang=" + d.language + "&updated=" + encodeURIComponent(version); }, 1500);
+  }
+  function failed() {
+    finished = true; mark(2, "failed");
+    var box = $("up-failed"); box.hidden = false;
+    box.innerHTML = "<p></p><p><code></code></p>";
+    box.querySelector("p").textContent = d.failed;
+    box.querySelector("code").textContent = d.line;
+    $("up-left").textContent = "";
+  }
+  function poll() {
+    if (finished) return;
+    fetch(d.base + "version", {cache: "no-store"}).then(function (r) { return r.json(); }).then(function (answer) {
+      if (answer.version !== d.current && (!d.expected || answer.version === d.expected)) { mark(3, "active"); done(answer.version); }
+      else if (away) { failed(); }                     /* the old version opened again: the update did not work */
+      else { setTimeout(poll, 2000); }
+    }).catch(function () { away = true; setTimeout(poll, 2000); });
+  }
+  tick(); setInterval(tick, 1000); setTimeout(poll, 2500);
+})();
+</script>""" % data
+        return page(language, title, body, script, token=self.token, tour_link=False)   # stay on this page meanwhile
+
+    def form(self, language: str, message: str = "", ai_choice: str = "", updated: str = "") -> bytes:
         from pdfaccessguru.updates import install_line
 
         t = TEXT[language]
         other = "de" if language == "en" else "en"
         busy = self.running_job() is not None
         alert = f'<div class="alert" role="alert">{html.escape(message)}</div>' if message else ""
+        self.update_checked.wait(timeout=2.5)     # the first page waits a moment for the answer, later pages not
+        from pdfaccessguru import __version__
+        if updated and updated == __version__:
+            alert += f'<div class="status" role="status">{html.escape(t["updated_ok"].format(version=updated))}</div>'
         if self.update_failed:
             alert += (f'<div class="alert" role="alert"><p>{html.escape(t["update_failed"].format(version=self.update_failed))}</p>'
                       f'<p><code>{html.escape(install_line())}</code></p></div>')
@@ -380,6 +464,13 @@ class App:
 {choice("radio", "ai", "cloud", "ai-cloud", t['ai_cloud'], [t['ai_cloud_help'], t['ai_key_promise'], key_state], checked=chosen == "cloud")}
 {online_pick}
   </div>
+
+  <div role="radiogroup" id="detail-group" aria-labelledby="detail-head" aria-describedby="detail-note"><h3 class="group" id="detail-head">{t['detail_group']}</h3>
+  <p class="help" id="detail-note">{t['detail_note']}</p>
+{choice("radio", "detail", "brief", "detail-brief", t['detail_brief'], [t['detail_brief_help']])}
+{choice("radio", "detail", "standard", "detail-standard", t['detail_standard'], [t['detail_standard_help']], checked=True)}
+{choice("radio", "detail", "detailed", "detail-detailed", t['detail_detailed'], [t['detail_detailed_help']])}
+  </div>
 <script>
 (function () {{
   var radios = document.querySelectorAll('input[name="ai"]');
@@ -388,17 +479,13 @@ class App:
       var extra = document.querySelector('[data-for="' + radio.id + '"]');
       if (extra) extra.hidden = !radio.checked;
     }});
+    var none = document.getElementById("ai-none");          /* simple rules have no levels of detail */
+    document.getElementById("detail-group").hidden = !!(none && none.checked);
   }}
   radios.forEach(function (radio) {{ radio.addEventListener("change", show); }});
   show();
 }})();
-</script>
-  <div role="radiogroup" aria-labelledby="detail-head" aria-describedby="detail-note"><h3 class="group" id="detail-head">{t['detail_group']}</h3>
-  <p class="help" id="detail-note">{t['detail_note']}</p>
-{choice("radio", "detail", "brief", "detail-brief", t['detail_brief'], [t['detail_brief_help']])}
-{choice("radio", "detail", "standard", "detail-standard", t['detail_standard'], [t['detail_standard_help']], checked=True)}
-{choice("radio", "detail", "detailed", "detail-detailed", t['detail_detailed'], [t['detail_detailed_help']])}
-  </div>"""
+</script>"""
 
     def job_page(self, job: Job) -> bytes:
         t = TEXT[job.language]
@@ -784,11 +871,16 @@ def _handler(app: App):
             if parts is None:
                 return
             if parts in ([], [""]):
-                chosen = (parse_qs(urlparse(self.path).query).get("ai") or [""])[0]
-                self._send(200, app.form(self._language(), ai_choice=chosen))
+                query = parse_qs(urlparse(self.path).query)
+                chosen = (query.get("ai") or [""])[0]
+                self._send(200, app.form(self._language(), ai_choice=chosen, updated=(query.get("updated") or [""])[0]))
                 return
             if parts == ["alive"]:                       # a second start asks whether this app runs
                 self._send(204, b"")
+                return
+            if parts == ["version"]:                     # the update page asks which version answers
+                from pdfaccessguru import __version__
+                self._send(200, json.dumps({"version": __version__}).encode(), "application/json")
                 return
             if len(parts) == 2 and parts[0] == "static":
                 kinds = {".woff2": "font/woff2", ".svg": "image/svg+xml", ".txt": "text/plain; charset=utf-8",
@@ -889,11 +981,10 @@ def _handler(app: App):
             if parts == ["update"]:
                 language = self._language()
                 from pdfaccessguru.updates import start_update_after_exit
+                expected = app.update.latest if app.update else ""
                 if app.running_job() is None and start_update_after_exit(
-                        reopen_app=True, expected=app.update.latest if app.update else None):
-                    self._send(200, page(language, "PDFAccessGuru",
-                                         f"<h1>PDFAccessGuru</h1><p role=\"status\">{TEXT[language]['updating']}</p>",
-                                         token=app.token))
+                        reopen_app=True, expected=expected or None, reopen_at=(app.server.server_address[1], app.token)):
+                    self._send(200, app.updating_page(language, expected))
                     threading.Thread(target=app.server.shutdown, daemon=True).start()
                 else:
                     from pdfaccessguru.updates import install_line
@@ -968,13 +1059,30 @@ def open_running_app(open_browser: bool = True) -> bool:
     return True
 
 
+def _reopen_request() -> tuple[int, str] | None:
+    """After "Update now": the address (port, key) of the page that waits for the new version, or None."""
+    value = os.environ.pop("PDFACCESSGURU_REOPEN", "")
+    port, _, key = value.partition(":")
+    if port.isdigit() and 1024 <= int(port) <= 65535 and re.fullmatch(r"[A-Za-z0-9_-]{16,64}", key):
+        return int(port), key
+    return None
+
+
 def serve(open_browser: bool = True, port: int = 0) -> None:
     """Start the app and (by default) open it in the browser. Returns when the app is closed."""
     from pdfaccessguru.pipeline.reporting.console import set_console_output
 
     set_console_output(False)
     app = App()
-    app.server = ThreadingHTTPServer(("127.0.0.1", port), _handler(app))
+    reopen = _reopen_request()
+    try:
+        if reopen is None:
+            raise OSError
+        app.server = ThreadingHTTPServer(("127.0.0.1", reopen[0]), _handler(app))
+        app.token = reopen[1]               # the waiting page shows this version in the same tab; no new tab
+        open_browser = False
+    except OSError:
+        app.server = ThreadingHTTPServer(("127.0.0.1", port), _handler(app))
     url = f"http://127.0.0.1:{app.server.server_address[1]}/{app.token}/"
     running = _running_app_file()
     try:
