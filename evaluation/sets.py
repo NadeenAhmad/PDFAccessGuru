@@ -2,7 +2,7 @@
 Builds the lists of test files (results/sets/*.csv). The lists hold names, checksums and simple facts,
 never the files themselves, so others can rebuild the same sets from the original sources.
 
-    python evaluation/sets.py
+    python evaluation/sets.py         (after get_data.py; needs pikepdf)
 """
 
 from __future__ import annotations
@@ -19,6 +19,8 @@ from paths import KUMAR, REFERENCE_SUITE, RESULTS, SAFEDOCS
 
 SAFEDOCS_SAMPLE = 200
 SAFEDOCS_SEED = 20261110            # fixed, so the same 200 files are drawn every time
+DEV_SIZE = 20
+DEV_SEED = 20261112                 # the development set of 1.1
 
 
 def _facts(path: Path) -> dict:
@@ -81,7 +83,24 @@ def reference_suite() -> None:
     _write("reference", rows)
 
 
+def dev_set() -> None:
+    """
+    The development set of 1.1: 20 distinct Kumar files at random. Only these files (and 15 of their pictures) were
+    looked at while 1.1 was developed; all other files stayed untouched until the final run (held out).
+    """
+    with (RESULTS / "sets" / "kumar.csv").open(encoding="utf-8") as handle:
+        rows = list(csv.DictReader(handle))
+    seen, distinct = set(), []
+    for row in rows:
+        if row["run_id"] not in seen:
+            seen.add(row["run_id"])
+            distinct.append(row)
+    random.Random(DEV_SEED).shuffle(distinct)
+    _write("dev-1.1", sorted(distinct[:DEV_SIZE], key=lambda row: row["run_id"]))
+
+
 if __name__ == "__main__":
     kumar()
     safedocs()
     reference_suite()
+    dev_set()
