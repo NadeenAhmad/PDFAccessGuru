@@ -136,6 +136,13 @@ def _cloud_settings(provider: str) -> LLMSettings:
     return LLMSettings(provider, _CLOUD_URLS[provider], key, text, vision)
 
 
+def local_models() -> list[str]:
+    """The Ollama models on this computer that can write texts, the ones that also read pictures first. For the app."""
+    installed = [name for name in _ollama_models(_ollama_url()) if "embed" not in name.split(":")[0]]
+    rank = {family: number for number, family in enumerate(_OLLAMA_VISION)}
+    return sorted(installed, key=lambda name: (rank.get(name.split(":")[0], len(rank)), installed.index(name)))
+
+
 def local_model() -> str:
     """The Ollama model this computer would use (pictures first), or "" if Ollama has none. For the app."""
     installed = _ollama_models(_ollama_url())

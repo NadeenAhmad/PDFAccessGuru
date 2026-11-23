@@ -23,6 +23,9 @@ def test_version_comparison():
     assert updates.is_newer("1.0.0", "0.10.2")
     assert not updates.is_newer("0.2.0", "0.2.0")
     assert not updates.is_newer("0.1.9", "0.2.0")
+    assert updates.is_newer("1.1.0.post1", "1.1.0")              # a small fix of 1.1.0
+    assert updates.is_newer("1.1.1", "1.1.0.post1")
+    assert not updates.is_newer("1.1.0", "1.1.0.post1")
 
 
 def test_newer_version_is_reported_once_a_day(monkeypatch, tmp_path):
