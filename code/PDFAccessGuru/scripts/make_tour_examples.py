@@ -14,6 +14,7 @@ from __future__ import annotations
 import io
 import json
 import os
+import re
 import subprocess
 import sys
 import tempfile
@@ -114,7 +115,17 @@ def report_lines(path: Path) -> dict:
     heading = next(line[4:] for line in lines if line.startswith("### Descriptions of pictures"))
     start = lines.index("### " + heading)
     item = next(line[2:] for line in lines[start:] if line.startswith("- ") and "The tool wrote" in line)
-    return {"summary": summary, "review_heading": heading, "review_item": item}
+    return report_numbers({"summary": summary, "review_heading": heading, "review_item": item})
+
+
+def report_numbers(report: dict) -> dict:
+    """The same report as numbers and a page, for the tour's picture of a report (no need to read the lines)."""
+    values = dict(line.split(": ", 1) for line in report["summary"])
+    page = re.match(r"Page (\d+)", report["review_item"])
+    quote = re.search(r"\u201c(.+)\u201d", report["review_item"])
+    return {**report, "passes": values.get("Passes the automatic check") == "Yes",
+            "fixed": int(values["Problems fixed"]), "to_review": int(values["Texts the tool wrote for you to review"]),
+            "review_page": int(page.group(1)) if page else 1, "review_text": quote.group(1) if quote else ""}
 
 
 COLOURS = {"grey": (170, 170, 170), "orange": (245, 166, 35), "blue": (110, 170, 230)}   # common pale text colours
@@ -134,10 +145,11 @@ def contrast_examples() -> list[dict]:
 
 
 def main() -> None:
-    if "--contrast-only" in sys.argv:                 # keep the AI texts, recompute only the colour examples
+    if "--contrast-only" in sys.argv:                 # keep the AI texts and the report, recompute what is made from them
         path = STATIC / "tour-examples.json"
         examples = json.loads(path.read_text(encoding="utf-8"))
         examples["contrast"] = contrast_examples()
+        examples["report"] = report_numbers(examples["report"])
         path.write_text(json.dumps(examples, indent=1, ensure_ascii=False) + "\n", encoding="utf-8")
         print(json.dumps(examples["contrast"], indent=1))
         return

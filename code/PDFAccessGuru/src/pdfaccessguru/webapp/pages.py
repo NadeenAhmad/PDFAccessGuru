@@ -30,17 +30,16 @@ TEXT = {
         "ex_how": "How detailed",
         "ex_rules_note": "Simple rules write the same text at every level.",
         "ex_text": "The description:",
-        "ex_before": "Before",
-        "ex_after": "After",
-        "ex_sample": "Sample text",
-        "ex_ratio": "contrast {ratio} : 1",
-        "ex_contrast_note": "WCAG AA asks for at least 4.5 : 1 for normal text. Only the shade changes, not the colour.",
-        "ex_colours_caption": "Pale text on white before and after the contrast fix",
-        "ex_colour_grey": "Grey",
-        "ex_colour_orange": "Orange",
-        "ex_colour_blue": "Blue",
-        "ex_report": "Every report has a summary, for example:",
-        "ex_review": "With a review list, it also lists what the tool wrote itself, for example:",
+        "ex_before": "Before: hard to read",
+        "ex_after": "After: easier to read",
+        "ex_sample": ("Workshop 2026", "Registration closes on 15 March.", "Free for students and staff."),
+        "ex_contrast_note": "Only the shade changes; the colours stay the same.",
+        "ex_report": "Every report has a summary in numbers:",
+        "ex_passes": "passes the automatic check",
+        "ex_fixed": "problems fixed",
+        "ex_to_review": "texts for you to review",
+        "ex_review": "The review list shows what the tool wrote:",
+        "ex_review_tag": "Page {page} · please review",
         "tour_back": "Back",
         "tour_next": "Next",
         "tour_done": "Done",
@@ -257,18 +256,16 @@ TEXT = {
         "ex_how": "Wie ausführlich",
         "ex_rules_note": "Einfache Regeln schreiben auf jeder Stufe denselben Text.",
         "ex_text": "Die Beschreibung:",
-        "ex_before": "Vorher",
-        "ex_after": "Nachher",
-        "ex_sample": "Beispieltext",
-        "ex_ratio": "Kontrast {ratio} : 1",
-        "ex_contrast_note": "WCAG AA verlangt mindestens 4,5 : 1 für normalen Text. Nur die Helligkeit ändert sich, nicht "
-                            "die Farbe.",
-        "ex_colours_caption": "Blasser Text auf Weiß vor und nach der Kontrastverbesserung",
-        "ex_colour_grey": "Grau",
-        "ex_colour_orange": "Orange",
-        "ex_colour_blue": "Blau",
-        "ex_report": "Jeder Bericht hat eine Zusammenfassung, zum Beispiel:",
-        "ex_review": "Mit einer Liste zum Durchsehen nennt er auch, was das Werkzeug selbst geschrieben hat, zum Beispiel:",
+        "ex_before": "Vorher: schwer lesbar",
+        "ex_after": "Nachher: besser lesbar",
+        "ex_sample": ("Workshop 2026", "Anmeldung bis zum 15. März.", "Kostenlos für Studierende und Beschäftigte."),
+        "ex_contrast_note": "Nur die Helligkeit ändert sich; die Farben bleiben gleich.",
+        "ex_report": "Jeder Bericht hat eine Zusammenfassung in Zahlen:",
+        "ex_passes": "besteht die automatische Prüfung",
+        "ex_fixed": "Probleme behoben",
+        "ex_to_review": "Texte zum Durchsehen",
+        "ex_review": "Die Liste zum Durchsehen zeigt, was das Werkzeug geschrieben hat:",
+        "ex_review_tag": "Seite {page} · bitte durchsehen",
         "tour_back": "Zurück",
         "tour_next": "Weiter",
         "tour_done": "Fertig",
@@ -651,15 +648,25 @@ dialog.tour.has-example { width: min(52rem, calc(100% - 2rem)); }
 .tour-ex-paper p { margin: .2rem 0 !important; }
 .tour-ex-paper ul { margin: .2rem 0 .4rem 1.2rem; padding: 0; }
 .tour-ex-tag { display: inline-block; min-width: 4.5rem; font-weight: 700; color: #1a1a1a; }
-.tour-ex-colours { width: 100%; border-collapse: collapse; }
-.tour-ex-colours th, .tour-ex-colours td { text-align: left; padding: .35rem .4rem; vertical-align: top; color: #1a1a1a; }
-.tour-ex-colours thead th { font-size: .95rem; }
-.tour-ex-colours tbody th { font-weight: 700; white-space: nowrap; }
-.tour-ex-colours td > span:nth-child(2) { font-weight: 700; display: inline; }
-.tour-ex-chip { display: inline-block; width: .95rem; height: .95rem; border-radius: .2rem; margin-right: .35rem; vertical-align: -.1rem;
-  border: 1px solid rgba(0,0,0,.25); }
-.tour-ex-colours .tour-ex-ratio { display: block; font-size: .85rem; color: #3d4550; }
-.tour-ex-ratio { color: #1a1a1a; font-size: .95rem; }
+.tour-ex-sample { margin: 0; }
+.tour-ex-sample figcaption { font-weight: 700; margin-bottom: .3rem; }
+.tour-ex-sample .tour-ex-paper { padding: .8rem 1rem; }
+.tour-ex-sample p { font-size: 1.05rem; }
+.tour-ex-sample .tour-ex-sample-heading { font-weight: 700; font-size: 1.1rem; }
+.tour-ex-tiles { list-style: none; margin: .3rem 0 .8rem; padding: 0; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: .6rem; }
+.tour-ex-tiles li { margin: 0; padding: .6rem .75rem; border-radius: .4rem; background: var(--ok-bg); color: var(--ok-ink); line-height: 1.3; }
+.tour-ex-big { display: block; font-size: 1.9rem; font-weight: 800; line-height: 1.1; }
+@media (max-width: 40rem) {
+  .tour-ex-tiles { grid-template-columns: minmax(0, 1fr); gap: .4rem; }
+  .tour-ex-tiles li { display: flex; align-items: center; gap: .6rem; padding: .35rem .75rem; }
+  .tour-ex-big { display: inline-block; min-width: 1.6rem; font-size: 1.5rem; }
+}
+.tour-ex-grid + .help { margin-top: .5rem !important; }
+.tour-ex-review { display: flex; gap: .8rem; align-items: flex-start; }
+.tour-ex-review img { flex: none; width: 7.5rem; height: auto; border: 1px solid #d9d4ca; border-radius: .25rem; }
+.tour-ex-badge { display: inline-block; font-size: .9rem; font-weight: 700; padding: .1rem .5rem; border-radius: 1rem;
+  background: #fbeed6; color: #5c3200; }
+@media (max-width: 30rem) { .tour-ex-review { flex-direction: column; } }
 .tour-buttons { display: flex; flex-wrap: wrap; gap: .6rem; margin-top: 1.1rem; }
 .tour-buttons button { font-size: 1.05rem; padding: .6rem 1.1rem; }
 button.plain { background: none; border-color: transparent; color: var(--link); text-decoration: underline; }
@@ -759,21 +766,27 @@ def _tour_example_html(t: dict, token: str, examples: dict) -> str:
     esc = html.escape
     radio = lambda name, value, label, checked=False: (
         f'<label><input type="radio" name="{name}" value="{value}"{" checked" if checked else ""}> {esc(label)}</label>')
-    def ratio(value) -> str:
-        return str(value).replace(".", ",") if t is TEXT["de"] else str(value)   # German writes 2,3 : 1
+    colours = {row["name"]: row for row in examples["contrast"]}
+    heading, line_1, line_2 = t["ex_sample"]
 
-    def cell(colour, value) -> str:
-        return (f'<td><span class="tour-ex-chip" style="background:{colour}" aria-hidden="true"></span>'
-                f'<span style="color:{colour}">{esc(t["ex_sample"])}</span>'
-                f'<span class="tour-ex-ratio">{esc(colour)} · {esc(t["ex_ratio"].format(ratio=ratio(value)))}</span></td>')
+    def sample(when: str, mark: str) -> str:
+        """A small white page with pale heading, text and highlight: the colours before or after the fix."""
+        colour = lambda name: colours[name][when]
+        return (f'<figure class="tour-ex-sample"><figcaption><span aria-hidden="true">{mark}</span> '
+                f'{esc(t["ex_" + when])}</figcaption><div class="tour-ex-paper">'
+                f'<p class="tour-ex-sample-heading" style="color:{colour("blue")}">{esc(heading)}</p>'
+                f'<p style="color:{colour("grey")}">{esc(line_1)}</p>'
+                f'<p style="color:{colour("orange")}">{esc(line_2)}</p></div></figure>')
 
-    colour_rows = "".join(f'<tr><th scope="row">{esc(t["ex_colour_" + row["name"]])}</th>{cell(row["before"], row["ratio_before"])}'
-                          f'{cell(row["after"], row["ratio_after"])}</tr>' for row in examples["contrast"])
     report = examples.get("report", {})
     note = f'<p class="help">{esc(t["ex_note"])}</p>' if t["ex_note"] else ""
-    summary = "".join(f"<li>{esc(line)}</li>" for line in report.get("summary", []))
-    review = (f'<p><strong>{esc(report["review_heading"])}</strong></p><p>{esc(report["review_item"])}</p>'
-              if report.get("review_item") else "")
+    tile = lambda big, label: f'<li><span class="tour-ex-big">{big}</span> {esc(label)}</li>'
+    tiles = (tile('<span aria-hidden="true">✓</span>', t["ex_passes"]) if report.get("passes") else "") + \
+        tile(report.get("fixed", 0), t["ex_fixed"]) + tile(report.get("to_review", 0), t["ex_to_review"])
+    first_sentence = report.get("review_text", "").split(". ")[0].rstrip(".")
+    review = (f'<div class="tour-ex-paper tour-ex-review"><img src="/{token}/static/tour-chart.png" width="120" height="64" alt="">'
+              f'<div><span class="tour-ex-badge">{esc(t["ex_review_tag"].format(page=report.get("review_page", 1)))}</span>'
+              f'<p lang="en">\u201c{esc(first_sentence)}. \u2026\u201d</p></div></div>' if first_sentence else "")
     return f"""<div class="tour-example" id="tour-ex-2" hidden>
 <p class="tour-ex-label">{esc(t['ex_label'])}</p>{note}
 <div class="tour-ex-grid"><div>
@@ -794,17 +807,15 @@ def _tour_example_html(t: dict, token: str, examples: dict) -> str:
 </div>
 <div class="tour-example" id="tour-ex-3" hidden>
 <p class="tour-ex-label">{esc(t['ex_label'])}</p>
-<div class="tour-ex-paper"><table class="tour-ex-colours"><caption class="visually-hidden">{esc(t['ex_colours_caption'])}</caption>
-<thead><tr><td></td><th scope="col">{esc(t['ex_before'])}</th><th scope="col">{esc(t['ex_after'])}</th></tr></thead>
-<tbody>{colour_rows}</tbody></table></div>
+<div class="tour-ex-grid">{sample("before", "\u2717")}{sample("after", "\u2713")}</div>
 <p class="help">{esc(t['ex_contrast_note'])}</p>
 </div>
 <div class="tour-example" id="tour-ex-4" hidden>
 <p class="tour-ex-label">{esc(t['ex_label'])}</p>
 <p class="help">{esc(t['ex_report'])}</p>
-<div class="tour-ex-paper" lang="en"><ul>{summary}</ul></div>
+<ul class="tour-ex-tiles">{tiles}</ul>
 <p class="help">{esc(t['ex_review'])}</p>
-<div class="tour-ex-paper" lang="en">{review}</div>
+{review}
 </div>"""
 
 
