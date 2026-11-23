@@ -25,7 +25,8 @@ TEXT = {
         "tour_steps": [
             ("Choose files", "Choose one or more PDF files. Your originals are never changed."),
             ("Descriptions", "Choose who writes the descriptions and how detailed they are. For confidential "
-                             "files, choose one that stays on your computer."),
+                             "files, choose one that stays on your computer. When you choose an AI, you can pick its "
+                             "model below it; for an online AI, paste your key there and select Save key."),
             ("Colours", "Switch this on only if the colours of your file may change."),
             ("Report", "You always get a report. Add a review list if someone should review what the tool decided."),
             ("Protected files", "Only needed if your PDF has a password."),
@@ -85,7 +86,9 @@ TEXT = {
         "ai_key_promise": "Your key stays in the settings file on your computer. PDFAccessGuru sends it only to that "
                           "company and never puts it into the PDF or the report.",
         "ai_key_found": "Key found: {name} (ends with {end})",
-        "ai_key_missing": "No key set up yet. Paste your key below.",
+        "ai_key_missing": "No key set up yet. Choose this option, then paste your key.",
+        "key_needed": "To use an online AI, paste your key under “An online AI like ChatGPT” and select Save key "
+                      "first. Or choose an option that stays on your computer.",
         "key_label": "Your key",
         "key_help": "You get a key from OpenAI or OpenRouter. Paste it here and select Save key.",
         "key_save": "Save key",
@@ -153,7 +156,10 @@ TEXT = {
         "update_button": "Update now",
         "update_help": "PDFAccessGuru closes, installs the new version and opens again. This takes about a minute.",
         "updating": "PDFAccessGuru is being updated and opens again in about a minute (a few minutes on the day a new version comes out). You can close this tab.",
-        "update_manual": "The update could not be started automatically. Run this in a terminal: pdfaccessguru update",
+        "update_manual": "The update could not be started automatically. To update, paste this line into Terminal "
+                         "(Mac) or PowerShell (Windows) and press Enter: {line}",
+        "update_failed": "The update to version {version} did not work. To update, paste this line into Terminal "
+                         "(Mac) or PowerShell (Windows) and press Enter. It installs the newest version:",
         "tools_needed": "Before the first use, PDFAccessGuru needs two free helper programs and some free fonts "
                         "(Java, veraPDF and the Liberation fonts, about 77 MB). They are downloaded once into "
                         "your user folder. No admin rights are needed.",
@@ -207,7 +213,9 @@ TEXT = {
         "tour_steps": [
             ("Dateien wählen", "Wählen Sie eine oder mehrere PDF-Dateien. Ihre Originale werden nie verändert."),
             ("Beschreibungen", "Wählen Sie, wer die Beschreibungen schreibt und wie ausführlich sie sind. Für "
-                               "vertrauliche Dateien wählen Sie eine Möglichkeit, die auf Ihrem Computer bleibt."),
+                               "vertrauliche Dateien wählen Sie eine Möglichkeit, die auf Ihrem Computer bleibt. Wenn "
+                               "Sie eine KI wählen, können Sie darunter ihr Modell wählen; für eine Online-KI fügen "
+                               "Sie dort Ihren Schlüssel ein und wählen Schlüssel speichern."),
             ("Farben", "Schalten Sie dies nur ein, wenn sich die Farben Ihrer Datei ändern dürfen."),
             ("Bericht", "Sie erhalten immer einen Bericht. Nehmen Sie eine Liste zum Durchsehen auf, wenn jemand "
                         "durchsehen soll, was das Werkzeug entschieden hat."),
@@ -270,7 +278,10 @@ TEXT = {
         "ai_key_promise": "Ihr Schlüssel bleibt in der Einstellungsdatei auf Ihrem Computer. PDFAccessGuru sendet ihn "
                           "nur an diese Firma und schreibt ihn nie in die PDF oder den Bericht.",
         "ai_key_found": "Schlüssel gefunden: {name} (endet auf {end})",
-        "ai_key_missing": "Noch kein Schlüssel eingerichtet. Fügen Sie Ihren Schlüssel unten ein.",
+        "ai_key_missing": "Noch kein Schlüssel eingerichtet. Wählen Sie diese Möglichkeit und fügen Sie dann Ihren "
+                          "Schlüssel ein.",
+        "key_needed": "Für eine Online-KI fügen Sie zuerst Ihren Schlüssel unter „Eine Online-KI wie ChatGPT“ ein und "
+                      "wählen Schlüssel speichern. Oder wählen Sie eine Möglichkeit, die auf Ihrem Computer bleibt.",
         "key_label": "Ihr Schlüssel",
         "key_help": "Einen Schlüssel erhalten Sie bei OpenAI oder OpenRouter. Fügen Sie ihn hier ein und wählen Sie "
                     "Schlüssel speichern.",
@@ -342,7 +353,11 @@ TEXT = {
         "update_button": "Jetzt aktualisieren",
         "update_help": "PDFAccessGuru schließt sich, installiert die neue Version und öffnet sich wieder. Das dauert etwa eine Minute.",
         "updating": "PDFAccessGuru wird aktualisiert und öffnet sich in etwa einer Minute wieder (am Tag einer neuen Version einige Minuten). Sie können diesen Tab schließen.",
-        "update_manual": "Die Aktualisierung ließ sich nicht automatisch starten. Geben Sie im Terminal ein: pdfaccessguru update",
+        "update_manual": "Die Aktualisierung ließ sich nicht automatisch starten. Fügen Sie diese Zeile in Terminal "
+                         "(Mac) oder PowerShell (Windows) ein und drücken Sie die Eingabetaste: {line}",
+        "update_failed": "Die Aktualisierung auf Version {version} hat nicht geklappt. Fügen Sie diese Zeile in "
+                         "Terminal (Mac) oder PowerShell (Windows) ein und drücken Sie die Eingabetaste. Sie "
+                         "installiert die neueste Version:",
         "tools_needed": "Vor der ersten Verwendung braucht PDFAccessGuru zwei kostenlose Hilfsprogramme und einige "
                         "kostenlose Schriften (Java, veraPDF und die Liberation-Schriften, etwa 77 MB). Sie werden "
                         "einmal in Ihren Benutzerordner geladen. Es sind keine Administratorrechte nötig.",
