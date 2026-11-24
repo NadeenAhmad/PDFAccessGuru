@@ -28,8 +28,10 @@ run: USD 0.93.
 | Files | Acrobat Pro | opendataloader-pdf | PDFAccessGuru 1.1.0 |
 |---|---|---|---|
 | 156 untagged files (Kumar and SafeDocs): pass | 0 | 0 | 107 (no AI) to 108 (AI) |
-| All 316 files: pass | – | 11 | 211 (no AI) |
+| All 316 files: pass | not run (untagged files only) | 11 | 211 (no AI) |
 | 4 PAVE documents: pass, problems left | 0, 4,551 | 0, 3,862 | 2, 64 (PAVE 2.0: 0, 56, after about 30 manual actions per document) |
+
+Acrobat Pro was given only the untagged files: on files that already have tags, its Autotag replaces the author's tags with its own.
 
 **Kumar et al.'s criteria.** These check whether the specific errors that the benchmark's authors added are gone.
 Broken links: fixed in 5 of 5 files. Missing structure: added in 5 of 5. Missing picture descriptions: added in 4 of 5
