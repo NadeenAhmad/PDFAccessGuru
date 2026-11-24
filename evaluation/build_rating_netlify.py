@@ -1,6 +1,6 @@
 """
-Builds the public rating site for Netlify (free plan): the same 40 pictures and blind descriptions as the
-claude.ai version, one shared link, the participant's name or initials on the start page, every answer saved
+Builds the public rating site for Netlify (free plan): the 40 pictures and their blind descriptions, one shared
+link, the participant's name or initials on the start page, every answer saved
 automatically by a small Netlify Function into Netlify Blobs (one record per participant). The key
 (code -> setups) never goes into the site.
 
