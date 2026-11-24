@@ -31,6 +31,21 @@ python evaluation/sets.py                  # optional: rebuilds the lists; they 
 python evaluation/get_data.py pave         # the 4 PAVE documents (needs PyMuPDF)
 ```
 
+## Results and logs
+
+| File | What it holds |
+|---|---|
+| `results/summary.md` | **Main table**: every set and AI setting, original against fixed (PDF/UA pass, problems, do no harm, cost, time) |
+| `results/runs-1.1.0/SET__SETTING.csv` | One row per file: veraPDF problems before and after, rules, share of text reached, AI requests, cost, seconds |
+| `results/runs-1.1.0/SET__SETTING__noharm.csv` | Do no harm, per file: pages whose text or look changed |
+| `results/opendataloader/SET__odl.csv` | Baseline opendataloader-pdf, per file |
+| `results/acrobat/` | Baseline Acrobat Pro on the 156 untagged files, next to PDFAccessGuru and opendataloader-pdf |
+| `results/kumar-criteria/` | Kumar et al.'s 7 criteria: files with no error left, per tool, and how far the automatic check agrees with the experts' labels |
+| `results/pave/auto-check.md` | The 4 PAVE documents: automatic check of PDFAccessGuru, PAVE 2.0, Acrobat and opendataloader-pdf |
+| `logs/` | The run logs of the final run (13 Nov 2026) and every paid AI request with its price (`costs-1.1.0.csv`, USD 0.93 in total) |
+
+The human judgements (picture descriptions, PAVE criteria, links) are added when the judges have finished.
+
 ## Scripts
 
 | Step | Script | What it does |
@@ -44,8 +59,10 @@ python evaluation/get_data.py pave         # the 4 PAVE documents (needs PyMuPDF
 | Baselines | `baseline_odl.py` | opendataloader-pdf 2.5.21 (free automatic tagging) on the same files |
 | | `acrobat_files.py`, `acrobat_summary.py` | Acrobat Pro (Autotag + tab order) on the untagged files: preparation, check, comparison table |
 | | `check_one.py` | Checks one PDF exactly like PDFAccessGuru checks its own output (veraPDF PDF/UA-1, share of text a screen reader reaches) |
+| Summary | `summary.py` | The main results table (`results/summary.md`) from the per-file tables |
 | Kumar's criteria | `kumar_criteria.py` | Kumar et al.'s 7 criteria before and after fixing (automatic part) |
-| PAVE comparison | `build_pave_sheet.py`, `score_pave.py` | 4 documents, PAVE 2.0's 13 criteria, judged blind |
+| PAVE comparison | `pave_auto_check.py` | The automatic check of every tool's output on the 4 documents |
+| | `build_pave_sheet.py`, `score_pave.py` | 4 documents, PAVE 2.0's 13 criteria, judged blind |
 | Pictures | `select_pictures.py`, `capture_pictures.py` | Chooses the 40 rated pictures and captures exactly what an AI model gets for each |
 | | `blip_pictures.py`, `describe_pictures_11.py` | Descriptions by BLIP (non-LLM baseline) and by PDFAccessGuru 1.1 |
 | Rating site | `build_rating_netlify.py`, `build_parts_23.py`, `rating_*.html` | The blind rating site for the judges (pictures, structure, links) |

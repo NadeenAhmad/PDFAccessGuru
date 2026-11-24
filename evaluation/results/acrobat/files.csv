@@ -1,0 +1,625 @@
+run_id,group,tool,ok,passes,problems,tagged_share,pages
+kumar-02286900413c,kumar held out,acrobat,True,False,5084,0.9814927801504982,3
+kumar-02286900413c,kumar held out,pdfaccessguru-1.1.0 rules,True,True,0,0.8473413379073756,
+kumar-02286900413c,kumar held out,pdfaccessguru-1.1.0 gemma,True,True,0,0.8473413379073756,
+kumar-02286900413c,kumar held out,opendataloader-pdf,True,False,787,0.997037037037037,
+kumar-1d7975ff95b3,kumar held out,acrobat,True,False,2027,0.976462676529926,5
+kumar-1d7975ff95b3,kumar held out,pdfaccessguru-1.1.0 rules,True,False,75,0.9906279287722587,
+kumar-1d7975ff95b3,kumar held out,pdfaccessguru-1.1.0 gemma,True,False,72,0.9906279287722587,
+kumar-1d7975ff95b3,kumar held out,opendataloader-pdf,True,False,1802,0.9731389102072141,
+kumar-1ea8c6b5d783,kumar held out,acrobat,True,False,296,0.024054982817869417,1
+kumar-1ea8c6b5d783,kumar held out,pdfaccessguru-1.1.0 rules,True,True,0,0.995,
+kumar-1ea8c6b5d783,kumar held out,pdfaccessguru-1.1.0 gemma,True,True,0,0.995,
+kumar-1ea8c6b5d783,kumar held out,opendataloader-pdf,True,False,208,0.945273631840796,
+kumar-2cda90f35fd8,kumar held out,acrobat,True,False,2506,0.9979600163198694,4
+kumar-2cda90f35fd8,kumar held out,pdfaccessguru-1.1.0 rules,True,False,4,0.9261992619926199,
+kumar-2cda90f35fd8,kumar held out,pdfaccessguru-1.1.0 gemma,True,False,4,0.9261992619926199,
+kumar-2cda90f35fd8,kumar held out,opendataloader-pdf,True,False,772,0.9850136239782016,
+kumar-30e272b900e3,kumar held out,acrobat,True,False,1372,0.707740916271722,5
+kumar-30e272b900e3,kumar held out,pdfaccessguru-1.1.0 rules,True,False,23,0.9514066496163683,
+kumar-30e272b900e3,kumar held out,pdfaccessguru-1.1.0 gemma,True,False,23,0.9514066496163683,
+kumar-30e272b900e3,kumar held out,opendataloader-pdf,True,False,1220,0.8900255754475703,
+kumar-3cb607816835,kumar development,acrobat,True,False,503,0.018,2
+kumar-3cb607816835,kumar development,pdfaccessguru-1.1.0 rules,True,True,0,0.9933110367892977,
+kumar-3cb607816835,kumar development,pdfaccessguru-1.1.0 gemma,True,True,0,0.9933110367892977,
+kumar-3cb607816835,kumar development,opendataloader-pdf,True,False,303,0.9765886287625418,
+kumar-4d6ae0d8bf49,kumar development,acrobat,True,False,2027,0.976462676529926,5
+kumar-4d6ae0d8bf49,kumar development,pdfaccessguru-1.1.0 rules,True,False,75,0.9906279287722587,
+kumar-4d6ae0d8bf49,kumar development,pdfaccessguru-1.1.0 gemma,True,False,72,0.9906279287722587,
+kumar-4d6ae0d8bf49,kumar development,opendataloader-pdf,True,False,1802,0.9731389102072141,
+kumar-597d94adc052,kumar held out,acrobat,True,False,2632,0.9030162412993039,4
+kumar-597d94adc052,kumar held out,pdfaccessguru-1.1.0 rules,True,False,18,0.8723549488054607,
+kumar-597d94adc052,kumar held out,pdfaccessguru-1.1.0 gemma,True,False,13,0.8723549488054607,
+kumar-597d94adc052,kumar held out,opendataloader-pdf,True,False,2013,0.9759812536613942,
+kumar-73113025a1b8,kumar held out,acrobat,True,False,2408,0.9896091044037605,5
+kumar-73113025a1b8,kumar held out,pdfaccessguru-1.1.0 rules,True,False,25,0.9958734525447043,
+kumar-73113025a1b8,kumar held out,pdfaccessguru-1.1.0 gemma,True,False,15,0.9958734525447043,
+kumar-73113025a1b8,kumar held out,opendataloader-pdf,True,False,1922,0.9714950552646888,
+kumar-865b41717989,kumar held out,acrobat,True,False,836,0.3051702395964691,2
+kumar-865b41717989,kumar held out,pdfaccessguru-1.1.0 rules,True,True,0,0.8994974874371859,
+kumar-865b41717989,kumar held out,pdfaccessguru-1.1.0 gemma,True,True,0,0.8994974874371859,
+kumar-865b41717989,kumar held out,opendataloader-pdf,True,False,619,0.7219430485762144,
+kumar-880fbd357f6b,kumar held out,acrobat,True,False,10009,0.8531780270348002,8
+kumar-880fbd357f6b,kumar held out,pdfaccessguru-1.1.0 rules,True,False,73,0.9747095010252905,
+kumar-880fbd357f6b,kumar held out,pdfaccessguru-1.1.0 gemma,True,False,73,0.9747095010252905,
+kumar-880fbd357f6b,kumar held out,opendataloader-pdf,True,False,3048,0.9310611928737413,
+kumar-911cbc4f474b,kumar held out,acrobat,True,False,5084,0.9814927801504982,3
+kumar-911cbc4f474b,kumar held out,pdfaccessguru-1.1.0 rules,True,True,0,0.8473413379073756,
+kumar-911cbc4f474b,kumar held out,pdfaccessguru-1.1.0 gemma,True,True,0,0.8473413379073756,
+kumar-911cbc4f474b,kumar held out,opendataloader-pdf,True,False,785,0.997037037037037,
+kumar-a6540e2e47dc,kumar held out,acrobat,True,False,1501,0.7300658376005852,5
+kumar-a6540e2e47dc,kumar held out,pdfaccessguru-1.1.0 rules,True,False,74,0.8931875525651808,
+kumar-a6540e2e47dc,kumar held out,pdfaccessguru-1.1.0 gemma,True,False,74,0.8931875525651808,
+kumar-a6540e2e47dc,kumar held out,opendataloader-pdf,True,False,1325,0.8698175787728026,
+kumar-a863c505e22c,kumar held out,acrobat,True,False,19,0.5694444444444444,2
+kumar-a863c505e22c,kumar held out,pdfaccessguru-1.1.0 rules,True,False,160,1.0,
+kumar-a863c505e22c,kumar held out,pdfaccessguru-1.1.0 gemma,True,False,160,1.0,
+kumar-a863c505e22c,kumar held out,opendataloader-pdf,True,False,8,0.7380952380952381,
+kumar-a93e017a1785,kumar development,acrobat,True,False,2408,0.9896091044037605,5
+kumar-a93e017a1785,kumar development,pdfaccessguru-1.1.0 rules,True,False,25,0.9958734525447043,
+kumar-a93e017a1785,kumar development,pdfaccessguru-1.1.0 gemma,True,False,14,0.9958734525447043,
+kumar-a93e017a1785,kumar development,opendataloader-pdf,True,False,1924,0.9714950552646888,
+kumar-c2f7a5fb9018,kumar held out,acrobat,True,False,319,0.1382636655948553,1
+kumar-c2f7a5fb9018,kumar held out,pdfaccessguru-1.1.0 rules,True,True,0,0.8960573476702509,
+kumar-c2f7a5fb9018,kumar held out,pdfaccessguru-1.1.0 gemma,True,True,0,0.8960573476702509,
+kumar-c2f7a5fb9018,kumar held out,opendataloader-pdf,True,False,294,0.7777777777777778,
+kumar-caae6c84c652,kumar held out,acrobat,True,False,2224,0.9623824451410659,5
+kumar-caae6c84c652,kumar held out,pdfaccessguru-1.1.0 rules,True,False,404,0.9911569638909359,
+kumar-caae6c84c652,kumar held out,pdfaccessguru-1.1.0 gemma,True,False,402,0.9911569638909359,
+kumar-caae6c84c652,kumar held out,opendataloader-pdf,True,False,2196,0.9906166219839142,
+kumar-cd15ea9e8982,kumar held out,acrobat,True,False,2224,0.9623824451410659,5
+kumar-cd15ea9e8982,kumar held out,pdfaccessguru-1.1.0 rules,True,False,404,0.9911569638909359,
+kumar-cd15ea9e8982,kumar held out,pdfaccessguru-1.1.0 gemma,True,False,402,0.9911569638909359,
+kumar-cd15ea9e8982,kumar held out,opendataloader-pdf,True,False,2196,0.9906166219839142,
+kumar-cd82ffb93fbc,kumar development,acrobat,True,False,2632,0.9030162412993039,4
+kumar-cd82ffb93fbc,kumar development,pdfaccessguru-1.1.0 rules,True,False,18,0.8729508196721312,
+kumar-cd82ffb93fbc,kumar development,pdfaccessguru-1.1.0 gemma,True,False,13,0.8729508196721312,
+kumar-cd82ffb93fbc,kumar development,opendataloader-pdf,True,False,2010,0.9759671746776084,
+kumar-cf6e3f730983,kumar held out,acrobat,True,False,415,0.7749381698268755,5
+kumar-cf6e3f730983,kumar held out,pdfaccessguru-1.1.0 rules,True,True,0,0.9420731707317073,
+kumar-cf6e3f730983,kumar held out,pdfaccessguru-1.1.0 gemma,True,True,0,0.9420731707317073,
+kumar-cf6e3f730983,kumar held out,opendataloader-pdf,True,False,9,0.8268109908409659,
+safedocs-0000003,safedocs,acrobat,True,False,66,1.0,1
+safedocs-0000003,safedocs,pdfaccessguru-1.1.0 rules,True,True,0,1.0,
+safedocs-0000003,safedocs,pdfaccessguru-1.1.0 gemma,True,True,0,1.0,
+safedocs-0000003,safedocs,opendataloader-pdf,True,False,56,0.8947368421052632,
+safedocs-0000010,safedocs,acrobat,True,False,4,0.0,1
+safedocs-0000010,safedocs,pdfaccessguru-1.1.0 rules,True,True,0,0.0,
+safedocs-0000010,safedocs,pdfaccessguru-1.1.0 gemma,True,True,0,0.0,
+safedocs-0000010,safedocs,opendataloader-pdf,True,False,4,0.0,
+safedocs-0000019,safedocs,acrobat,True,False,358,0.35511363636363635,2
+safedocs-0000019,safedocs,pdfaccessguru-1.1.0 rules,True,True,0,0.967032967032967,
+safedocs-0000019,safedocs,pdfaccessguru-1.1.0 gemma,True,True,0,0.967032967032967,
+safedocs-0000019,safedocs,opendataloader-pdf,True,False,366,0.5934065934065934,
+safedocs-0000020,safedocs,acrobat,True,False,3253,0.0,1
+safedocs-0000020,safedocs,pdfaccessguru-1.1.0 rules,True,False,1,0.0,
+safedocs-0000020,safedocs,pdfaccessguru-1.1.0 gemma,True,False,1,0.0,
+safedocs-0000020,safedocs,opendataloader-pdf,True,False,6,0.0,
+safedocs-0000021,safedocs,acrobat,True,False,14,0.5,1
+safedocs-0000021,safedocs,pdfaccessguru-1.1.0 rules,True,True,0,1.0,
+safedocs-0000021,safedocs,pdfaccessguru-1.1.0 gemma,True,True,0,1.0,
+safedocs-0000021,safedocs,opendataloader-pdf,True,False,18,0.4166666666666667,
+safedocs-0000033,safedocs,acrobat,True,False,5,0.0,2
+safedocs-0000033,safedocs,pdfaccessguru-1.1.0 rules,True,True,0,0.0,
+safedocs-0000033,safedocs,pdfaccessguru-1.1.0 gemma,True,True,0,0.0,
+safedocs-0000033,safedocs,opendataloader-pdf,True,False,4,0.0,
+safedocs-0000034,safedocs,acrobat,True,False,8,0.32075471698113206,1
+safedocs-0000034,safedocs,pdfaccessguru-1.1.0 rules,True,True,0,1.0,
+safedocs-0000034,safedocs,pdfaccessguru-1.1.0 gemma,True,True,0,1.0,
+safedocs-0000034,safedocs,opendataloader-pdf,True,False,6,0.425,
+safedocs-0000043,safedocs,acrobat,True,False,347,0.8162650602409639,17
+safedocs-0000043,safedocs,pdfaccessguru-1.1.0 rules,True,True,0,1.0,
+safedocs-0000043,safedocs,pdfaccessguru-1.1.0 gemma,True,True,0,1.0,
+safedocs-0000043,safedocs,opendataloader-pdf,True,False,214,0.6878048780487804,
+safedocs-0000056,safedocs,acrobat,True,False,271,1.0,5
+safedocs-0000056,safedocs,pdfaccessguru-1.1.0 rules,True,False,1,1.0,
+safedocs-0000056,safedocs,pdfaccessguru-1.1.0 gemma,True,False,1,1.0,
+safedocs-0000056,safedocs,opendataloader-pdf,True,False,261,1.0,
+safedocs-0000059,safedocs,acrobat,True,False,13,1.0,2
+safedocs-0000059,safedocs,pdfaccessguru-1.1.0 rules,True,True,0,1.0,
+safedocs-0000059,safedocs,pdfaccessguru-1.1.0 gemma,True,True,0,1.0,
+safedocs-0000059,safedocs,opendataloader-pdf,False,False,,,
+safedocs-0000064,safedocs,acrobat,True,False,54,1.0,1
+safedocs-0000064,safedocs,pdfaccessguru-1.1.0 rules,True,True,0,1.0,
+safedocs-0000064,safedocs,pdfaccessguru-1.1.0 gemma,True,True,0,1.0,
+safedocs-0000064,safedocs,opendataloader-pdf,True,False,63,0.8813559322033898,
+safedocs-0000073,safedocs,acrobat,True,False,2492,0.985451433461703,5
+safedocs-0000073,safedocs,pdfaccessguru-1.1.0 rules,True,True,0,0.9766355140186916,
+safedocs-0000073,safedocs,pdfaccessguru-1.1.0 gemma,True,True,0,0.9766355140186916,
+safedocs-0000073,safedocs,opendataloader-pdf,True,False,1722,0.9742990654205608,
+safedocs-0000074,safedocs,acrobat,True,False,61,0.23636363636363636,1
+safedocs-0000074,safedocs,pdfaccessguru-1.1.0 rules,True,True,0,1.0,
+safedocs-0000074,safedocs,pdfaccessguru-1.1.0 gemma,True,True,0,1.0,
+safedocs-0000074,safedocs,opendataloader-pdf,True,False,57,0.25925925925925924,
+safedocs-0000080,safedocs,acrobat,True,False,256,1.0,1
+safedocs-0000080,safedocs,pdfaccessguru-1.1.0 rules,True,False,2,1.0,
+safedocs-0000080,safedocs,pdfaccessguru-1.1.0 gemma,True,False,2,1.0,
+safedocs-0000080,safedocs,opendataloader-pdf,True,False,274,1.0,
+safedocs-0000082,safedocs,acrobat,True,False,374,0.5739644970414202,2
+safedocs-0000082,safedocs,pdfaccessguru-1.1.0 rules,True,False,7,1.0,
+safedocs-0000082,safedocs,pdfaccessguru-1.1.0 gemma,True,True,0,1.0,
+safedocs-0000082,safedocs,opendataloader-pdf,True,False,216,0.9141414141414141,
+safedocs-0000083,safedocs,acrobat,True,False,556,0.0,6
+safedocs-0000083,safedocs,pdfaccessguru-1.1.0 rules,True,True,0,0.0,
+safedocs-0000083,safedocs,pdfaccessguru-1.1.0 gemma,True,True,0,0.0,
+safedocs-0000083,safedocs,opendataloader-pdf,True,False,556,0.842391304347826,
+safedocs-0000087,safedocs,acrobat,True,False,437,0.5878220140515222,2
+safedocs-0000087,safedocs,pdfaccessguru-1.1.0 rules,True,False,2,1.0,
+safedocs-0000087,safedocs,pdfaccessguru-1.1.0 gemma,True,False,1,1.0,
+safedocs-0000087,safedocs,opendataloader-pdf,True,False,290,0.8586572438162544,
+safedocs-0000090,safedocs,acrobat,True,False,441,0.0,10
+safedocs-0000090,safedocs,pdfaccessguru-1.1.0 rules,True,False,2,0.9858490566037735,
+safedocs-0000090,safedocs,pdfaccessguru-1.1.0 gemma,True,False,2,0.9858490566037735,
+safedocs-0000090,safedocs,opendataloader-pdf,True,False,225,0.8584905660377359,
+safedocs-0000102,safedocs,acrobat,True,False,226,0.9175257731958762,3
+safedocs-0000102,safedocs,pdfaccessguru-1.1.0 rules,True,False,8,0.9716981132075472,
+safedocs-0000102,safedocs,pdfaccessguru-1.1.0 gemma,True,False,6,0.9716981132075472,
+safedocs-0000102,safedocs,opendataloader-pdf,True,False,153,0.8773584905660378,
+safedocs-0000103,safedocs,acrobat,True,False,284,1.0,4
+safedocs-0000103,safedocs,pdfaccessguru-1.1.0 rules,True,False,1,0.924812030075188,
+safedocs-0000103,safedocs,pdfaccessguru-1.1.0 gemma,True,False,1,0.924812030075188,
+safedocs-0000103,safedocs,opendataloader-pdf,True,False,167,0.8866666666666667,
+safedocs-0000123,safedocs,acrobat,True,False,10007,0.8892718499437652,69
+safedocs-0000123,safedocs,pdfaccessguru-1.1.0 rules,True,False,20,0.9992303535461051,
+safedocs-0000123,safedocs,pdfaccessguru-1.1.0 gemma,True,False,20,0.9992303535461051,
+safedocs-0000123,safedocs,opendataloader-pdf,True,False,10003,0.9857369774182455,
+safedocs-0000135,safedocs,acrobat,True,False,35,0.5127334465195246,12
+safedocs-0000135,safedocs,pdfaccessguru-1.1.0 rules,True,True,0,1.0,
+safedocs-0000135,safedocs,pdfaccessguru-1.1.0 gemma,True,True,0,1.0,
+safedocs-0000135,safedocs,opendataloader-pdf,True,False,2,0.7870370370370371,
+safedocs-0000139,safedocs,acrobat,True,False,346,0.40119760479041916,2
+safedocs-0000139,safedocs,pdfaccessguru-1.1.0 rules,True,True,0,1.0,
+safedocs-0000139,safedocs,pdfaccessguru-1.1.0 gemma,True,True,0,1.0,
+safedocs-0000139,safedocs,opendataloader-pdf,True,False,184,0.7582417582417582,
+safedocs-0000143,safedocs,acrobat,True,False,53,0.6590909090909091,1
+safedocs-0000143,safedocs,pdfaccessguru-1.1.0 rules,True,True,0,0.9761904761904762,
+safedocs-0000143,safedocs,pdfaccessguru-1.1.0 gemma,True,True,0,0.9761904761904762,
+safedocs-0000143,safedocs,opendataloader-pdf,True,False,49,0.5714285714285714,
+safedocs-0000157,safedocs,acrobat,True,False,120,0.9813084112149533,2
+safedocs-0000157,safedocs,pdfaccessguru-1.1.0 rules,True,True,0,1.0,
+safedocs-0000157,safedocs,pdfaccessguru-1.1.0 gemma,True,True,0,1.0,
+safedocs-0000157,safedocs,opendataloader-pdf,True,False,115,0.9902912621359223,
+safedocs-0000159,safedocs,acrobat,True,False,4,0.0,1
+safedocs-0000159,safedocs,pdfaccessguru-1.1.0 rules,True,True,0,0.0,
+safedocs-0000159,safedocs,pdfaccessguru-1.1.0 gemma,True,True,0,0.0,
+safedocs-0000159,safedocs,opendataloader-pdf,True,False,4,0.0,
+safedocs-0000166,safedocs,acrobat,True,False,147,0.7153846153846154,2
+safedocs-0000166,safedocs,pdfaccessguru-1.1.0 rules,True,True,0,1.0,
+safedocs-0000166,safedocs,pdfaccessguru-1.1.0 gemma,True,True,0,1.0,
+safedocs-0000166,safedocs,opendataloader-pdf,True,False,118,0.7830188679245284,
+safedocs-0000178,safedocs,acrobat,True,False,268,0.6615969581749049,3
+safedocs-0000178,safedocs,pdfaccessguru-1.1.0 rules,True,True,0,0.975,
+safedocs-0000178,safedocs,pdfaccessguru-1.1.0 gemma,True,True,0,0.975,
+safedocs-0000178,safedocs,opendataloader-pdf,True,False,257,0.6299212598425197,
+safedocs-0000185,safedocs,acrobat,True,False,12,0.8205128205128205,1
+safedocs-0000185,safedocs,pdfaccessguru-1.1.0 rules,True,True,0,1.0,
+safedocs-0000185,safedocs,pdfaccessguru-1.1.0 gemma,True,True,0,1.0,
+safedocs-0000185,safedocs,opendataloader-pdf,True,False,3,0.8235294117647058,
+safedocs-0000188,safedocs,acrobat,True,False,71,0.8594652406417113,36
+safedocs-0000188,safedocs,pdfaccessguru-1.1.0 rules,True,False,3,0.9813266443701226,
+safedocs-0000188,safedocs,pdfaccessguru-1.1.0 gemma,True,False,3,0.9813266443701226,
+safedocs-0000188,safedocs,opendataloader-pdf,True,False,12,0.7997260273972603,
+safedocs-0000189,safedocs,acrobat,True,False,4,0.0,1
+safedocs-0000189,safedocs,pdfaccessguru-1.1.0 rules,True,True,0,0.0,
+safedocs-0000189,safedocs,pdfaccessguru-1.1.0 gemma,True,True,0,0.0,
+safedocs-0000189,safedocs,opendataloader-pdf,True,False,4,0.0,
+safedocs-0000195,safedocs,acrobat,True,False,353,0.29289940828402367,5
+safedocs-0000195,safedocs,pdfaccessguru-1.1.0 rules,True,False,5,1.0,
+safedocs-0000195,safedocs,pdfaccessguru-1.1.0 gemma,True,False,5,1.0,
+safedocs-0000195,safedocs,opendataloader-pdf,True,False,587,0.4093457943925234,
+safedocs-0000196,safedocs,acrobat,True,False,10007,0.9730066014585421,23
+safedocs-0000196,safedocs,pdfaccessguru-1.1.0 rules,True,True,0,0.9984306768558951,
+safedocs-0000196,safedocs,pdfaccessguru-1.1.0 gemma,True,True,0,0.9984306768558951,
+safedocs-0000196,safedocs,opendataloader-pdf,True,False,10002,1.0,
+safedocs-0000210,safedocs,acrobat,True,False,4,0.0,1
+safedocs-0000210,safedocs,pdfaccessguru-1.1.0 rules,True,True,0,0.0,
+safedocs-0000210,safedocs,pdfaccessguru-1.1.0 gemma,True,True,0,0.0,
+safedocs-0000210,safedocs,opendataloader-pdf,True,False,4,0.0,
+safedocs-0000211,safedocs,acrobat,True,False,1293,0.6627265563435776,5
+safedocs-0000211,safedocs,pdfaccessguru-1.1.0 rules,True,True,0,0.9923424458228042,
+safedocs-0000211,safedocs,pdfaccessguru-1.1.0 gemma,True,True,0,0.9923424458228042,
+safedocs-0000211,safedocs,opendataloader-pdf,True,False,10002,0.6152079025959108,
+safedocs-0000218,safedocs,acrobat,True,False,10007,0.9158120039240167,9
+safedocs-0000218,safedocs,pdfaccessguru-1.1.0 rules,True,True,0,0.9578125,
+safedocs-0000218,safedocs,pdfaccessguru-1.1.0 gemma,True,True,0,0.9578125,
+safedocs-0000218,safedocs,opendataloader-pdf,True,False,663,0.7307110438729199,
+safedocs-0000220,safedocs,acrobat,True,False,162,0.926504481434059,14
+safedocs-0000220,safedocs,pdfaccessguru-1.1.0 rules,True,True,0,0.9914390028956314,
+safedocs-0000220,safedocs,pdfaccessguru-1.1.0 gemma,True,True,0,0.9914390028956314,
+safedocs-0000220,safedocs,opendataloader-pdf,True,False,9,0.7329724285534432,
+safedocs-0000221,safedocs,acrobat,True,False,198,0.0,2
+safedocs-0000221,safedocs,pdfaccessguru-1.1.0 rules,True,True,0,1.0,
+safedocs-0000221,safedocs,pdfaccessguru-1.1.0 gemma,True,True,0,1.0,
+safedocs-0000221,safedocs,opendataloader-pdf,False,False,,,
+safedocs-0000227,safedocs,acrobat,True,False,60,0.5713056941338379,13
+safedocs-0000227,safedocs,pdfaccessguru-1.1.0 rules,True,True,0,0.9744560075685903,
+safedocs-0000227,safedocs,pdfaccessguru-1.1.0 gemma,True,True,0,0.9744560075685903,
+safedocs-0000227,safedocs,opendataloader-pdf,True,False,8,0.7081068305365162,
+safedocs-0000228,safedocs,acrobat,True,False,676,0.42089093701996927,4
+safedocs-0000228,safedocs,pdfaccessguru-1.1.0 rules,True,False,9,1.0,
+safedocs-0000228,safedocs,pdfaccessguru-1.1.0 gemma,True,False,9,1.0,
+safedocs-0000228,safedocs,opendataloader-pdf,True,False,758,0.5033377837116155,
+safedocs-0000233,safedocs,acrobat,True,False,35,1.0,1
+safedocs-0000233,safedocs,pdfaccessguru-1.1.0 rules,True,False,1,1.0,
+safedocs-0000233,safedocs,pdfaccessguru-1.1.0 gemma,True,False,1,1.0,
+safedocs-0000233,safedocs,opendataloader-pdf,True,False,19,1.0,
+safedocs-0000234,safedocs,acrobat,True,False,44,0.4292207792207792,24
+safedocs-0000234,safedocs,pdfaccessguru-1.1.0 rules,True,True,0,0.9096105752054305,
+safedocs-0000234,safedocs,pdfaccessguru-1.1.0 gemma,True,True,0,0.9096105752054305,
+safedocs-0000234,safedocs,opendataloader-pdf,True,False,3,0.6580921757770632,
+safedocs-0000237,safedocs,acrobat,True,False,214,1.0,1
+safedocs-0000237,safedocs,pdfaccessguru-1.1.0 rules,True,True,0,0.9952153110047847,
+safedocs-0000237,safedocs,pdfaccessguru-1.1.0 gemma,True,True,0,0.9952153110047847,
+safedocs-0000237,safedocs,opendataloader-pdf,True,False,213,1.0,
+safedocs-0000238,safedocs,acrobat,True,False,1372,0.7387785136129507,8
+safedocs-0000238,safedocs,pdfaccessguru-1.1.0 rules,True,False,2,1.0,
+safedocs-0000238,safedocs,pdfaccessguru-1.1.0 gemma,True,False,2,1.0,
+safedocs-0000238,safedocs,opendataloader-pdf,True,False,1510,0.9926519706078825,
+safedocs-0000239,safedocs,acrobat,True,False,107,0.7634408602150538,1
+safedocs-0000239,safedocs,pdfaccessguru-1.1.0 rules,True,True,0,0.9894736842105263,
+safedocs-0000239,safedocs,pdfaccessguru-1.1.0 gemma,True,True,0,0.9894736842105263,
+safedocs-0000239,safedocs,opendataloader-pdf,True,False,104,0.7789473684210526,
+safedocs-0000246,safedocs,acrobat,True,False,1206,0.88134135855546,1
+safedocs-0000246,safedocs,pdfaccessguru-1.1.0 rules,True,True,0,1.0,
+safedocs-0000246,safedocs,pdfaccessguru-1.1.0 gemma,True,True,0,1.0,
+safedocs-0000246,safedocs,opendataloader-pdf,True,False,1059,0.5176022835394862,
+safedocs-0000248,safedocs,acrobat,True,False,154,0.9927007299270073,3
+safedocs-0000248,safedocs,pdfaccessguru-1.1.0 rules,True,True,0,0.9428571428571428,
+safedocs-0000248,safedocs,pdfaccessguru-1.1.0 gemma,True,True,0,0.9428571428571428,
+safedocs-0000248,safedocs,opendataloader-pdf,True,False,114,0.9523809523809523,
+safedocs-0000254,safedocs,acrobat,True,False,6,0.0,3
+safedocs-0000254,safedocs,pdfaccessguru-1.1.0 rules,True,True,0,0.0,
+safedocs-0000254,safedocs,pdfaccessguru-1.1.0 gemma,True,True,0,0.0,
+safedocs-0000254,safedocs,opendataloader-pdf,True,False,5,0.0,
+safedocs-0000270,safedocs,acrobat,True,False,6,0.0,2
+safedocs-0000270,safedocs,pdfaccessguru-1.1.0 rules,True,True,0,0.0,
+safedocs-0000270,safedocs,pdfaccessguru-1.1.0 gemma,True,True,0,0.0,
+safedocs-0000270,safedocs,opendataloader-pdf,True,False,4,0.0,
+safedocs-0000278,safedocs,acrobat,True,False,219,0.914572864321608,5
+safedocs-0000278,safedocs,pdfaccessguru-1.1.0 rules,True,True,0,0.9038461538461539,
+safedocs-0000278,safedocs,pdfaccessguru-1.1.0 gemma,True,True,0,0.9038461538461539,
+safedocs-0000278,safedocs,opendataloader-pdf,True,False,171,0.9,
+safedocs-0000292,safedocs,acrobat,True,False,1549,0.900523560209424,2
+safedocs-0000292,safedocs,pdfaccessguru-1.1.0 rules,True,True,0,1.0,
+safedocs-0000292,safedocs,pdfaccessguru-1.1.0 gemma,True,True,0,1.0,
+safedocs-0000292,safedocs,opendataloader-pdf,True,False,4798,0.8687735454164922,
+safedocs-0000306,safedocs,acrobat,True,False,8,0.5545722713864307,2
+safedocs-0000306,safedocs,pdfaccessguru-1.1.0 rules,True,True,0,1.0,
+safedocs-0000306,safedocs,pdfaccessguru-1.1.0 gemma,True,True,0,1.0,
+safedocs-0000306,safedocs,opendataloader-pdf,True,False,2,0.9395604395604396,
+safedocs-0000311,safedocs,acrobat,True,False,10004,0.46599699803717815,30
+safedocs-0000311,safedocs,pdfaccessguru-1.1.0 rules,True,True,0,0.9961898164184274,
+safedocs-0000311,safedocs,pdfaccessguru-1.1.0 gemma,True,True,0,0.9961898164184274,
+safedocs-0000311,safedocs,opendataloader-pdf,False,False,,,
+safedocs-0000326,safedocs,acrobat,True,False,87,0.9814814814814815,1
+safedocs-0000326,safedocs,pdfaccessguru-1.1.0 rules,True,True,0,1.0,
+safedocs-0000326,safedocs,pdfaccessguru-1.1.0 gemma,True,True,0,1.0,
+safedocs-0000326,safedocs,opendataloader-pdf,True,False,47,0.975609756097561,
+safedocs-0000335,safedocs,acrobat,True,False,968,0.9947698744769874,5
+safedocs-0000335,safedocs,pdfaccessguru-1.1.0 rules,True,True,0,0.9959718026183283,
+safedocs-0000335,safedocs,pdfaccessguru-1.1.0 gemma,True,True,0,0.9959718026183283,
+safedocs-0000335,safedocs,opendataloader-pdf,True,False,1006,0.991991991991992,
+safedocs-0000337,safedocs,acrobat,True,False,6778,0.0,23
+safedocs-0000337,safedocs,pdfaccessguru-1.1.0 rules,True,True,0,0.9896327014218009,
+safedocs-0000337,safedocs,pdfaccessguru-1.1.0 gemma,True,True,0,0.9896327014218009,
+safedocs-0000337,safedocs,opendataloader-pdf,True,False,6942,0.9923798358733881,
+safedocs-0000382,safedocs,acrobat,True,False,33,0.873352435530086,12
+safedocs-0000382,safedocs,pdfaccessguru-1.1.0 rules,True,False,12,0.996319018404908,
+safedocs-0000382,safedocs,pdfaccessguru-1.1.0 gemma,True,False,12,0.996319018404908,
+safedocs-0000382,safedocs,opendataloader-pdf,True,False,4,0.9165644171779141,
+safedocs-0000389,safedocs,acrobat,True,False,713,0.951734539969834,2
+safedocs-0000389,safedocs,pdfaccessguru-1.1.0 rules,True,False,2,0.9978947368421053,
+safedocs-0000389,safedocs,pdfaccessguru-1.1.0 gemma,True,False,2,0.9978947368421053,
+safedocs-0000389,safedocs,opendataloader-pdf,True,False,530,0.9663157894736842,
+safedocs-0000394,safedocs,acrobat,True,False,32,1.0,1
+safedocs-0000394,safedocs,pdfaccessguru-1.1.0 rules,True,True,0,1.0,
+safedocs-0000394,safedocs,pdfaccessguru-1.1.0 gemma,True,True,0,1.0,
+safedocs-0000394,safedocs,opendataloader-pdf,True,False,18,1.0,
+safedocs-0000396,safedocs,acrobat,True,False,8,0.5,1
+safedocs-0000396,safedocs,pdfaccessguru-1.1.0 rules,True,True,0,1.0,
+safedocs-0000396,safedocs,pdfaccessguru-1.1.0 gemma,True,True,0,1.0,
+safedocs-0000396,safedocs,opendataloader-pdf,True,False,5,0.72,
+safedocs-0000415,safedocs,acrobat,True,False,61,0.9791666666666666,1
+safedocs-0000415,safedocs,pdfaccessguru-1.1.0 rules,True,True,0,0.975,
+safedocs-0000415,safedocs,pdfaccessguru-1.1.0 gemma,True,True,0,0.975,
+safedocs-0000415,safedocs,opendataloader-pdf,True,False,51,1.0,
+safedocs-0000423,safedocs,acrobat,True,False,419,0.9974293059125964,4
+safedocs-0000423,safedocs,pdfaccessguru-1.1.0 rules,True,False,1,1.0,
+safedocs-0000423,safedocs,pdfaccessguru-1.1.0 gemma,True,False,1,1.0,
+safedocs-0000423,safedocs,opendataloader-pdf,True,False,403,1.0,
+safedocs-0000456,safedocs,acrobat,True,False,10007,0.6830673758865248,118
+safedocs-0000456,safedocs,pdfaccessguru-1.1.0 rules,True,False,207,0.9999527566495016,
+safedocs-0000456,safedocs,pdfaccessguru-1.1.0 gemma,True,False,19,0.9999527566495016,
+safedocs-0000456,safedocs,opendataloader-pdf,True,False,10002,0.5917481305682696,
+safedocs-0000460,safedocs,acrobat,True,False,7,0.0,4
+safedocs-0000460,safedocs,pdfaccessguru-1.1.0 rules,True,True,0,0.0,
+safedocs-0000460,safedocs,pdfaccessguru-1.1.0 gemma,True,True,0,0.0,
+safedocs-0000460,safedocs,opendataloader-pdf,True,False,6,0.0,
+safedocs-0000472,safedocs,acrobat,True,False,6,0.0,2
+safedocs-0000472,safedocs,pdfaccessguru-1.1.0 rules,True,True,0,0.0,
+safedocs-0000472,safedocs,pdfaccessguru-1.1.0 gemma,True,True,0,0.0,
+safedocs-0000472,safedocs,opendataloader-pdf,True,False,5,0.0,
+safedocs-0000473,safedocs,acrobat,True,False,437,0.8933649289099526,15
+safedocs-0000473,safedocs,pdfaccessguru-1.1.0 rules,True,False,3,0.951417004048583,
+safedocs-0000473,safedocs,pdfaccessguru-1.1.0 gemma,True,False,3,0.951417004048583,
+safedocs-0000473,safedocs,opendataloader-pdf,True,False,259,0.8178137651821862,
+safedocs-0000477,safedocs,acrobat,True,False,822,0.9452054794520548,25
+safedocs-0000477,safedocs,pdfaccessguru-1.1.0 rules,True,False,3,0.9495967741935484,
+safedocs-0000477,safedocs,pdfaccessguru-1.1.0 gemma,True,False,3,0.9495967741935484,
+safedocs-0000477,safedocs,opendataloader-pdf,True,False,519,0.7514792899408284,
+safedocs-0000479,safedocs,acrobat,True,False,849,0.89618138424821,1
+safedocs-0000479,safedocs,pdfaccessguru-1.1.0 rules,True,True,0,1.0,
+safedocs-0000479,safedocs,pdfaccessguru-1.1.0 gemma,True,True,0,1.0,
+safedocs-0000479,safedocs,opendataloader-pdf,True,False,2395,0.8352891869237217,
+safedocs-0000480,safedocs,acrobat,True,False,1098,0.8019900497512438,11
+safedocs-0000480,safedocs,pdfaccessguru-1.1.0 rules,True,True,0,0.9699248120300752,
+safedocs-0000480,safedocs,pdfaccessguru-1.1.0 gemma,True,True,0,0.9699248120300752,
+safedocs-0000480,safedocs,opendataloader-pdf,True,False,692,0.9343065693430657,
+safedocs-0000482,safedocs,acrobat,True,False,535,0.3187022900763359,5
+safedocs-0000482,safedocs,pdfaccessguru-1.1.0 rules,True,True,0,0.9664429530201343,
+safedocs-0000482,safedocs,pdfaccessguru-1.1.0 gemma,True,True,0,0.9664429530201343,
+safedocs-0000482,safedocs,opendataloader-pdf,True,False,332,0.7492354740061162,
+safedocs-0000487,safedocs,acrobat,True,False,261,1.0,2
+safedocs-0000487,safedocs,pdfaccessguru-1.1.0 rules,True,False,4,1.0,
+safedocs-0000487,safedocs,pdfaccessguru-1.1.0 gemma,True,False,4,1.0,
+safedocs-0000487,safedocs,opendataloader-pdf,True,False,174,0.9700598802395209,
+safedocs-0000512,safedocs,acrobat,True,False,467,0.8752997601918465,8
+safedocs-0000512,safedocs,pdfaccessguru-1.1.0 rules,True,True,0,0.9804878048780488,
+safedocs-0000512,safedocs,pdfaccessguru-1.1.0 gemma,True,True,0,0.9804878048780488,
+safedocs-0000512,safedocs,opendataloader-pdf,True,False,420,0.8853658536585366,
+safedocs-0000535,safedocs,acrobat,True,False,4876,0.9991863303498779,126
+safedocs-0000535,safedocs,pdfaccessguru-1.1.0 rules,True,False,9485,1.0,
+safedocs-0000535,safedocs,pdfaccessguru-1.1.0 gemma,True,False,9485,1.0,
+safedocs-0000535,safedocs,opendataloader-pdf,True,False,2522,0.0,
+safedocs-0000541,safedocs,acrobat,True,False,6,0.0,1
+safedocs-0000541,safedocs,pdfaccessguru-1.1.0 rules,True,True,0,1.0,
+safedocs-0000541,safedocs,pdfaccessguru-1.1.0 gemma,True,True,0,1.0,
+safedocs-0000541,safedocs,opendataloader-pdf,True,False,6,0.0,
+safedocs-0000544,safedocs,acrobat,True,False,30,0.9583333333333334,1
+safedocs-0000544,safedocs,pdfaccessguru-1.1.0 rules,True,True,0,0.5,
+safedocs-0000544,safedocs,pdfaccessguru-1.1.0 gemma,True,True,0,0.5,
+safedocs-0000544,safedocs,opendataloader-pdf,True,False,9,0.3333333333333333,
+safedocs-0000546,safedocs,acrobat,True,False,6,0.0,3
+safedocs-0000546,safedocs,pdfaccessguru-1.1.0 rules,True,True,0,0.0,
+safedocs-0000546,safedocs,pdfaccessguru-1.1.0 gemma,True,True,0,0.0,
+safedocs-0000546,safedocs,opendataloader-pdf,True,False,41,0.0,
+safedocs-0000558,safedocs,acrobat,True,False,413,0.9790575916230366,4
+safedocs-0000558,safedocs,pdfaccessguru-1.1.0 rules,True,True,0,0.9697802197802198,
+safedocs-0000558,safedocs,pdfaccessguru-1.1.0 gemma,True,True,0,0.9697802197802198,
+safedocs-0000558,safedocs,opendataloader-pdf,True,False,441,0.9345549738219895,
+safedocs-0000559,safedocs,acrobat,True,False,1246,0.6572614107883817,2
+safedocs-0000559,safedocs,pdfaccessguru-1.1.0 rules,True,False,1314,1.0,
+safedocs-0000559,safedocs,pdfaccessguru-1.1.0 gemma,True,False,1314,1.0,
+safedocs-0000559,safedocs,opendataloader-pdf,True,False,3094,0.7831245880026367,
+safedocs-0000568,safedocs,acrobat,True,False,151,0.9195301027900147,40
+safedocs-0000568,safedocs,pdfaccessguru-1.1.0 rules,True,False,36,0.9830721003134796,
+safedocs-0000568,safedocs,pdfaccessguru-1.1.0 gemma,True,False,36,0.9830721003134796,
+safedocs-0000568,safedocs,opendataloader-pdf,True,False,20,0.9593241551939925,
+safedocs-0000572,safedocs,acrobat,True,False,1873,0.5299191374663073,5
+safedocs-0000572,safedocs,pdfaccessguru-1.1.0 rules,True,True,0,0.9438775510204082,
+safedocs-0000572,safedocs,pdfaccessguru-1.1.0 gemma,True,True,0,0.9438775510204082,
+safedocs-0000572,safedocs,opendataloader-pdf,True,False,1971,0.5363497712252161,
+safedocs-0000573,safedocs,acrobat,True,False,61,0.9787234042553191,5
+safedocs-0000573,safedocs,pdfaccessguru-1.1.0 rules,True,True,0,1.0,
+safedocs-0000573,safedocs,pdfaccessguru-1.1.0 gemma,True,True,0,1.0,
+safedocs-0000573,safedocs,opendataloader-pdf,True,False,1246,0.9991755976916735,
+safedocs-0000578,safedocs,acrobat,True,False,663,0.9794952681388013,5
+safedocs-0000578,safedocs,pdfaccessguru-1.1.0 rules,True,True,0,0.9686028257456829,
+safedocs-0000578,safedocs,pdfaccessguru-1.1.0 gemma,True,True,0,0.9686028257456829,
+safedocs-0000578,safedocs,opendataloader-pdf,True,False,641,0.9246467817896389,
+safedocs-0000583,safedocs,acrobat,True,False,10,1.0,1
+safedocs-0000583,safedocs,pdfaccessguru-1.1.0 rules,True,True,0,1.0,
+safedocs-0000583,safedocs,pdfaccessguru-1.1.0 gemma,True,True,0,1.0,
+safedocs-0000583,safedocs,opendataloader-pdf,True,False,6,1.0,
+safedocs-0000596,safedocs,acrobat,True,False,202,0.9375,6
+safedocs-0000596,safedocs,pdfaccessguru-1.1.0 rules,True,True,0,0.9365079365079365,
+safedocs-0000596,safedocs,pdfaccessguru-1.1.0 gemma,True,True,0,0.9365079365079365,
+safedocs-0000596,safedocs,opendataloader-pdf,True,False,205,0.9396984924623115,
+safedocs-0000600,safedocs,acrobat,True,False,6,0.0,3
+safedocs-0000600,safedocs,pdfaccessguru-1.1.0 rules,True,True,0,0.0,
+safedocs-0000600,safedocs,pdfaccessguru-1.1.0 gemma,True,True,0,0.0,
+safedocs-0000600,safedocs,opendataloader-pdf,True,False,6,0.0,
+safedocs-0000607,safedocs,acrobat,True,False,93,0.3625,1
+safedocs-0000607,safedocs,pdfaccessguru-1.1.0 rules,True,True,0,1.0,
+safedocs-0000607,safedocs,pdfaccessguru-1.1.0 gemma,True,True,0,1.0,
+safedocs-0000607,safedocs,opendataloader-pdf,True,False,88,0.3625,
+safedocs-0000632,safedocs,acrobat,True,False,69,0.8935562805872757,24
+safedocs-0000632,safedocs,pdfaccessguru-1.1.0 rules,True,True,0,0.9828030954428203,
+safedocs-0000632,safedocs,pdfaccessguru-1.1.0 gemma,True,True,0,0.9828030954428203,
+safedocs-0000632,safedocs,opendataloader-pdf,True,False,11,0.9258788648877594,
+safedocs-0000636,safedocs,acrobat,True,False,34,0.4915458937198068,5
+safedocs-0000636,safedocs,pdfaccessguru-1.1.0 rules,True,True,0,1.0,
+safedocs-0000636,safedocs,pdfaccessguru-1.1.0 gemma,True,True,0,1.0,
+safedocs-0000636,safedocs,opendataloader-pdf,True,False,8,0.49624060150375937,
+safedocs-0000642,safedocs,acrobat,True,False,1581,0.5459249676584734,5
+safedocs-0000642,safedocs,pdfaccessguru-1.1.0 rules,True,True,0,0.9569471624266145,
+safedocs-0000642,safedocs,pdfaccessguru-1.1.0 gemma,True,True,0,0.9569471624266145,
+safedocs-0000642,safedocs,opendataloader-pdf,True,False,1035,0.3806262230919765,
+safedocs-0000649,safedocs,acrobat,True,False,6,0.0,2
+safedocs-0000649,safedocs,pdfaccessguru-1.1.0 rules,True,True,0,0.0,
+safedocs-0000649,safedocs,pdfaccessguru-1.1.0 gemma,True,True,0,0.0,
+safedocs-0000649,safedocs,opendataloader-pdf,True,False,4,0.0,
+safedocs-0000656,safedocs,acrobat,True,False,58,0.5416666666666666,1
+safedocs-0000656,safedocs,pdfaccessguru-1.1.0 rules,True,False,1,0.5306122448979592,
+safedocs-0000656,safedocs,pdfaccessguru-1.1.0 gemma,True,False,1,0.5306122448979592,
+safedocs-0000656,safedocs,opendataloader-pdf,True,False,59,0.8367346938775511,
+safedocs-0000660,safedocs,acrobat,True,False,563,0.5477941176470589,2
+safedocs-0000660,safedocs,pdfaccessguru-1.1.0 rules,True,True,0,1.0,
+safedocs-0000660,safedocs,pdfaccessguru-1.1.0 gemma,True,True,0,1.0,
+safedocs-0000660,safedocs,opendataloader-pdf,True,False,509,0.6293279022403259,
+safedocs-0000677,safedocs,acrobat,True,False,589,0.8211805555555556,31
+safedocs-0000677,safedocs,pdfaccessguru-1.1.0 rules,True,True,0,1.0,
+safedocs-0000677,safedocs,pdfaccessguru-1.1.0 gemma,True,True,0,1.0,
+safedocs-0000677,safedocs,opendataloader-pdf,True,False,359,0.6657142857142857,
+safedocs-0000678,safedocs,acrobat,True,False,1852,0.3828254847645429,11
+safedocs-0000678,safedocs,pdfaccessguru-1.1.0 rules,True,False,13,0.9482352941176471,
+safedocs-0000678,safedocs,pdfaccessguru-1.1.0 gemma,True,False,13,0.9482352941176471,
+safedocs-0000678,safedocs,opendataloader-pdf,True,False,1466,0.7992424242424242,
+safedocs-0000687,safedocs,acrobat,True,False,457,0.8252212389380531,1
+safedocs-0000687,safedocs,pdfaccessguru-1.1.0 rules,True,True,0,1.0,
+safedocs-0000687,safedocs,pdfaccessguru-1.1.0 gemma,True,True,0,1.0,
+safedocs-0000687,safedocs,opendataloader-pdf,True,False,1743,0.8690407811602527,
+safedocs-0000691,safedocs,acrobat,True,False,184,0.8538011695906432,4
+safedocs-0000691,safedocs,pdfaccessguru-1.1.0 rules,True,False,3,0.9252336448598131,
+safedocs-0000691,safedocs,pdfaccessguru-1.1.0 gemma,True,False,3,0.9252336448598131,
+safedocs-0000691,safedocs,opendataloader-pdf,True,False,122,0.7545454545454545,
+safedocs-0000698,safedocs,acrobat,True,False,3543,0.7112676056338029,26
+safedocs-0000698,safedocs,pdfaccessguru-1.1.0 rules,True,False,2,0.8753285767930905,
+safedocs-0000698,safedocs,pdfaccessguru-1.1.0 gemma,True,False,2,0.8753285767930905,
+safedocs-0000698,safedocs,opendataloader-pdf,True,False,2879,0.5580091132141606,
+safedocs-0000714,safedocs,acrobat,True,False,358,0.997093023255814,10
+safedocs-0000714,safedocs,pdfaccessguru-1.1.0 rules,True,True,0,0.9624060150375939,
+safedocs-0000714,safedocs,pdfaccessguru-1.1.0 gemma,True,True,0,0.9624060150375939,
+safedocs-0000714,safedocs,opendataloader-pdf,True,False,275,0.8909774436090225,
+safedocs-0000716,safedocs,acrobat,True,False,1089,0.0,4
+safedocs-0000716,safedocs,pdfaccessguru-1.1.0 rules,True,False,2,1.0,
+safedocs-0000716,safedocs,pdfaccessguru-1.1.0 gemma,True,False,2,1.0,
+safedocs-0000716,safedocs,opendataloader-pdf,False,False,,,
+safedocs-0000732,safedocs,acrobat,True,False,32,0.0,1
+safedocs-0000732,safedocs,pdfaccessguru-1.1.0 rules,True,True,0,0.0,
+safedocs-0000732,safedocs,pdfaccessguru-1.1.0 gemma,True,True,0,0.0,
+safedocs-0000732,safedocs,opendataloader-pdf,True,False,32,1.0,
+safedocs-0000734,safedocs,acrobat,True,False,682,0.772093023255814,2
+safedocs-0000734,safedocs,pdfaccessguru-1.1.0 rules,True,True,0,0.9251968503937008,
+safedocs-0000734,safedocs,pdfaccessguru-1.1.0 gemma,True,True,0,0.9251968503937008,
+safedocs-0000734,safedocs,opendataloader-pdf,True,False,551,0.8860294117647058,
+safedocs-0000735,safedocs,acrobat,True,False,218,0.8861386138613861,1
+safedocs-0000735,safedocs,pdfaccessguru-1.1.0 rules,True,False,3,0.9914529914529915,
+safedocs-0000735,safedocs,pdfaccessguru-1.1.0 gemma,True,False,3,0.9914529914529915,
+safedocs-0000735,safedocs,opendataloader-pdf,True,False,129,0.811965811965812,
+safedocs-0000741,safedocs,acrobat,True,False,7,0.0,4
+safedocs-0000741,safedocs,pdfaccessguru-1.1.0 rules,True,True,0,0.0,
+safedocs-0000741,safedocs,pdfaccessguru-1.1.0 gemma,True,True,0,0.0,
+safedocs-0000741,safedocs,opendataloader-pdf,True,False,267,0.0,
+safedocs-0000744,safedocs,acrobat,True,False,348,0.6566265060240963,2
+safedocs-0000744,safedocs,pdfaccessguru-1.1.0 rules,True,True,0,0.9977957384276267,
+safedocs-0000744,safedocs,pdfaccessguru-1.1.0 gemma,True,True,0,0.9977957384276267,
+safedocs-0000744,safedocs,opendataloader-pdf,True,False,1390,0.9346069066862601,
+safedocs-0000747,safedocs,acrobat,True,False,67,0.4292763157894737,14
+safedocs-0000747,safedocs,pdfaccessguru-1.1.0 rules,True,True,0,0.944692239072257,
+safedocs-0000747,safedocs,pdfaccessguru-1.1.0 gemma,True,True,0,0.944692239072257,
+safedocs-0000747,safedocs,opendataloader-pdf,True,False,4,0.5991150442477876,
+safedocs-0000757,safedocs,acrobat,True,False,84,0.9859154929577465,1
+safedocs-0000757,safedocs,pdfaccessguru-1.1.0 rules,True,True,0,0.9777777777777777,
+safedocs-0000757,safedocs,pdfaccessguru-1.1.0 gemma,True,True,0,0.9777777777777777,
+safedocs-0000757,safedocs,opendataloader-pdf,True,False,54,1.0,
+safedocs-0000758,safedocs,acrobat,True,False,467,0.7960954446854663,2
+safedocs-0000758,safedocs,pdfaccessguru-1.1.0 rules,True,True,0,1.0,
+safedocs-0000758,safedocs,pdfaccessguru-1.1.0 gemma,True,True,0,1.0,
+safedocs-0000758,safedocs,opendataloader-pdf,True,False,1525,0.8588312541037426,
+safedocs-0000759,safedocs,acrobat,True,False,1893,0.9041313559322034,9
+safedocs-0000759,safedocs,pdfaccessguru-1.1.0 rules,True,True,0,0.9663282990839317,
+safedocs-0000759,safedocs,pdfaccessguru-1.1.0 gemma,True,True,0,0.9663282990839317,
+safedocs-0000759,safedocs,opendataloader-pdf,True,False,4168,0.8542966874699952,
+safedocs-0000771,safedocs,acrobat,True,False,84,0.4278523489932886,13
+safedocs-0000771,safedocs,pdfaccessguru-1.1.0 rules,True,True,0,0.9646559849198869,
+safedocs-0000771,safedocs,pdfaccessguru-1.1.0 gemma,True,True,0,0.9646559849198869,
+safedocs-0000771,safedocs,opendataloader-pdf,True,False,6,0.8967954759660698,
+safedocs-0000795,safedocs,acrobat,True,False,13,0.8671328671328671,2
+safedocs-0000795,safedocs,pdfaccessguru-1.1.0 rules,True,False,2,1.0,
+safedocs-0000795,safedocs,pdfaccessguru-1.1.0 gemma,True,False,2,1.0,
+safedocs-0000795,safedocs,opendataloader-pdf,True,False,7,0.8903225806451613,
+safedocs-0000801,safedocs,acrobat,True,False,264,0.9710144927536232,17
+safedocs-0000801,safedocs,pdfaccessguru-1.1.0 rules,True,False,2,0.8469184890656064,
+safedocs-0000801,safedocs,pdfaccessguru-1.1.0 gemma,True,False,2,0.8469184890656064,
+safedocs-0000801,safedocs,opendataloader-pdf,True,False,1035,0.8521825396825397,
+safedocs-0000809,safedocs,acrobat,True,False,5060,0.9831155778894473,5
+safedocs-0000809,safedocs,pdfaccessguru-1.1.0 rules,True,True,0,0.9934492315444696,
+safedocs-0000809,safedocs,pdfaccessguru-1.1.0 gemma,True,True,0,0.9934492315444696,
+safedocs-0000809,safedocs,opendataloader-pdf,True,False,3972,0.6477702191987906,
+safedocs-0000811,safedocs,acrobat,True,False,70,1.0,1
+safedocs-0000811,safedocs,pdfaccessguru-1.1.0 rules,True,False,35,1.0,
+safedocs-0000811,safedocs,pdfaccessguru-1.1.0 gemma,True,False,35,1.0,
+safedocs-0000811,safedocs,opendataloader-pdf,True,False,51,0.52,
+safedocs-0000817,safedocs,acrobat,True,False,30,0.5714285714285714,1
+safedocs-0000817,safedocs,pdfaccessguru-1.1.0 rules,True,True,0,1.0,
+safedocs-0000817,safedocs,pdfaccessguru-1.1.0 gemma,True,True,0,1.0,
+safedocs-0000817,safedocs,opendataloader-pdf,True,False,44,0.7352941176470589,
+safedocs-0000821,safedocs,acrobat,True,False,1303,0.9637352674524026,10
+safedocs-0000821,safedocs,pdfaccessguru-1.1.0 rules,True,True,0,0.9722991689750693,
+safedocs-0000821,safedocs,pdfaccessguru-1.1.0 gemma,True,True,0,0.9722991689750693,
+safedocs-0000821,safedocs,opendataloader-pdf,True,False,1087,0.9722991689750693,
+safedocs-0000826,safedocs,acrobat,True,False,10012,0.7947456744401366,161
+safedocs-0000826,safedocs,pdfaccessguru-1.1.0 rules,True,False,8,0.9881050718651908,
+safedocs-0000826,safedocs,pdfaccessguru-1.1.0 gemma,True,False,8,0.9881050718651908,
+safedocs-0000826,safedocs,opendataloader-pdf,True,False,10006,0.8931492299522039,
+safedocs-0000846,safedocs,acrobat,True,False,251,0.9957805907172996,7
+safedocs-0000846,safedocs,pdfaccessguru-1.1.0 rules,True,True,0,1.0,
+safedocs-0000846,safedocs,pdfaccessguru-1.1.0 gemma,True,True,0,1.0,
+safedocs-0000846,safedocs,opendataloader-pdf,True,False,195,1.0,
+safedocs-0000850,safedocs,acrobat,True,False,1153,0.56672760511883,14
+safedocs-0000850,safedocs,pdfaccessguru-1.1.0 rules,True,True,0,1.0,
+safedocs-0000850,safedocs,pdfaccessguru-1.1.0 gemma,True,True,0,1.0,
+safedocs-0000850,safedocs,opendataloader-pdf,True,False,661,0.9951534733441034,
+safedocs-0000859,safedocs,acrobat,True,False,491,0.4252136752136752,2
+safedocs-0000859,safedocs,pdfaccessguru-1.1.0 rules,True,True,0,1.0,
+safedocs-0000859,safedocs,pdfaccessguru-1.1.0 gemma,True,True,0,1.0,
+safedocs-0000859,safedocs,opendataloader-pdf,True,False,329,0.6791277258566978,
+safedocs-0000883,safedocs,acrobat,True,False,21,0.9090909090909091,1
+safedocs-0000883,safedocs,pdfaccessguru-1.1.0 rules,True,True,0,1.0,
+safedocs-0000883,safedocs,pdfaccessguru-1.1.0 gemma,True,True,0,1.0,
+safedocs-0000883,safedocs,opendataloader-pdf,True,False,17,0.875,
+safedocs-0000888,safedocs,acrobat,True,False,10007,0.843396244686105,910
+safedocs-0000888,safedocs,pdfaccessguru-1.1.0 rules,True,True,0,0.9403311338703801,
+safedocs-0000888,safedocs,pdfaccessguru-1.1.0 gemma,True,True,0,0.9403311338703801,
+safedocs-0000888,safedocs,opendataloader-pdf,True,False,10003,0.8090208943702742,
+safedocs-0000896,safedocs,acrobat,True,False,15,0.8888888888888888,1
+safedocs-0000896,safedocs,pdfaccessguru-1.1.0 rules,True,True,0,1.0,
+safedocs-0000896,safedocs,pdfaccessguru-1.1.0 gemma,True,True,0,1.0,
+safedocs-0000896,safedocs,opendataloader-pdf,True,False,10,0.8,
+safedocs-0000899,safedocs,acrobat,True,False,5,0.0,1
+safedocs-0000899,safedocs,pdfaccessguru-1.1.0 rules,True,True,0,0.0,
+safedocs-0000899,safedocs,pdfaccessguru-1.1.0 gemma,True,True,0,0.0,
+safedocs-0000899,safedocs,opendataloader-pdf,True,False,3,0.0,
+safedocs-0000902,safedocs,acrobat,True,False,5,0.0,2
+safedocs-0000902,safedocs,pdfaccessguru-1.1.0 rules,True,True,0,0.0,
+safedocs-0000902,safedocs,pdfaccessguru-1.1.0 gemma,True,True,0,0.0,
+safedocs-0000902,safedocs,opendataloader-pdf,True,False,23,0.0,
+safedocs-0000903,safedocs,acrobat,True,False,4,0.0,1
+safedocs-0000903,safedocs,pdfaccessguru-1.1.0 rules,True,True,0,0.0,
+safedocs-0000903,safedocs,pdfaccessguru-1.1.0 gemma,True,True,0,0.0,
+safedocs-0000903,safedocs,opendataloader-pdf,True,False,4,0.0,
+safedocs-0000916,safedocs,acrobat,True,False,5959,1.0,4
+safedocs-0000916,safedocs,pdfaccessguru-1.1.0 rules,True,True,0,1.0,
+safedocs-0000916,safedocs,pdfaccessguru-1.1.0 gemma,True,True,0,1.0,
+safedocs-0000916,safedocs,opendataloader-pdf,True,False,5683,1.0,
+safedocs-0000948,safedocs,acrobat,True,False,2263,0.9111411817771764,12
+safedocs-0000948,safedocs,pdfaccessguru-1.1.0 rules,True,True,0,0.9537117903930131,
+safedocs-0000948,safedocs,pdfaccessguru-1.1.0 gemma,True,True,0,0.9537117903930131,
+safedocs-0000948,safedocs,opendataloader-pdf,True,False,1306,0.8440514469453376,
+safedocs-0000962,safedocs,acrobat,True,False,557,0.7601626016260162,9
+safedocs-0000962,safedocs,pdfaccessguru-1.1.0 rules,True,True,0,0.974169741697417,
+safedocs-0000962,safedocs,pdfaccessguru-1.1.0 gemma,True,True,0,0.974169741697417,
+safedocs-0000962,safedocs,opendataloader-pdf,True,False,554,0.8265682656826568,
+safedocs-0000972,safedocs,acrobat,True,False,9,0.796875,2
+safedocs-0000972,safedocs,pdfaccessguru-1.1.0 rules,True,True,0,1.0,
+safedocs-0000972,safedocs,pdfaccessguru-1.1.0 gemma,True,True,0,1.0,
+safedocs-0000972,safedocs,opendataloader-pdf,True,False,3,0.8698224852071006,
+safedocs-0000973,safedocs,acrobat,True,False,2172,0.38593666129898013,13
+safedocs-0000973,safedocs,pdfaccessguru-1.1.0 rules,True,False,72,0.9739336492890995,
+safedocs-0000973,safedocs,pdfaccessguru-1.1.0 gemma,True,False,72,0.9739336492890995,
+safedocs-0000973,safedocs,opendataloader-pdf,True,False,940,0.7086247086247086,
+safedocs-0000975,safedocs,acrobat,True,False,9,1.0,1
+safedocs-0000975,safedocs,pdfaccessguru-1.1.0 rules,True,True,0,1.0,
+safedocs-0000975,safedocs,pdfaccessguru-1.1.0 gemma,True,True,0,1.0,
+safedocs-0000975,safedocs,opendataloader-pdf,True,False,86,1.0,
+safedocs-0000976,safedocs,acrobat,True,False,124,0.3,1
+safedocs-0000976,safedocs,pdfaccessguru-1.1.0 rules,True,True,0,0.8108108108108109,
+safedocs-0000976,safedocs,pdfaccessguru-1.1.0 gemma,True,True,0,0.8108108108108109,
+safedocs-0000976,safedocs,opendataloader-pdf,True,False,43,0.8048780487804879,
+safedocs-0000977,safedocs,acrobat,True,False,20,0.9239130434782609,2
+safedocs-0000977,safedocs,pdfaccessguru-1.1.0 rules,True,True,0,1.0,
+safedocs-0000977,safedocs,pdfaccessguru-1.1.0 gemma,True,True,0,1.0,
+safedocs-0000977,safedocs,opendataloader-pdf,True,False,4,1.0,
+safedocs-0000983,safedocs,acrobat,True,False,130,0.8571428571428571,1
+safedocs-0000983,safedocs,pdfaccessguru-1.1.0 rules,True,False,101,1.0,
+safedocs-0000983,safedocs,pdfaccessguru-1.1.0 gemma,True,False,101,1.0,
+safedocs-0000983,safedocs,opendataloader-pdf,True,False,108,0.5,
+safedocs-0000985,safedocs,acrobat,True,False,142,0.9185185185185185,4
+safedocs-0000985,safedocs,pdfaccessguru-1.1.0 rules,True,True,0,1.0,
+safedocs-0000985,safedocs,pdfaccessguru-1.1.0 gemma,True,True,0,1.0,
+safedocs-0000985,safedocs,opendataloader-pdf,True,False,406,0.9650872817955112,
+safedocs-0000996,safedocs,acrobat,True,False,29,0.9444444444444444,1
+safedocs-0000996,safedocs,pdfaccessguru-1.1.0 rules,True,True,0,1.0,
+safedocs-0000996,safedocs,pdfaccessguru-1.1.0 gemma,True,True,0,1.0,
+safedocs-0000996,safedocs,opendataloader-pdf,True,False,56,1.0,
