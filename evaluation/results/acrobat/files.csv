@@ -1,84 +1,84 @@
 run_id,group,tool,ok,passes,problems,tagged_share,pages
-kumar-02286900413c,kumar held out,acrobat,True,False,5084,0.9814927801504982,3
-kumar-02286900413c,kumar held out,pdfaccessguru-1.1.0 rules,True,True,0,0.8473413379073756,
-kumar-02286900413c,kumar held out,pdfaccessguru-1.1.0 gemma,True,True,0,0.8473413379073756,
-kumar-02286900413c,kumar held out,opendataloader-pdf,True,False,787,0.997037037037037,
-kumar-1d7975ff95b3,kumar held out,acrobat,True,False,2027,0.976462676529926,5
-kumar-1d7975ff95b3,kumar held out,pdfaccessguru-1.1.0 rules,True,False,75,0.9906279287722587,
-kumar-1d7975ff95b3,kumar held out,pdfaccessguru-1.1.0 gemma,True,False,72,0.9906279287722587,
-kumar-1d7975ff95b3,kumar held out,opendataloader-pdf,True,False,1802,0.9731389102072141,
-kumar-1ea8c6b5d783,kumar held out,acrobat,True,False,296,0.024054982817869417,1
-kumar-1ea8c6b5d783,kumar held out,pdfaccessguru-1.1.0 rules,True,True,0,0.995,
-kumar-1ea8c6b5d783,kumar held out,pdfaccessguru-1.1.0 gemma,True,True,0,0.995,
-kumar-1ea8c6b5d783,kumar held out,opendataloader-pdf,True,False,208,0.945273631840796,
-kumar-2cda90f35fd8,kumar held out,acrobat,True,False,2506,0.9979600163198694,4
-kumar-2cda90f35fd8,kumar held out,pdfaccessguru-1.1.0 rules,True,False,4,0.9261992619926199,
-kumar-2cda90f35fd8,kumar held out,pdfaccessguru-1.1.0 gemma,True,False,4,0.9261992619926199,
-kumar-2cda90f35fd8,kumar held out,opendataloader-pdf,True,False,772,0.9850136239782016,
-kumar-30e272b900e3,kumar held out,acrobat,True,False,1372,0.707740916271722,5
-kumar-30e272b900e3,kumar held out,pdfaccessguru-1.1.0 rules,True,False,23,0.9514066496163683,
-kumar-30e272b900e3,kumar held out,pdfaccessguru-1.1.0 gemma,True,False,23,0.9514066496163683,
-kumar-30e272b900e3,kumar held out,opendataloader-pdf,True,False,1220,0.8900255754475703,
-kumar-3cb607816835,kumar development,acrobat,True,False,503,0.018,2
-kumar-3cb607816835,kumar development,pdfaccessguru-1.1.0 rules,True,True,0,0.9933110367892977,
-kumar-3cb607816835,kumar development,pdfaccessguru-1.1.0 gemma,True,True,0,0.9933110367892977,
-kumar-3cb607816835,kumar development,opendataloader-pdf,True,False,303,0.9765886287625418,
-kumar-4d6ae0d8bf49,kumar development,acrobat,True,False,2027,0.976462676529926,5
-kumar-4d6ae0d8bf49,kumar development,pdfaccessguru-1.1.0 rules,True,False,75,0.9906279287722587,
-kumar-4d6ae0d8bf49,kumar development,pdfaccessguru-1.1.0 gemma,True,False,72,0.9906279287722587,
-kumar-4d6ae0d8bf49,kumar development,opendataloader-pdf,True,False,1802,0.9731389102072141,
-kumar-597d94adc052,kumar held out,acrobat,True,False,2632,0.9030162412993039,4
-kumar-597d94adc052,kumar held out,pdfaccessguru-1.1.0 rules,True,False,18,0.8723549488054607,
-kumar-597d94adc052,kumar held out,pdfaccessguru-1.1.0 gemma,True,False,13,0.8723549488054607,
-kumar-597d94adc052,kumar held out,opendataloader-pdf,True,False,2013,0.9759812536613942,
-kumar-73113025a1b8,kumar held out,acrobat,True,False,2408,0.9896091044037605,5
-kumar-73113025a1b8,kumar held out,pdfaccessguru-1.1.0 rules,True,False,25,0.9958734525447043,
-kumar-73113025a1b8,kumar held out,pdfaccessguru-1.1.0 gemma,True,False,15,0.9958734525447043,
-kumar-73113025a1b8,kumar held out,opendataloader-pdf,True,False,1922,0.9714950552646888,
-kumar-865b41717989,kumar held out,acrobat,True,False,836,0.3051702395964691,2
-kumar-865b41717989,kumar held out,pdfaccessguru-1.1.0 rules,True,True,0,0.8994974874371859,
-kumar-865b41717989,kumar held out,pdfaccessguru-1.1.0 gemma,True,True,0,0.8994974874371859,
-kumar-865b41717989,kumar held out,opendataloader-pdf,True,False,619,0.7219430485762144,
-kumar-880fbd357f6b,kumar held out,acrobat,True,False,10009,0.8531780270348002,8
-kumar-880fbd357f6b,kumar held out,pdfaccessguru-1.1.0 rules,True,False,73,0.9747095010252905,
-kumar-880fbd357f6b,kumar held out,pdfaccessguru-1.1.0 gemma,True,False,73,0.9747095010252905,
-kumar-880fbd357f6b,kumar held out,opendataloader-pdf,True,False,3048,0.9310611928737413,
-kumar-911cbc4f474b,kumar held out,acrobat,True,False,5084,0.9814927801504982,3
-kumar-911cbc4f474b,kumar held out,pdfaccessguru-1.1.0 rules,True,True,0,0.8473413379073756,
-kumar-911cbc4f474b,kumar held out,pdfaccessguru-1.1.0 gemma,True,True,0,0.8473413379073756,
-kumar-911cbc4f474b,kumar held out,opendataloader-pdf,True,False,785,0.997037037037037,
-kumar-a6540e2e47dc,kumar held out,acrobat,True,False,1501,0.7300658376005852,5
-kumar-a6540e2e47dc,kumar held out,pdfaccessguru-1.1.0 rules,True,False,74,0.8931875525651808,
-kumar-a6540e2e47dc,kumar held out,pdfaccessguru-1.1.0 gemma,True,False,74,0.8931875525651808,
-kumar-a6540e2e47dc,kumar held out,opendataloader-pdf,True,False,1325,0.8698175787728026,
-kumar-a863c505e22c,kumar held out,acrobat,True,False,19,0.5694444444444444,2
-kumar-a863c505e22c,kumar held out,pdfaccessguru-1.1.0 rules,True,False,160,1.0,
-kumar-a863c505e22c,kumar held out,pdfaccessguru-1.1.0 gemma,True,False,160,1.0,
-kumar-a863c505e22c,kumar held out,opendataloader-pdf,True,False,8,0.7380952380952381,
-kumar-a93e017a1785,kumar development,acrobat,True,False,2408,0.9896091044037605,5
-kumar-a93e017a1785,kumar development,pdfaccessguru-1.1.0 rules,True,False,25,0.9958734525447043,
-kumar-a93e017a1785,kumar development,pdfaccessguru-1.1.0 gemma,True,False,14,0.9958734525447043,
-kumar-a93e017a1785,kumar development,opendataloader-pdf,True,False,1924,0.9714950552646888,
-kumar-c2f7a5fb9018,kumar held out,acrobat,True,False,319,0.1382636655948553,1
-kumar-c2f7a5fb9018,kumar held out,pdfaccessguru-1.1.0 rules,True,True,0,0.8960573476702509,
-kumar-c2f7a5fb9018,kumar held out,pdfaccessguru-1.1.0 gemma,True,True,0,0.8960573476702509,
-kumar-c2f7a5fb9018,kumar held out,opendataloader-pdf,True,False,294,0.7777777777777778,
-kumar-caae6c84c652,kumar held out,acrobat,True,False,2224,0.9623824451410659,5
-kumar-caae6c84c652,kumar held out,pdfaccessguru-1.1.0 rules,True,False,404,0.9911569638909359,
-kumar-caae6c84c652,kumar held out,pdfaccessguru-1.1.0 gemma,True,False,402,0.9911569638909359,
-kumar-caae6c84c652,kumar held out,opendataloader-pdf,True,False,2196,0.9906166219839142,
-kumar-cd15ea9e8982,kumar held out,acrobat,True,False,2224,0.9623824451410659,5
-kumar-cd15ea9e8982,kumar held out,pdfaccessguru-1.1.0 rules,True,False,404,0.9911569638909359,
-kumar-cd15ea9e8982,kumar held out,pdfaccessguru-1.1.0 gemma,True,False,402,0.9911569638909359,
-kumar-cd15ea9e8982,kumar held out,opendataloader-pdf,True,False,2196,0.9906166219839142,
-kumar-cd82ffb93fbc,kumar development,acrobat,True,False,2632,0.9030162412993039,4
-kumar-cd82ffb93fbc,kumar development,pdfaccessguru-1.1.0 rules,True,False,18,0.8729508196721312,
-kumar-cd82ffb93fbc,kumar development,pdfaccessguru-1.1.0 gemma,True,False,13,0.8729508196721312,
-kumar-cd82ffb93fbc,kumar development,opendataloader-pdf,True,False,2010,0.9759671746776084,
-kumar-cf6e3f730983,kumar held out,acrobat,True,False,415,0.7749381698268755,5
-kumar-cf6e3f730983,kumar held out,pdfaccessguru-1.1.0 rules,True,True,0,0.9420731707317073,
-kumar-cf6e3f730983,kumar held out,pdfaccessguru-1.1.0 gemma,True,True,0,0.9420731707317073,
-kumar-cf6e3f730983,kumar held out,opendataloader-pdf,True,False,9,0.8268109908409659,
+kumar-02286900413c,kumar,acrobat,True,False,5084,0.9814927801504982,3
+kumar-02286900413c,kumar,pdfaccessguru-1.1.0 rules,True,True,0,0.8473413379073756,
+kumar-02286900413c,kumar,pdfaccessguru-1.1.0 gemma,True,True,0,0.8473413379073756,
+kumar-02286900413c,kumar,opendataloader-pdf,True,False,787,0.997037037037037,
+kumar-1d7975ff95b3,kumar,acrobat,True,False,2027,0.976462676529926,5
+kumar-1d7975ff95b3,kumar,pdfaccessguru-1.1.0 rules,True,False,75,0.9906279287722587,
+kumar-1d7975ff95b3,kumar,pdfaccessguru-1.1.0 gemma,True,False,72,0.9906279287722587,
+kumar-1d7975ff95b3,kumar,opendataloader-pdf,True,False,1802,0.9731389102072141,
+kumar-1ea8c6b5d783,kumar,acrobat,True,False,296,0.024054982817869417,1
+kumar-1ea8c6b5d783,kumar,pdfaccessguru-1.1.0 rules,True,True,0,0.995,
+kumar-1ea8c6b5d783,kumar,pdfaccessguru-1.1.0 gemma,True,True,0,0.995,
+kumar-1ea8c6b5d783,kumar,opendataloader-pdf,True,False,208,0.945273631840796,
+kumar-2cda90f35fd8,kumar,acrobat,True,False,2506,0.9979600163198694,4
+kumar-2cda90f35fd8,kumar,pdfaccessguru-1.1.0 rules,True,False,4,0.9261992619926199,
+kumar-2cda90f35fd8,kumar,pdfaccessguru-1.1.0 gemma,True,False,4,0.9261992619926199,
+kumar-2cda90f35fd8,kumar,opendataloader-pdf,True,False,772,0.9850136239782016,
+kumar-30e272b900e3,kumar,acrobat,True,False,1372,0.707740916271722,5
+kumar-30e272b900e3,kumar,pdfaccessguru-1.1.0 rules,True,False,23,0.9514066496163683,
+kumar-30e272b900e3,kumar,pdfaccessguru-1.1.0 gemma,True,False,23,0.9514066496163683,
+kumar-30e272b900e3,kumar,opendataloader-pdf,True,False,1220,0.8900255754475703,
+kumar-3cb607816835,kumar,acrobat,True,False,503,0.018,2
+kumar-3cb607816835,kumar,pdfaccessguru-1.1.0 rules,True,True,0,0.9933110367892977,
+kumar-3cb607816835,kumar,pdfaccessguru-1.1.0 gemma,True,True,0,0.9933110367892977,
+kumar-3cb607816835,kumar,opendataloader-pdf,True,False,303,0.9765886287625418,
+kumar-4d6ae0d8bf49,kumar,acrobat,True,False,2027,0.976462676529926,5
+kumar-4d6ae0d8bf49,kumar,pdfaccessguru-1.1.0 rules,True,False,75,0.9906279287722587,
+kumar-4d6ae0d8bf49,kumar,pdfaccessguru-1.1.0 gemma,True,False,72,0.9906279287722587,
+kumar-4d6ae0d8bf49,kumar,opendataloader-pdf,True,False,1802,0.9731389102072141,
+kumar-597d94adc052,kumar,acrobat,True,False,2632,0.9030162412993039,4
+kumar-597d94adc052,kumar,pdfaccessguru-1.1.0 rules,True,False,18,0.8723549488054607,
+kumar-597d94adc052,kumar,pdfaccessguru-1.1.0 gemma,True,False,13,0.8723549488054607,
+kumar-597d94adc052,kumar,opendataloader-pdf,True,False,2013,0.9759812536613942,
+kumar-73113025a1b8,kumar,acrobat,True,False,2408,0.9896091044037605,5
+kumar-73113025a1b8,kumar,pdfaccessguru-1.1.0 rules,True,False,25,0.9958734525447043,
+kumar-73113025a1b8,kumar,pdfaccessguru-1.1.0 gemma,True,False,15,0.9958734525447043,
+kumar-73113025a1b8,kumar,opendataloader-pdf,True,False,1922,0.9714950552646888,
+kumar-865b41717989,kumar,acrobat,True,False,836,0.3051702395964691,2
+kumar-865b41717989,kumar,pdfaccessguru-1.1.0 rules,True,True,0,0.8994974874371859,
+kumar-865b41717989,kumar,pdfaccessguru-1.1.0 gemma,True,True,0,0.8994974874371859,
+kumar-865b41717989,kumar,opendataloader-pdf,True,False,619,0.7219430485762144,
+kumar-880fbd357f6b,kumar,acrobat,True,False,10009,0.8531780270348002,8
+kumar-880fbd357f6b,kumar,pdfaccessguru-1.1.0 rules,True,False,73,0.9747095010252905,
+kumar-880fbd357f6b,kumar,pdfaccessguru-1.1.0 gemma,True,False,73,0.9747095010252905,
+kumar-880fbd357f6b,kumar,opendataloader-pdf,True,False,3048,0.9310611928737413,
+kumar-911cbc4f474b,kumar,acrobat,True,False,5084,0.9814927801504982,3
+kumar-911cbc4f474b,kumar,pdfaccessguru-1.1.0 rules,True,True,0,0.8473413379073756,
+kumar-911cbc4f474b,kumar,pdfaccessguru-1.1.0 gemma,True,True,0,0.8473413379073756,
+kumar-911cbc4f474b,kumar,opendataloader-pdf,True,False,785,0.997037037037037,
+kumar-a6540e2e47dc,kumar,acrobat,True,False,1501,0.7300658376005852,5
+kumar-a6540e2e47dc,kumar,pdfaccessguru-1.1.0 rules,True,False,74,0.8931875525651808,
+kumar-a6540e2e47dc,kumar,pdfaccessguru-1.1.0 gemma,True,False,74,0.8931875525651808,
+kumar-a6540e2e47dc,kumar,opendataloader-pdf,True,False,1325,0.8698175787728026,
+kumar-a863c505e22c,kumar,acrobat,True,False,19,0.5694444444444444,2
+kumar-a863c505e22c,kumar,pdfaccessguru-1.1.0 rules,True,False,160,1.0,
+kumar-a863c505e22c,kumar,pdfaccessguru-1.1.0 gemma,True,False,160,1.0,
+kumar-a863c505e22c,kumar,opendataloader-pdf,True,False,8,0.7380952380952381,
+kumar-a93e017a1785,kumar,acrobat,True,False,2408,0.9896091044037605,5
+kumar-a93e017a1785,kumar,pdfaccessguru-1.1.0 rules,True,False,25,0.9958734525447043,
+kumar-a93e017a1785,kumar,pdfaccessguru-1.1.0 gemma,True,False,14,0.9958734525447043,
+kumar-a93e017a1785,kumar,opendataloader-pdf,True,False,1924,0.9714950552646888,
+kumar-c2f7a5fb9018,kumar,acrobat,True,False,319,0.1382636655948553,1
+kumar-c2f7a5fb9018,kumar,pdfaccessguru-1.1.0 rules,True,True,0,0.8960573476702509,
+kumar-c2f7a5fb9018,kumar,pdfaccessguru-1.1.0 gemma,True,True,0,0.8960573476702509,
+kumar-c2f7a5fb9018,kumar,opendataloader-pdf,True,False,294,0.7777777777777778,
+kumar-caae6c84c652,kumar,acrobat,True,False,2224,0.9623824451410659,5
+kumar-caae6c84c652,kumar,pdfaccessguru-1.1.0 rules,True,False,404,0.9911569638909359,
+kumar-caae6c84c652,kumar,pdfaccessguru-1.1.0 gemma,True,False,402,0.9911569638909359,
+kumar-caae6c84c652,kumar,opendataloader-pdf,True,False,2196,0.9906166219839142,
+kumar-cd15ea9e8982,kumar,acrobat,True,False,2224,0.9623824451410659,5
+kumar-cd15ea9e8982,kumar,pdfaccessguru-1.1.0 rules,True,False,404,0.9911569638909359,
+kumar-cd15ea9e8982,kumar,pdfaccessguru-1.1.0 gemma,True,False,402,0.9911569638909359,
+kumar-cd15ea9e8982,kumar,opendataloader-pdf,True,False,2196,0.9906166219839142,
+kumar-cd82ffb93fbc,kumar,acrobat,True,False,2632,0.9030162412993039,4
+kumar-cd82ffb93fbc,kumar,pdfaccessguru-1.1.0 rules,True,False,18,0.8729508196721312,
+kumar-cd82ffb93fbc,kumar,pdfaccessguru-1.1.0 gemma,True,False,13,0.8729508196721312,
+kumar-cd82ffb93fbc,kumar,opendataloader-pdf,True,False,2010,0.9759671746776084,
+kumar-cf6e3f730983,kumar,acrobat,True,False,415,0.7749381698268755,5
+kumar-cf6e3f730983,kumar,pdfaccessguru-1.1.0 rules,True,True,0,0.9420731707317073,
+kumar-cf6e3f730983,kumar,pdfaccessguru-1.1.0 gemma,True,True,0,0.9420731707317073,
+kumar-cf6e3f730983,kumar,opendataloader-pdf,True,False,9,0.8268109908409659,
 safedocs-0000003,safedocs,acrobat,True,False,66,1.0,1
 safedocs-0000003,safedocs,pdfaccessguru-1.1.0 rules,True,True,0,1.0,
 safedocs-0000003,safedocs,pdfaccessguru-1.1.0 gemma,True,True,0,1.0,

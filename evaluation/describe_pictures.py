@@ -1,7 +1,7 @@
 """
 Picture descriptions by PDFAccessGuru 1.1 (its prompt for the chosen level of detail, the abbreviations the whole
 document defines, its checks and length safeguard) for captured pictures, with Gemma 4 26B through OpenRouter.
-Run with the 1.1 code on PYTHONPATH (before the release: the development worktree; after: the frozen 1.1 venv).
+Run with the Python of evaluation/work/venv (PDFAccessGuru as installed from PyPI).
 
     python describe_pictures.py PICTURES.json OUTPUT.json [brief|standard|detailed]
 
