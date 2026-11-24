@@ -33,7 +33,34 @@ AI. The AI only writes descriptions of pictures and formulas; everything else is
 - After fixing, more than half of the Kumar files and about three quarters of the SafeDocs files pass.
 - About 95% of the problems are gone.
 
-### 2. Does it break anything?
+### 2. Which problems does it fix?
+
+Files with each kind of problem, before → after fixing. The 106 veraPDF rules are grouped into 8 kinds;
+[`results/problem-kinds/summary.md`](results/problem-kinds/summary.md) lists the rules of each kind and the number of
+problems.
+
+| Kind of problem | Kumar (107 files) | SafeDocs (200 files) |
+|---|---|---|
+| Content a screen reader may skip (neither tagged nor marked as decoration) | 90 → 9 | 154 → 3 |
+| Language of the text not set | 72 → 0 | 113 → 0 |
+| Document settings (PDF/UA mark, title, tag tree, tab order) | 107 → 0 | 200 → 0 |
+| Links and other annotations not tagged or without a description | 52 → 0 | 62 → 2 |
+| Pictures and formulas without a description | 59 → 10 | 40 → 0 |
+| Headings, lists and other tags used wrongly | 31 → 5 | 10 → 4 to 3 |
+| Tables with missing or wrong structure | 12 → 8 to 3 | 20 → 11 to 4 |
+| Fonts (not embedded, characters without a text value) | 69 → 27 to 25 | 123 → 38 to 37 |
+
+- Language and document settings are fixed in every file, links in all but 2. Content a screen reader may skip is
+  left in 12 of the 244 files that had it.
+- Fonts are what is left most often: of the 105 files that still fail without AI, 56 fail only because of font
+  problems.
+- veraPDF counts more font problems after fixing than before (5,243 → 16,041 without AI), although fewer files have
+  them. This happens with every tool, so this table counts files.
+- The Reference Suite has no problem of any kind, before or after.
+- veraPDF only checks that a picture has a description, not whether it is useful. People judge that in the picture
+  rating.
+
+### 3. Does it break anything?
 
 - **Accessible files stay accessible:** all 9 Reference Suite files still pass and look the same.
 - **No file gets worse:** no file fails more kinds of checks after fixing than before. (2 files have more problems of
@@ -42,7 +69,7 @@ AI. The AI only writes descriptions of pictures and formulas; everything else is
 - **Text stays the same:** without AI, the text changes on 2 of the 3,407 pages. With AI, it changes on 12 to 22
   pages per set (none in the Reference Suite), because the AI fills in letters for which the font gives no text.
 
-### 3. How does it compare with other tools?
+### 4. How does it compare with other tools?
 
 | | Acrobat Pro | opendataloader-pdf | PDFAccessGuru |
 |---|---|---|---|
@@ -63,13 +90,31 @@ the author's tags with its own, so it was not used on them.
 ² opendataloader-pdf stopped with an error on 4 untagged SafeDocs files; they are left out of its numbers (406,440
 problems before on the 312 files it processed).
 
+**Files with each kind of problem on the 156 untagged files**
+
+| Kind of problem | Before | Acrobat Pro | opendataloader-pdf ² | PDFAccessGuru |
+|---|---|---|---|---|
+| Content a screen reader may skip | 156 | 5 | 0 | 3 |
+| Language of the text not set | 124 | 129 | 132 | 0 |
+| Document settings | 156 | 156 | 152 | 0 |
+| Links and other annotations | 58 | 94 | 0 | 1 |
+| Pictures and formulas without a description | 0 ³ | 108 | 0 ⁴ | 0 |
+| Headings, lists and other tags used wrongly | 1 | 98 | 1 | 1 |
+| Tables with missing or wrong structure | 0 | 34 | 2 | 0 |
+| Fonts | 92 | 120 | 88 | 45 to 44 |
+
+³ Untagged files have no tagged pictures, so veraPDF finds none without a description.
+⁴ opendataloader-pdf describes every picture as "image 1", "image 2", and so on, which veraPDF accepts.
+
 - On the same untagged files, PDFAccessGuru leaves about 15 times fewer problems than Acrobat Pro and 12 times fewer
   than opendataloader-pdf. On all 316 files it removes about 95% of the problems; opendataloader-pdf removes about half.
+- Acrobat Pro and opendataloader-pdf tag the content, but leave the language and the document settings unset. Acrobat
+  Pro also adds pictures without a description and wrongly used tags.
 - **Acrobat Pro** and **opendataloader-pdf** tag files automatically, like PDFAccessGuru.
 - **PAVE 2.0** [[4]](#references) is a research tool in which a person tags the file with AI help. It took about 30
   manual actions per document.
 
-### 4. Does it fix the errors in the benchmark?
+### 5. Does it fix the errors in the benchmark?
 
 The benchmark's authors added specific errors to some files (5 files per error). Files in which the error is gone:
 
@@ -87,7 +132,7 @@ The benchmark's authors added specific errors to some files (5 files per error).
 - PDFAccessGuru keeps the tags an author has set. Good tables stay intact, but it fixes few wrong tags.
 - **Not fixed by PDFAccessGuru or opendataloader-pdf:** existing descriptions that say nothing, such as "Figure 6".
 
-### 5. What does it cost?
+### 6. What does it cost?
 
 - **Online AI:** USD 0.93 for all files and settings together, less than 1 cent per file.
 - **Time:** typically about half a minute per file without AI, and up to a minute with AI, on a 2019 laptop.
@@ -100,10 +145,11 @@ links, titles and languages.
 | Question | Results |
 |---|---|
 | 1. Make files accessible | [`results/summary.md`](results/summary.md), per file in [`results/runs/`](results/runs) |
-| 2. Break anything | [`results/summary.md`](results/summary.md), per file in `results/runs/*__noharm.csv` |
-| 3. Other tools | [`results/acrobat/`](results/acrobat), [`results/opendataloader/`](results/opendataloader), [`results/pave/auto-check.md`](results/pave/auto-check.md) |
-| 4. Benchmark errors | [`results/kumar-criteria/summary.md`](results/kumar-criteria/summary.md) |
-| 5. Cost and time | [`logs/costs.csv`](logs/costs.csv), and the `seconds` column of every table |
+| 2. Which problems | [`results/problem-kinds/summary.md`](results/problem-kinds/summary.md), per file and rule in [`results/problem-kinds/files.csv`](results/problem-kinds/files.csv) |
+| 3. Break anything | [`results/summary.md`](results/summary.md), per file in `results/runs/*__noharm.csv` |
+| 4. Other tools | [`results/acrobat/`](results/acrobat), [`results/opendataloader/`](results/opendataloader), [`results/problem-kinds/summary.md`](results/problem-kinds/summary.md), [`results/pave/auto-check.md`](results/pave/auto-check.md) |
+| 5. Benchmark errors | [`results/kumar-criteria/summary.md`](results/kumar-criteria/summary.md) |
+| 6. Cost and time | [`logs/costs.csv`](logs/costs.csv), and the `seconds` column of every table |
 
 **AI used:** Gemma 4 26B (`google/gemma-4-26b-a4b-it`) on all sets and GPT-6 Luna (`openai/gpt-6-luna`) on the Kumar
 set, both online through OpenRouter, with descriptions at the level "standard". The checker is veraPDF 1.30.1.
@@ -146,6 +192,7 @@ python evaluation/baseline_odl.py kumar      # then safedocs and reference (abou
 python evaluation/acrobat_files.py prepare   # then Acrobat by hand, as described in the script
 python evaluation/acrobat_files.py check && python evaluation/acrobat_summary.py
 evaluation/work/venv/bin/python evaluation/kumar_criteria.py
+evaluation/work/venv/bin/python evaluation/problem_kinds.py
 python evaluation/pave_auto_check.py
 ```
 
@@ -164,6 +211,7 @@ scripts. The full run was not repeated.
 | [`results/summary.md`](results/summary.md) | The main table: every set and AI setting, original against fixed |
 | [`results/runs/`](results/runs) | One row per file and setting (`SET__SETTING.csv`) and its do-no-harm check (`SET__SETTING__noharm.csv`) |
 | [`results/opendataloader/`](results/opendataloader), [`results/acrobat/`](results/acrobat) | The baselines, per file and summed |
+| [`results/problem-kinds/`](results/problem-kinds) | Every problem before and after, per file, tool and rule, grouped into 8 kinds |
 | [`results/kumar-criteria/`](results/kumar-criteria) | Kumar et al.'s criteria per file and tool, and how far the automatic check agrees with the experts' labels |
 | [`results/pave/`](results/pave) | The 4 PAVE documents: selection and automatic check per tool |
 | [`results/sets/`](results/sets), [`results/pictures/`](results/pictures) | The lists of test files and pictures |
@@ -186,6 +234,7 @@ by git; other folders can be set with `PDFACCESSGURU_EVAL_DATA` and `PDFACCESSGU
 | Baselines | `baseline_odl.py` | opendataloader-pdf 2.5.21 on the same files |
 | | `acrobat_files.py`, `acrobat_summary.py` | Acrobat Pro on the untagged files: preparation, check, comparison table |
 | | `check_one.py` | Checks one PDF exactly like PDFAccessGuru checks its own output |
+| Problem kinds | `problem_kinds.py` | Every problem before and after, grouped into 8 kinds, for every tool |
 | Criteria | `kumar_criteria.py` | Kumar et al.'s criteria before and after fixing (the automatic part) |
 | PAVE | `pave_auto_check.py` | The automatic check of every tool's output on the 4 documents |
 | | `build_pave_sheet.py`, `score_pave.py` | PAVE 2.0's 13 criteria, judged blind by people |

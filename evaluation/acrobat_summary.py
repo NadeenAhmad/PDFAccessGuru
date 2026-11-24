@@ -31,7 +31,6 @@ def table(path) -> dict:
 
 
 def main() -> int:
-    dev = {row["run_id"] for row in csv.DictReader((RESULTS / "sets" / "dev-1.1.csv").open(encoding="utf-8"))}
     rows = []
     for set_name in ("kumar", "safedocs"):
         tools = {
@@ -42,7 +41,7 @@ def main() -> int:
         for folder in sorted((CHECKS / set_name).glob("*")):
             check = json.loads((folder / "check.json").read_text(encoding="utf-8"))
             run_id = folder.name
-            group = set_name if set_name != "kumar" else ("kumar development" if run_id in dev else "kumar held out")
+            group = set_name
             rows.append({"run_id": run_id, "group": group, "tool": "acrobat", "ok": check.get("ok"),
                          "passes": check.get("passes"), "problems": check.get("problems"),
                          "tagged_share": check.get("tagged_share"), "pages": check.get("pages")})
@@ -69,7 +68,7 @@ def main() -> int:
              "All files were untagged before.", "",
              "| Files | Tool | Processed | Pass PDF/UA | Problems left (total) | Median problems per file | Median share of text reached |",
              "|---|---|---|---|---|---|---|"]
-    for group in ("kumar held out", "kumar development", "safedocs"):
+    for group in ("kumar", "safedocs"):
         for tool in ("acrobat", "pdfaccessguru-1.1.0 rules", "pdfaccessguru-1.1.0 gemma", "opendataloader-pdf"):
             part = [r for r in rows if r["group"] == group and r["tool"] == tool]
             if not part:

@@ -190,7 +190,6 @@ def errors(criterion: str, m: dict, original: dict | None) -> int | None:
 
 def main() -> int:
     entries = [row for row in csv.DictReader((RESULTS / "sets" / "kumar.csv").open(encoding="utf-8")) if row["run_id"]]
-    dev = {row["run_id"] for row in csv.DictReader((RESULTS / "sets" / "dev-1.1.csv").open(encoding="utf-8"))}
     OUT.mkdir(parents=True, exist_ok=True)
     rows, cache = [], {}
     for number, entry in enumerate(entries, start=1):
@@ -213,7 +212,7 @@ def main() -> int:
             if version == "original":
                 base = m
             rows.append({"entry": entry["entry"], "run_id": entry["run_id"], "criterion": entry["criterion"],
-                         "label": entry["label"], "set": "development" if entry["run_id"] in dev else "held out",
+                         "label": entry["label"],
                          "version": version, "errors": errors(entry["criterion"], m, None if version == "original" else base),
                          **m})
         if number % 10 == 0:
@@ -234,8 +233,7 @@ def summary(rows: list[dict]) -> str:
     criteria = sorted({row["criterion"] for row in rows})
     versions = [v for v in VERSIONS if any(row["version"] == v for row in rows)]
     lines = ["# Kumar et al.'s criteria: files without the added errors", "",
-             "Cells: files of this criterion and label with **no error left** / files with this version; in brackets "
-             "the same for the held-out files only (the development set was used while building 1.1). "
+             "Cells: files of this criterion and label with **no error left** / files with this version. "
              "\"Failed\" files had errors added by Kumar et al.; \"not present\" files had the element removed; "
              "\"passed\" files are the well-made ones (no harm: they should stay without errors). Acrobat ran on the "
              "untagged files only. Not measured automatically: reading order (people judge it in Part 2) and font "
@@ -248,9 +246,7 @@ def summary(rows: list[dict]) -> str:
             cells = []
             for version in versions:
                 group = [r for r in by[(criterion, label, version)] if r["errors"] is not None]
-                held = [r for r in group if r["set"] == "held out"]
-                cells.append(f"{sum(1 for r in group if r['errors'] == 0)}/{len(group)} "
-                             f"({sum(1 for r in held if r['errors'] == 0)}/{len(held)})" if group else "–")
+                cells.append(f"{sum(1 for r in group if r['errors'] == 0)}/{len(group)}" if group else "–")
             if any(c != "–" for c in cells):
                 lines.append(f"| {criterion} | " + " | ".join(cells) + " |")
         lines.append("")
