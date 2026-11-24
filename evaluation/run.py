@@ -5,7 +5,7 @@ Runs the frozen PDFAccessGuru version (1.1.0) on a test set with one AI setting,
         SET:      kumar | safedocs | reference
         SETTING:  rules (no AI) | local (Gemma 4 on this computer) | luna (GPT-6 Luna online, costs money)
 
-Raw outputs go to evaluation/work/runs-1.1.0/SET/SETTING/RUN_ID/ (fixed.pdf, report.json, result.json).
+Raw outputs go to evaluation/work/runs/SET/SETTING/RUN_ID/ (fixed.pdf, report.json, result.json).
 A finished file is not run again, so a stopped run can simply be started again.
 Online runs: the budget is checked before every file, and every request's price is logged (budget.py).
 At the end, results/runs/SET__SETTING.csv is rebuilt from all result.json files.

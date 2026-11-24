@@ -19,7 +19,7 @@ errors, with the same code for every version of a file: the original and each to
 The check is first run on the originals: its result should agree with the experts' labels (passed → no error,
 failed → errors found). That agreement is reported, so a reader can see how much the automatic check can be trusted.
 
-    evaluation/work/venv-1.1.0/bin/python evaluation/kumar_criteria.py
+    evaluation/work/venv/bin/python evaluation/kumar_criteria.py
 
 Writes results/kumar-criteria/files.csv (one row per benchmark entry and version) and results/kumar-criteria/summary.md.
 """
@@ -35,14 +35,14 @@ from pathlib import Path
 import pikepdf
 import pymupdf
 
-from paths import KUMAR, ODL_RUNS, RESULTS, WORK
+from paths import KUMAR, ODL_RUNS, RESULTS, RUNS, WORK
 
 OUT = RESULTS / "kumar-criteria"
 VERSIONS = {
     "original": None,
-    "pdfaccessguru-1.1.0 rules": WORK / "runs-1.1.0" / "kumar" / "rules",
-    "pdfaccessguru-1.1.0 gemma": WORK / "runs-1.1.0" / "kumar" / "gemma",
-    "pdfaccessguru-1.1.0 luna": WORK / "runs-1.1.0" / "kumar" / "luna",
+    "pdfaccessguru-1.1.0 rules": RUNS / "kumar" / "rules",
+    "pdfaccessguru-1.1.0 gemma": RUNS / "kumar" / "gemma",
+    "pdfaccessguru-1.1.0 luna": RUNS / "kumar" / "luna",
     "opendataloader-pdf": ODL_RUNS / "kumar" / "odl",
     "acrobat": WORK / "acrobat" / "output",
 }
