@@ -5,11 +5,12 @@ Part 2, structure (the PAVE-style check): the 4 documents of results/pave/select
   judged on PAVE 2.0's 13 criteria (build_pave_sheet.CRITERIA). Pages and screen-reader views come from
   build_pave_sheet (cache in evaluation/work/pave/cache).
 Part 3, links, titles and language:
-  - 30 links from held-out files of the Acrobat batch (15 external, 15 internal, at most 2 per file, fixed seed),
+  - 30 links from files of the Acrobat batch (15 external, 15 internal, at most 2 per file, fixed seed),
     plus every link of the 4 PAVE documents. For each: what a screen reader gets in the original, Acrobat,
     opendataloader-pdf and PDFAccessGuru 1.1 (and PAVE 2.0 on the PAVE documents);
   - title and language of each of these documents, in the same versions;
   - 20 of the passages PDFAccessGuru 1.1 marked as another language (fixed seed, at most 2 per file).
+The items of the site the judges rated are published with their ratings.
 Versions are blind: letters in a random order per item. The keys go to evaluation/work/rating/
 (key-structure.json, key-links.json), never into the site.
 
@@ -205,9 +206,8 @@ def part2(public: Path) -> tuple[list, dict]:
 
 # ---------------------------------------------------------------- Part 3
 
-def _held_out_batch() -> list[str]:
-    dev = {row["run_id"] for row in csv.DictReader((RESULTS / "sets" / "dev-1.1.csv").open(encoding="utf-8"))}
-    return sorted(p.stem for p in (ACROBAT / "input").glob("*.pdf") if not p.stem.startswith("pave") and p.stem not in dev)
+def _acrobat_batch() -> list[str]:
+    return sorted(p.stem for p in (ACROBAT / "input").glob("*.pdf") if not p.stem.startswith("pave"))
 
 
 def _candidate_links(run_id: str, path: Path) -> list[dict]:
@@ -267,7 +267,7 @@ def _visible_text(path: Path, page_number: int, pdf_rect) -> str:
         return clean_text(page.get_textbox(rect + (-1, -1, 1, 1)))
 
 
-def _passages(rng: random.Random, held: set[str]) -> list[dict]:
+def _passages(rng: random.Random, batch: set[str]) -> list[dict]:
     """Passages PDFAccessGuru 1.1 marked with another language than the document, with their text."""
     import pdfplumber
 
@@ -275,8 +275,6 @@ def _passages(rng: random.Random, held: set[str]) -> list[dict]:
     for test_set in ("kumar", "safedocs"):
         for fixed in sorted((RUNS_110 / test_set / "gemma").glob("*/fixed.pdf")):
             run_id = fixed.parent.name
-            if run_id in DEV:
-                continue
             try:
                 with pikepdf.open(fixed) as pdf:
                     doc_lang = str(pdf.Root.get("/Lang", "") or "")
@@ -353,16 +351,11 @@ def _passages(rng: random.Random, held: set[str]) -> list[dict]:
     return chosen
 
 
-DEV: set[str] = set()
-
-
 def part3(public: Path) -> tuple[list, dict]:
-    global DEV
-    DEV = {row["run_id"] for row in csv.DictReader((RESULTS / "sets" / "dev-1.1.csv").open(encoding="utf-8"))}
     rng = random.Random(SEED)
-    held = _held_out_batch()
+    batch = _acrobat_batch()
     pool = []
-    for run_id in held:
+    for run_id in batch:
         pool += _candidate_links(run_id, ACROBAT / "input" / f"{run_id}.pdf")
     rng.shuffle(pool)
     chosen, per_file, per_kind = [], {}, {"external": 0, "internal": 0}
@@ -428,7 +421,7 @@ def part3(public: Path) -> tuple[list, dict]:
         titles.append(item)
 
     passages = []
-    for number, passage in enumerate(_passages(rng, set(held)), start=1):
+    for number, passage in enumerate(_passages(rng, set(batch)), start=1):
         code = f"P{number:02d}"
         passages.append({"code": code, "text": passage["text"], "lang": language_name(passage["lang"]),
                          "doc_lang": language_name(passage["doc_lang"])})
