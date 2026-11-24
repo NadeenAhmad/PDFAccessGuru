@@ -14,8 +14,7 @@ from pathlib import Path
 
 from paths import RESULTS, RUN_TABLES, VERSION
 
-SETS = [("kumar", "Kumar, held out"), ("kumar", "Kumar, development set"), ("safedocs", "SafeDocs"),
-        ("reference", "Reference Suite")]
+SETS = [("kumar", "Kumar benchmark"), ("safedocs", "SafeDocs"), ("reference", "Reference Suite")]
 SETTINGS = [("rules", "none (simple rules)"), ("gemma", "Gemma 4 26B"), ("luna", "GPT-6 Luna")]
 
 
@@ -31,8 +30,6 @@ def number(text: str) -> float:
 
 
 def main() -> int:
-    with (RESULTS / "sets" / "dev-1.1.csv").open(encoding="utf-8") as handle:
-        dev = {row["run_id"] for row in csv.DictReader(handle)}
     lines = [f"# Results of PDFAccessGuru {VERSION}", "",
              "Original files against the files fixed by PDFAccessGuru, checked with veraPDF (PDF/UA-1). Built by",
              "`evaluation/summary.py` from the per-file tables in `results/runs-1.1.0/`.", "",
@@ -44,9 +41,6 @@ def main() -> int:
         for setting, ai in SETTINGS:
             rows = read(RUN_TABLES / f"{set_name}__{setting}.csv")
             harm = {row["run_id"]: row for row in read(RUN_TABLES / f"{set_name}__{setting}__noharm.csv")}
-            if set_name == "kumar":
-                held_out = label.endswith("held out")
-                rows = [row for row in rows if (row["run_id"] not in dev) == held_out]
             if not rows:
                 continue
             done = [row for row in rows if row["ok"] == "True"]
