@@ -2,29 +2,29 @@
 # The whole automatic evaluation of one frozen version, one step after the other, kind to the computer:
 # veraPDF (Java) on at most 2 cores, at most WORKERS files at a time, low priority (on a Mac kept awake).
 #
-#   VERSION=1.1.0 WORKERS=3 bash evaluation/run_all.sh
+#   WORKERS=3 bash evaluation/run_all.sh
 #   (daytime, while the computer is in use: NICE=15 JAVA_CORES=1)
 #
-# 1. installs the version from PyPI into evaluation/work/venv-VERSION with pinned library versions
+# 1. installs PDFAccessGuru from PyPI into evaluation/work/venv with pinned library versions
 #    (evaluation/constraints.txt), so the same tool gives the same results, and Java and veraPDF if missing;
 # 2. runs every set with every setting (rules, Gemma 4 26B, GPT-6 Luna on Kumar);
 # 3. the do-no-harm check of every output.
 # Online settings check the EUR 10 budget before every file (budget.py) and stop at the stop line.
 set -u
 cd "$(dirname "$0")/.."
-VERSION=${VERSION:?set VERSION, e.g. 1.1.0}
+VERSION=${VERSION:-1.1.0}
 WORKERS=${WORKERS:-3}
 NICE=${NICE:-10}
 WORK=${PDFACCESSGURU_EVAL_WORK:-$PWD/evaluation/work}
 AWAKE=$(command -v caffeinate >/dev/null && echo 'caffeinate -i' || echo '')
 export PDFACCESSGURU_EVAL_VERSION=$VERSION JAVA_TOOL_OPTIONS=-XX:ActiveProcessorCount=${JAVA_CORES:-2} PDFACCESSGURU_DESCRIPTIONS=standard
-if [ ! -x "$WORK/venv-$VERSION/bin/python" ]; then
-  uv venv -q -p 3.13 "$WORK/venv-$VERSION" || exit 1
-  VIRTUAL_ENV="$WORK/venv-$VERSION" uv pip install -q --refresh --no-build -c evaluation/constraints.txt "pdfaccessguru==$VERSION" || exit 1
+if [ ! -x "$WORK/venv/bin/python" ]; then
+  uv venv -q -p 3.13 "$WORK/venv" || exit 1
+  VIRTUAL_ENV="$WORK/venv" uv pip install -q --refresh --no-build -c evaluation/constraints.txt "pdfaccessguru==$VERSION" || exit 1
 fi
-"$WORK/venv-$VERSION/bin/python" -c "import pdfaccessguru, sys; print('PDFAccessGuru', pdfaccessguru.__version__); sys.exit(pdfaccessguru.__version__ != '$VERSION')" || exit 1
+"$WORK/venv/bin/python" -c "import pdfaccessguru, sys; print('PDFAccessGuru', pdfaccessguru.__version__); sys.exit(pdfaccessguru.__version__ != '$VERSION')" || exit 1
 # Java and veraPDF (the checker): installed into the user folder if they are missing
-PDFACCESSGURU_NO_UPDATE_CHECK=1 "$WORK/venv-$VERSION/bin/pdfaccessguru" doctor --install >/dev/null 2>&1
+PDFACCESSGURU_NO_UPDATE_CHECK=1 "$WORK/venv/bin/pdfaccessguru" doctor --install >/dev/null 2>&1
 # offline steps first: they may pause (lid closed) without harm; the online steps come later
 for step in "reference rules" "kumar rules" "safedocs rules" "reference gemma" "kumar gemma" "safedocs gemma" "kumar luna"; do
   set -- $step
@@ -39,7 +39,7 @@ for doc in pave-1 pave-2 pave-3 pave-4; do
   [ -f "$out" ] && continue
   mkdir -p "$WORK/pave/outputs/pdfaccessguru-$VERSION" "$WORK/pave/work"
   echo "== $(date +%H:%M) pave $doc"
-  $AWAKE nice -n "$NICE" "$WORK/venv-$VERSION/bin/python" -I evaluation/fix_one.py "$WORK/pave/input/$doc.pdf" "$WORK/pave/work/v$VERSION-$doc" gemma \
+  $AWAKE nice -n "$NICE" "$WORK/venv/bin/python" -I evaluation/fix_one.py "$WORK/pave/input/$doc.pdf" "$WORK/pave/work/v$VERSION-$doc" gemma \
     && cp "$WORK/pave/work/v$VERSION-$doc/fixed.pdf" "$out" || echo "!! pave $doc ended with an error"
   python3 -c "import json, sys; sys.path.insert(0, 'evaluation'); import budget; p = '$WORK/pave/work/v$VERSION-$doc/paid.jsonl'; import os
 rows = [json.loads(l) for l in open(p) if l.strip()] if os.path.exists(p) else []

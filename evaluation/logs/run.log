@@ -1,0 +1,785 @@
+PDFAccessGuru 1.1.0
+== 12:11 run reference rules
+2026-11-13 12:11:07 start: reference / rules, 9 files, 3 at a time
+2026-11-13 12:11:20 [2/9] reference-64b48f05fb32: ok, 13 s
+2026-11-13 12:11:21 [3/9] reference-a2fd446c88bc: ok, 14 s
+2026-11-13 12:11:29 [4/9] reference-a24c4ae3d4af: ok, 9 s
+2026-11-13 12:11:35 [6/9] reference-d36ba8c9377a: ok, 6 s
+2026-11-13 12:11:35 [5/9] reference-40ecdee49303: ok, 15 s
+2026-11-13 12:12:05 [7/9] reference-a8c32c6ea378: ok, 30 s
+2026-11-13 12:12:08 [8/9] reference-5f08253bbb23: ok, 32 s
+2026-11-13 12:12:08 [1/9] reference-bf0bf7f91b15: ok, 61 s
+2026-11-13 12:12:10 [9/9] reference-2da3c15ddee9: ok, 4 s
+2026-11-13 12:12:10 summary: evaluation/results/runs-1.1.0/reference__rules.csv
+== 12:12 no-harm reference rules
+reference/rules: 9 files checked, 0 with a changed page -> evaluation/results/runs-1.1.0/reference__rules__noharm.csv
+== 12:12 run kumar rules
+2026-11-13 12:12:19 start: kumar / rules, 107 files, 3 at a time
+2026-11-13 12:12:27 [3/107] kumar-8c21d5c2640d: ok, 8 s
+2026-11-13 12:12:37 [4/107] kumar-cce2469aa9bf: ok, 10 s
+2026-11-13 12:12:39 [2/107] kumar-836fb6ddb3aa: ok, 20 s
+2026-11-13 12:12:42 [1/107] kumar-e4f2083d2d97: ok, 24 s
+2026-11-13 12:12:55 [5/107] kumar-b086453a3219: ok, 18 s
+2026-11-13 12:13:05 [6/107] kumar-8221033b9387: ok, 26 s
+2026-11-13 12:13:05 [8/107] kumar-9cc20fb107a0: ok, 10 s
+2026-11-13 12:13:05 [7/107] kumar-c9216262c4d5: ok, 23 s
+2026-11-13 12:13:17 [9/107] kumar-a6c3e7498ed3: ok, 12 s
+2026-11-13 12:13:24 [10/107] kumar-e38f3a77573a: ok, 19 s
+2026-11-13 12:13:36 [13/107] kumar-140df8418272: ok, 12 s
+2026-11-13 12:13:42 [11/107] kumar-5e0b0cae650a: ok, 36 s
+2026-11-13 12:13:43 [12/107] kumar-f5164f630ab7: ok, 27 s
+2026-11-13 12:13:56 [15/107] kumar-9dc2b066ed71: ok, 14 s
+2026-11-13 12:13:58 [14/107] kumar-51160bc53b3e: ok, 21 s
+2026-11-13 12:14:07 [16/107] kumar-2d170a40b0d8: ok, 23 s
+2026-11-13 12:14:17 [17/107] kumar-e430c9ebb0ad: ok, 21 s
+2026-11-13 12:14:21 [18/107] kumar-b9f54bd52e8a: ok, 24 s
+2026-11-13 12:14:33 [19/107] kumar-f7b7855eaeb6: ok, 26 s
+2026-11-13 12:14:34 [20/107] kumar-99516106cb8f: ok, 17 s
+2026-11-13 12:14:49 [21/107] kumar-1a87c8249a13: ok, 28 s
+2026-11-13 12:14:57 [22/107] kumar-89c0c8da7cda: ok, 24 s
+2026-11-13 12:15:00 [23/107] kumar-926dfdceb9cd: ok, 26 s
+2026-11-13 12:15:18 [24/107] kumar-bc5652b8fba0: ok, 29 s
+2026-11-13 12:15:27 [25/107] kumar-aaac61085fab: ok, 30 s
+2026-11-13 12:15:27 [26/107] kumar-54f1109cd53b: ok, 27 s
+2026-11-13 12:15:46 [27/107] kumar-f8f125115975: ok, 28 s
+2026-11-13 12:15:46 [28/107] kumar-b9f1e7a37241: ok, 19 s
+2026-11-13 12:15:56 [29/107] kumar-5e293e73f7eb: ok, 29 s
+2026-11-13 12:16:02 [31/107] kumar-51196c315be0: ok, 16 s
+2026-11-13 12:16:04 [30/107] kumar-df99dc5692e4: ok, 19 s
+2026-11-13 12:16:10 [32/107] kumar-e902d6dc668c: ok, 14 s
+2026-11-13 12:16:20 [33/107] kumar-1af65e9c71de: ok, 18 s
+2026-11-13 12:16:28 [35/107] kumar-3e0426cb7318: ok, 18 s
+2026-11-13 12:16:35 [36/107] kumar-5fd66b250dd2: ok, 15 s
+2026-11-13 12:16:38 [34/107] kumar-36f658a2b632: ok, 34 s
+2026-11-13 12:16:42 [37/107] kumar-42dfec51327e: ok, 14 s
+2026-11-13 12:16:56 [38/107] kumar-d195404e7f65: ok, 21 s
+2026-11-13 12:17:03 [40/107] kumar-6976bfc2e96b: ok, 21 s
+2026-11-13 12:17:07 [39/107] kumar-25f85189eb59: ok, 29 s
+2026-11-13 12:17:14 [41/107] kumar-cd3f5aebd643: ok, 17 s
+2026-11-13 12:17:22 [42/107] kumar-7ad5a89e3482: ok, 19 s
+2026-11-13 12:17:42 [43/107] kumar-911cbc4f474b: ok, 35 s
+2026-11-13 12:18:28 [45/107] kumar-caae6c84c652: ok, 65 s
+2026-11-13 12:18:41 [46/107] kumar-73113025a1b8: ok, 59 s
+2026-11-13 12:19:13 [48/107] kumar-02286900413c: ok, 32 s
+2026-11-13 12:19:17 [44/107] kumar-1d7975ff95b3: ok, 124 s
+2026-11-13 12:19:44 [47/107] kumar-cd82ffb93fbc: ok, 76 s
+2026-11-13 12:20:24 [50/107] kumar-cd15ea9e8982: ok, 67 s
+2026-11-13 12:20:39 [51/107] kumar-a93e017a1785: ok, 55 s
+2026-11-13 12:21:06 [53/107] kumar-657b5854e173: ok, 27 s
+2026-11-13 12:21:18 [49/107] kumar-4d6ae0d8bf49: ok, 125 s
+2026-11-13 12:21:42 [52/107] kumar-597d94adc052: ok, 78 s
+2026-11-13 12:22:22 [56/107] kumar-8ffc195336c9: ok, 40 s
+2026-11-13 12:22:26 [55/107] kumar-00a17da2d47c: ok, 68 s
+2026-11-13 12:23:02 [58/107] kumar-89253ec33523: ok, 37 s
+2026-11-13 12:23:06 [57/107] kumar-5bc35ad149a6: ok, 44 s
+2026-11-13 12:24:08 [60/107] kumar-d390ce6bc9a3: ok, 61 s
+2026-11-13 12:24:45 [54/107] kumar-4069c0092645: ok, 219 s
+2026-11-13 12:24:54 [61/107] kumar-5931c4ab6272: ok, 46 s
+2026-11-13 12:25:16 [63/107] kumar-a4b803b15ca7: ok, 22 s
+2026-11-13 12:25:19 [59/107] kumar-fd617bb87782: ok, 137 s
+2026-11-13 12:25:38 [65/107] kumar-dae49c38b85c: ok, 19 s
+2026-11-13 12:25:40 [64/107] kumar-2a1cf2e487ff: ok, 24 s
+2026-11-13 12:25:53 [67/107] kumar-17b987c87099: ok, 13 s
+2026-11-13 12:25:53 [62/107] kumar-a5034e15e50d: ok, 68 s
+2026-11-13 12:26:19 [68/107] kumar-f6e94dad84ba: ok, 26 s
+2026-11-13 12:26:22 [69/107] kumar-6833908a771e: ok, 29 s
+2026-11-13 12:26:23 [66/107] kumar-37c6f9f4abb2: ok, 45 s
+2026-11-13 12:26:37 [72/107] kumar-f39aff0dcea5: ok, 13 s
+2026-11-13 12:26:41 [70/107] kumar-e7619237b431: ok, 22 s
+2026-11-13 12:27:03 [74/107] kumar-a13e783fea8e: ok, 22 s
+2026-11-13 12:27:08 [71/107] kumar-2f1896f43426: ok, 46 s
+2026-11-13 12:27:18 [73/107] kumar-46463bd698f5: ok, 41 s
+2026-11-13 12:27:33 [76/107] kumar-ce38443bb633: ok, 25 s
+2026-11-13 12:27:41 [75/107] kumar-2f1f7506ab50: ok, 38 s
+2026-11-13 12:27:43 [77/107] kumar-b63d676cabe0: ok, 26 s
+2026-11-13 12:28:03 [78/107] kumar-177c1b3a5a89: ok, 29 s
+2026-11-13 12:28:07 [79/107] kumar-1ea8c6b5d783: ok, 26 s
+2026-11-13 12:28:24 [80/107] kumar-865b41717989: ok, 40 s
+2026-11-13 12:28:33 [82/107] kumar-a863c505e22c: ok, 26 s
+2026-11-13 12:28:36 [81/107] kumar-c2f7a5fb9018: ok, 34 s
+2026-11-13 12:28:52 [83/107] kumar-3cb607816835: ok, 28 s
+2026-11-13 12:28:58 [84/107] kumar-bad4ae60e387: ok, 24 s
+2026-11-13 12:29:15 [87/107] kumar-65258bb85242: ok, 17 s
+2026-11-13 12:29:15 [86/107] kumar-7f3eae779304: ok, 24 s
+2026-11-13 12:29:31 [85/107] kumar-c551050e683d: ok, 54 s
+2026-11-13 12:29:34 [88/107] kumar-09b4361f45e7: ok, 19 s
+2026-11-13 12:29:57 [89/107] kumar-ee4476d3fe84: ok, 42 s
+2026-11-13 12:30:22 [91/107] kumar-0f3109bcef56: ok, 48 s
+2026-11-13 12:30:22 [90/107] kumar-2501efe7321d: ok, 52 s
+2026-11-13 12:31:03 [94/107] kumar-668f8291dce0: ok, 41 s
+2026-11-13 12:31:21 [92/107] kumar-026abd386c51: ok, 84 s
+2026-11-13 12:31:40 [93/107] kumar-2286e5f4b7b9: ok, 78 s
+2026-11-13 12:31:51 [95/107] kumar-0d2bd7c93688: ok, 48 s
+2026-11-13 12:32:08 [96/107] kumar-4f7cac530f83: ok, 47 s
+2026-11-13 12:32:37 [99/107] kumar-2cda90f35fd8: ok, 29 s
+2026-11-13 12:33:06 [97/107] kumar-902eb1e108d6: ok, 86 s
+2026-11-13 12:33:09 [98/107] kumar-e167a61526d7: ok, 79 s
+2026-11-13 12:33:21 [100/107] kumar-a6540e2e47dc: ok, 44 s
+2026-11-13 12:33:53 [101/107] kumar-30e272b900e3: ok, 47 s
+2026-11-13 12:34:32 [104/107] kumar-89b1acb8d510: ok, 39 s
+2026-11-13 12:34:47 [103/107] kumar-cf6e3f730983: ok, 86 s
+2026-11-13 12:34:53 [102/107] kumar-880fbd357f6b: ok, 104 s
+2026-11-13 12:35:20 [105/107] kumar-43c6cc37fca7: ok, 48 s
+2026-11-13 12:36:10 [107/107] kumar-013889918686: ok, 76 s
+2026-11-13 12:36:13 [106/107] kumar-9cad9e302635: ok, 86 s
+2026-11-13 12:36:13 summary: evaluation/results/runs-1.1.0/kumar__rules.csv
+== 12:36 no-harm kumar rules
+kumar/rules: 107 files checked, 0 with a changed page -> evaluation/results/runs-1.1.0/kumar__rules__noharm.csv
+== 12:36 run safedocs rules
+2026-11-13 12:36:52 start: safedocs / rules, 200 files, 3 at a time
+2026-11-13 12:37:06 [2/200] safedocs-0000010: ok, 14 s
+2026-11-13 12:37:13 [1/200] safedocs-0000003: ok, 21 s
+2026-11-13 12:37:22 [3/200] safedocs-0000015: ok, 30 s
+2026-11-13 12:37:28 [4/200] safedocs-0000019: ok, 22 s
+2026-11-13 12:37:45 [6/200] safedocs-0000021: ok, 23 s
+2026-11-13 12:37:56 [5/200] safedocs-0000020: ok, 44 s
+2026-11-13 12:38:09 [7/200] safedocs-0000028: ok, 41 s
+2026-11-13 12:38:15 [9/200] safedocs-0000033: ok, 18 s
+2026-11-13 12:38:39 [10/200] safedocs-0000034: ok, 30 s
+2026-11-13 12:38:44 [11/200] safedocs-0000043: ok, 29 s
+2026-11-13 12:39:07 [13/200] safedocs-0000052: ok, 23 s
+2026-11-13 12:39:13 [12/200] safedocs-0000050: ok, 34 s
+2026-11-13 12:39:35 [15/200] safedocs-0000059: ok, 22 s
+2026-11-13 12:39:39 [14/200] safedocs-0000056: ok, 32 s
+2026-11-13 12:40:03 [17/200] safedocs-0000064: ok, 24 s
+2026-11-13 12:40:11 [16/200] safedocs-0000060: ok, 36 s
+2026-11-13 12:40:25 [8/200] safedocs-0000030: ok, 160 s
+2026-11-13 12:40:44 [18/200] safedocs-0000067: ok, 41 s
+2026-11-13 12:40:44 [20/200] safedocs-0000074: ok, 19 s
+2026-11-13 12:40:54 [19/200] safedocs-0000073: ok, 43 s
+2026-11-13 12:41:07 [21/200] safedocs-0000080: ok, 23 s
+2026-11-13 12:41:12 [22/200] safedocs-0000082: ok, 28 s
+2026-11-13 12:41:23 [23/200] safedocs-0000083: ok, 29 s
+2026-11-13 12:41:28 [24/200] safedocs-0000085: ok, 21 s
+2026-11-13 12:41:32 [25/200] safedocs-0000087: ok, 21 s
+2026-11-13 12:41:50 [26/200] safedocs-0000090: ok, 27 s
+2026-11-13 12:41:54 [27/200] safedocs-0000102: ok, 26 s
+2026-11-13 12:42:03 [28/200] safedocs-0000103: ok, 31 s
+2026-11-13 12:42:22 [30/200] safedocs-0000135: ok, 28 s
+2026-11-13 12:42:27 [31/200] safedocs-0000139: ok, 24 s
+2026-11-13 12:42:42 [32/200] safedocs-0000143: ok, 21 s
+2026-11-13 12:42:51 [33/200] safedocs-0000148: ok, 23 s
+2026-11-13 12:43:01 [35/200] safedocs-0000159: ok, 11 s
+2026-11-13 12:43:19 [34/200] safedocs-0000157: ok, 36 s
+2026-11-13 12:43:23 [36/200] safedocs-0000166: ok, 22 s
+2026-11-13 12:43:39 [38/200] safedocs-0000178: ok, 16 s
+2026-11-13 12:43:54 [39/200] safedocs-0000184: ok, 14 s
+2026-11-13 12:44:06 [40/200] safedocs-0000185: ok, 13 s
+2026-11-13 12:46:18 [41/200] safedocs-0000188: ok, 131 s
+2026-11-13 12:46:32 [42/200] safedocs-0000189: ok, 14 s
+2026-11-13 12:47:09 [43/200] safedocs-0000191: ok, 37 s
+2026-11-13 12:47:22 [29/200] safedocs-0000123: ok, 332 s
+2026-11-13 12:47:32 [44/200] safedocs-0000195: ok, 23 s
+2026-11-13 12:47:46 [46/200] safedocs-0000201: ok, 14 s
+2026-11-13 12:47:58 [47/200] safedocs-0000210: ok, 12 s
+2026-11-13 12:48:49 [48/200] safedocs-0000211: ok, 50 s
+2026-11-13 12:49:01 [45/200] safedocs-0000196: ok, 98 s
+2026-11-13 12:49:22 [49/200] safedocs-0000218: ok, 33 s
+2026-11-13 12:49:24 [37/200] safedocs-0000174: ok, 365 s
+2026-11-13 12:49:43 [50/200] safedocs-0000220: ok, 42 s
+2026-11-13 12:49:43 [51/200] safedocs-0000221: ok, 21 s
+2026-11-13 12:49:45 [52/200] safedocs-0000223: ok, 21 s
+2026-11-13 12:50:03 [55/200] safedocs-0000233: ok, 18 s
+2026-11-13 12:50:14 [54/200] safedocs-0000228: ok, 31 s
+2026-11-13 12:50:27 [57/200] safedocs-0000237: ok, 13 s
+2026-11-13 12:50:48 [58/200] safedocs-0000238: ok, 22 s
+2026-11-13 12:50:51 [53/200] safedocs-0000227: ok, 68 s
+2026-11-13 12:51:11 [59/200] safedocs-0000239: ok, 23 s
+2026-11-13 12:51:14 [60/200] safedocs-0000241: ok, 23 s
+2026-11-13 12:51:18 [56/200] safedocs-0000234: ok, 75 s
+2026-11-13 12:51:31 [63/200] safedocs-0000254: ok, 14 s
+2026-11-13 12:51:37 [62/200] safedocs-0000248: ok, 23 s
+2026-11-13 12:51:39 [61/200] safedocs-0000246: ok, 28 s
+2026-11-13 12:51:45 [64/200] safedocs-0000270: ok, 14 s
+2026-11-13 12:52:01 [65/200] safedocs-0000278: ok, 24 s
+2026-11-13 12:52:16 [66/200] safedocs-0000283: ok, 37 s
+2026-11-13 12:52:17 [67/200] safedocs-0000292: ok, 32 s
+2026-11-13 12:52:34 [69/200] safedocs-0000306: ok, 19 s
+2026-11-13 12:52:35 [68/200] safedocs-0000295: ok, 34 s
+2026-11-13 12:52:59 [71/200] safedocs-0000313: ok, 25 s
+2026-11-13 12:53:05 [72/200] safedocs-0000321: ok, 30 s
+2026-11-13 12:53:19 [73/200] safedocs-0000326: ok, 20 s
+2026-11-13 12:53:28 [74/200] safedocs-0000329: ok, 23 s
+2026-11-13 12:53:39 [75/200] safedocs-0000335: ok, 20 s
+2026-11-13 12:53:54 [70/200] safedocs-0000311: ok, 98 s
+2026-11-13 12:54:12 [77/200] safedocs-0000359: ok, 33 s
+2026-11-13 12:54:24 [76/200] safedocs-0000337: ok, 57 s
+2026-11-13 12:54:25 [78/200] safedocs-0000360: ok, 31 s
+2026-11-13 12:54:44 [79/200] safedocs-0000362: ok, 32 s
+2026-11-13 12:54:59 [82/200] safedocs-0000394: ok, 15 s
+2026-11-13 12:55:05 [80/200] safedocs-0000382: ok, 41 s
+2026-11-13 12:55:06 [81/200] safedocs-0000389: ok, 41 s
+2026-11-13 12:55:15 [84/200] safedocs-0000410: ok, 10 s
+2026-11-13 12:55:26 [83/200] safedocs-0000396: ok, 28 s
+2026-11-13 12:55:28 [85/200] safedocs-0000412: ok, 23 s
+2026-11-13 12:55:40 [86/200] safedocs-0000415: ok, 25 s
+2026-11-13 12:55:58 [87/200] safedocs-0000422: ok, 32 s
+2026-11-13 12:55:59 [88/200] safedocs-0000423: ok, 31 s
+2026-11-13 12:56:04 [89/200] safedocs-0000433: ok, 24 s
+2026-11-13 12:56:20 [91/200] safedocs-0000444: ok, 21 s
+2026-11-13 12:56:23 [90/200] safedocs-0000442: ok, 25 s
+2026-11-13 12:56:35 [94/200] safedocs-0000458: ok, 12 s
+2026-11-13 12:56:39 [92/200] safedocs-0000451: ok, 35 s
+2026-11-13 12:56:48 [95/200] safedocs-0000460: ok, 13 s
+2026-11-13 12:56:58 [96/200] safedocs-0000472: ok, 19 s
+2026-11-13 12:57:14 [97/200] safedocs-0000473: ok, 26 s
+2026-11-13 12:57:26 [98/200] safedocs-0000477: ok, 28 s
+2026-11-13 12:57:40 [99/200] safedocs-0000479: ok, 26 s
+2026-11-13 12:57:51 [100/200] safedocs-0000480: ok, 25 s
+2026-11-13 12:57:58 [101/200] safedocs-0000482: ok, 18 s
+2026-11-13 12:58:10 [103/200] safedocs-0000493: ok, 12 s
+2026-11-13 12:58:12 [102/200] safedocs-0000487: ok, 21 s
+2026-11-13 12:58:23 [105/200] safedocs-0000511: ok, 11 s
+2026-11-13 12:58:47 [106/200] safedocs-0000512: ok, 24 s
+2026-11-13 13:00:47 [93/200] safedocs-0000456: ok, 267 s
+2026-11-13 13:00:52 [107/200] safedocs-0000535: ok, 125 s
+2026-11-13 13:01:01 [108/200] safedocs-0000541: ok, 14 s
+2026-11-13 13:01:17 [110/200] safedocs-0000545: ok, 16 s
+2026-11-13 13:01:22 [109/200] safedocs-0000544: ok, 30 s
+2026-11-13 13:01:37 [111/200] safedocs-0000546: ok, 20 s
+2026-11-13 13:01:49 [112/200] safedocs-0000554: ok, 27 s
+2026-11-13 13:02:12 [104/200] safedocs-0000508: ok, 241 s
+2026-11-13 13:02:12 [113/200] safedocs-0000558: ok, 35 s
+2026-11-13 13:02:32 [114/200] safedocs-0000559: ok, 42 s
+2026-11-13 13:02:50 [116/200] safedocs-0000572: ok, 38 s
+2026-11-13 13:02:56 [117/200] safedocs-0000573: ok, 25 s
+2026-11-13 13:03:48 [119/200] safedocs-0000579: ok, 51 s
+2026-11-13 13:04:07 [120/200] safedocs-0000583: ok, 19 s
+2026-11-13 13:04:55 [121/200] safedocs-0000595: ok, 49 s
+2026-11-13 13:04:56 [118/200] safedocs-0000578: ok, 126 s
+2026-11-13 13:05:13 [123/200] safedocs-0000600: ok, 17 s
+2026-11-13 13:05:30 [122/200] safedocs-0000596: ok, 35 s
+2026-11-13 13:05:52 [124/200] safedocs-0000607: ok, 39 s
+2026-11-13 13:06:00 [125/200] safedocs-0000611: ok, 30 s
+2026-11-13 13:07:10 [127/200] safedocs-0000632: ok, 70 s
+2026-11-13 13:07:36 [126/200] safedocs-0000622: ok, 104 s
+2026-11-13 13:07:54 [128/200] safedocs-0000636: ok, 44 s
+2026-11-13 13:08:13 [130/200] safedocs-0000649: ok, 19 s
+2026-11-13 13:08:30 [129/200] safedocs-0000642: ok, 54 s
+2026-11-13 13:08:42 [131/200] safedocs-0000656: ok, 29 s
+2026-11-13 13:09:08 [132/200] safedocs-0000660: ok, 39 s
+2026-11-13 13:09:09 [115/200] safedocs-0000568: ok, 418 s
+2026-11-13 13:09:43 [133/200] safedocs-0000668: ok, 62 s
+2026-11-13 13:09:46 [134/200] safedocs-0000677: ok, 38 s
+2026-11-13 13:10:05 [135/200] safedocs-0000678: ok, 56 s
+2026-11-13 13:10:13 [137/200] safedocs-0000687: ok, 27 s
+2026-11-13 13:10:23 [136/200] safedocs-0000680: ok, 40 s
+2026-11-13 13:10:38 [138/200] safedocs-0000691: ok, 33 s
+2026-11-13 13:10:39 [139/200] safedocs-0000696: ok, 26 s
+2026-11-13 13:11:04 [141/200] safedocs-0000701: ok, 26 s
+2026-11-13 13:11:11 [142/200] safedocs-0000706: ok, 32 s
+2026-11-13 13:11:28 [144/200] safedocs-0000710: ok, 17 s
+2026-11-13 13:11:47 [140/200] safedocs-0000698: ok, 84 s
+2026-11-13 13:12:00 [145/200] safedocs-0000714: ok, 32 s
+2026-11-13 13:12:29 [147/200] safedocs-0000732: ok, 29 s
+2026-11-13 13:12:31 [146/200] safedocs-0000716: ok, 44 s
+2026-11-13 13:13:12 [149/200] safedocs-0000735: ok, 41 s
+2026-11-13 13:13:16 [148/200] safedocs-0000734: ok, 47 s
+2026-11-13 13:14:30 [151/200] safedocs-0000744: ok, 74 s
+2026-11-13 13:14:56 [152/200] safedocs-0000746: ok, 26 s
+2026-11-13 13:15:05 [143/200] safedocs-0000707: ok, 241 s
+2026-11-13 13:15:35 [154/200] safedocs-0000757: ok, 30 s
+2026-11-13 13:15:54 [153/200] safedocs-0000747: ok, 57 s
+2026-11-13 13:16:01 [155/200] safedocs-0000758: ok, 26 s
+2026-11-13 13:16:02 [150/200] safedocs-0000741: ok, 170 s
+2026-11-13 13:16:30 [156/200] safedocs-0000759: ok, 36 s
+2026-11-13 13:16:30 [158/200] safedocs-0000770: ok, 29 s
+2026-11-13 13:16:49 [160/200] safedocs-0000778: ok, 19 s
+2026-11-13 13:18:27 [161/200] safedocs-0000795: ok, 98 s
+2026-11-13 13:19:43 [162/200] safedocs-0000801: ok, 76 s
+2026-11-13 13:20:03 [159/200] safedocs-0000771: ok, 213 s
+2026-11-13 13:21:42 [164/200] safedocs-0000811: ok, 99 s
+2026-11-13 13:22:11 [163/200] safedocs-0000809: ok, 148 s
+2026-11-13 13:22:17 [165/200] safedocs-0000817: ok, 35 s
+2026-11-13 13:22:56 [167/200] safedocs-0000825: ok, 38 s
+2026-11-13 13:23:30 [166/200] safedocs-0000821: ok, 79 s
+2026-11-13 13:24:16 [169/200] safedocs-0000832: ok, 47 s
+2026-11-13 13:24:56 [157/200] safedocs-0000769: ok, 535 s
+2026-11-13 13:25:10 [170/200] safedocs-0000836: ok, 54 s
+2026-11-13 13:25:37 [171/200] safedocs-0000842: ok, 41 s
+2026-11-13 13:25:51 [172/200] safedocs-0000846: ok, 41 s
+2026-11-13 13:26:42 [174/200] safedocs-0000859: ok, 51 s
+2026-11-13 13:27:14 [175/200] safedocs-0000863: ok, 32 s
+2026-11-13 13:27:33 [173/200] safedocs-0000850: ok, 116 s
+2026-11-13 13:28:01 [176/200] safedocs-0000883: ok, 47 s
+2026-11-13 13:28:43 [177/200] safedocs-0000885: ok, 71 s
+2026-11-13 13:29:12 [179/200] safedocs-0000896: ok, 28 s
+2026-11-13 13:29:33 [180/200] safedocs-0000899: ok, 22 s
+2026-11-13 13:30:15 [181/200] safedocs-0000902: ok, 42 s
+2026-11-13 13:30:32 [182/200] safedocs-0000903: ok, 17 s
+2026-11-13 13:31:54 [183/200] safedocs-0000916: ok, 82 s
+2026-11-13 13:32:35 [184/200] safedocs-0000922: ok, 41 s
+2026-11-13 13:33:15 [185/200] safedocs-0000940: ok, 40 s
+2026-11-13 13:34:28 [186/200] safedocs-0000948: ok, 73 s
+2026-11-13 13:34:59 [187/200] safedocs-0000949: ok, 32 s
+2026-11-13 13:40:01 [188/200] safedocs-0000953: ok, 302 s
+2026-11-13 13:40:43 [189/200] safedocs-0000962: ok, 42 s
+2026-11-13 13:41:04 [190/200] safedocs-0000963: ok, 21 s
+2026-11-13 13:41:30 [191/200] safedocs-0000969: ok, 26 s
+2026-11-13 13:43:09 [192/200] safedocs-0000972: ok, 99 s
+2026-11-13 13:43:38 [193/200] safedocs-0000973: ok, 30 s
+2026-11-13 13:43:55 [194/200] safedocs-0000975: ok, 17 s
+2026-11-13 13:44:10 [195/200] safedocs-0000976: ok, 15 s
+2026-11-13 13:44:35 [196/200] safedocs-0000977: ok, 25 s
+2026-11-13 13:44:50 [197/200] safedocs-0000983: ok, 15 s
+2026-11-13 13:45:10 [198/200] safedocs-0000985: ok, 20 s
+2026-11-13 13:45:32 [199/200] safedocs-0000996: ok, 22 s
+2026-11-13 13:45:55 [200/200] safedocs-0000997: ok, 23 s
+2026-11-13 13:46:10 [168/200] safedocs-0000826: ok, 1394 s
+2026-11-13 13:57:16 [178/200] safedocs-0000888: ok, 1755 s
+2026-11-13 13:57:16 summary: evaluation/results/runs-1.1.0/safedocs__rules.csv
+== 13:57 no-harm safedocs rules
+MuPDF error: format error: cmsOpenProfileFromMem failed
+
+MuPDF error: format error: cmsOpenProfileFromMem failed
+
+safedocs/rules: 200 files checked, 18 with a changed page -> evaluation/results/runs-1.1.0/safedocs__rules__noharm.csv
+== 14:00 run reference gemma
+2026-11-13 14:00:43 start: reference / gemma, 9 files, 3 at a time
+2026-11-13 14:00:56 [2/9] reference-64b48f05fb32: ok, 13 s, USD 0.0000; Spent so far: EUR 1.63 of EUR 10 (USD 1.8290; stop line USD 9.00)
+2026-11-13 14:00:57 [3/9] reference-a2fd446c88bc: ok, 14 s, USD 0.0000; Spent so far: EUR 1.63 of EUR 10 (USD 1.8290; stop line USD 9.00)
+2026-11-13 14:01:17 [4/9] reference-a24c4ae3d4af: ok, 21 s, USD 0.0000; Spent so far: EUR 1.63 of EUR 10 (USD 1.8290; stop line USD 9.00)
+2026-11-13 14:01:35 [6/9] reference-d36ba8c9377a: ok, 19 s, USD 0.0000; Spent so far: EUR 1.63 of EUR 10 (USD 1.8290; stop line USD 9.00)
+2026-11-13 14:01:37 [5/9] reference-40ecdee49303: ok, 40 s, USD 0.0000; Spent so far: EUR 1.63 of EUR 10 (USD 1.8290; stop line USD 9.00)
+2026-11-13 14:02:45 [7/9] reference-a8c32c6ea378: ok, 69 s, USD 0.0000; Spent so far: EUR 1.63 of EUR 10 (USD 1.8290; stop line USD 9.00)
+2026-11-13 14:02:48 [8/9] reference-5f08253bbb23: ok, 71 s, USD 0.0000; Spent so far: EUR 1.63 of EUR 10 (USD 1.8290; stop line USD 9.00)
+2026-11-13 14:02:48 [1/9] reference-bf0bf7f91b15: ok, 126 s, USD 0.0000; Spent so far: EUR 1.63 of EUR 10 (USD 1.8290; stop line USD 9.00)
+2026-11-13 14:02:52 [9/9] reference-2da3c15ddee9: ok, 7 s, USD 0.0000; Spent so far: EUR 1.63 of EUR 10 (USD 1.8290; stop line USD 9.00)
+2026-11-13 14:02:52 summary: evaluation/results/runs-1.1.0/reference__gemma.csv
+== 14:02 no-harm reference gemma
+reference/gemma: 9 files checked, 0 with a changed page -> evaluation/results/runs-1.1.0/reference__gemma__noharm.csv
+== 14:03 run kumar gemma
+2026-11-13 14:03:05 start: kumar / gemma, 107 files, 3 at a time
+2026-11-13 14:03:33 [3/107] kumar-8c21d5c2640d: ok, 28 s, USD 0.0001; Spent so far: EUR 1.63 of EUR 10 (USD 1.8291; stop line USD 9.00)
+2026-11-13 14:03:33 [2/107] kumar-836fb6ddb3aa: ok, 28 s, USD 0.0000; Spent so far: EUR 1.63 of EUR 10 (USD 1.8291; stop line USD 9.00)
+2026-11-13 14:03:39 [1/107] kumar-e4f2083d2d97: ok, 35 s, USD 0.0004; Spent so far: EUR 1.63 of EUR 10 (USD 1.8295; stop line USD 9.00)
+2026-11-13 14:03:50 [4/107] kumar-cce2469aa9bf: ok, 17 s, USD 0.0000; Spent so far: EUR 1.63 of EUR 10 (USD 1.8295; stop line USD 9.00)
+2026-11-13 14:04:35 [6/107] kumar-8221033b9387: ok, 56 s, USD 0.0003; Spent so far: EUR 1.63 of EUR 10 (USD 1.8298; stop line USD 9.00)
+2026-11-13 14:04:44 [7/107] kumar-c9216262c4d5: ok, 54 s, USD 0.0000; Spent so far: EUR 1.64 of EUR 10 (USD 1.8311; stop line USD 9.00)
+2026-11-13 14:04:44 [5/107] kumar-b086453a3219: ok, 70 s, USD 0.0014; Spent so far: EUR 1.64 of EUR 10 (USD 1.8311; stop line USD 9.00)
+2026-11-13 14:04:55 [8/107] kumar-9cc20fb107a0: ok, 12 s, USD 0.0000; Spent so far: EUR 1.64 of EUR 10 (USD 1.8312; stop line USD 9.00)
+2026-11-13 14:04:58 [9/107] kumar-a6c3e7498ed3: ok, 14 s, USD 0.0003; Spent so far: EUR 1.64 of EUR 10 (USD 1.8315; stop line USD 9.00)
+2026-11-13 14:05:38 [10/107] kumar-e38f3a77573a: ok, 54 s, USD 0.0012; Spent so far: EUR 1.64 of EUR 10 (USD 1.8327; stop line USD 9.00)
+2026-11-13 14:05:42 [12/107] kumar-f5164f630ab7: ok, 44 s, USD 0.0005; Spent so far: EUR 1.64 of EUR 10 (USD 1.8332; stop line USD 9.00)
+2026-11-13 14:05:45 [11/107] kumar-5e0b0cae650a: ok, 49 s, USD 0.0005; Spent so far: EUR 1.64 of EUR 10 (USD 1.8337; stop line USD 9.00)
+2026-11-13 14:05:59 [13/107] kumar-140df8418272: ok, 22 s, USD 0.0002; Spent so far: EUR 1.64 of EUR 10 (USD 1.8339; stop line USD 9.00)
+2026-11-13 14:06:06 [15/107] kumar-9dc2b066ed71: ok, 22 s, USD 0.0000; Spent so far: EUR 1.64 of EUR 10 (USD 1.8339; stop line USD 9.00)
+2026-11-13 14:06:45 [14/107] kumar-51160bc53b3e: ok, 63 s, USD 0.0014; Spent so far: EUR 1.64 of EUR 10 (USD 1.8354; stop line USD 9.00)
+2026-11-13 14:06:46 [16/107] kumar-2d170a40b0d8: ok, 46 s, USD 0.0008; Spent so far: EUR 1.64 of EUR 10 (USD 1.8361; stop line USD 9.00)
+2026-11-13 14:06:46 [17/107] kumar-e430c9ebb0ad: ok, 40 s, USD 0.0003; Spent so far: EUR 1.64 of EUR 10 (USD 1.8364; stop line USD 9.00)
+2026-11-13 14:07:05 [20/107] kumar-99516106cb8f: ok, 19 s, USD 0.0000; Spent so far: EUR 1.64 of EUR 10 (USD 1.8364; stop line USD 9.00)
+2026-11-13 14:07:27 [18/107] kumar-b9f54bd52e8a: ok, 41 s, USD 0.0012; Spent so far: EUR 1.64 of EUR 10 (USD 1.8376; stop line USD 9.00)
+2026-11-13 14:07:31 [19/107] kumar-f7b7855eaeb6: ok, 45 s, USD 0.0006; Spent so far: EUR 1.64 of EUR 10 (USD 1.8382; stop line USD 9.00)
+2026-11-13 14:07:46 [21/107] kumar-1a87c8249a13: ok, 41 s, USD 0.0006; Spent so far: EUR 1.64 of EUR 10 (USD 1.8388; stop line USD 9.00)
+2026-11-13 14:08:04 [22/107] kumar-89c0c8da7cda: ok, 37 s, USD 0.0002; Spent so far: EUR 1.64 of EUR 10 (USD 1.8390; stop line USD 9.00)
+2026-11-13 14:08:17 [23/107] kumar-926dfdceb9cd: ok, 47 s, USD 0.0011; Spent so far: EUR 1.64 of EUR 10 (USD 1.8400; stop line USD 9.00)
+2026-11-13 14:08:35 [24/107] kumar-bc5652b8fba0: ok, 50 s, USD 0.0005; Spent so far: EUR 1.64 of EUR 10 (USD 1.8405; stop line USD 9.00)
+2026-11-13 14:08:49 [25/107] kumar-aaac61085fab: ok, 45 s, USD 0.0006; Spent so far: EUR 1.64 of EUR 10 (USD 1.8411; stop line USD 9.00)
+2026-11-13 14:08:59 [26/107] kumar-54f1109cd53b: ok, 42 s, USD 0.0002; Spent so far: EUR 1.65 of EUR 10 (USD 1.8413; stop line USD 9.00)
+2026-11-13 14:09:19 [28/107] kumar-b9f1e7a37241: ok, 30 s, USD 0.0002; Spent so far: EUR 1.65 of EUR 10 (USD 1.8415; stop line USD 9.00)
+2026-11-13 14:09:22 [27/107] kumar-f8f125115975: ok, 47 s, USD 0.0005; Spent so far: EUR 1.65 of EUR 10 (USD 1.8420; stop line USD 9.00)
+2026-11-13 14:09:48 [29/107] kumar-5e293e73f7eb: ok, 48 s, USD 0.0005; Spent so far: EUR 1.65 of EUR 10 (USD 1.8426; stop line USD 9.00)
+2026-11-13 14:09:48 [31/107] kumar-51196c315be0: ok, 26 s, USD 0.0000; Spent so far: EUR 1.65 of EUR 10 (USD 1.8426; stop line USD 9.00)
+2026-11-13 14:09:51 [30/107] kumar-df99dc5692e4: ok, 32 s, USD 0.0002; Spent so far: EUR 1.65 of EUR 10 (USD 1.8428; stop line USD 9.00)
+2026-11-13 14:10:13 [32/107] kumar-e902d6dc668c: ok, 25 s, USD 0.0000; Spent so far: EUR 1.65 of EUR 10 (USD 1.8428; stop line USD 9.00)
+2026-11-13 14:10:23 [33/107] kumar-1af65e9c71de: ok, 35 s, USD 0.0002; Spent so far: EUR 1.65 of EUR 10 (USD 1.8430; stop line USD 9.00)
+2026-11-13 14:10:47 [35/107] kumar-3e0426cb7318: ok, 34 s, USD 0.0002; Spent so far: EUR 1.65 of EUR 10 (USD 1.8432; stop line USD 9.00)
+2026-11-13 14:10:49 [36/107] kumar-5fd66b250dd2: ok, 26 s, USD 0.0000; Spent so far: EUR 1.65 of EUR 10 (USD 1.8432; stop line USD 9.00)
+2026-11-13 14:10:55 [34/107] kumar-36f658a2b632: ok, 64 s, USD 0.0009; Spent so far: EUR 1.65 of EUR 10 (USD 1.8441; stop line USD 9.00)
+2026-11-13 14:11:09 [37/107] kumar-42dfec51327e: ok, 21 s, USD 0.0000; Spent so far: EUR 1.65 of EUR 10 (USD 1.8441; stop line USD 9.00)
+2026-11-13 14:11:23 [38/107] kumar-d195404e7f65: ok, 33 s, USD 0.0001; Spent so far: EUR 1.65 of EUR 10 (USD 1.8442; stop line USD 9.00)
+2026-11-13 14:11:36 [39/107] kumar-25f85189eb59: ok, 41 s, USD 0.0005; Spent so far: EUR 1.65 of EUR 10 (USD 1.8446; stop line USD 9.00)
+2026-11-13 14:11:42 [41/107] kumar-cd3f5aebd643: ok, 19 s, USD 0.0000; Spent so far: EUR 1.65 of EUR 10 (USD 1.8446; stop line USD 9.00)
+2026-11-13 14:11:57 [42/107] kumar-7ad5a89e3482: ok, 21 s, USD 0.0000; Spent so far: EUR 1.65 of EUR 10 (USD 1.8446; stop line USD 9.00)
+2026-11-13 14:12:03 [40/107] kumar-6976bfc2e96b: ok, 55 s, USD 0.0001; Spent so far: EUR 1.65 of EUR 10 (USD 1.8447; stop line USD 9.00)
+2026-11-13 14:12:34 [43/107] kumar-911cbc4f474b: ok, 52 s, USD 0.0006; Spent so far: EUR 1.65 of EUR 10 (USD 1.8453; stop line USD 9.00)
+2026-11-13 14:14:12 [45/107] kumar-caae6c84c652: ok, 129 s, USD 0.0020; Spent so far: EUR 1.65 of EUR 10 (USD 1.8473; stop line USD 9.00)
+2026-11-13 14:14:59 [44/107] kumar-1d7975ff95b3: ok, 182 s, USD 0.0049; Spent so far: EUR 1.65 of EUR 10 (USD 1.8522; stop line USD 9.00)
+2026-11-13 14:15:35 [48/107] kumar-02286900413c: ok, 36 s, USD 0.0006; Spent so far: EUR 1.66 of EUR 10 (USD 1.8529; stop line USD 9.00)
+2026-11-13 14:16:43 [46/107] kumar-73113025a1b8: ok, 250 s, USD 0.0155; Spent so far: EUR 1.67 of EUR 10 (USD 1.8684; stop line USD 9.00)
+2026-11-13 14:17:10 [47/107] kumar-cd82ffb93fbc: ok, 178 s, USD 0.0068; Spent so far: EUR 1.68 of EUR 10 (USD 1.8751; stop line USD 9.00)
+2026-11-13 14:18:18 [50/107] kumar-cd15ea9e8982: ok, 95 s, USD 0.0023; Spent so far: EUR 1.68 of EUR 10 (USD 1.8774; stop line USD 9.00)
+2026-11-13 14:18:28 [49/107] kumar-4d6ae0d8bf49: ok, 173 s, USD 0.0054; Spent so far: EUR 1.68 of EUR 10 (USD 1.8828; stop line USD 9.00)
+2026-11-13 14:19:03 [53/107] kumar-657b5854e173: ok, 35 s, USD 0.0008; Spent so far: EUR 1.68 of EUR 10 (USD 1.8836; stop line USD 9.00)
+2026-11-13 14:21:15 [51/107] kumar-a93e017a1785: ok, 245 s, USD 0.0155; Spent so far: EUR 1.70 of EUR 10 (USD 1.8991; stop line USD 9.00)
+2026-11-13 14:21:26 [52/107] kumar-597d94adc052: ok, 178 s, USD 0.0057; Spent so far: EUR 1.70 of EUR 10 (USD 1.9048; stop line USD 9.00)
+2026-11-13 14:22:13 [56/107] kumar-8ffc195336c9: ok, 47 s, USD 0.0009; Spent so far: EUR 1.70 of EUR 10 (USD 1.9057; stop line USD 9.00)
+2026-11-13 14:22:56 [55/107] kumar-00a17da2d47c: ok, 90 s, USD 0.0020; Spent so far: EUR 1.70 of EUR 10 (USD 1.9077; stop line USD 9.00)
+2026-11-13 14:23:05 [54/107] kumar-4069c0092645: ok, 242 s, USD 0.0015; Spent so far: EUR 1.71 of EUR 10 (USD 1.9092; stop line USD 9.00)
+2026-11-13 14:23:16 [57/107] kumar-5bc35ad149a6: ok, 62 s, USD 0.0008; Spent so far: EUR 1.71 of EUR 10 (USD 1.9101; stop line USD 9.00)
+2026-11-13 14:24:07 [58/107] kumar-89253ec33523: ok, 71 s, USD 0.0007; Spent so far: EUR 1.71 of EUR 10 (USD 1.9108; stop line USD 9.00)
+2026-11-13 14:25:11 [60/107] kumar-d390ce6bc9a3: ok, 115 s, USD 0.0021; Spent so far: EUR 1.71 of EUR 10 (USD 1.9129; stop line USD 9.00)
+2026-11-13 14:25:30 [61/107] kumar-5931c4ab6272: ok, 83 s, USD 0.0010; Spent so far: EUR 1.71 of EUR 10 (USD 1.9139; stop line USD 9.00)
+2026-11-13 14:26:22 [63/107] kumar-a4b803b15ca7: ok, 51 s, USD 0.0001; Spent so far: EUR 1.71 of EUR 10 (USD 1.9140; stop line USD 9.00)
+2026-11-13 14:27:11 [64/107] kumar-2a1cf2e487ff: ok, 49 s, USD 0.0001; Spent so far: EUR 1.71 of EUR 10 (USD 1.9141; stop line USD 9.00)
+2026-11-13 14:27:32 [59/107] kumar-fd617bb87782: ok, 267 s, USD 0.0041; Spent so far: EUR 1.71 of EUR 10 (USD 1.9181; stop line USD 9.00)
+2026-11-13 14:27:38 [62/107] kumar-a5034e15e50d: ok, 147 s, USD 0.0016; Spent so far: EUR 1.72 of EUR 10 (USD 1.9197; stop line USD 9.00)
+2026-11-13 14:27:48 [65/107] kumar-dae49c38b85c: ok, 36 s, USD 0.0001; Spent so far: EUR 1.72 of EUR 10 (USD 1.9198; stop line USD 9.00)
+2026-11-13 14:28:00 [67/107] kumar-17b987c87099: ok, 22 s, USD 0.0000; Spent so far: EUR 1.72 of EUR 10 (USD 1.9198; stop line USD 9.00)
+2026-11-13 14:28:30 [68/107] kumar-f6e94dad84ba: ok, 42 s, USD 0.0000; Spent so far: EUR 1.72 of EUR 10 (USD 1.9198; stop line USD 9.00)
+2026-11-13 14:29:09 [69/107] kumar-6833908a771e: ok, 69 s, USD 0.0002; Spent so far: EUR 1.72 of EUR 10 (USD 1.9200; stop line USD 9.00)
+2026-11-13 14:29:39 [66/107] kumar-37c6f9f4abb2: ok, 127 s, USD 0.0012; Spent so far: EUR 1.72 of EUR 10 (USD 1.9213; stop line USD 9.00)
+2026-11-13 14:29:40 [70/107] kumar-e7619237b431: ok, 70 s, USD 0.0001; Spent so far: EUR 1.72 of EUR 10 (USD 1.9213; stop line USD 9.00)
+2026-11-13 14:29:54 [72/107] kumar-f39aff0dcea5: ok, 15 s, USD 0.0000; Spent so far: EUR 1.72 of EUR 10 (USD 1.9213; stop line USD 9.00)
+2026-11-13 14:30:35 [74/107] kumar-a13e783fea8e: ok, 40 s, USD 0.0003; Spent so far: EUR 1.72 of EUR 10 (USD 1.9216; stop line USD 9.00)
+2026-11-13 14:33:23 [73/107] kumar-46463bd698f5: ok, 223 s, USD 0.0112; Spent so far: EUR 1.73 of EUR 10 (USD 1.9328; stop line USD 9.00)
+2026-11-13 14:33:26 [71/107] kumar-2f1896f43426: ok, 226 s, USD 0.0014; Spent so far: EUR 1.73 of EUR 10 (USD 1.9342; stop line USD 9.00)
+2026-11-13 14:33:27 [75/107] kumar-2f1f7506ab50: ok, 172 s, USD 0.0002; Spent so far: EUR 1.73 of EUR 10 (USD 1.9344; stop line USD 9.00)
+2026-11-13 14:33:56 [77/107] kumar-b63d676cabe0: ok, 30 s, USD 0.0000; Spent so far: EUR 1.73 of EUR 10 (USD 1.9344; stop line USD 9.00)
+2026-11-13 14:34:02 [78/107] kumar-177c1b3a5a89: ok, 35 s, USD 0.0002; Spent so far: EUR 1.73 of EUR 10 (USD 1.9346; stop line USD 9.00)
+2026-11-13 14:34:17 [76/107] kumar-ce38443bb633: ok, 50 s, USD 0.0013; Spent so far: EUR 1.73 of EUR 10 (USD 1.9358; stop line USD 9.00)
+2026-11-13 14:34:34 [79/107] kumar-1ea8c6b5d783: ok, 37 s, USD 0.0003; Spent so far: EUR 1.73 of EUR 10 (USD 1.9361; stop line USD 9.00)
+2026-11-13 14:35:00 [80/107] kumar-865b41717989: ok, 58 s, USD 0.0003; Spent so far: EUR 1.73 of EUR 10 (USD 1.9364; stop line USD 9.00)
+2026-11-13 14:35:06 [82/107] kumar-a863c505e22c: ok, 32 s, USD 0.0000; Spent so far: EUR 1.73 of EUR 10 (USD 1.9364; stop line USD 9.00)
+2026-11-13 14:35:09 [81/107] kumar-c2f7a5fb9018: ok, 53 s, USD 0.0012; Spent so far: EUR 1.73 of EUR 10 (USD 1.9376; stop line USD 9.00)
+2026-11-13 14:37:12 [83/107] kumar-3cb607816835: ok, 131 s, USD 0.0001; Spent so far: EUR 1.73 of EUR 10 (USD 1.9378; stop line USD 9.00)
+2026-11-13 14:37:12 [84/107] kumar-bad4ae60e387: ok, 127 s, USD 0.0005; Spent so far: EUR 1.73 of EUR 10 (USD 1.9383; stop line USD 9.00)
+2026-11-13 14:37:13 [85/107] kumar-c551050e683d: ok, 124 s, USD 0.0003; Spent so far: EUR 1.73 of EUR 10 (USD 1.9386; stop line USD 9.00)
+2026-11-13 14:37:33 [87/107] kumar-65258bb85242: ok, 20 s, USD 0.0000; Spent so far: EUR 1.73 of EUR 10 (USD 1.9386; stop line USD 9.00)
+2026-11-13 14:37:39 [88/107] kumar-09b4361f45e7: ok, 26 s, USD 0.0001; Spent so far: EUR 1.73 of EUR 10 (USD 1.9387; stop line USD 9.00)
+2026-11-13 14:37:53 [86/107] kumar-7f3eae779304: ok, 40 s, USD 0.0012; Spent so far: EUR 1.73 of EUR 10 (USD 1.9399; stop line USD 9.00)
+2026-11-13 14:38:35 [89/107] kumar-ee4476d3fe84: ok, 62 s, USD 0.0004; Spent so far: EUR 1.73 of EUR 10 (USD 1.9403; stop line USD 9.00)
+2026-11-13 14:39:04 [90/107] kumar-2501efe7321d: ok, 85 s, USD 0.0018; Spent so far: EUR 1.74 of EUR 10 (USD 1.9421; stop line USD 9.00)
+2026-11-13 14:39:07 [91/107] kumar-0f3109bcef56: ok, 74 s, USD 0.0005; Spent so far: EUR 1.74 of EUR 10 (USD 1.9426; stop line USD 9.00)
+2026-11-13 14:40:08 [94/107] kumar-668f8291dce0: ok, 61 s, USD 0.0004; Spent so far: EUR 1.74 of EUR 10 (USD 1.9430; stop line USD 9.00)
+2026-11-13 14:40:40 [92/107] kumar-026abd386c51: ok, 125 s, USD 0.0004; Spent so far: EUR 1.74 of EUR 10 (USD 1.9434; stop line USD 9.00)
+2026-11-13 14:40:50 [93/107] kumar-2286e5f4b7b9: ok, 106 s, USD 0.0007; Spent so far: EUR 1.74 of EUR 10 (USD 1.9441; stop line USD 9.00)
+2026-11-13 14:41:18 [95/107] kumar-0d2bd7c93688: ok, 70 s, USD 0.0015; Spent so far: EUR 1.74 of EUR 10 (USD 1.9456; stop line USD 9.00)
+2026-11-13 14:41:39 [96/107] kumar-4f7cac530f83: ok, 59 s, USD 0.0004; Spent so far: EUR 1.74 of EUR 10 (USD 1.9460; stop line USD 9.00)
+2026-11-13 14:42:15 [99/107] kumar-2cda90f35fd8: ok, 36 s, USD 0.0010; Spent so far: EUR 1.74 of EUR 10 (USD 1.9470; stop line USD 9.00)
+2026-11-13 14:42:33 [97/107] kumar-902eb1e108d6: ok, 102 s, USD 0.0011; Spent so far: EUR 1.74 of EUR 10 (USD 1.9481; stop line USD 9.00)
+2026-11-13 14:42:42 [98/107] kumar-e167a61526d7: ok, 84 s, USD 0.0007; Spent so far: EUR 1.74 of EUR 10 (USD 1.9488; stop line USD 9.00)
+2026-11-13 14:43:23 [101/107] kumar-30e272b900e3: ok, 50 s, USD 0.0013; Spent so far: EUR 1.74 of EUR 10 (USD 1.9500; stop line USD 9.00)
+2026-11-13 14:43:44 [100/107] kumar-a6540e2e47dc: ok, 89 s, USD 0.0043; Spent so far: EUR 1.75 of EUR 10 (USD 1.9543; stop line USD 9.00)
+2026-11-13 14:44:31 [104/107] kumar-89b1acb8d510: ok, 46 s, USD 0.0006; Spent so far: EUR 1.75 of EUR 10 (USD 1.9549; stop line USD 9.00)
+2026-11-13 14:44:46 [103/107] kumar-cf6e3f730983: ok, 84 s, USD 0.0005; Spent so far: EUR 1.75 of EUR 10 (USD 1.9554; stop line USD 9.00)
+2026-11-13 14:45:21 [105/107] kumar-43c6cc37fca7: ok, 50 s, USD 0.0004; Spent so far: EUR 1.75 of EUR 10 (USD 1.9558; stop line USD 9.00)
+2026-11-13 14:46:14 [102/107] kumar-880fbd357f6b: ok, 212 s, USD 0.0136; Spent so far: EUR 1.76 of EUR 10 (USD 1.9694; stop line USD 9.00)
+2026-11-13 14:46:28 [106/107] kumar-9cad9e302635: ok, 101 s, USD 0.0010; Spent so far: EUR 1.76 of EUR 10 (USD 1.9704; stop line USD 9.00)
+2026-11-13 14:46:44 [107/107] kumar-013889918686: ok, 84 s, USD 0.0007; Spent so far: EUR 1.76 of EUR 10 (USD 1.9711; stop line USD 9.00)
+2026-11-13 14:46:44 summary: evaluation/results/runs-1.1.0/kumar__gemma.csv
+== 14:46 no-harm kumar gemma
+kumar/gemma: 107 files checked, 6 with a changed page -> evaluation/results/runs-1.1.0/kumar__gemma__noharm.csv
+== 14:47 run safedocs gemma
+2026-11-13 14:47:22 start: safedocs / gemma, 200 files, 3 at a time
+2026-11-13 14:47:37 [2/200] safedocs-0000010: ok, 14 s, USD 0.0000; Spent so far: EUR 1.76 of EUR 10 (USD 1.9711; stop line USD 9.00)
+2026-11-13 14:47:44 [1/200] safedocs-0000003: ok, 22 s, USD 0.0003; Spent so far: EUR 1.76 of EUR 10 (USD 1.9713; stop line USD 9.00)
+2026-11-13 14:47:56 [3/200] safedocs-0000015: ok, 33 s, USD 0.0002; Spent so far: EUR 1.76 of EUR 10 (USD 1.9715; stop line USD 9.00)
+2026-11-13 14:47:59 [4/200] safedocs-0000019: ok, 22 s, USD 0.0000; Spent so far: EUR 1.76 of EUR 10 (USD 1.9715; stop line USD 9.00)
+2026-11-13 14:48:20 [6/200] safedocs-0000021: ok, 24 s, USD 0.0001; Spent so far: EUR 1.76 of EUR 10 (USD 1.9716; stop line USD 9.00)
+2026-11-13 14:48:34 [5/200] safedocs-0000020: ok, 50 s, USD 0.0002; Spent so far: EUR 1.76 of EUR 10 (USD 1.9719; stop line USD 9.00)
+2026-11-13 14:48:41 [7/200] safedocs-0000028: ok, 42 s, USD 0.0000; Spent so far: EUR 1.76 of EUR 10 (USD 1.9719; stop line USD 9.00)
+2026-11-13 14:48:49 [9/200] safedocs-0000033: ok, 15 s, USD 0.0000; Spent so far: EUR 1.76 of EUR 10 (USD 1.9719; stop line USD 9.00)
+2026-11-13 14:49:07 [10/200] safedocs-0000034: ok, 27 s, USD 0.0002; Spent so far: EUR 1.76 of EUR 10 (USD 1.9721; stop line USD 9.00)
+2026-11-13 14:49:13 [11/200] safedocs-0000043: ok, 24 s, USD 0.0001; Spent so far: EUR 1.76 of EUR 10 (USD 1.9723; stop line USD 9.00)
+2026-11-13 14:49:32 [13/200] safedocs-0000052: ok, 19 s, USD 0.0000; Spent so far: EUR 1.76 of EUR 10 (USD 1.9723; stop line USD 9.00)
+2026-11-13 14:49:54 [12/200] safedocs-0000050: ok, 47 s, USD 0.0026; Spent so far: EUR 1.76 of EUR 10 (USD 1.9748; stop line USD 9.00)
+2026-11-13 14:50:04 [14/200] safedocs-0000056: ok, 32 s, USD 0.0002; Spent so far: EUR 1.76 of EUR 10 (USD 1.9751; stop line USD 9.00)
+2026-11-13 14:50:25 [15/200] safedocs-0000059: ok, 30 s, USD 0.0004; Spent so far: EUR 1.76 of EUR 10 (USD 1.9755; stop line USD 9.00)
+2026-11-13 14:50:48 [17/200] safedocs-0000064: ok, 23 s, USD 0.0003; Spent so far: EUR 1.77 of EUR 10 (USD 1.9757; stop line USD 9.00)
+2026-11-13 14:50:58 [16/200] safedocs-0000060: ok, 54 s, USD 0.0017; Spent so far: EUR 1.77 of EUR 10 (USD 1.9775; stop line USD 9.00)
+2026-11-13 14:51:28 [18/200] safedocs-0000067: ok, 40 s, USD 0.0005; Spent so far: EUR 1.77 of EUR 10 (USD 1.9780; stop line USD 9.00)
+2026-11-13 14:51:40 [19/200] safedocs-0000073: ok, 41 s, USD 0.0004; Spent so far: EUR 1.77 of EUR 10 (USD 1.9784; stop line USD 9.00)
+2026-11-13 14:51:45 [20/200] safedocs-0000074: ok, 17 s, USD 0.0005; Spent so far: EUR 1.77 of EUR 10 (USD 1.9789; stop line USD 9.00)
+2026-11-13 14:51:58 [21/200] safedocs-0000080: ok, 18 s, USD 0.0000; Spent so far: EUR 1.77 of EUR 10 (USD 1.9789; stop line USD 9.00)
+2026-11-13 14:52:21 [23/200] safedocs-0000083: ok, 23 s, USD 0.0000; Spent so far: EUR 1.77 of EUR 10 (USD 1.9789; stop line USD 9.00)
+2026-11-13 14:52:28 [22/200] safedocs-0000082: ok, 43 s, USD 0.0014; Spent so far: EUR 1.77 of EUR 10 (USD 1.9803; stop line USD 9.00)
+2026-11-13 14:52:45 [24/200] safedocs-0000085: ok, 24 s, USD 0.0000; Spent so far: EUR 1.77 of EUR 10 (USD 1.9803; stop line USD 9.00)
+2026-11-13 14:53:13 [8/200] safedocs-0000030: ok, 294 s, USD 0.0152; Spent so far: EUR 1.78 of EUR 10 (USD 1.9955; stop line USD 9.00)
+2026-11-13 14:53:14 [25/200] safedocs-0000087: ok, 46 s, USD 0.0001; Spent so far: EUR 1.78 of EUR 10 (USD 1.9956; stop line USD 9.00)
+2026-11-13 14:53:14 [26/200] safedocs-0000090: ok, 29 s, USD 0.0000; Spent so far: EUR 1.78 of EUR 10 (USD 1.9956; stop line USD 9.00)
+2026-11-13 14:53:36 [27/200] safedocs-0000102: ok, 23 s, USD 0.0002; Spent so far: EUR 1.78 of EUR 10 (USD 1.9958; stop line USD 9.00)
+2026-11-13 14:53:48 [28/200] safedocs-0000103: ok, 35 s, USD 0.0006; Spent so far: EUR 1.78 of EUR 10 (USD 1.9963; stop line USD 9.00)
+2026-11-13 14:54:00 [30/200] safedocs-0000135: ok, 24 s, USD 0.0000; Spent so far: EUR 1.78 of EUR 10 (USD 1.9963; stop line USD 9.00)
+2026-11-13 14:54:15 [31/200] safedocs-0000139: ok, 26 s, USD 0.0003; Spent so far: EUR 1.78 of EUR 10 (USD 1.9966; stop line USD 9.00)
+2026-11-13 14:54:26 [32/200] safedocs-0000143: ok, 26 s, USD 0.0002; Spent so far: EUR 1.78 of EUR 10 (USD 1.9969; stop line USD 9.00)
+2026-11-13 14:55:14 [33/200] safedocs-0000148: ok, 59 s, USD 0.0031; Spent so far: EUR 1.79 of EUR 10 (USD 2.0000; stop line USD 9.00)
+2026-11-13 14:55:15 [34/200] safedocs-0000157: ok, 49 s, USD 0.0003; Spent so far: EUR 1.79 of EUR 10 (USD 2.0003; stop line USD 9.00)
+2026-11-13 14:55:24 [35/200] safedocs-0000159: ok, 9 s, USD 0.0000; Spent so far: EUR 1.79 of EUR 10 (USD 2.0003; stop line USD 9.00)
+2026-11-13 14:55:37 [36/200] safedocs-0000166: ok, 22 s, USD 0.0001; Spent so far: EUR 1.79 of EUR 10 (USD 2.0004; stop line USD 9.00)
+2026-11-13 14:55:54 [38/200] safedocs-0000178: ok, 17 s, USD 0.0000; Spent so far: EUR 1.79 of EUR 10 (USD 2.0004; stop line USD 9.00)
+2026-11-13 14:56:10 [39/200] safedocs-0000184: ok, 16 s, USD 0.0000; Spent so far: EUR 1.79 of EUR 10 (USD 2.0004; stop line USD 9.00)
+2026-11-13 14:56:32 [40/200] safedocs-0000185: ok, 22 s, USD 0.0003; Spent so far: EUR 1.79 of EUR 10 (USD 2.0007; stop line USD 9.00)
+2026-11-13 14:59:17 [29/200] safedocs-0000123: ok, 363 s, USD 0.0015; Spent so far: EUR 1.79 of EUR 10 (USD 2.0022; stop line USD 9.00)
+2026-11-13 14:59:30 [42/200] safedocs-0000189: ok, 13 s, USD 0.0000; Spent so far: EUR 1.79 of EUR 10 (USD 2.0022; stop line USD 9.00)
+2026-11-13 15:00:09 [43/200] safedocs-0000191: ok, 38 s, USD 0.0002; Spent so far: EUR 1.79 of EUR 10 (USD 2.0024; stop line USD 9.00)
+2026-11-13 15:01:04 [44/200] safedocs-0000195: ok, 55 s, USD 0.0008; Spent so far: EUR 1.79 of EUR 10 (USD 2.0032; stop line USD 9.00)
+2026-11-13 15:01:32 [41/200] safedocs-0000188: ok, 300 s, USD 0.0079; Spent so far: EUR 1.80 of EUR 10 (USD 2.0110; stop line USD 9.00)
+2026-11-13 15:01:49 [46/200] safedocs-0000201: ok, 17 s, USD 0.0001; Spent so far: EUR 1.80 of EUR 10 (USD 2.0112; stop line USD 9.00)
+2026-11-13 15:02:04 [47/200] safedocs-0000210: ok, 15 s, USD 0.0004; Spent so far: EUR 1.80 of EUR 10 (USD 2.0116; stop line USD 9.00)
+2026-11-13 15:03:02 [37/200] safedocs-0000174: ok, 457 s, USD 0.0092; Spent so far: EUR 1.81 of EUR 10 (USD 2.0208; stop line USD 9.00)
+2026-11-13 15:03:02 [45/200] safedocs-0000196: ok, 118 s, USD 0.0000; Spent so far: EUR 1.81 of EUR 10 (USD 2.0208; stop line USD 9.00)
+2026-11-13 15:04:11 [49/200] safedocs-0000218: ok, 70 s, USD 0.0000; Spent so far: EUR 1.81 of EUR 10 (USD 2.0209; stop line USD 9.00)
+2026-11-13 15:04:11 [48/200] safedocs-0000211: ok, 127 s, USD 0.0001; Spent so far: EUR 1.81 of EUR 10 (USD 2.0209; stop line USD 9.00)
+2026-11-13 15:04:59 [50/200] safedocs-0000220: ok, 117 s, USD 0.0006; Spent so far: EUR 1.81 of EUR 10 (USD 2.0215; stop line USD 9.00)
+2026-11-13 15:05:14 [52/200] safedocs-0000223: ok, 15 s, USD 0.0001; Spent so far: EUR 1.81 of EUR 10 (USD 2.0216; stop line USD 9.00)
+2026-11-13 15:06:17 [54/200] safedocs-0000228: ok, 63 s, USD 0.0000; Spent so far: EUR 1.81 of EUR 10 (USD 2.0219; stop line USD 9.00)
+2026-11-13 15:06:17 [51/200] safedocs-0000221: ok, 78 s, USD 0.0003; Spent so far: EUR 1.81 of EUR 10 (USD 2.0219; stop line USD 9.00)
+2026-11-13 15:06:18 [53/200] safedocs-0000227: ok, 79 s, USD 0.0004; Spent so far: EUR 1.81 of EUR 10 (USD 2.0222; stop line USD 9.00)
+2026-11-13 15:06:29 [57/200] safedocs-0000237: ok, 11 s, USD 0.0000; Spent so far: EUR 1.81 of EUR 10 (USD 2.0222; stop line USD 9.00)
+2026-11-13 15:06:33 [55/200] safedocs-0000233: ok, 15 s, USD 0.0003; Spent so far: EUR 1.81 of EUR 10 (USD 2.0226; stop line USD 9.00)
+2026-11-13 15:06:47 [58/200] safedocs-0000238: ok, 18 s, USD 0.0000; Spent so far: EUR 1.81 of EUR 10 (USD 2.0226; stop line USD 9.00)
+2026-11-13 15:06:52 [59/200] safedocs-0000239: ok, 19 s, USD 0.0003; Spent so far: EUR 1.81 of EUR 10 (USD 2.0229; stop line USD 9.00)
+2026-11-13 15:07:06 [60/200] safedocs-0000241: ok, 19 s, USD 0.0000; Spent so far: EUR 1.81 of EUR 10 (USD 2.0229; stop line USD 9.00)
+2026-11-13 15:08:02 [61/200] safedocs-0000246: ok, 70 s, USD 0.0003; Spent so far: EUR 1.81 of EUR 10 (USD 2.0232; stop line USD 9.00)
+2026-11-13 15:08:03 [62/200] safedocs-0000248: ok, 56 s, USD 0.0003; Spent so far: EUR 1.81 of EUR 10 (USD 2.0235; stop line USD 9.00)
+2026-11-13 15:10:20 [56/200] safedocs-0000234: ok, 242 s, USD 0.0035; Spent so far: EUR 1.81 of EUR 10 (USD 2.0270; stop line USD 9.00)
+2026-11-13 15:10:20 [64/200] safedocs-0000270: ok, 138 s, USD 0.0000; Spent so far: EUR 1.81 of EUR 10 (USD 2.0270; stop line USD 9.00)
+2026-11-13 15:10:21 [63/200] safedocs-0000254: ok, 138 s, USD 0.0003; Spent so far: EUR 1.81 of EUR 10 (USD 2.0273; stop line USD 9.00)
+2026-11-13 15:10:36 [65/200] safedocs-0000278: ok, 16 s, USD 0.0000; Spent so far: EUR 1.81 of EUR 10 (USD 2.0273; stop line USD 9.00)
+2026-11-13 15:10:48 [67/200] safedocs-0000292: ok, 27 s, USD 0.0004; Spent so far: EUR 1.81 of EUR 10 (USD 2.0277; stop line USD 9.00)
+2026-11-13 15:11:52 [66/200] safedocs-0000283: ok, 91 s, USD 0.0010; Spent so far: EUR 1.81 of EUR 10 (USD 2.0287; stop line USD 9.00)
+2026-11-13 15:11:52 [68/200] safedocs-0000295: ok, 76 s, USD 0.0003; Spent so far: EUR 1.81 of EUR 10 (USD 2.0291; stop line USD 9.00)
+2026-11-13 15:11:53 [69/200] safedocs-0000306: ok, 65 s, USD 0.0001; Spent so far: EUR 1.81 of EUR 10 (USD 2.0292; stop line USD 9.00)
+2026-11-13 15:12:22 [71/200] safedocs-0000313: ok, 29 s, USD 0.0008; Spent so far: EUR 1.81 of EUR 10 (USD 2.0300; stop line USD 9.00)
+2026-11-13 15:13:39 [72/200] safedocs-0000321: ok, 106 s, USD 0.0015; Spent so far: EUR 1.81 of EUR 10 (USD 2.0315; stop line USD 9.00)
+2026-11-13 15:13:40 [73/200] safedocs-0000326: ok, 78 s, USD 0.0003; Spent so far: EUR 1.82 of EUR 10 (USD 2.0318; stop line USD 9.00)
+2026-11-13 15:13:56 [75/200] safedocs-0000335: ok, 16 s, USD 0.0004; Spent so far: EUR 1.82 of EUR 10 (USD 2.0321; stop line USD 9.00)
+2026-11-13 15:15:19 [70/200] safedocs-0000311: ok, 206 s, USD 0.0044; Spent so far: EUR 1.82 of EUR 10 (USD 2.0365; stop line USD 9.00)
+2026-11-13 15:15:19 [76/200] safedocs-0000337: ok, 84 s, USD 0.0000; Spent so far: EUR 1.82 of EUR 10 (USD 2.0369; stop line USD 9.00)
+2026-11-13 15:15:19 [74/200] safedocs-0000329: ok, 99 s, USD 0.0004; Spent so far: EUR 1.82 of EUR 10 (USD 2.0369; stop line USD 9.00)
+2026-11-13 15:15:43 [78/200] safedocs-0000360: ok, 24 s, USD 0.0000; Spent so far: EUR 1.82 of EUR 10 (USD 2.0369; stop line USD 9.00)
+2026-11-13 15:15:48 [77/200] safedocs-0000359: ok, 29 s, USD 0.0001; Spent so far: EUR 1.82 of EUR 10 (USD 2.0371; stop line USD 9.00)
+2026-11-13 15:16:08 [79/200] safedocs-0000362: ok, 49 s, USD 0.0035; Spent so far: EUR 1.82 of EUR 10 (USD 2.0406; stop line USD 9.00)
+2026-11-13 15:16:22 [82/200] safedocs-0000394: ok, 14 s, USD 0.0000; Spent so far: EUR 1.82 of EUR 10 (USD 2.0406; stop line USD 9.00)
+2026-11-13 15:17:05 [80/200] safedocs-0000382: ok, 82 s, USD 0.0004; Spent so far: EUR 1.82 of EUR 10 (USD 2.0410; stop line USD 9.00)
+2026-11-13 15:17:05 [81/200] safedocs-0000389: ok, 77 s, USD 0.0003; Spent so far: EUR 1.82 of EUR 10 (USD 2.0412; stop line USD 9.00)
+2026-11-13 15:17:06 [83/200] safedocs-0000396: ok, 44 s, USD 0.0001; Spent so far: EUR 1.82 of EUR 10 (USD 2.0414; stop line USD 9.00)
+2026-11-13 15:17:12 [84/200] safedocs-0000410: ok, 7 s, USD 0.0000; Spent so far: EUR 1.82 of EUR 10 (USD 2.0414; stop line USD 9.00)
+2026-11-13 15:17:20 [85/200] safedocs-0000412: ok, 14 s, USD 0.0000; Spent so far: EUR 1.82 of EUR 10 (USD 2.0414; stop line USD 9.00)
+2026-11-13 15:17:21 [86/200] safedocs-0000415: ok, 16 s, USD 0.0000; Spent so far: EUR 1.82 of EUR 10 (USD 2.0414; stop line USD 9.00)
+2026-11-13 15:17:39 [87/200] safedocs-0000422: ok, 26 s, USD 0.0002; Spent so far: EUR 1.82 of EUR 10 (USD 2.0416; stop line USD 9.00)
+2026-11-13 15:17:44 [89/200] safedocs-0000433: ok, 22 s, USD 0.0002; Spent so far: EUR 1.82 of EUR 10 (USD 2.0418; stop line USD 9.00)
+2026-11-13 15:17:58 [88/200] safedocs-0000423: ok, 39 s, USD 0.0010; Spent so far: EUR 1.83 of EUR 10 (USD 2.0428; stop line USD 9.00)
+2026-11-13 15:18:05 [90/200] safedocs-0000442: ok, 26 s, USD 0.0000; Spent so far: EUR 1.83 of EUR 10 (USD 2.0428; stop line USD 9.00)
+2026-11-13 15:18:08 [91/200] safedocs-0000444: ok, 25 s, USD 0.0001; Spent so far: EUR 1.83 of EUR 10 (USD 2.0429; stop line USD 9.00)
+2026-11-13 15:18:29 [94/200] safedocs-0000458: ok, 21 s, USD 0.0001; Spent so far: EUR 1.83 of EUR 10 (USD 2.0430; stop line USD 9.00)
+2026-11-13 15:18:42 [92/200] safedocs-0000451: ok, 43 s, USD 0.0001; Spent so far: EUR 1.83 of EUR 10 (USD 2.0431; stop line USD 9.00)
+2026-11-13 15:18:46 [95/200] safedocs-0000460: ok, 16 s, USD 0.0000; Spent so far: EUR 1.83 of EUR 10 (USD 2.0431; stop line USD 9.00)
+2026-11-13 15:19:02 [96/200] safedocs-0000472: ok, 20 s, USD 0.0002; Spent so far: EUR 1.83 of EUR 10 (USD 2.0433; stop line USD 9.00)
+2026-11-13 15:19:15 [97/200] safedocs-0000473: ok, 29 s, USD 0.0003; Spent so far: EUR 1.83 of EUR 10 (USD 2.0436; stop line USD 9.00)
+2026-11-13 15:19:32 [98/200] safedocs-0000477: ok, 30 s, USD 0.0005; Spent so far: EUR 1.83 of EUR 10 (USD 2.0440; stop line USD 9.00)
+2026-11-13 15:19:44 [99/200] safedocs-0000479: ok, 29 s, USD 0.0006; Spent so far: EUR 1.83 of EUR 10 (USD 2.0446; stop line USD 9.00)
+2026-11-13 15:19:57 [100/200] safedocs-0000480: ok, 25 s, USD 0.0000; Spent so far: EUR 1.83 of EUR 10 (USD 2.0446; stop line USD 9.00)
+2026-11-13 15:20:04 [101/200] safedocs-0000482: ok, 20 s, USD 0.0001; Spent so far: EUR 1.83 of EUR 10 (USD 2.0448; stop line USD 9.00)
+2026-11-13 15:20:18 [103/200] safedocs-0000493: ok, 14 s, USD 0.0000; Spent so far: EUR 1.83 of EUR 10 (USD 2.0448; stop line USD 9.00)
+2026-11-13 15:20:41 [102/200] safedocs-0000487: ok, 44 s, USD 0.0018; Spent so far: EUR 1.83 of EUR 10 (USD 2.0466; stop line USD 9.00)
+2026-11-13 15:20:53 [105/200] safedocs-0000511: ok, 12 s, USD 0.0000; Spent so far: EUR 1.83 of EUR 10 (USD 2.0466; stop line USD 9.00)
+2026-11-13 15:21:40 [106/200] safedocs-0000512: ok, 46 s, USD 0.0010; Spent so far: EUR 1.83 of EUR 10 (USD 2.0476; stop line USD 9.00)
+2026-11-13 15:27:37 [107/200] safedocs-0000535: ok, 357 s, USD 0.0124; Spent so far: EUR 1.84 of EUR 10 (USD 2.0600; stop line USD 9.00)
+2026-11-13 15:27:51 [108/200] safedocs-0000541: ok, 14 s, USD 0.0001; Spent so far: EUR 1.84 of EUR 10 (USD 2.0601; stop line USD 9.00)
+2026-11-13 15:29:12 [109/200] safedocs-0000544: ok, 81 s, USD 0.0001; Spent so far: EUR 1.84 of EUR 10 (USD 2.0601; stop line USD 9.00)
+2026-11-13 15:30:28 [93/200] safedocs-0000456: ok, 743 s, USD 0.0313; Spent so far: EUR 1.87 of EUR 10 (USD 2.0914; stop line USD 9.00)
+2026-11-13 15:35:21 [110/200] safedocs-0000545: ok, 293 s, USD 0.0200; Spent so far: EUR 1.89 of EUR 10 (USD 2.1114; stop line USD 9.00)
+2026-11-13 15:37:42 [111/200] safedocs-0000546: ok, 435 s, USD 0.0108; Spent so far: EUR 1.90 of EUR 10 (USD 2.1222; stop line USD 9.00)
+2026-11-13 15:39:04 [104/200] safedocs-0000508: ok, 1126 s, USD 0.0316; Spent so far: EUR 1.92 of EUR 10 (USD 2.1539; stop line USD 9.00)
+2026-11-13 15:40:12 [112/200] safedocs-0000554: ok, 69 s, USD 0.0001; Spent so far: EUR 1.92 of EUR 10 (USD 2.1539; stop line USD 9.00)
+2026-11-13 15:40:14 [114/200] safedocs-0000559: ok, 70 s, USD 0.0020; Spent so far: EUR 1.93 of EUR 10 (USD 2.1559; stop line USD 9.00)
+2026-11-13 15:40:16 [113/200] safedocs-0000558: ok, 72 s, USD 0.0014; Spent so far: EUR 1.93 of EUR 10 (USD 2.1573; stop line USD 9.00)
+2026-11-13 15:41:06 [117/200] safedocs-0000573: ok, 50 s, USD 0.0008; Spent so far: EUR 1.93 of EUR 10 (USD 2.1581; stop line USD 9.00)
+2026-11-13 15:41:06 [116/200] safedocs-0000572: ok, 50 s, USD 0.0001; Spent so far: EUR 1.93 of EUR 10 (USD 2.1582; stop line USD 9.00)
+2026-11-13 15:41:48 [119/200] safedocs-0000579: ok, 42 s, USD 0.0000; Spent so far: EUR 1.93 of EUR 10 (USD 2.1582; stop line USD 9.00)
+2026-11-13 15:42:05 [120/200] safedocs-0000583: ok, 16 s, USD 0.0003; Spent so far: EUR 1.93 of EUR 10 (USD 2.1585; stop line USD 9.00)
+2026-11-13 15:42:53 [121/200] safedocs-0000595: ok, 48 s, USD 0.0005; Spent so far: EUR 1.93 of EUR 10 (USD 2.1590; stop line USD 9.00)
+2026-11-13 15:43:11 [118/200] safedocs-0000578: ok, 124 s, USD 0.0022; Spent so far: EUR 1.93 of EUR 10 (USD 2.1612; stop line USD 9.00)
+2026-11-13 15:43:20 [122/200] safedocs-0000596: ok, 27 s, USD 0.0005; Spent so far: EUR 1.93 of EUR 10 (USD 2.1616; stop line USD 9.00)
+2026-11-13 15:43:22 [123/200] safedocs-0000600: ok, 12 s, USD 0.0000; Spent so far: EUR 1.93 of EUR 10 (USD 2.1616; stop line USD 9.00)
+2026-11-13 15:43:53 [125/200] safedocs-0000611: ok, 30 s, USD 0.0006; Spent so far: EUR 1.93 of EUR 10 (USD 2.1622; stop line USD 9.00)
+2026-11-13 15:44:01 [124/200] safedocs-0000607: ok, 41 s, USD 0.0011; Spent so far: EUR 1.93 of EUR 10 (USD 2.1633; stop line USD 9.00)
+2026-11-13 15:45:22 [127/200] safedocs-0000632: ok, 81 s, USD 0.0009; Spent so far: EUR 1.93 of EUR 10 (USD 2.1643; stop line USD 9.00)
+2026-11-13 15:45:55 [128/200] safedocs-0000636: ok, 33 s, USD 0.0001; Spent so far: EUR 1.93 of EUR 10 (USD 2.1644; stop line USD 9.00)
+2026-11-13 15:46:28 [115/200] safedocs-0000568: ok, 372 s, USD 0.0111; Spent so far: EUR 1.94 of EUR 10 (USD 2.1755; stop line USD 9.00)
+2026-11-13 15:46:44 [130/200] safedocs-0000649: ok, 16 s, USD 0.0000; Spent so far: EUR 1.94 of EUR 10 (USD 2.1755; stop line USD 9.00)
+2026-11-13 15:46:45 [129/200] safedocs-0000642: ok, 50 s, USD 0.0009; Spent so far: EUR 1.94 of EUR 10 (USD 2.1764; stop line USD 9.00)
+2026-11-13 15:47:23 [131/200] safedocs-0000656: ok, 39 s, USD 0.0000; Spent so far: EUR 1.95 of EUR 10 (USD 2.1844; stop line USD 9.00)
+2026-11-13 15:47:23 [126/200] safedocs-0000622: ok, 210 s, USD 0.0080; Spent so far: EUR 1.95 of EUR 10 (USD 2.1844; stop line USD 9.00)
+2026-11-13 15:47:24 [132/200] safedocs-0000660: ok, 38 s, USD 0.0003; Spent so far: EUR 1.95 of EUR 10 (USD 2.1847; stop line USD 9.00)
+2026-11-13 15:48:00 [134/200] safedocs-0000677: ok, 37 s, USD 0.0005; Spent so far: EUR 1.95 of EUR 10 (USD 2.1851; stop line USD 9.00)
+2026-11-13 15:48:27 [133/200] safedocs-0000668: ok, 63 s, USD 0.0001; Spent so far: EUR 1.95 of EUR 10 (USD 2.1852; stop line USD 9.00)
+2026-11-13 15:48:34 [135/200] safedocs-0000678: ok, 70 s, USD 0.0021; Spent so far: EUR 1.95 of EUR 10 (USD 2.1873; stop line USD 9.00)
+2026-11-13 15:48:46 [136/200] safedocs-0000680: ok, 46 s, USD 0.0002; Spent so far: EUR 1.95 of EUR 10 (USD 2.1875; stop line USD 9.00)
+2026-11-13 15:48:55 [137/200] safedocs-0000687: ok, 28 s, USD 0.0000; Spent so far: EUR 1.95 of EUR 10 (USD 2.1875; stop line USD 9.00)
+2026-11-13 15:49:12 [138/200] safedocs-0000691: ok, 37 s, USD 0.0003; Spent so far: EUR 1.95 of EUR 10 (USD 2.1878; stop line USD 9.00)
+2026-11-13 15:49:18 [139/200] safedocs-0000696: ok, 32 s, USD 0.0001; Spent so far: EUR 1.95 of EUR 10 (USD 2.1879; stop line USD 9.00)
+2026-11-13 15:49:47 [141/200] safedocs-0000701: ok, 35 s, USD 0.0004; Spent so far: EUR 1.96 of EUR 10 (USD 2.1883; stop line USD 9.00)
+2026-11-13 15:49:56 [142/200] safedocs-0000706: ok, 38 s, USD 0.0002; Spent so far: EUR 1.96 of EUR 10 (USD 2.1885; stop line USD 9.00)
+2026-11-13 15:50:13 [144/200] safedocs-0000710: ok, 17 s, USD 0.0000; Spent so far: EUR 1.96 of EUR 10 (USD 2.1885; stop line USD 9.00)
+2026-11-13 15:50:48 [140/200] safedocs-0000698: ok, 113 s, USD 0.0009; Spent so far: EUR 1.96 of EUR 10 (USD 2.1894; stop line USD 9.00)
+2026-11-13 15:50:49 [145/200] safedocs-0000714: ok, 36 s, USD 0.0002; Spent so far: EUR 1.96 of EUR 10 (USD 2.1896; stop line USD 9.00)
+2026-11-13 15:51:19 [147/200] safedocs-0000732: ok, 31 s, USD 0.0003; Spent so far: EUR 1.96 of EUR 10 (USD 2.1899; stop line USD 9.00)
+2026-11-13 15:51:54 [146/200] safedocs-0000716: ok, 66 s, USD 0.0014; Spent so far: EUR 1.96 of EUR 10 (USD 2.1914; stop line USD 9.00)
+2026-11-13 15:52:08 [148/200] safedocs-0000734: ok, 48 s, USD 0.0006; Spent so far: EUR 1.96 of EUR 10 (USD 2.1920; stop line USD 9.00)
+2026-11-13 15:52:30 [149/200] safedocs-0000735: ok, 35 s, USD 0.0005; Spent so far: EUR 1.96 of EUR 10 (USD 2.1924; stop line USD 9.00)
+2026-11-13 15:54:10 [151/200] safedocs-0000744: ok, 100 s, USD 0.0021; Spent so far: EUR 1.96 of EUR 10 (USD 2.1946; stop line USD 9.00)
+2026-11-13 15:54:52 [143/200] safedocs-0000707: ok, 305 s, USD 0.0185; Spent so far: EUR 1.98 of EUR 10 (USD 2.2131; stop line USD 9.00)
+2026-11-13 15:54:55 [152/200] safedocs-0000746: ok, 44 s, USD 0.0008; Spent so far: EUR 1.98 of EUR 10 (USD 2.2139; stop line USD 9.00)
+2026-11-13 15:54:57 [150/200] safedocs-0000741: ok, 169 s, USD 0.0010; Spent so far: EUR 1.98 of EUR 10 (USD 2.2149; stop line USD 9.00)
+2026-11-13 15:55:26 [155/200] safedocs-0000758: ok, 29 s, USD 0.0000; Spent so far: EUR 1.98 of EUR 10 (USD 2.2149; stop line USD 9.00)
+2026-11-13 15:55:32 [154/200] safedocs-0000757: ok, 35 s, USD 0.0003; Spent so far: EUR 1.98 of EUR 10 (USD 2.2152; stop line USD 9.00)
+2026-11-13 15:56:05 [156/200] safedocs-0000759: ok, 39 s, USD 0.0000; Spent so far: EUR 1.98 of EUR 10 (USD 2.2152; stop line USD 9.00)
+2026-11-13 15:56:24 [153/200] safedocs-0000747: ok, 88 s, USD 0.0011; Spent so far: EUR 1.98 of EUR 10 (USD 2.2164; stop line USD 9.00)
+2026-11-13 15:56:35 [158/200] safedocs-0000770: ok, 30 s, USD 0.0001; Spent so far: EUR 1.98 of EUR 10 (USD 2.2165; stop line USD 9.00)
+2026-11-13 15:57:00 [160/200] safedocs-0000778: ok, 25 s, USD 0.0003; Spent so far: EUR 1.98 of EUR 10 (USD 2.2168; stop line USD 9.00)
+2026-11-13 15:58:43 [161/200] safedocs-0000795: ok, 103 s, USD 0.0026; Spent so far: EUR 1.98 of EUR 10 (USD 2.2194; stop line USD 9.00)
+2026-11-13 15:59:54 [159/200] safedocs-0000771: ok, 210 s, USD 0.0061; Spent so far: EUR 1.99 of EUR 10 (USD 2.2255; stop line USD 9.00)
+2026-11-13 16:00:23 [162/200] safedocs-0000801: ok, 100 s, USD 0.0017; Spent so far: EUR 1.99 of EUR 10 (USD 2.2272; stop line USD 9.00)
+2026-11-13 16:00:58 [157/200] safedocs-0000769: ok, 326 s, USD 0.0151; Spent so far: EUR 2.00 of EUR 10 (USD 2.2423; stop line USD 9.00)
+2026-11-13 16:01:23 [165/200] safedocs-0000817: ok, 25 s, USD 0.0003; Spent so far: EUR 2.00 of EUR 10 (USD 2.2426; stop line USD 9.00)
+2026-11-13 16:01:34 [163/200] safedocs-0000809: ok, 100 s, USD 0.0018; Spent so far: EUR 2.01 of EUR 10 (USD 2.2444; stop line USD 9.00)
+2026-11-13 16:02:01 [167/200] safedocs-0000825: ok, 26 s, USD 0.0001; Spent so far: EUR 2.01 of EUR 10 (USD 2.2446; stop line USD 9.00)
+2026-11-13 16:02:56 [164/200] safedocs-0000811: ok, 152 s, USD 0.0104; Spent so far: EUR 2.01 of EUR 10 (USD 2.2550; stop line USD 9.00)
+2026-11-13 16:02:56 [166/200] safedocs-0000821: ok, 93 s, USD 0.0003; Spent so far: EUR 2.01 of EUR 10 (USD 2.2552; stop line USD 9.00)
+2026-11-13 16:03:22 [169/200] safedocs-0000832: ok, 27 s, USD 0.0002; Spent so far: EUR 2.02 of EUR 10 (USD 2.2555; stop line USD 9.00)
+2026-11-13 16:03:36 [170/200] safedocs-0000836: ok, 40 s, USD 0.0014; Spent so far: EUR 2.02 of EUR 10 (USD 2.2569; stop line USD 9.00)
+2026-11-13 16:03:59 [172/200] safedocs-0000846: ok, 23 s, USD 0.0003; Spent so far: EUR 2.02 of EUR 10 (USD 2.2572; stop line USD 9.00)
+2026-11-13 16:04:00 [171/200] safedocs-0000842: ok, 37 s, USD 0.0003; Spent so far: EUR 2.02 of EUR 10 (USD 2.2575; stop line USD 9.00)
+2026-11-13 16:06:25 [174/200] safedocs-0000859: ok, 145 s, USD 0.0013; Spent so far: EUR 2.02 of EUR 10 (USD 2.2588; stop line USD 9.00)
+2026-11-13 16:08:07 [173/200] safedocs-0000850: ok, 249 s, USD 0.0029; Spent so far: EUR 2.02 of EUR 10 (USD 2.2617; stop line USD 9.00)
+2026-11-13 16:08:48 [175/200] safedocs-0000863: ok, 41 s, USD 0.0026; Spent so far: EUR 2.02 of EUR 10 (USD 2.2643; stop line USD 9.00)
+2026-11-13 16:08:49 [176/200] safedocs-0000883: ok, 41 s, USD 0.0001; Spent so far: EUR 2.02 of EUR 10 (USD 2.2644; stop line USD 9.00)
+2026-11-13 16:09:10 [177/200] safedocs-0000885: ok, 21 s, USD 0.0000; Spent so far: EUR 2.02 of EUR 10 (USD 2.2644; stop line USD 9.00)
+2026-11-13 16:09:22 [179/200] safedocs-0000896: ok, 12 s, USD 0.0001; Spent so far: EUR 2.02 of EUR 10 (USD 2.2645; stop line USD 9.00)
+2026-11-13 16:09:31 [180/200] safedocs-0000899: ok, 10 s, USD 0.0000; Spent so far: EUR 2.02 of EUR 10 (USD 2.2645; stop line USD 9.00)
+2026-11-13 16:09:56 [181/200] safedocs-0000902: ok, 25 s, USD 0.0002; Spent so far: EUR 2.02 of EUR 10 (USD 2.2647; stop line USD 9.00)
+2026-11-13 16:10:05 [182/200] safedocs-0000903: ok, 9 s, USD 0.0000; Spent so far: EUR 2.02 of EUR 10 (USD 2.2647; stop line USD 9.00)
+2026-11-13 16:10:40 [183/200] safedocs-0000916: ok, 36 s, USD 0.0001; Spent so far: EUR 2.02 of EUR 10 (USD 2.2648; stop line USD 9.00)
+2026-11-13 16:11:03 [184/200] safedocs-0000922: ok, 22 s, USD 0.0002; Spent so far: EUR 2.02 of EUR 10 (USD 2.2651; stop line USD 9.00)
+2026-11-13 16:11:20 [185/200] safedocs-0000940: ok, 17 s, USD 0.0000; Spent so far: EUR 2.02 of EUR 10 (USD 2.2651; stop line USD 9.00)
+2026-11-13 16:12:04 [186/200] safedocs-0000948: ok, 44 s, USD 0.0007; Spent so far: EUR 2.02 of EUR 10 (USD 2.2658; stop line USD 9.00)
+2026-11-13 16:12:24 [187/200] safedocs-0000949: ok, 20 s, USD 0.0001; Spent so far: EUR 2.02 of EUR 10 (USD 2.2659; stop line USD 9.00)
+2026-11-13 16:16:30 [188/200] safedocs-0000953: ok, 246 s, USD 0.0044; Spent so far: EUR 2.03 of EUR 10 (USD 2.2703; stop line USD 9.00)
+2026-11-13 16:17:22 [189/200] safedocs-0000962: ok, 52 s, USD 0.0009; Spent so far: EUR 2.03 of EUR 10 (USD 2.2712; stop line USD 9.00)
+2026-11-13 16:17:35 [190/200] safedocs-0000963: ok, 13 s, USD 0.0000; Spent so far: EUR 2.03 of EUR 10 (USD 2.2712; stop line USD 9.00)
+2026-11-13 16:17:54 [191/200] safedocs-0000969: ok, 19 s, USD 0.0001; Spent so far: EUR 2.03 of EUR 10 (USD 2.2713; stop line USD 9.00)
+2026-11-13 16:19:06 [192/200] safedocs-0000972: ok, 72 s, USD 0.0009; Spent so far: EUR 2.03 of EUR 10 (USD 2.2722; stop line USD 9.00)
+2026-11-13 16:21:06 [193/200] safedocs-0000973: ok, 120 s, USD 0.0185; Spent so far: EUR 2.05 of EUR 10 (USD 2.2907; stop line USD 9.00)
+2026-11-13 16:21:18 [194/200] safedocs-0000975: ok, 12 s, USD 0.0000; Spent so far: EUR 2.05 of EUR 10 (USD 2.2907; stop line USD 9.00)
+2026-11-13 16:21:30 [195/200] safedocs-0000976: ok, 11 s, USD 0.0000; Spent so far: EUR 2.05 of EUR 10 (USD 2.2907; stop line USD 9.00)
+2026-11-13 16:22:07 [196/200] safedocs-0000977: ok, 37 s, USD 0.0013; Spent so far: EUR 2.05 of EUR 10 (USD 2.2920; stop line USD 9.00)
+2026-11-13 16:22:20 [197/200] safedocs-0000983: ok, 14 s, USD 0.0003; Spent so far: EUR 2.05 of EUR 10 (USD 2.2923; stop line USD 9.00)
+2026-11-13 16:22:37 [198/200] safedocs-0000985: ok, 17 s, USD 0.0000; Spent so far: EUR 2.05 of EUR 10 (USD 2.2923; stop line USD 9.00)
+2026-11-13 16:23:04 [199/200] safedocs-0000996: ok, 27 s, USD 0.0007; Spent so far: EUR 2.05 of EUR 10 (USD 2.2930; stop line USD 9.00)
+2026-11-13 16:23:43 [200/200] safedocs-0000997: ok, 39 s, USD 0.0013; Spent so far: EUR 2.05 of EUR 10 (USD 2.2943; stop line USD 9.00)
+2026-11-13 16:26:52 [178/200] safedocs-0000888: ok, 1083 s, USD 0.0004; Spent so far: EUR 2.05 of EUR 10 (USD 2.2947; stop line USD 9.00)
+2026-11-13 16:47:45 [168/200] safedocs-0000826: ok, 2744 s, USD 0.1544; Spent so far: EUR 2.20 of EUR 10 (USD 2.4581; stop line USD 9.00)
+2026-11-13 16:47:45 summary: evaluation/results/runs-1.1.0/safedocs__gemma.csv
+== 16:47 no-harm safedocs gemma
+MuPDF error: format error: cmsOpenProfileFromMem failed
+
+MuPDF error: format error: cmsOpenProfileFromMem failed
+
+safedocs/gemma: 200 files checked, 21 with a changed page -> evaluation/results/runs-1.1.0/safedocs__gemma__noharm.csv
+== 16:51 run kumar luna
+2026-11-13 16:51:59 start: kumar / luna, 107 files, 3 at a time
+2026-11-13 16:52:47 [3/107] kumar-8c21d5c2640d: ok, 47 s, USD 0.0001; Spent so far: EUR 2.20 of EUR 10 (USD 2.4582; stop line USD 9.00)
+2026-11-13 16:52:55 [2/107] kumar-836fb6ddb3aa: ok, 56 s, USD 0.0000; Spent so far: EUR 2.20 of EUR 10 (USD 2.4582; stop line USD 9.00)
+2026-11-13 16:53:04 [1/107] kumar-e4f2083d2d97: ok, 65 s, USD 0.0005; Spent so far: EUR 2.20 of EUR 10 (USD 2.4587; stop line USD 9.00)
+2026-11-13 16:53:10 [4/107] kumar-cce2469aa9bf: ok, 23 s, USD 0.0000; Spent so far: EUR 2.20 of EUR 10 (USD 2.4587; stop line USD 9.00)
+2026-11-13 16:54:01 [7/107] kumar-c9216262c4d5: ok, 51 s, USD 0.0000; Spent so far: EUR 2.20 of EUR 10 (USD 2.4587; stop line USD 9.00)
+2026-11-13 16:54:06 [6/107] kumar-8221033b9387: ok, 62 s, USD 0.0001; Spent so far: EUR 2.20 of EUR 10 (USD 2.4588; stop line USD 9.00)
+2026-11-13 16:54:24 [8/107] kumar-9cc20fb107a0: ok, 23 s, USD 0.0001; Spent so far: EUR 2.20 of EUR 10 (USD 2.4588; stop line USD 9.00)
+2026-11-13 16:54:30 [9/107] kumar-a6c3e7498ed3: ok, 25 s, USD 0.0000; Spent so far: EUR 2.20 of EUR 10 (USD 2.4589; stop line USD 9.00)
+2026-11-13 16:55:12 [5/107] kumar-b086453a3219: ok, 137 s, USD 0.0027; Spent so far: EUR 2.20 of EUR 10 (USD 2.4616; stop line USD 9.00)
+2026-11-13 16:55:42 [11/107] kumar-5e0b0cae650a: ok, 71 s, USD 0.0006; Spent so far: EUR 2.20 of EUR 10 (USD 2.4622; stop line USD 9.00)
+2026-11-13 16:56:17 [13/107] kumar-140df8418272: ok, 35 s, USD 0.0009; Spent so far: EUR 2.20 of EUR 10 (USD 2.4632; stop line USD 9.00)
+2026-11-13 16:56:28 [12/107] kumar-f5164f630ab7: ok, 75 s, USD 0.0017; Spent so far: EUR 2.20 of EUR 10 (USD 2.4648; stop line USD 9.00)
+2026-11-13 16:56:38 [10/107] kumar-e38f3a77573a: ok, 134 s, USD 0.0026; Spent so far: EUR 2.20 of EUR 10 (USD 2.4674; stop line USD 9.00)
+2026-11-13 16:56:52 [15/107] kumar-9dc2b066ed71: ok, 24 s, USD 0.0000; Spent so far: EUR 2.20 of EUR 10 (USD 2.4674; stop line USD 9.00)
+2026-11-13 16:57:24 [16/107] kumar-2d170a40b0d8: ok, 47 s, USD 0.0013; Spent so far: EUR 2.21 of EUR 10 (USD 2.4687; stop line USD 9.00)
+2026-11-13 16:57:35 [17/107] kumar-e430c9ebb0ad: ok, 44 s, USD 0.0008; Spent so far: EUR 2.21 of EUR 10 (USD 2.4695; stop line USD 9.00)
+2026-11-13 16:58:36 [18/107] kumar-b9f54bd52e8a: ok, 72 s, USD 0.0014; Spent so far: EUR 2.21 of EUR 10 (USD 2.4709; stop line USD 9.00)
+2026-11-13 16:58:48 [14/107] kumar-51160bc53b3e: ok, 151 s, USD 0.0033; Spent so far: EUR 2.21 of EUR 10 (USD 2.4741; stop line USD 9.00)
+2026-11-13 16:58:49 [19/107] kumar-f7b7855eaeb6: ok, 73 s, USD 0.0012; Spent so far: EUR 2.21 of EUR 10 (USD 2.4753; stop line USD 9.00)
+2026-11-13 16:59:08 [20/107] kumar-99516106cb8f: ok, 32 s, USD 0.0000; Spent so far: EUR 2.21 of EUR 10 (USD 2.4753; stop line USD 9.00)
+2026-11-13 16:59:50 [22/107] kumar-89c0c8da7cda: ok, 61 s, USD 0.0004; Spent so far: EUR 2.21 of EUR 10 (USD 2.4757; stop line USD 9.00)
+2026-11-13 16:59:54 [21/107] kumar-1a87c8249a13: ok, 65 s, USD 0.0009; Spent so far: EUR 2.21 of EUR 10 (USD 2.4766; stop line USD 9.00)
+2026-11-13 17:00:15 [23/107] kumar-926dfdceb9cd: ok, 68 s, USD 0.0009; Spent so far: EUR 2.21 of EUR 10 (USD 2.4775; stop line USD 9.00)
+2026-11-13 17:00:58 [25/107] kumar-aaac61085fab: ok, 64 s, USD 0.0012; Spent so far: EUR 2.21 of EUR 10 (USD 2.4787; stop line USD 9.00)
+2026-11-13 17:00:59 [24/107] kumar-bc5652b8fba0: ok, 70 s, USD 0.0012; Spent so far: EUR 2.22 of EUR 10 (USD 2.4799; stop line USD 9.00)
+2026-11-13 17:01:11 [26/107] kumar-54f1109cd53b: ok, 56 s, USD 0.0003; Spent so far: EUR 2.22 of EUR 10 (USD 2.4802; stop line USD 9.00)
+2026-11-13 17:01:34 [28/107] kumar-b9f1e7a37241: ok, 34 s, USD 0.0003; Spent so far: EUR 2.22 of EUR 10 (USD 2.4805; stop line USD 9.00)
+2026-11-13 17:02:06 [27/107] kumar-f8f125115975: ok, 67 s, USD 0.0007; Spent so far: EUR 2.22 of EUR 10 (USD 2.4812; stop line USD 9.00)
+2026-11-13 17:02:16 [30/107] kumar-df99dc5692e4: ok, 42 s, USD 0.0003; Spent so far: EUR 2.22 of EUR 10 (USD 2.4815; stop line USD 9.00)
+2026-11-13 17:02:21 [29/107] kumar-5e293e73f7eb: ok, 70 s, USD 0.0011; Spent so far: EUR 2.22 of EUR 10 (USD 2.4825; stop line USD 9.00)
+2026-11-13 17:02:45 [31/107] kumar-51196c315be0: ok, 38 s, USD 0.0000; Spent so far: EUR 2.22 of EUR 10 (USD 2.4825; stop line USD 9.00)
+2026-11-13 17:02:50 [32/107] kumar-e902d6dc668c: ok, 34 s, USD 0.0000; Spent so far: EUR 2.22 of EUR 10 (USD 2.4825; stop line USD 9.00)
+2026-11-13 17:03:11 [33/107] kumar-1af65e9c71de: ok, 50 s, USD 0.0003; Spent so far: EUR 2.22 of EUR 10 (USD 2.4828; stop line USD 9.00)
+2026-11-13 17:03:47 [35/107] kumar-3e0426cb7318: ok, 58 s, USD 0.0003; Spent so far: EUR 2.22 of EUR 10 (USD 2.4832; stop line USD 9.00)
+2026-11-13 17:03:58 [36/107] kumar-5fd66b250dd2: ok, 46 s, USD 0.0000; Spent so far: EUR 2.22 of EUR 10 (USD 2.4832; stop line USD 9.00)
+2026-11-13 17:04:21 [37/107] kumar-42dfec51327e: ok, 33 s, USD 0.0000; Spent so far: EUR 2.22 of EUR 10 (USD 2.4832; stop line USD 9.00)
+2026-11-13 17:04:27 [34/107] kumar-36f658a2b632: ok, 102 s, USD 0.0007; Spent so far: EUR 2.22 of EUR 10 (USD 2.4839; stop line USD 9.00)
+2026-11-13 17:04:49 [38/107] kumar-d195404e7f65: ok, 51 s, USD 0.0003; Spent so far: EUR 2.22 of EUR 10 (USD 2.4841; stop line USD 9.00)
+2026-11-13 17:05:22 [40/107] kumar-6976bfc2e96b: ok, 54 s, USD 0.0003; Spent so far: EUR 2.22 of EUR 10 (USD 2.4845; stop line USD 9.00)
+2026-11-13 17:05:30 [41/107] kumar-cd3f5aebd643: ok, 41 s, USD 0.0000; Spent so far: EUR 2.22 of EUR 10 (USD 2.4845; stop line USD 9.00)
+2026-11-13 17:05:41 [39/107] kumar-25f85189eb59: ok, 81 s, USD 0.0009; Spent so far: EUR 2.22 of EUR 10 (USD 2.4853; stop line USD 9.00)
+2026-11-13 17:06:17 [42/107] kumar-7ad5a89e3482: ok, 55 s, USD 0.0000; Spent so far: EUR 2.22 of EUR 10 (USD 2.4853; stop line USD 9.00)
+2026-11-13 17:07:46 [43/107] kumar-911cbc4f474b: ok, 136 s, USD 0.0015; Spent so far: EUR 2.22 of EUR 10 (USD 2.4868; stop line USD 9.00)
+2026-11-13 17:09:57 [45/107] kumar-caae6c84c652: ok, 220 s, USD 0.0048; Spent so far: EUR 2.23 of EUR 10 (USD 2.4916; stop line USD 9.00)
+2026-11-13 17:13:11 [44/107] kumar-1d7975ff95b3: ok, 450 s, USD 0.0086; Spent so far: EUR 2.23 of EUR 10 (USD 2.5002; stop line USD 9.00)
+2026-11-13 17:14:52 [48/107] kumar-02286900413c: ok, 101 s, USD 0.0007; Spent so far: EUR 2.23 of EUR 10 (USD 2.5009; stop line USD 9.00)
+2026-11-13 17:16:07 [47/107] kumar-cd82ffb93fbc: ok, 370 s, USD 0.0105; Spent so far: EUR 2.24 of EUR 10 (USD 2.5113; stop line USD 9.00)
+2026-11-13 17:19:47 [50/107] kumar-cd15ea9e8982: ok, 220 s, USD 0.0023; Spent so far: EUR 2.25 of EUR 10 (USD 2.5136; stop line USD 9.00)
+2026-11-13 17:20:35 [49/107] kumar-4d6ae0d8bf49: ok, 343 s, USD 0.0061; Spent so far: EUR 2.25 of EUR 10 (USD 2.5197; stop line USD 9.00)
+2026-11-13 17:27:13 [52/107] kumar-597d94adc052: ok, 398 s, USD 0.0108; Spent so far: EUR 2.26 of EUR 10 (USD 2.5305; stop line USD 9.00)
+2026-11-13 17:28:44 [53/107] kumar-657b5854e173: ok, 91 s, USD 0.0019; Spent so far: EUR 2.26 of EUR 10 (USD 2.5324; stop line USD 9.00)
+2026-11-13 17:29:51 [46/107] kumar-73113025a1b8: ok, 1325 s, USD 0.0593; Spent so far: EUR 2.32 of EUR 10 (USD 2.5917; stop line USD 9.00)
+2026-11-13 17:32:51 [55/107] kumar-00a17da2d47c: ok, 180 s, USD 0.0044; Spent so far: EUR 2.32 of EUR 10 (USD 2.5961; stop line USD 9.00)
+2026-11-13 17:34:38 [56/107] kumar-8ffc195336c9: ok, 106 s, USD 0.0025; Spent so far: EUR 2.32 of EUR 10 (USD 2.5986; stop line USD 9.00)
+2026-11-13 17:36:04 [54/107] kumar-4069c0092645: ok, 439 s, USD 0.0034; Spent so far: EUR 2.32 of EUR 10 (USD 2.6020; stop line USD 9.00)
+2026-11-13 17:36:46 [57/107] kumar-5bc35ad149a6: ok, 128 s, USD 0.0018; Spent so far: EUR 2.33 of EUR 10 (USD 2.6038; stop line USD 9.00)
+2026-11-13 17:37:17 [51/107] kumar-a93e017a1785: ok, 1050 s, USD 0.0451; Spent so far: EUR 2.37 of EUR 10 (USD 2.6489; stop line USD 9.00)
+2026-11-13 17:37:33 [58/107] kumar-89253ec33523: ok, 89 s, USD 0.0017; Spent so far: EUR 2.37 of EUR 10 (USD 2.6507; stop line USD 9.00)
+2026-11-13 17:39:27 [61/107] kumar-5931c4ab6272: ok, 114 s, USD 0.0025; Spent so far: EUR 2.37 of EUR 10 (USD 2.6532; stop line USD 9.00)
+2026-11-13 17:40:02 [60/107] kumar-d390ce6bc9a3: ok, 164 s, USD 0.0026; Spent so far: EUR 2.37 of EUR 10 (USD 2.6558; stop line USD 9.00)
+2026-11-13 17:40:30 [63/107] kumar-a4b803b15ca7: ok, 28 s, USD 0.0002; Spent so far: EUR 2.37 of EUR 10 (USD 2.6560; stop line USD 9.00)
+2026-11-13 17:40:54 [64/107] kumar-2a1cf2e487ff: ok, 24 s, USD 0.0001; Spent so far: EUR 2.37 of EUR 10 (USD 2.6561; stop line USD 9.00)
+2026-11-13 17:41:18 [65/107] kumar-dae49c38b85c: ok, 25 s, USD 0.0002; Spent so far: EUR 2.37 of EUR 10 (USD 2.6563; stop line USD 9.00)
+2026-11-13 17:41:32 [62/107] kumar-a5034e15e50d: ok, 125 s, USD 0.0041; Spent so far: EUR 2.38 of EUR 10 (USD 2.6604; stop line USD 9.00)
+2026-11-13 17:41:42 [67/107] kumar-17b987c87099: ok, 10 s, USD 0.0000; Spent so far: EUR 2.38 of EUR 10 (USD 2.6604; stop line USD 9.00)
+2026-11-13 17:42:03 [68/107] kumar-f6e94dad84ba: ok, 21 s, USD 0.0000; Spent so far: EUR 2.38 of EUR 10 (USD 2.6604; stop line USD 9.00)
+2026-11-13 17:42:32 [66/107] kumar-37c6f9f4abb2: ok, 74 s, USD 0.0026; Spent so far: EUR 2.38 of EUR 10 (USD 2.6630; stop line USD 9.00)
+2026-11-13 17:42:35 [69/107] kumar-6833908a771e: ok, 32 s, USD 0.0003; Spent so far: EUR 2.38 of EUR 10 (USD 2.6633; stop line USD 9.00)
+2026-11-13 17:42:52 [70/107] kumar-e7619237b431: ok, 20 s, USD 0.0001; Spent so far: EUR 2.38 of EUR 10 (USD 2.6634; stop line USD 9.00)
+2026-11-13 17:43:04 [72/107] kumar-f39aff0dcea5: ok, 11 s, USD 0.0000; Spent so far: EUR 2.38 of EUR 10 (USD 2.6634; stop line USD 9.00)
+2026-11-13 17:43:59 [59/107] kumar-fd617bb87782: ok, 432 s, USD 0.0121; Spent so far: EUR 2.39 of EUR 10 (USD 2.6755; stop line USD 9.00)
+2026-11-13 17:44:01 [71/107] kumar-2f1896f43426: ok, 86 s, USD 0.0030; Spent so far: EUR 2.39 of EUR 10 (USD 2.6784; stop line USD 9.00)
+2026-11-13 17:44:29 [73/107] kumar-46463bd698f5: ok, 85 s, USD 0.0014; Spent so far: EUR 2.39 of EUR 10 (USD 2.6798; stop line USD 9.00)
+2026-11-13 17:44:32 [74/107] kumar-a13e783fea8e: ok, 33 s, USD 0.0009; Spent so far: EUR 2.40 of EUR 10 (USD 2.6807; stop line USD 9.00)
+2026-11-13 17:44:46 [75/107] kumar-2f1f7506ab50: ok, 45 s, USD 0.0005; Spent so far: EUR 2.40 of EUR 10 (USD 2.6813; stop line USD 9.00)
+2026-11-13 17:44:58 [77/107] kumar-b63d676cabe0: ok, 26 s, USD 0.0000; Spent so far: EUR 2.40 of EUR 10 (USD 2.6813; stop line USD 9.00)
+2026-11-13 17:45:18 [76/107] kumar-ce38443bb633: ok, 49 s, USD 0.0017; Spent so far: EUR 2.40 of EUR 10 (USD 2.6830; stop line USD 9.00)
+2026-11-13 17:45:19 [78/107] kumar-177c1b3a5a89: ok, 33 s, USD 0.0006; Spent so far: EUR 2.40 of EUR 10 (USD 2.6836; stop line USD 9.00)
+2026-11-13 17:45:25 [79/107] kumar-1ea8c6b5d783: ok, 27 s, USD 0.0005; Spent so far: EUR 2.40 of EUR 10 (USD 2.6841; stop line USD 9.00)
+2026-11-13 17:45:50 [82/107] kumar-a863c505e22c: ok, 24 s, USD 0.0000; Spent so far: EUR 2.40 of EUR 10 (USD 2.6841; stop line USD 9.00)
+2026-11-13 17:46:03 [80/107] kumar-865b41717989: ok, 45 s, USD 0.0006; Spent so far: EUR 2.40 of EUR 10 (USD 2.6847; stop line USD 9.00)
+2026-11-13 17:46:12 [81/107] kumar-c2f7a5fb9018: ok, 54 s, USD 0.0017; Spent so far: EUR 2.40 of EUR 10 (USD 2.6863; stop line USD 9.00)
+2026-11-13 17:46:22 [83/107] kumar-3cb607816835: ok, 33 s, USD 0.0006; Spent so far: EUR 2.40 of EUR 10 (USD 2.6870; stop line USD 9.00)
+2026-11-13 17:46:40 [84/107] kumar-bad4ae60e387: ok, 37 s, USD 0.0009; Spent so far: EUR 2.40 of EUR 10 (USD 2.6879; stop line USD 9.00)
+2026-11-13 17:46:56 [87/107] kumar-65258bb85242: ok, 16 s, USD 0.0000; Spent so far: EUR 2.40 of EUR 10 (USD 2.6879; stop line USD 9.00)
+2026-11-13 17:47:07 [86/107] kumar-7f3eae779304: ok, 44 s, USD 0.0017; Spent so far: EUR 2.40 of EUR 10 (USD 2.6895; stop line USD 9.00)
+2026-11-13 17:47:18 [85/107] kumar-c551050e683d: ok, 65 s, USD 0.0008; Spent so far: EUR 2.40 of EUR 10 (USD 2.6903; stop line USD 9.00)
+2026-11-13 17:47:39 [88/107] kumar-09b4361f45e7: ok, 43 s, USD 0.0006; Spent so far: EUR 2.40 of EUR 10 (USD 2.6909; stop line USD 9.00)
+2026-11-13 17:48:12 [89/107] kumar-ee4476d3fe84: ok, 65 s, USD 0.0013; Spent so far: EUR 2.41 of EUR 10 (USD 2.6922; stop line USD 9.00)
+2026-11-13 17:48:51 [90/107] kumar-2501efe7321d: ok, 93 s, USD 0.0028; Spent so far: EUR 2.41 of EUR 10 (USD 2.6950; stop line USD 9.00)
+2026-11-13 17:48:52 [91/107] kumar-0f3109bcef56: ok, 72 s, USD 0.0006; Spent so far: EUR 2.41 of EUR 10 (USD 2.6956; stop line USD 9.00)
+2026-11-13 17:49:41 [94/107] kumar-668f8291dce0: ok, 49 s, USD 0.0003; Spent so far: EUR 2.41 of EUR 10 (USD 2.6959; stop line USD 9.00)
+2026-11-13 17:50:09 [92/107] kumar-026abd386c51: ok, 116 s, USD 0.0017; Spent so far: EUR 2.41 of EUR 10 (USD 2.6976; stop line USD 9.00)
+2026-11-13 17:50:38 [93/107] kumar-2286e5f4b7b9: ok, 106 s, USD 0.0016; Spent so far: EUR 2.41 of EUR 10 (USD 2.6992; stop line USD 9.00)
+2026-11-13 17:51:01 [96/107] kumar-4f7cac530f83: ok, 52 s, USD 0.0002; Spent so far: EUR 2.41 of EUR 10 (USD 2.6994; stop line USD 9.00)
+2026-11-13 17:53:22 [95/107] kumar-0d2bd7c93688: ok, 221 s, USD 0.0110; Spent so far: EUR 2.42 of EUR 10 (USD 2.7104; stop line USD 9.00)
+2026-11-13 17:53:24 [97/107] kumar-902eb1e108d6: ok, 166 s, USD 0.0016; Spent so far: EUR 2.42 of EUR 10 (USD 2.7119; stop line USD 9.00)
+2026-11-13 17:53:24 [98/107] kumar-e167a61526d7: ok, 144 s, USD 0.0008; Spent so far: EUR 2.42 of EUR 10 (USD 2.7127; stop line USD 9.00)
+2026-11-13 17:54:08 [99/107] kumar-2cda90f35fd8: ok, 44 s, USD 0.0016; Spent so far: EUR 2.43 of EUR 10 (USD 2.7144; stop line USD 9.00)
+2026-11-13 17:55:53 [101/107] kumar-30e272b900e3: ok, 148 s, USD 0.0019; Spent so far: EUR 2.43 of EUR 10 (USD 2.7162; stop line USD 9.00)
+2026-11-13 17:55:59 [100/107] kumar-a6540e2e47dc: ok, 155 s, USD 0.0062; Spent so far: EUR 2.43 of EUR 10 (USD 2.7225; stop line USD 9.00)
+2026-11-13 17:57:17 [104/107] kumar-89b1acb8d510: ok, 78 s, USD 0.0011; Spent so far: EUR 2.43 of EUR 10 (USD 2.7235; stop line USD 9.00)
+2026-11-13 17:57:18 [103/107] kumar-cf6e3f730983: ok, 78 s, USD 0.0013; Spent so far: EUR 2.43 of EUR 10 (USD 2.7249; stop line USD 9.00)
+2026-11-13 17:58:01 [105/107] kumar-43c6cc37fca7: ok, 44 s, USD 0.0002; Spent so far: EUR 2.43 of EUR 10 (USD 2.7251; stop line USD 9.00)
+2026-11-13 17:58:46 [106/107] kumar-9cad9e302635: ok, 89 s, USD 0.0013; Spent so far: EUR 2.44 of EUR 10 (USD 2.7264; stop line USD 9.00)
+2026-11-13 17:59:14 [107/107] kumar-013889918686: ok, 73 s, USD 0.0007; Spent so far: EUR 2.44 of EUR 10 (USD 2.7272; stop line USD 9.00)
+2026-11-13 18:07:06 [102/107] kumar-880fbd357f6b: ok, 778 s, USD 0.0355; Spent so far: EUR 2.47 of EUR 10 (USD 2.7627; stop line USD 9.00)
+2026-11-13 18:07:06 summary: evaluation/results/runs-1.1.0/kumar__luna.csv
+== 18:07 no-harm kumar luna
+kumar/luna: 107 files checked, 7 with a changed page -> evaluation/results/runs-1.1.0/kumar__luna__noharm.csv
+== 18:10 all done
+Spent so far: EUR 2.47 of EUR 10 (USD 2.7627; stop line USD 9.00)

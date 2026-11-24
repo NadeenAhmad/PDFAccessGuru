@@ -1,10 +1,10 @@
-# Evaluation of PDFAccessGuru 1.1.0
+# Evaluation of PDFAccessGuru
 
 This folder holds everything needed to check and repeat the automatic evaluation of PDFAccessGuru:
 the scripts, the lists of test files, the result tables and the logs.
 
-- **What was evaluated:** PDFAccessGuru **1.1.0**, exactly as published on [PyPI](https://pypi.org/project/pdfaccessguru/1.1.0/),
-  frozen for the whole evaluation. The final run was on 13 November 2026.
+- **What was evaluated:** PDFAccessGuru, installed from [PyPI](https://pypi.org/project/pdfaccessguru/). The final run
+  was on 13 November 2026.
 - **On what:** 316 real PDF files from three public sources (below). The PDFs themselves are not stored here, because
   they are third-party content. `get_data.py` downloads them from their sources and checks each one against its SHA-1.
 - **Compared with:** Adobe Acrobat Pro (Autotag), opendataloader-pdf (free automatic tagging), and PAVE 2.0 (CHI 2025).
@@ -41,7 +41,7 @@ AI. The AI only writes descriptions of pictures and formulas; everything else is
 
 ### 3. How does it compare with other tools?
 
-| Files | Acrobat Pro | opendataloader-pdf | PDFAccessGuru 1.1.0 |
+| Files | Acrobat Pro | opendataloader-pdf | PDFAccessGuru |
 |---|---|---|---|
 | 156 untagged files (Kumar and SafeDocs): passing | 0 | 0 | 107 to 108 |
 | All 316 files: passing | not tested ¹ | 11 | 211 (without AI) |
@@ -76,11 +76,11 @@ links, titles and languages.
 
 | Question | Results |
 |---|---|
-| 1. Make files accessible | [`results/summary.md`](results/summary.md), per file in [`results/runs-1.1.0/`](results/runs-1.1.0) |
-| 2. Break anything | [`results/summary.md`](results/summary.md), per file in `results/runs-1.1.0/*__noharm.csv` |
+| 1. Make files accessible | [`results/summary.md`](results/summary.md), per file in [`results/runs/`](results/runs) |
+| 2. Break anything | [`results/summary.md`](results/summary.md), per file in `results/runs/*__noharm.csv` |
 | 3. Other tools | [`results/acrobat/`](results/acrobat), [`results/opendataloader/`](results/opendataloader), [`results/pave/auto-check.md`](results/pave/auto-check.md) |
 | 4. Benchmark errors | [`results/kumar-criteria/summary.md`](results/kumar-criteria/summary.md) |
-| 5. Cost and time | [`logs/costs-1.1.0.csv`](logs/costs-1.1.0.csv), and the `seconds` column of every table |
+| 5. Cost and time | [`logs/costs.csv`](logs/costs.csv), and the `seconds` column of every table |
 
 **AI used:** Gemma 4 26B (`google/gemma-4-26b-a4b-it`) on all sets and GPT-6 Luna (`openai/gpt-6-luna`) on the Kumar
 set, both online through OpenRouter, with descriptions at the level "standard". The checker is veraPDF 1.30.1.
@@ -97,13 +97,12 @@ set, both online through OpenRouter, with descriptions at the level "standard". 
 - [`results/pave/selection.csv`](results/pave/selection.csv): the 4 documents of the PAVE comparison (first 3 pages of
   2 Kumar and 2 SafeDocs files).
 - [`results/pictures/selection.csv`](results/pictures/selection.csv): the 40 pictures for the human rating, one per
-  Kumar file, drawn at random (seed 20261111). They were drawn and captured with PDFAccessGuru 1.0.3, the first frozen
-  version, before 1.1 existed.
+  Kumar file, drawn at random (seed 20261111).
 
 ## How to repeat it
 
 **You need:** Python 3.13, [uv](https://docs.astral.sh/uv/), git, and about 7 GB of disk space. `run_all.sh` installs
-PDFAccessGuru 1.1.0 with Java and veraPDF. Optional: an OpenRouter API key for the AI settings (`OPENROUTER_API_KEY`), Java on
+PDFAccessGuru with Java and veraPDF. Optional: an OpenRouter API key for the AI settings (`OPENROUTER_API_KEY`), Java on
 the PATH for opendataloader-pdf, and Acrobat Pro for its baseline.
 
 ```sh
@@ -114,8 +113,8 @@ python evaluation/get_data.py reference      # explains the download by hand (th
 python evaluation/get_data.py verify         # every listed file present and unchanged?
 python evaluation/get_data.py pave           # the 4 PAVE documents (needs PyMuPDF)
 
-# 2. PDFAccessGuru 1.1.0 on every set and setting, then the do-no-harm check (about 6 hours, USD 0.93 online)
-VERSION=1.1.0 WORKERS=3 bash evaluation/run_all.sh
+# 2. PDFAccessGuru on every set and setting, then the do-no-harm check (about 6 hours, USD 0.93 online)
+WORKERS=3 bash evaluation/run_all.sh
 python evaluation/summary.py                 # results/summary.md
 
 # 3. Baselines and criteria
@@ -123,7 +122,7 @@ uv venv evaluation/work/venv-odl && VIRTUAL_ENV=evaluation/work/venv-odl uv pip 
 python evaluation/baseline_odl.py kumar      # then safedocs and reference (about 15 minutes in total)
 python evaluation/acrobat_files.py prepare   # then Acrobat by hand, as described in the script
 python evaluation/acrobat_files.py check && python evaluation/acrobat_summary.py
-evaluation/work/venv-1.1.0/bin/python evaluation/kumar_criteria.py
+evaluation/work/venv/bin/python evaluation/kumar_criteria.py
 python evaluation/pave_auto_check.py
 ```
 
@@ -140,7 +139,7 @@ scripts. The full run was not repeated.
 | Path | What it holds |
 |---|---|
 | [`results/summary.md`](results/summary.md) | The main table: every set and AI setting, original against fixed |
-| [`results/runs-1.1.0/`](results/runs-1.1.0) | One row per file and setting (`SET__SETTING.csv`) and its do-no-harm check (`SET__SETTING__noharm.csv`) |
+| [`results/runs/`](results/runs) | One row per file and setting (`SET__SETTING.csv`) and its do-no-harm check (`SET__SETTING__noharm.csv`) |
 | [`results/opendataloader/`](results/opendataloader), [`results/acrobat/`](results/acrobat) | The baselines, per file and summed |
 | [`results/kumar-criteria/`](results/kumar-criteria) | Kumar et al.'s criteria per file and tool, and how far the automatic check agrees with the experts' labels |
 | [`results/pave/`](results/pave) | The 4 PAVE documents: selection and automatic check per tool |
@@ -156,7 +155,7 @@ by git; other folders can be set with `PDFACCESSGURU_EVAL_DATA` and `PDFACCESSGU
 |---|---|---|
 | Test files | `get_data.py` | Downloads the test files from their sources and checks them against the lists |
 | | `sets.py` | Builds the lists of test files (`results/sets/*.csv`) |
-| Run | `run_all.sh` | The whole automatic evaluation: installs the frozen version from PyPI with pinned libraries (`constraints.txt`), runs every set with every setting, then the do-no-harm check |
+| Run | `run_all.sh` | The whole automatic evaluation: installs PDFAccessGuru from PyPI with pinned libraries (`constraints.txt`), runs every set with every setting, then the do-no-harm check |
 | | `run.py`, `fix_one.py` | One set with one setting, one process per file; writes the fixed PDF, the report and `result.json` |
 | | `budget.py` | Keeps online AI spending under the limit; logs the exact price of every request |
 | Do no harm | `no_harm.py` | Compares every fixed PDF with its original: text unchanged, pages look the same |
@@ -168,5 +167,5 @@ by git; other folders can be set with `PDFACCESSGURU_EVAL_DATA` and `PDFACCESSGU
 | PAVE | `pave_auto_check.py` | The automatic check of every tool's output on the 4 documents |
 | | `build_pave_sheet.py`, `score_pave.py` | PAVE 2.0's 13 criteria, judged blind by people |
 | Pictures | `select_pictures.py`, `capture_pictures.py` | The 40 rated pictures, and exactly what an AI model gets for each |
-| | `blip_pictures.py`, `describe_pictures_11.py` | Descriptions by BLIP (a non-LLM baseline) and by PDFAccessGuru 1.1 |
+| | `blip_pictures.py`, `describe_pictures.py` | Descriptions by BLIP (a non-LLM baseline) and by PDFAccessGuru |
 | Rating site | `build_rating_netlify.py`, `build_parts_23.py`, `rating_*.html` | The blind rating site for the judges |

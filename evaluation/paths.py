@@ -10,9 +10,8 @@ from __future__ import annotations
 import os
 from pathlib import Path
 
-# The frozen version that is evaluated (exactly as published on PyPI).
+# The version of PDFAccessGuru that is evaluated, installed from PyPI by run_all.sh.
 VERSION = os.environ.get("PDFACCESSGURU_EVAL_VERSION", "1.1.0")
-_SUFFIX = f"-{VERSION}"
 
 HERE = Path(__file__).resolve().parent
 RESULTS = HERE / "results"                                    # small tables: committed, later published
@@ -23,9 +22,9 @@ SAFEDOCS = TESTDATA / "cc-main-2021-31" / "pdfs"               # SafeDocs CC-MAI
 REFERENCE_SUITE = TESTDATA / "pdfua-reference-suite"           # PDF Association, PDF/UA Reference Suite 1.1 (CC BY 4.0)
 
 WORK = Path(os.environ.get("PDFACCESSGURU_EVAL_WORK", HERE / "work"))      # raw outputs: fixed PDFs, full reports, logs
-RUNS = WORK / f"runs{_SUFFIX}"
-FROZEN_PYTHON = WORK / f"venv-{VERSION}" / "bin" / "python"    # the version exactly as published on PyPI
-RUN_TABLES = RESULTS / f"runs{_SUFFIX}"                          # results/runs-1.1.0
+RUNS = WORK / "runs"
+FROZEN_PYTHON = WORK / "venv" / "bin" / "python"              # PDFAccessGuru as installed from PyPI
+RUN_TABLES = RESULTS / "runs"                                  # per-file tables
 ODL_RUNS = WORK / "runs-opendataloader"                     # baseline: opendataloader-pdf outputs (SET/odl/RUN_ID)
 ODL_TABLES = RESULTS / "opendataloader"                     # baseline tables: SET__odl.csv
 COST_LOG = WORK / "cost-log.csv"                               # every paid AI request, with its price

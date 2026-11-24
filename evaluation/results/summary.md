@@ -1,7 +1,7 @@
-# Results of PDFAccessGuru 1.1.0
+# Results of PDFAccessGuru
 
 Original files against the files fixed by PDFAccessGuru, checked with veraPDF (PDF/UA-1). Built by
-`evaluation/summary.py` from the per-file tables in `results/runs-1.1.0/`.
+`evaluation/summary.py` from the per-file tables in `results/runs/`.
 
 | Set | AI for descriptions | Files | Pass PDF/UA (original → fixed) | Problems (original → fixed) | Files with more failing rules | Pages that look different | Pages whose text differs | Pictures sent to AI | Online cost (USD) | Processing time (hours, sum over files) |
 |---|---|---|---|---|---|---|---|---|---|---|
