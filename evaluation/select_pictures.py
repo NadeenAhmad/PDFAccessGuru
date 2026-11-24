@@ -5,6 +5,14 @@ Pictures are drawn per FILE, not per picture: 40 files at random from the Kumar 
 describes, then one picture at random from each (seed 20261111), never the same picture twice. Drawing per
 picture would let two files with 186 small drawings each fill most of the sample.
 
+The pictures were drawn and captured with PDFAccessGuru 1.0.3 (the first frozen version, on PyPI), from the Kumar
+files whose pictures its GPT-6 Luna run described, before 1.1 existed. The draw is fixed in
+results/pictures/selection.csv. To capture exactly these 40 pictures again (with 1.0.3):
+
+    PDFACCESSGURU_EVAL_VERSION=1.0.3 python evaluation/select_pictures.py --from-list
+
+A new draw (needs a GPT-6 Luna run of the Kumar set first):
+
     python evaluation/select_pictures.py          (plain python3; starts capture_pictures.py with the frozen Python)
 
 Writes evaluation/work/pictures/selection.json and results/pictures/selection.csv (no picture content).
@@ -17,6 +25,7 @@ import hashlib
 import json
 import random
 import subprocess
+import sys
 from pathlib import Path
 
 from paths import FROZEN_PYTHON, HERE, KUMAR, RESULTS, RUNS, WORK
@@ -40,11 +49,37 @@ def files_with_pictures() -> list[str]:
     return found
 
 
-def main() -> int:
+def kumar_paths() -> dict:
     paths = {}
     with (RESULTS / "sets" / "kumar.csv").open(encoding="utf-8") as handle:
         for row in csv.DictReader(handle):
             paths.setdefault(row["run_id"], KUMAR / row["file"])
+    return paths
+
+
+def capture(run_id: str, paths: dict) -> Path:
+    folder = PICTURES / run_id
+    if not (folder / "pictures.json").exists():
+        subprocess.run([str(FROZEN_PYTHON), str(HERE / "capture_pictures.py"), str(paths[run_id]), str(folder)],
+                       capture_output=True, timeout=7200)
+    return folder
+
+
+def from_list() -> int:
+    """Captures exactly the 40 pictures of results/pictures/selection.csv again (no new draw)."""
+    paths, chosen = kumar_paths(), []
+    with (RESULTS / "pictures" / "selection.csv").open(encoding="utf-8") as handle:
+        for row in csv.DictReader(handle):
+            folder = capture(row["file"], paths)
+            captured = {p["picture"] for p in json.loads((folder / "pictures.json").read_text(encoding="utf-8"))}
+            print(f"{row['id']}: {row['file']}, page {row['page']}: {'captured' if row['picture'] in captured else 'NOT FOUND'}")
+            chosen.append({**row, "folder": str(folder)})
+    (PICTURES / "selection.json").write_text(json.dumps(chosen, indent=1), encoding="utf-8")
+    return 0
+
+
+def main() -> int:
+    paths = kumar_paths()
     candidates = files_with_pictures()
     generator = random.Random(SEED)
     generator.shuffle(candidates)
@@ -52,10 +87,7 @@ def main() -> int:
     for run_id in candidates:
         if len(chosen) == WANTED:
             break
-        folder = PICTURES / run_id
-        if not (folder / "pictures.json").exists():
-            subprocess.run([str(FROZEN_PYTHON), str(HERE / "capture_pictures.py"), str(paths[run_id]), str(folder)],
-                           capture_output=True, timeout=7200)
+        folder = capture(run_id, paths)
         pictures = json.loads((folder / "pictures.json").read_text(encoding="utf-8")) if (folder / "pictures.json").exists() else []
         pictures = [p for p in pictures if hashlib.sha1((folder / f"{p['picture']}.png").read_bytes()).hexdigest() not in seen_images]
         if not pictures:
@@ -77,4 +109,4 @@ def main() -> int:
 
 
 if __name__ == "__main__":
-    raise SystemExit(main())
+    raise SystemExit(from_list() if "--from-list" in sys.argv else main())
