@@ -13,8 +13,8 @@ Part 3, links, titles and language:
 Versions are blind: letters in a random order per item. The keys go to evaluation/work/rating/
 (key-structure.json, key-links.json), never into the site.
 
-    RENDER_PYTHON=evaluation/work/venv-1.1.0/bin/python \
-      evaluation/work/venv-1.1.0/bin/python evaluation/build_parts_23.py OUTPUT_FOLDER
+    RENDER_PYTHON=evaluation/work/venv/bin/python \
+      evaluation/work/venv/bin/python evaluation/build_parts_23.py OUTPUT_FOLDER
 
 Run it with a Python that has PDFAccessGuru (pikepdf, PyMuPDF, pdfplumber). OUTPUT_FOLDER is the Netlify folder of
 Part 1; structure.html, links.html, their pictures and their save/load functions are added; Part 1 is not touched.
@@ -34,10 +34,10 @@ import pikepdf
 import pymupdf
 
 import build_pave_sheet
-from paths import ODL_RUNS, RESULTS, WORK
+from paths import ODL_RUNS, RESULTS, RUNS, WORK
 
 SEED = 20261113
-RUNS_110 = WORK / "runs-1.1.0"
+RUNS_110 = RUNS
 ACROBAT, PAVE = WORK / "acrobat", WORK / "pave"
 LANGUAGES = {"en": "English", "de": "German", "fr": "French", "es": "Spanish", "it": "Italian", "nl": "Dutch",
              "pt": "Portuguese", "no": "Norwegian", "nb": "Norwegian", "da": "Danish", "sv": "Swedish", "fi": "Finnish",

@@ -1,6 +1,6 @@
 """
 Runs the frozen PDFAccessGuru version (1.1.0) on ONE file and writes result.json next to the fixed PDF.
-Started by run.py with the frozen Python (evaluation/work/venv-1.1.0), one process per file.
+Started by run.py with the frozen Python (evaluation/work/venv), one process per file.
 
     python fix_one.py INPUT.pdf OUTPUT_FOLDER SETTING      (SETTING: rules | local | luna)
 
