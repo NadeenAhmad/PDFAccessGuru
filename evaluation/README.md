@@ -9,58 +9,81 @@ the scripts, the lists of test files, the result tables and the logs.
   they are third-party content. `get_data.py` downloads them from their sources and checks each one against its SHA-1.
 - **Compared with:** Adobe Acrobat Pro (Autotag), opendataloader-pdf (free automatic tagging), and PAVE 2.0 (CHI 2025).
 
-## Results at a glance
+## Results
 
-**Fixing files.** A file *passes* when veraPDF finds no problem against PDF/UA-1, the standard for accessible PDF.
-*Problems* are the failed checks veraPDF reports. Full table: [`results/summary.md`](results/summary.md).
+**The test files**
+- **Kumar benchmark:** 107 short excerpts of research papers from an accessibility benchmark. Many have errors added on purpose.
+- **SafeDocs:** 200 PDFs picked at random from the web.
+- **PDF/UA Reference Suite:** 9 PDFs that are already accessible.
 
-| Set | Files | Pass (original → fixed) | Problems (original → fixed) | Pages that look different after fixing |
-|---|---|---|---|---|
-| Kumar benchmark, held out | 87 | 0 → 43 to 47 | 69,705 → 4,367 to 4,462 | 0 |
-| SafeDocs (web PDFs) | 200 | 0 → 146 to 153 | 316,730 → 14,072 to 14,331 | 58 (on 17 files) |
-| PDF/UA Reference Suite (already accessible) | 9 | 9 → 9 | 0 → 0 | 0 |
+A file **passes** when the PDF checker veraPDF finds no problem against PDF/UA, the standard for accessible PDF.
+**Problems** are the failed checks it reports. Where two numbers are given, the first is without AI and the second with
+AI. The AI only writes descriptions of pictures and formulas; everything else is the same.
 
-Ranges: without AI to with AI. The AI only writes descriptions of pictures and formulas. Online AI cost for the whole
-run: USD 0.93.
+### 1. Does PDFAccessGuru make files accessible?
 
-**Compared with other tools** (the same check for every tool):
+| Test set | Files | Passing before | Passing after | Problems before | Problems after |
+|---|---|---|---|---|---|
+| Kumar benchmark | 107 | 0 | 56 to 62 | 101,020 | 4,929 to 4,789 |
+| SafeDocs | 200 | 0 | 146 to 153 | 316,730 | 14,331 to 14,072 |
+
+- No file passed before fixing.
+- After fixing, more than half of the Kumar files and about three quarters of the SafeDocs files pass.
+- About 95% of the problems are gone.
+
+### 2. Does it break anything?
+
+- **Accessible files stay accessible:** all 9 Reference Suite files still pass and look the same.
+- **No file gets worse:** no file fails more kinds of checks after fixing than before.
+- **Pages look the same:** no Kumar page looks different. In SafeDocs, 58 of 2,902 pages (in 17 files) do.
+- **Text stays the same:** without AI, the text changes on 2 of the 3,407 pages. With AI, it changes on 12 to 22
+  pages per set (none in the Reference Suite), because the AI fills in letters for which the font gives no text.
+
+### 3. How does it compare with other tools?
 
 | Files | Acrobat Pro | opendataloader-pdf | PDFAccessGuru 1.1.0 |
 |---|---|---|---|
-| 156 untagged files (Kumar and SafeDocs): pass | 0 | 0 | 107 (no AI) to 108 (AI) |
-| All 316 files: pass | not tested ¹ | 11 | 211 (no AI) |
-| 4 PAVE documents: pass | 0 of 4 | 0 of 4 | 2 of 4 (PAVE 2.0: 0 of 4) |
-| 4 PAVE documents: problems left | 4,551 | 3,862 | 64 (PAVE 2.0: 56, after about 30 manual actions per document) |
+| 156 untagged files (Kumar and SafeDocs): passing | 0 | 0 | 107 to 108 |
+| All 316 files: passing | not tested ¹ | 11 | 211 (without AI) |
+| 4 PAVE documents: passing | 0 of 4 | 0 of 4 | 2 of 4 (PAVE 2.0: 0 of 4) |
+| 4 PAVE documents: problems left | 4,551 | 3,862 | 64 (PAVE 2.0: 56) |
 
 ¹ Acrobat Pro was tested only on the 156 untagged files (first row). On files that already have tags, its Autotag
 would replace the author's tags with its own, so it was not used on them.
 
-**Kumar et al.'s criteria.** These check whether the specific errors that the benchmark's authors added are gone.
-Broken links: fixed in 5 of 5 files. Missing structure: added in 5 of 5. Missing picture descriptions: added in 4 of 5
-without AI, 5 of 5 with AI. Still open: wrong table structure (fixed in 0 of 5), wrong existing tags (1 of 5), and
-existing descriptions that say nothing, such as "Figure 6" (they stay). Full table:
-[`results/kumar-criteria/summary.md`](results/kumar-criteria/summary.md).
+- **Acrobat Pro** and **opendataloader-pdf** tag files automatically, like PDFAccessGuru.
+- **PAVE 2.0** (CHI 2025) is a research tool in which a person tags the file with AI help. It took about 30 manual
+  actions per document.
+
+### 4. Does it fix the errors in the benchmark?
+
+The benchmark's authors added specific errors to some files (5 files per error).
+- **Broken links:** fixed in all 5 files.
+- **No tags at all:** tags added in all 5.
+- **Missing picture descriptions:** none left in 4 of 5 files without AI, and in all 5 with AI.
+- **Not fixed:** wrong table structure (0 of 5); wrong tags that the author already set, such as headings tagged as
+  normal text (fixed in 1 of 5); and existing descriptions that say nothing, such as "Figure 6".
+
+### 5. What does it cost?
+
+- **Online AI:** USD 0.93 for all files and settings together, less than 1 cent per file.
+- **Time:** typically about half a minute per file without AI, and up to a minute with AI, on a 2019 laptop.
 
 The human judgements are added when the judges have finished: the picture descriptions, the PAVE criteria, and the
 links, titles and languages.
 
-## The experiments
+### Where the results are
 
-| Question | Test files | What is measured | Results |
-|---|---|---|---|
-| 1. Does it fix the files? | Kumar (107 files), SafeDocs (200) | PDF/UA-1 pass and problems before and after (veraPDF 1.30.1); share of the text a screen reader reaches | [`summary.md`](results/summary.md), [`runs-1.1.0/`](results/runs-1.1.0) |
-| 2. Does it do no harm? | all files, and the Reference Suite (9 well-made files that must stay good) | pages whose text or look changed (`no_harm.py`, independent of the tool's own safeguards); files that fail more rules after fixing | [`summary.md`](results/summary.md), `*__noharm.csv` |
-| 3. How does it compare? | the 156 untagged files (Acrobat); all files (opendataloader-pdf); 4 documents (PAVE 2.0) | the same check for every tool's output | [`acrobat/`](results/acrobat), [`opendataloader/`](results/opendataloader), [`pave/auto-check.md`](results/pave/auto-check.md) |
-| 4. Does it meet the benchmark's criteria? | Kumar | the errors Kumar et al. added, per criterion, before and after | [`kumar-criteria/`](results/kumar-criteria) |
-| 5. What does it cost? | all runs | online AI cost per request, processing time per file | [`logs/costs-1.1.0.csv`](logs/costs-1.1.0.csv), `seconds` in every table |
+| Question | Results |
+|---|---|
+| 1. Make files accessible | [`results/summary.md`](results/summary.md), per file in [`results/runs-1.1.0/`](results/runs-1.1.0) |
+| 2. Break anything | [`results/summary.md`](results/summary.md), per file in `results/runs-1.1.0/*__noharm.csv` |
+| 3. Other tools | [`results/acrobat/`](results/acrobat), [`results/opendataloader/`](results/opendataloader), [`results/pave/auto-check.md`](results/pave/auto-check.md) |
+| 4. Benchmark errors | [`results/kumar-criteria/summary.md`](results/kumar-criteria/summary.md) |
+| 5. Cost and time | [`logs/costs-1.1.0.csv`](logs/costs-1.1.0.csv), and the `seconds` column of every table |
 
-**Held out.** PDFAccessGuru 1.1 was developed using only a *development set*: 20 Kumar files drawn at random
-([`dev-1.1.csv`](results/sets/dev-1.1.csv)). All other files were held out until the final run, and results are
-reported separately for both.
-
-**AI settings.** Every set was run without AI (simple rules) and with an online AI through OpenRouter: Gemma 4 26B
-(`google/gemma-4-26b-a4b-it`) on all sets, and GPT-6 Luna (`openai/gpt-6-luna`) on the Kumar set. Descriptions were
-written at the level "standard". Everything except the descriptions is the same in every setting.
+**AI used:** Gemma 4 26B (`google/gemma-4-26b-a4b-it`) on all sets and GPT-6 Luna (`openai/gpt-6-luna`) on the Kumar
+set, both online through OpenRouter, with descriptions at the level "standard". The checker is veraPDF 1.30.1.
 
 ## Test files
 
@@ -132,7 +155,7 @@ by git; other folders can be set with `PDFACCESSGURU_EVAL_DATA` and `PDFACCESSGU
 | Step | Script | What it does |
 |---|---|---|
 | Test files | `get_data.py` | Downloads the test files from their sources and checks them against the lists |
-| | `sets.py` | Builds the lists (`results/sets/*.csv`) and draws the development set |
+| | `sets.py` | Builds the lists of test files (`results/sets/*.csv`) |
 | Run | `run_all.sh` | The whole automatic evaluation: installs the frozen version from PyPI with pinned libraries (`constraints.txt`), runs every set with every setting, then the do-no-harm check |
 | | `run.py`, `fix_one.py` | One set with one setting, one process per file; writes the fixed PDF, the report and `result.json` |
 | | `budget.py` | Keeps online AI spending under the limit; logs the exact price of every request |
