@@ -7,14 +7,16 @@ the scripts, the lists of test files, the result tables and the logs.
   was on 13 November 2026.
 - **On what:** 316 real PDF files from three public sources (below). The PDFs themselves are not stored here, because
   they are third-party content. `get_data.py` downloads them from their sources and checks each one against its SHA-1.
-- **Compared with:** Adobe Acrobat Pro (Autotag), opendataloader-pdf (free automatic tagging), and PAVE 2.0 (CHI 2025).
+- **Compared with:** Adobe Acrobat Pro (Autotag), opendataloader-pdf (free automatic tagging), and PAVE 2.0
+  [[4]](#references).
 
 ## Results
 
 **The test files**
-- **Kumar benchmark:** 107 short excerpts of research papers from an accessibility benchmark. Many have errors added on purpose.
-- **SafeDocs:** 200 PDFs picked at random from the web.
-- **PDF/UA Reference Suite:** 9 PDFs that are already accessible.
+- **Kumar benchmark** [[1]](#references): 107 short excerpts of research papers from an accessibility benchmark. Many
+  have errors added on purpose.
+- **SafeDocs** [[2]](#references): 200 PDFs picked at random from the web.
+- **PDF/UA Reference Suite** [[3]](#references): 9 PDFs that are already accessible.
 
 A file **passes** when the PDF checker veraPDF finds no problem against PDF/UA, the standard for accessible PDF.
 **Problems** are the failed checks it reports. Where two numbers are given, the first is without AI and the second with
@@ -34,35 +36,56 @@ AI. The AI only writes descriptions of pictures and formulas; everything else is
 ### 2. Does it break anything?
 
 - **Accessible files stay accessible:** all 9 Reference Suite files still pass and look the same.
-- **No file gets worse:** no file fails more kinds of checks after fixing than before.
+- **No file gets worse:** no file fails more kinds of checks after fixing than before. (2 files have more problems of
+  a kind they already had.)
 - **Pages look the same:** no Kumar page looks different. In SafeDocs, 58 of 2,902 pages (in 17 files) do.
 - **Text stays the same:** without AI, the text changes on 2 of the 3,407 pages. With AI, it changes on 12 to 22
   pages per set (none in the Reference Suite), because the AI fills in letters for which the font gives no text.
 
 ### 3. How does it compare with other tools?
 
-| Files | Acrobat Pro | opendataloader-pdf | PDFAccessGuru |
+| | Acrobat Pro | opendataloader-pdf | PDFAccessGuru |
 |---|---|---|---|
-| 156 untagged files (Kumar and SafeDocs): passing | 0 | 0 | 107 to 108 |
-| All 316 files: passing | not tested ¹ | 11 | 211 (without AI) |
-| 4 PAVE documents: passing | 0 of 4 | 0 of 4 | 2 of 4 (PAVE 2.0: 0 of 4) |
-| 4 PAVE documents: problems left | 4,551 | 3,862 | 64 (PAVE 2.0: 56) |
+| **156 untagged files** (Kumar and SafeDocs) | | | |
+| Files passing | 0 | 0 | 107 to 108 |
+| Problems left | 192,404 | 158,025 ² | 12,753 to 12,514 |
+| Text a screen reader can reach (median per file) | 81% | 85% | 99% |
+| **All 316 files** | | | |
+| Files passing | not tested ¹ | 11 | 211 to 222 |
+| Problems left (417,750 before) | not tested ¹ | 214,001 ² | 19,260 to 18,952 |
+| Files with more problems than before | not tested ¹ | 57 | 2 |
+| **4 PAVE documents** | | | |
+| Files passing | 0 of 4 | 0 of 4 | 2 of 4 (PAVE 2.0: 0 of 4) |
+| Problems left | 4,551 | 3,862 | 64 (PAVE 2.0: 56) |
 
-¹ Acrobat Pro was tested only on the 156 untagged files (first row). On files that already have tags, its Autotag
-would replace the author's tags with its own, so it was not used on them.
+¹ Acrobat Pro was tested only on the 156 untagged files. On files that already have tags, its Autotag would replace
+the author's tags with its own, so it was not used on them.
+² opendataloader-pdf stopped with an error on 4 untagged SafeDocs files; they are left out of its numbers (406,440
+problems before on the 312 files it processed).
 
+- On the same untagged files, PDFAccessGuru leaves about 15 times fewer problems than Acrobat Pro and 12 times fewer
+  than opendataloader-pdf. On all 316 files it removes about 95% of the problems; opendataloader-pdf removes about half.
 - **Acrobat Pro** and **opendataloader-pdf** tag files automatically, like PDFAccessGuru.
-- **PAVE 2.0** (CHI 2025) is a research tool in which a person tags the file with AI help. It took about 30 manual
-  actions per document.
+- **PAVE 2.0** [[4]](#references) is a research tool in which a person tags the file with AI help. It took about 30
+  manual actions per document.
 
 ### 4. Does it fix the errors in the benchmark?
 
-The benchmark's authors added specific errors to some files (5 files per error).
-- **Broken links:** fixed in all 5 files.
-- **No tags at all:** tags added in all 5.
-- **Missing picture descriptions:** none left in 4 of 5 files without AI, and in all 5 with AI.
-- **Not fixed:** wrong table structure (0 of 5); wrong tags that the author already set, such as headings tagged as
-  normal text (fixed in 1 of 5); and existing descriptions that say nothing, such as "Figure 6".
+The benchmark's authors added specific errors to some files (5 files per error). Files in which the error is gone:
+
+| Error added | PDFAccessGuru | opendataloader-pdf | Acrobat Pro ¹ |
+|---|---|---|---|
+| Broken links | 5 | 5 | 5 |
+| No tags at all (correct tags added) | 5 | 5 | 0 |
+| Missing picture descriptions | 4 (without AI) to 5 (with AI) | 0 | – |
+| Wrong tags set by the author, such as skipped heading levels or list items outside a list | 1 | 5 | – |
+| Wrong table structure | 0 | 1 | – |
+| *No error added:* well-made tables that are still correct | 5 | 1 | – |
+
+- opendataloader-pdf replaces all tags of a file with its own. This removes the author's wrong tags, but it also breaks
+  4 of the 5 well-made tables and adds no picture descriptions.
+- PDFAccessGuru keeps the tags an author has set. Good tables stay intact, but it fixes few wrong tags.
+- **Not fixed by PDFAccessGuru or opendataloader-pdf:** existing descriptions that say nothing, such as "Figure 6".
 
 ### 5. What does it cost?
 
@@ -89,9 +112,9 @@ set, both online through OpenRouter, with descriptions at the level "standard". 
 
 | Set | Source | Licence | Used |
 |---|---|---|---|
-| Kumar | Kumar et al., *Benchmarking PDF Accessibility Evaluation*, ASSETS '25 ([repository](https://github.com/Anukriti12/PDF-Accessibility-Benchmark), commit `9f176e0`) | CC0-1.0 | 120 of the 125 entries (5 PDFs are missing from the repository); 107 distinct files, excerpts of 35 papers |
-| SafeDocs | CC-MAIN-2021-31-PDF-UNTRUNCATED, file `0000.zip` ([Digital Corpora](https://digitalcorpora.org/corpora/file-corpora/cc-main-2021-31-pdf-untruncated/)) | as published by the corpus | 200 of its 1,000 files, drawn at random (seed 20261110): 64 tagged, 136 untagged, 2,902 pages |
-| Reference Suite | PDF Association, [PDF/UA Reference Suite 1.1](https://pdfa.org/resource/pdfua-reference-suite/) | CC BY 4.0 | all 9 files |
+| Kumar | Kumar et al. [[1]](#references) ([repository](https://github.com/Anukriti12/PDF-Accessibility-Benchmark), commit `9f176e0`) | CC0-1.0 | 120 of the 125 entries (5 PDFs are missing from the repository); 107 distinct files, excerpts of 35 papers |
+| SafeDocs | CC-MAIN-2021-31-PDF-UNTRUNCATED [[2]](#references), file `0000.zip` ([Digital Corpora](https://digitalcorpora.org/corpora/file-corpora/cc-main-2021-31-pdf-untruncated/)) | as published by the corpus | 200 of its 1,000 files, drawn at random (seed 20261110): 64 tagged, 136 untagged, 2,902 pages |
+| Reference Suite | PDF Association, [PDF/UA Reference Suite 1.1](https://pdfa.org/resource/pdfua-reference-suite/) [[3]](#references) | CC BY 4.0 | all 9 files |
 
 - [`results/sets/`](results/sets): every file with its SHA-1, number of pages and whether it is tagged.
 - [`results/pave/selection.csv`](results/pave/selection.csv): the 4 documents of the PAVE comparison (first 3 pages of
@@ -169,3 +192,21 @@ by git; other folders can be set with `PDFACCESSGURU_EVAL_DATA` and `PDFACCESSGU
 | Pictures | `select_pictures.py`, `capture_pictures.py` | The 40 rated pictures, and exactly what an AI model gets for each |
 | | `blip_pictures.py`, `describe_pictures.py` | Descriptions by BLIP (a non-LLM baseline) and by PDFAccessGuru |
 | Rating site | `build_rating_netlify.py`, `build_parts_23.py`, `rating_*.html` | The blind rating site for the judges |
+
+## References
+
+1. Anukriti Kumar, Tanushree Padath, and Lucy Lu Wang. 2025. Benchmarking PDF Accessibility Evaluation: A Dataset and
+   Framework for Assessing Automated and LLM-Based Approaches for Accessibility Testing. In *Proceedings of the 27th
+   International ACM SIGACCESS Conference on Computers and Accessibility (ASSETS '25)*. ACM.
+   https://doi.org/10.1145/3663547.3746380
+2. SafeDocs corpus CC-MAIN-2021-31-PDF-UNTRUNCATED, gathered by NASA's Jet Propulsion Laboratory for DARPA's SafeDocs
+   program, hosted by Digital Corpora:
+   https://digitalcorpora.org/corpora/file-corpora/cc-main-2021-31-pdf-untruncated/. Background: Timothy Allison,
+   Wayne Burke, Chris Mattmann, Anastasia Menshikova, Philip Southam, Ryan Stonebraker, and Virisha Timmaraju. 2020.
+   Building a Wide Reach Corpus for Secure Parser Development. In *2020 IEEE Security and Privacy Workshops (SPW)*.
+   https://doi.org/10.1109/SPW50608.2020.00066
+3. PDF Association. 2024. PDF/UA Reference Suite 1.1. https://pdfa.org/resource/pdfua-reference-suite/
+4. Felix M. Schmitt-Koopmann, Elaine M. Huang, Hans-Peter Hutter, and Alireza Darvishy. 2025. Towards More Accessible
+   Scientific PDFs for People with Visual Impairments: Step-by-Step PDF Remediation to Improve Tag Accuracy. In
+   *Proceedings of the 2025 CHI Conference on Human Factors in Computing Systems (CHI '25)*. ACM.
+   https://doi.org/10.1145/3706598.3713084
