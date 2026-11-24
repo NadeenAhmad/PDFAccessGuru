@@ -6,7 +6,7 @@
 #   (daytime, while the computer is in use: NICE=15 JAVA_CORES=1)
 #
 # 1. installs the version from PyPI into evaluation/work/venv-VERSION with pinned library versions
-#    (evaluation/constraints.txt), so the same tool gives the same results;
+#    (evaluation/constraints.txt), so the same tool gives the same results, and Java and veraPDF if missing;
 # 2. runs every set with every setting (rules, Gemma 4 26B, GPT-6 Luna on Kumar);
 # 3. the do-no-harm check of every output.
 # Online settings check the EUR 10 budget before every file (budget.py) and stop at the stop line.
@@ -23,6 +23,8 @@ if [ ! -x "$WORK/venv-$VERSION/bin/python" ]; then
   VIRTUAL_ENV="$WORK/venv-$VERSION" uv pip install -q --refresh --no-build -c evaluation/constraints.txt "pdfaccessguru==$VERSION" || exit 1
 fi
 "$WORK/venv-$VERSION/bin/python" -c "import pdfaccessguru, sys; print('PDFAccessGuru', pdfaccessguru.__version__); sys.exit(pdfaccessguru.__version__ != '$VERSION')" || exit 1
+# Java and veraPDF (the checker): installed into the user folder if they are missing
+PDFACCESSGURU_NO_UPDATE_CHECK=1 "$WORK/venv-$VERSION/bin/pdfaccessguru" doctor --install >/dev/null 2>&1
 # offline steps first: they may pause (lid closed) without harm; the online steps come later
 for step in "reference rules" "kumar rules" "safedocs rules" "reference gemma" "kumar gemma" "safedocs gemma" "kumar luna"; do
   set -- $step
