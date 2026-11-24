@@ -17,6 +17,7 @@ Free, on your own computer, in a few minutes.</strong></p>
   <a href="#install"><strong>Install</strong></a> ·
   <a href="#demo">Demo</a> ·
   <a href="#what-it-does">What it does</a> ·
+  <a href="#evaluation">Evaluation</a> ·
   <a href="#questions">Questions</a>
 </p>
 
@@ -179,6 +180,13 @@ Run `pdfaccessguru uninstall` in a terminal. Your PDF files and reports are not 
 Run `pdfaccessguru doctor` to see whether everything is installed correctly.
 Found a problem or have an idea? [Open an issue](https://github.com/NadeenAhmad/PDFAccessGuru/issues).
 Questions and inquiries: [nadeen.fathallah@ki.uni-stuttgart.de](mailto:nadeen.fathallah@ki.uni-stuttgart.de)
+
+## Evaluation
+
+PDFAccessGuru 1.1.0 was tested on 316 public PDF files: the Kumar et al. accessibility benchmark (ASSETS '25), 200
+web PDFs from SafeDocs, and the PDF/UA Reference Suite. It was compared with Acrobat Pro, opendataloader-pdf and
+PAVE 2.0. The scripts, the lists of test files, all results and the logs are in [`evaluation/`](evaluation), with a
+guide to repeating every step.
 
 ## For developers
 
