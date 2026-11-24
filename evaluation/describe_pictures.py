@@ -3,7 +3,7 @@ Picture descriptions by PDFAccessGuru 1.1 (its prompt for the chosen level of de
 document defines, its checks and length safeguard) for captured pictures, with Gemma 4 26B through OpenRouter.
 Run with the 1.1 code on PYTHONPATH (before the release: the development worktree; after: the frozen 1.1 venv).
 
-    python describe_pictures_11.py PICTURES.json OUTPUT.json [brief|standard|detailed]
+    python describe_pictures.py PICTURES.json OUTPUT.json [brief|standard|detailed]
 
 PICTURES.json: selection.json (items with "id", "folder", "picture") or a preview/pilot file (items with "file",
 "picture"). Paid request ids go to OUTPUT.json.paid.jsonl; log their prices with budget.record afterwards.

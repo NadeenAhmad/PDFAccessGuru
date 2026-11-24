@@ -17,7 +17,7 @@ import json
 import statistics
 import sys
 
-from paths import ODL_TABLES, RESULTS, WORK
+from paths import ODL_TABLES, RESULTS, RUN_TABLES, WORK
 
 CHECKS = WORK / "runs-acrobat"
 OUT = RESULTS / "acrobat"
@@ -35,8 +35,8 @@ def main() -> int:
     rows = []
     for set_name in ("kumar", "safedocs"):
         tools = {
-            "pdfaccessguru-1.1.0 rules": table(RESULTS / "runs-1.1.0" / f"{set_name}__rules.csv"),
-            "pdfaccessguru-1.1.0 gemma": table(RESULTS / "runs-1.1.0" / f"{set_name}__gemma.csv"),
+            "pdfaccessguru-1.1.0 rules": table(RUN_TABLES / f"{set_name}__rules.csv"),
+            "pdfaccessguru-1.1.0 gemma": table(RUN_TABLES / f"{set_name}__gemma.csv"),
             "opendataloader-pdf": table(ODL_TABLES / f"{set_name}__odl.csv"),
         }
         for folder in sorted((CHECKS / set_name).glob("*")):

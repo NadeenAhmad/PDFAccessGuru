@@ -1,0 +1,795 @@
+== 16:32 pave pave-1
+veraPDF found 2772 problem(s).
+Texts such as picture descriptions are written by: OpenRouter in the cloud, model google/gemma-4-26b-a4b-it.
+DEBUG page_index: 0
+fdsc NOT subset; don't know how to subset; dropped
+meta NOT subset; don't know how to subset; dropped
+Fonts added to the file: Times-Roman.
+Rule 7.21.4.1-1: 1 problem(s) disappeared.
+Rule 7.21.3.2-1: 3 problem(s) disappeared.
+DEBUG page_index: 0
+DEBUG contents: <pikepdf.Stream(owner=<...>, data=b'BT\n/T1_0 11.955 Tf\n1'..., {
+  "/Filter": "/FlateDecode",
+  "/Length": 7069
+})>
+DEBUG page_index: 0
+DEBUG page_index: 0
+DEBUG contents: <pikepdf.Stream(owner=<...>, data=b'BT\n/T1_0 11.955 Tf\n1'..., {
+  "/Filter": "/FlateDecode",
+  "/Length": 7069
+})>
+DEBUG page_index: 0
+DEBUG page_index: 1
+DEBUG contents: <pikepdf.Stream(owner=<...>, data=b'0 g 0 G\nBT\n/F15 9.96'..., {
+  "/Filter": "/FlateDecode",
+  "/Length": 7421
+})>
+DEBUG page_index: 1
+DEBUG page_index: 1
+DEBUG contents: <pikepdf.Stream(owner=<...>, data=b'0 g 0 G\nBT\n/F15 9.96'..., {
+  "/Filter": "/FlateDecode",
+  "/Length": 7421
+})>
+DEBUG page_index: 1
+DEBUG page_index: 1
+DEBUG contents: <pikepdf.Stream(owner=<...>, data=b'0 g 0 G\nBT\n/F15 9.96'..., {
+  "/Filter": "/FlateDecode",
+  "/Length": 7421
+})>
+DEBUG page_index: 1
+DEBUG page_index: 1
+DEBUG contents: <pikepdf.Stream(owner=<...>, data=b'0 g 0 G\nBT\n/F15 9.96'..., {
+  "/Filter": "/FlateDecode",
+  "/Length": 7421
+})>
+DEBUG page_index: 1
+DEBUG page_index: 1
+DEBUG contents: <pikepdf.Stream(owner=<...>, data=b'0 g 0 G\nBT\n/F15 9.96'..., {
+  "/Filter": "/FlateDecode",
+  "/Length": 7421
+})>
+DEBUG page_index: 1
+DEBUG page_index: 1
+DEBUG contents: <pikepdf.Stream(owner=<...>, data=b'0 g 0 G\nBT\n/F15 9.96'..., {
+  "/Filter": "/FlateDecode",
+  "/Length": 7421
+})>
+DEBUG page_index: 1
+DEBUG page_index: 1
+DEBUG contents: <pikepdf.Stream(owner=<...>, data=b'0 g 0 G\nBT\n/F15 9.96'..., {
+  "/Filter": "/FlateDecode",
+  "/Length": 7421
+})>
+DEBUG page_index: 1
+DEBUG page_index: 2
+DEBUG contents: <pikepdf.Stream(owner=<...>, data=b'0 g 0 G\nBT\n/F15 9.96'..., {
+  "/Filter": "/FlateDecode",
+  "/Length": 5286
+})>
+DEBUG page_index: 2
+Manual raise of CouldNotCorrectDetectedViolationException in corrector identified by the nameglyph-cannot-mapped-unicode running on the element Object: 'glyph-cannot-mapped-unicode: no reliable Unicode value for character code 28; it is not mapped to a space because that would change the text read by screen readers'
+Character code 126 (glyph None) was mapped to U+007E by a language model. Please check the text.
+Character code 126 (glyph None) was mapped to U+007E by a language model. Please check the text.
+Manual raise of CouldNotCorrectDetectedViolationException in corrector identified by the nameglyph-cannot-mapped-unicode running on the element Object: 'glyph-cannot-mapped-unicode: no reliable Unicode value for character code 20; it is not mapped to a space because that would change the text read by screen readers'
+Manual raise of CouldNotCorrectDetectedViolationException in corrector identified by the nameglyph-cannot-mapped-unicode running on the element Object: 'glyph-cannot-mapped-unicode: no reliable Unicode value for character code 21; it is not mapped to a space because that would change the text read by screen readers'
+Manual raise of CouldNotCorrectDetectedViolationException in corrector identified by the nameglyph-cannot-mapped-unicode running on the element Object: 'glyph-cannot-mapped-unicode: no reliable Unicode value for character code 18; it is not mapped to a space because that would change the text read by screen readers'
+Character code 16 (glyph None) was mapped to U+239B by a language model. Please check the text.
+Character code 17 (glyph None) was mapped to U+239B by a language model. Please check the text.
+Character code 19 (glyph None) was mapped to U+239B by a language model. Please check the text.
+Manual raise of CouldNotCorrectDetectedViolationException in corrector identified by the nameglyph-cannot-mapped-unicode running on the element Object: 'glyph-cannot-mapped-unicode: no reliable Unicode value for character code 54; it is not mapped to a space because that would change the text read by screen readers'
+Rule 7.21.7-1: 5 problem(s) disappeared.
+DEBUG page_index: 0
+DEBUG contents: <pikepdf.Stream(owner=<...>, data=b'BT\n/T1_0 11.955 Tf\n1'..., {
+  "/Filter": "/FlateDecode",
+  "/Length": 7069
+})>
+DEBUG page_index: 0
+DEBUG page_index: 1
+DEBUG contents: <pikepdf.Stream(owner=<...>, data=b'0 g 0 G\nBT\n/F15 9.96'..., {
+  "/Filter": "/FlateDecode",
+  "/Length": 7421
+})>
+DEBUG page_index: 1
+DEBUG page_index: 1
+DEBUG contents: <pikepdf.Stream(owner=<...>, data=b'0 g 0 G\nBT\n/F15 9.96'..., {
+  "/Filter": "/FlateDecode",
+  "/Length": 7421
+})>
+DEBUG page_index: 1
+DEBUG page_index: 1
+DEBUG contents: <pikepdf.Stream(owner=<...>, data=b'0 g 0 G\nBT\n/F15 9.96'..., {
+  "/Filter": "/FlateDecode",
+  "/Length": 7421
+})>
+DEBUG page_index: 1
+DEBUG page_index: 2
+DEBUG contents: <pikepdf.Stream(owner=<...>, data=b'0 g 0 G\nBT\n/F15 9.96'..., {
+  "/Filter": "/FlateDecode",
+  "/Length": 5286
+})>
+DEBUG page_index: 2
+Manual raise of CouldNotCorrectDetectedViolationException in corrector identified by the nameglyph-cannot-mapped-unicode running on the element Object: 'glyph-cannot-mapped-unicode: no reliable Unicode value for character code 28; it is not mapped to a space because that would change the text read by screen readers'
+Character code 20 (glyph None) was mapped to U+239B by a language model. Please check the text.
+Manual raise of CouldNotCorrectDetectedViolationException in corrector identified by the nameglyph-cannot-mapped-unicode running on the element Object: 'glyph-cannot-mapped-unicode: no reliable Unicode value for character code 21; it is not mapped to a space because that would change the text read by screen readers'
+Manual raise of CouldNotCorrectDetectedViolationException in corrector identified by the nameglyph-cannot-mapped-unicode running on the element Object: 'glyph-cannot-mapped-unicode: no reliable Unicode value for character code 18; it is not mapped to a space because that would change the text read by screen readers'
+Manual raise of CouldNotCorrectDetectedViolationException in corrector identified by the nameglyph-cannot-mapped-unicode running on the element Object: 'glyph-cannot-mapped-unicode: no reliable Unicode value for character code 54; it is not mapped to a space because that would change the text read by screen readers'
+Rule 7.21.7-1: 1 problem(s) disappeared.
+DEBUG page_index: 0
+DEBUG contents: <pikepdf.Stream(owner=<...>, data=b'BT\n/T1_0 11.955 Tf\n1'..., {
+  "/Filter": "/FlateDecode",
+  "/Length": 7069
+})>
+DEBUG page_index: 0
+DEBUG page_index: 1
+DEBUG contents: <pikepdf.Stream(owner=<...>, data=b'0 g 0 G\nBT\n/F15 9.96'..., {
+  "/Filter": "/FlateDecode",
+  "/Length": 7421
+})>
+DEBUG page_index: 1
+DEBUG page_index: 1
+DEBUG contents: <pikepdf.Stream(owner=<...>, data=b'0 g 0 G\nBT\n/F15 9.96'..., {
+  "/Filter": "/FlateDecode",
+  "/Length": 7421
+})>
+DEBUG page_index: 1
+DEBUG page_index: 2
+DEBUG contents: <pikepdf.Stream(owner=<...>, data=b'0 g 0 G\nBT\n/F15 9.96'..., {
+  "/Filter": "/FlateDecode",
+  "/Length": 5286
+})>
+DEBUG page_index: 2
+Manual raise of CouldNotCorrectDetectedViolationException in corrector identified by the nameglyph-cannot-mapped-unicode running on the element Object: 'glyph-cannot-mapped-unicode: no reliable Unicode value for character code 28; it is not mapped to a space because that would change the text read by screen readers'
+Character code 21 (glyph None) was mapped to U+298F by a language model. Please check the text.
+Character code 18 (glyph None) was mapped to U+239B by a language model. Please check the text.
+Manual raise of CouldNotCorrectDetectedViolationException in corrector identified by the nameglyph-cannot-mapped-unicode running on the element Object: 'glyph-cannot-mapped-unicode: no reliable Unicode value for character code 54; it is not mapped to a space because that would change the text read by screen readers'
+Rule 7.21.7-1: 2 problem(s) disappeared.
+DEBUG page_index: 0
+DEBUG contents: <pikepdf.Stream(owner=<...>, data=b'BT\n/T1_0 11.955 Tf\n1'..., {
+  "/Filter": "/FlateDecode",
+  "/Length": 7069
+})>
+DEBUG page_index: 0
+DEBUG page_index: 2
+DEBUG contents: <pikepdf.Stream(owner=<...>, data=b'0 g 0 G\nBT\n/F15 9.96'..., {
+  "/Filter": "/FlateDecode",
+  "/Length": 5286
+})>
+DEBUG page_index: 2
+Manual raise of CouldNotCorrectDetectedViolationException in corrector identified by the nameglyph-cannot-mapped-unicode running on the element Object: 'glyph-cannot-mapped-unicode: no reliable Unicode value for character code 28; it is not mapped to a space because that would change the text read by screen readers'
+Character code 54 (glyph None) was mapped to U+0036 by a language model. Please check the text.
+Rule 7.21.7-1: 1 problem(s) disappeared.
+DEBUG page_index: 0
+DEBUG contents: <pikepdf.Stream(owner=<...>, data=b'BT\n/T1_0 11.955 Tf\n1'..., {
+  "/Filter": "/FlateDecode",
+  "/Length": 7069
+})>
+DEBUG page_index: 0
+Manual raise of CouldNotCorrectDetectedViolationException in corrector identified by the nameglyph-cannot-mapped-unicode running on the element Object: 'glyph-cannot-mapped-unicode: no reliable Unicode value for character code 28; it is not mapped to a space because that would change the text read by screen readers'
+Consider using the pymupdf_layout package for a greatly improved page layout analysis.
+The file had no tags. Tags were added automatically on 3 page(s): 2 Caption, 2 Figure, 3 Formula, 1 H1, 2 Link, 33 P.
+Tags were added automatically. Please check the reading order and the headings once, for example with the tags panel of your PDF program or with a screen reader.
+Rule 7.1-11: 1633 problem(s) disappeared. 8 other problem(s) appeared (often only revealed by this fix); they are handled in later steps.
+2 annotation(s) got a description (2 link(s), 0 other).
+Rule 7.18.1-2: 2 problem(s) disappeared.
+Rule 7.18.5-2: 2 problem(s) disappeared.
+This picture description was written by an AI model: 'Figure 1 shows three representations of an asymmetric swimming dumbbell. (a) A model diagram of two spheres of different densities connected by a spring with constant k, driven by equal and opposite forces F and moving at average speed U. (b) Lattice Boltzmann (LB) simulations showing the flow field around the two beads, with color indicating the normalized fluid velocity. (c) Experimental snapshots of a magneto-capillary dumbbell at the water/air interface at time t=0 and t=T/2, showing the beads' positions and the resulting average swimming speed U.'. Please check it.
+This picture description was written by an AI model: 'Figure 2 shows the swimming dynamics of an asymmetric dumbbell through three panels. (a) illustrates the sinusoidal trajectories of beads with diameters 500 and 800 micrometers. (b) plots average swimming speed U in micrometers per second against frequency omega in inverse seconds for experimental data using three bead size combinations, compared to an analytic model.'. Please check it.
+Rule 7.3-1: 2 problem(s) disappeared. 2 other problem(s) appeared (often only revealed by this fix); they are handled in later steps.
+Formula description was generated automatically: 'the partial derivative of x with respect to t equals M hat of x times the quantity F of t plus G of x minus m hat times the second partial derivative of x with respect to t squared.'. Please check it.
+Formula description was generated automatically: 'U bar F equals 3 F squared omega zero to the fourth over 2 k squared theta bar squared, times a one squared a two squared over the quantity a one plus a two cubed times L squared, times omega times the quantity theta two minus theta one, over the quantity, the quantity omega zero squared minus omega squared plus omega squared over theta one theta two, squared, plus, the quantity omega zero bar over theta bar minus omega squared over theta one minus omega squared over theta two, squared, all raised to the power of 2.'. Please check it.
+Formula description was generated automatically: 'U bar superscript S equals 3 d squared over 2, times a sub 1 squared a sub 2 squared over the quantity a sub 1 plus a sub 2 cubed times L squared, times omega times the quantity theta sub 2 minus theta sub 1 over 1 plus theta bar squared.'. Please check it.
+Rule 7.7-1: 3 problem(s) disappeared. 3 other problem(s) appeared (often only revealed by this fix); they are handled in later steps.
+Rule 7.2-22: 1126 problem(s) disappeared.
+Rule 7.1-8: 1 problem(s) disappeared.
+Rule 7.1-10: 1 problem(s) disappeared.
+Document title was generated by a language model from page 1: 'The Scallop Theorem and Swimming at the Mesoscale'. Please check it.
+Rule 5-1: 1 problem(s) disappeared.
+Rule 7.1-9: 1 problem(s) disappeared.
+DEBUG page_index: 0
+DEBUG contents: <pikepdf.Stream(owner=<...>, data=<...>, {
+  "/Length": 22672
+})>
+DEBUG page_index: 0
+DEBUG page_index: 1
+DEBUG contents: <pikepdf.Stream(owner=<...>, data=<...>, {
+  "/Length": 32390
+})>
+DEBUG page_index: 1
+DEBUG page_index: 1
+DEBUG contents: <pikepdf.Stream(owner=<...>, data=<...>, {
+  "/Length": 32390
+})>
+DEBUG page_index: 1
+DEBUG page_index: 2
+DEBUG contents: <pikepdf.Stream(owner=<...>, data=<...>, {
+  "/Length": 19233
+})>
+DEBUG page_index: 2
+Manual raise of CouldNotCorrectDetectedViolationException in corrector identified by the nameglyph-cannot-mapped-unicode running on the element Object: 'glyph-cannot-mapped-unicode: no reliable Unicode value for character code 28; it is not mapped to a space because that would change the text read by screen readers'
+Manual raise of CouldNotCorrectDetectedViolationException in corrector identified by the nameglyph-cannot-mapped-unicode running on the element Object: 'glyph-cannot-mapped-unicode: no reliable Unicode value for character code 28; it is not mapped to a space because that would change the text read by screen readers'
+Manual raise of CouldNotCorrectDetectedViolationException in corrector identified by the nameglyph-cannot-mapped-unicode running on the element Object: 'glyph-cannot-mapped-unicode: no reliable Unicode value for character code 28; it is not mapped to a space because that would change the text read by screen readers'
+Manual raise of CouldNotCorrectDetectedViolationException in corrector identified by the nameglyph-cannot-mapped-unicode running on the element Object: 'glyph-cannot-mapped-unicode: no reliable Unicode value for character code 28; it is not mapped to a space because that would change the text read by screen readers'
+cost USD 0.00506
+== 16:33 pave pave-2
+veraPDF found 1648 problem(s).
+Texts such as picture descriptions are written by: OpenRouter in the cloud, model google/gemma-4-26b-a4b-it.
+DEBUG page_index: 0
+1 extra bytes in post.stringData array
+'created' timestamp seems very low; regarding as unix timestamp
+Zapf NOT subset; don't know how to subset; dropped
+meta NOT subset; don't know how to subset; dropped
+Fonts added to the file: Helvetica.
+Rule 7.21.4.1-1: 1 problem(s) disappeared.
+DEBUG page_index: 1
+DEBUG contents: <pikepdf.Stream(owner=<...>, data=<...>, {
+  "/Filter": "/FlateDecode",
+  "/Length": 10829
+})>
+DEBUG page_index: 1
+DEBUG page_index: 1
+DEBUG contents: <pikepdf.Stream(owner=<...>, data=<...>, {
+  "/Filter": "/FlateDecode",
+  "/Length": 10829
+})>
+DEBUG page_index: 1
+DEBUG page_index: 1
+DEBUG contents: <pikepdf.Stream(owner=<...>, data=<...>, {
+  "/Filter": "/FlateDecode",
+  "/Length": 10829
+})>
+DEBUG page_index: 1
+DEBUG page_index: 2
+DEBUG contents: <pikepdf.Stream(owner=<...>, data=<...>, {
+  "/Filter": "/FlateDecode",
+  "/Length": 11688
+})>
+DEBUG page_index: 2
+DEBUG page_index: 2
+DEBUG contents: <pikepdf.Stream(owner=<...>, data=<...>, {
+  "/Filter": "/FlateDecode",
+  "/Length": 11688
+})>
+DEBUG page_index: 2
+DEBUG page_index: 2
+DEBUG contents: <pikepdf.Stream(owner=<...>, data=<...>, {
+  "/Filter": "/FlateDecode",
+  "/Length": 11688
+})>
+DEBUG page_index: 2
+DEBUG page_index: 2
+DEBUG contents: <pikepdf.Stream(owner=<...>, data=<...>, {
+  "/Filter": "/FlateDecode",
+  "/Length": 11688
+})>
+DEBUG page_index: 2
+DEBUG page_index: 2
+DEBUG contents: <pikepdf.Stream(owner=<...>, data=<...>, {
+  "/Filter": "/FlateDecode",
+  "/Length": 11688
+})>
+DEBUG page_index: 2
+DEBUG page_index: 2
+DEBUG contents: <pikepdf.Stream(owner=<...>, data=<...>, {
+  "/Filter": "/FlateDecode",
+  "/Length": 11688
+})>
+DEBUG page_index: 2
+DEBUG page_index: 2
+DEBUG contents: <pikepdf.Stream(owner=<...>, data=<...>, {
+  "/Filter": "/FlateDecode",
+  "/Length": 11688
+})>
+DEBUG page_index: 2
+DEBUG page_index: 2
+DEBUG contents: <pikepdf.Stream(owner=<...>, data=<...>, {
+  "/Filter": "/FlateDecode",
+  "/Length": 11688
+})>
+DEBUG page_index: 2
+DEBUG page_index: 2
+DEBUG contents: <pikepdf.Stream(owner=<...>, data=<...>, {
+  "/Filter": "/FlateDecode",
+  "/Length": 11688
+})>
+DEBUG page_index: 2
+DEBUG page_index: 2
+DEBUG contents: <pikepdf.Stream(owner=<...>, data=<...>, {
+  "/Filter": "/FlateDecode",
+  "/Length": 11688
+})>
+DEBUG page_index: 2
+DEBUG page_index: 2
+DEBUG contents: <pikepdf.Stream(owner=<...>, data=<...>, {
+  "/Filter": "/FlateDecode",
+  "/Length": 11688
+})>
+DEBUG page_index: 2
+DEBUG page_index: 2
+DEBUG contents: <pikepdf.Stream(owner=<...>, data=<...>, {
+  "/Filter": "/FlateDecode",
+  "/Length": 11688
+})>
+DEBUG page_index: 2
+DEBUG page_index: 2
+DEBUG contents: <pikepdf.Stream(owner=<...>, data=<...>, {
+  "/Filter": "/FlateDecode",
+  "/Length": 11688
+})>
+DEBUG page_index: 2
+DEBUG page_index: 2
+DEBUG contents: <pikepdf.Stream(owner=<...>, data=<...>, {
+  "/Filter": "/FlateDecode",
+  "/Length": 11688
+})>
+DEBUG page_index: 2
+DEBUG page_index: 2
+DEBUG contents: <pikepdf.Stream(owner=<...>, data=<...>, {
+  "/Filter": "/FlateDecode",
+  "/Length": 11688
+})>
+DEBUG page_index: 2
+DEBUG page_index: 2
+DEBUG contents: <pikepdf.Stream(owner=<...>, data=<...>, {
+  "/Filter": "/FlateDecode",
+  "/Length": 11688
+})>
+DEBUG page_index: 2
+DEBUG page_index: 2
+DEBUG contents: <pikepdf.Stream(owner=<...>, data=<...>, {
+  "/Filter": "/FlateDecode",
+  "/Length": 11688
+})>
+DEBUG page_index: 2
+DEBUG page_index: 2
+DEBUG contents: <pikepdf.Stream(owner=<...>, data=<...>, {
+  "/Filter": "/FlateDecode",
+  "/Length": 11688
+})>
+DEBUG page_index: 2
+DEBUG page_index: 2
+DEBUG contents: <pikepdf.Stream(owner=<...>, data=<...>, {
+  "/Filter": "/FlateDecode",
+  "/Length": 11688
+})>
+DEBUG page_index: 2
+Manual raise of CouldNotCorrectDetectedViolationException in corrector identified by the nameglyph-cannot-mapped-unicode running on the element Object: 'glyph-cannot-mapped-unicode: no reliable Unicode value for character code 18; it is not mapped to a space because that would change the text read by screen readers'
+Manual raise of CouldNotCorrectDetectedViolationException in corrector identified by the nameglyph-cannot-mapped-unicode running on the element Object: 'glyph-cannot-mapped-unicode: no reliable Unicode value for character code 16; it is not mapped to a space because that would change the text read by screen readers'
+Manual raise of CouldNotCorrectDetectedViolationException in corrector identified by the nameglyph-cannot-mapped-unicode running on the element Object: 'glyph-cannot-mapped-unicode: no reliable Unicode value for character code 14; it is not mapped to a space because that would change the text read by screen readers'
+Manual raise of CouldNotCorrectDetectedViolationException in corrector identified by the nameglyph-cannot-mapped-unicode running on the element Object: 'glyph-cannot-mapped-unicode: no reliable Unicode value for character code 30; it is not mapped to a space because that would change the text read by screen readers'
+Manual raise of CouldNotCorrectDetectedViolationException in corrector identified by the nameglyph-cannot-mapped-unicode running on the element Object: 'glyph-cannot-mapped-unicode: no reliable Unicode value for character code 29; it is not mapped to a space because that would change the text read by screen readers'
+Manual raise of CouldNotCorrectDetectedViolationException in corrector identified by the nameglyph-cannot-mapped-unicode running on the element Object: 'glyph-cannot-mapped-unicode: no reliable Unicode value for character code 28; it is not mapped to a space because that would change the text read by screen readers'
+Manual raise of CouldNotCorrectDetectedViolationException in corrector identified by the nameglyph-cannot-mapped-unicode running on the element Object: 'glyph-cannot-mapped-unicode: no reliable Unicode value for character code 27; it is not mapped to a space because that would change the text read by screen readers'
+Manual raise of CouldNotCorrectDetectedViolationException in corrector identified by the nameglyph-cannot-mapped-unicode running on the element Object: 'glyph-cannot-mapped-unicode: no reliable Unicode value for character code 26; it is not mapped to a space because that would change the text read by screen readers'
+Manual raise of CouldNotCorrectDetectedViolationException in corrector identified by the nameglyph-cannot-mapped-unicode running on the element Object: 'glyph-cannot-mapped-unicode: no reliable Unicode value for character code 24; it is not mapped to a space because that would change the text read by screen readers'
+Manual raise of CouldNotCorrectDetectedViolationException in corrector identified by the nameglyph-cannot-mapped-unicode running on the element Object: 'glyph-cannot-mapped-unicode: no reliable Unicode value for character code 23; it is not mapped to a space because that would change the text read by screen readers'
+Manual raise of CouldNotCorrectDetectedViolationException in corrector identified by the nameglyph-cannot-mapped-unicode running on the element Object: 'glyph-cannot-mapped-unicode: no reliable Unicode value for character code 22; it is not mapped to a space because that would change the text read by screen readers'
+Manual raise of CouldNotCorrectDetectedViolationException in corrector identified by the nameglyph-cannot-mapped-unicode running on the element Object: 'glyph-cannot-mapped-unicode: no reliable Unicode value for character code 21; it is not mapped to a space because that would change the text read by screen readers'
+Manual raise of CouldNotCorrectDetectedViolationException in corrector identified by the nameglyph-cannot-mapped-unicode running on the element Object: 'glyph-cannot-mapped-unicode: no reliable Unicode value for character code 20; it is not mapped to a space because that would change the text read by screen readers'
+Manual raise of CouldNotCorrectDetectedViolationException in corrector identified by the nameglyph-cannot-mapped-unicode running on the element Object: 'glyph-cannot-mapped-unicode: no reliable Unicode value for character code 15; it is not mapped to a space because that would change the text read by screen readers'
+Manual raise of CouldNotCorrectDetectedViolationException in corrector identified by the nameglyph-cannot-mapped-unicode running on the element Object: 'glyph-cannot-mapped-unicode: no reliable Unicode value for character code 31; it is not mapped to a space because that would change the text read by screen readers'
+Manual raise of CouldNotCorrectDetectedViolationException in corrector identified by the nameglyph-cannot-mapped-unicode running on the element Object: 'glyph-cannot-mapped-unicode: no reliable Unicode value for character code 30; it is not mapped to a space because that would change the text read by screen readers'
+Manual raise of CouldNotCorrectDetectedViolationException in corrector identified by the nameglyph-cannot-mapped-unicode running on the element Object: 'glyph-cannot-mapped-unicode: no reliable Unicode value for character code 29; it is not mapped to a space because that would change the text read by screen readers'
+Manual raise of CouldNotCorrectDetectedViolationException in corrector identified by the nameglyph-cannot-mapped-unicode running on the element Object: 'glyph-cannot-mapped-unicode: no reliable Unicode value for character code 28; it is not mapped to a space because that would change the text read by screen readers'
+Manual raise of CouldNotCorrectDetectedViolationException in corrector identified by the nameglyph-cannot-mapped-unicode running on the element Object: 'glyph-cannot-mapped-unicode: no reliable Unicode value for character code 27; it is not mapped to a space because that would change the text read by screen readers'
+Manual raise of CouldNotCorrectDetectedViolationException in corrector identified by the nameglyph-cannot-mapped-unicode running on the element Object: 'glyph-cannot-mapped-unicode: no reliable Unicode value for character code 25; it is not mapped to a space because that would change the text read by screen readers'
+Manual raise of CouldNotCorrectDetectedViolationException in corrector identified by the nameglyph-cannot-mapped-unicode running on the element Object: 'glyph-cannot-mapped-unicode: no reliable Unicode value for character code 24; it is not mapped to a space because that would change the text read by screen readers'
+Manual raise of CouldNotCorrectDetectedViolationException in corrector identified by the nameglyph-cannot-mapped-unicode running on the element Object: 'glyph-cannot-mapped-unicode: no reliable Unicode value for character code 23; it is not mapped to a space because that would change the text read by screen readers'
+Consider using the pymupdf_layout package for a greatly improved page layout analysis.
+The file had no tags. Tags were added automatically on 3 page(s): 2 Caption, 4 Figure, 1 H1, 2 H2, 4 Link, 49 P.
+Tags were added automatically. Please check the reading order and the headings once, for example with the tags panel of your PDF program or with a screen reader.
+Rule 7.1-11: 856 problem(s) disappeared. 42 other problem(s) appeared (often only revealed by this fix); they are handled in later steps.
+4 annotation(s) got a description (4 link(s), 0 other).
+Rule 7.18.1-2: 4 problem(s) disappeared.
+Rule 7.18.5-2: 4 problem(s) disappeared.
+This picture description was written by an AI model: 'Section header for Research Methods and Reporting.'. Please check it.
+This picture description was written by an AI model: 'A line graph showing the simple logit transformation of a performance proportion (p) on the x-axis against the logit scale on the y-axis. The curve is S-shaped, demonstrating that a constant difference in proportion results in varying changes on the logit scale, with the largest differences occurring at the extremes near 0 and 1.'. Please check it.
+This picture description was written by an AI model: 'The logit curve shows how a fixed difference of 0.41 on the logit scale corresponds to varying differences in performance proportions. A 0.41 difference on the logit scale represents a 65 to 55 percent performance difference at a logit value of 0.2, a 93 to 90 percent difference at a logit value of 3.5, and a 98 to 97 percent difference at a logit value of 3.9.'. Please check it.
+This picture description was written by an AI model: 'A line graph showing the empirical logit transformation of a 100% performance score across different denominator sizes. The y-axis represents the logit scale and the x-axis represents the number of eligible patients within a health unit or practice. As the denominator size increases from 1 to 510, the logit score increases from 1.1 to 5.3, demonstrating how a perfect score on a small sample is transformed to a much lower value than a perfect score on a large sample.'. Please check it.
+Rule 7.3-1: 4 problem(s) disappeared. 4 other problem(s) appeared (often only revealed by this fix); they are handled in later steps.
+Rule 7.2-22: 767 problem(s) disappeared.
+Rule 7.1-8: 1 problem(s) disappeared.
+Rule 7.1-10: 1 problem(s) disappeared.
+The document title was taken from the largest text on page 1: 'Analysing indicators of performance, satisfaction, or safety using empirical logit transformation'. Please check it.
+Rule 5-1: 1 problem(s) disappeared.
+Rule 7.1-9: 1 problem(s) disappeared.
+DEBUG page_index: 1
+DEBUG contents: <pikepdf.Stream(owner=<...>, data=<...>, {
+  "/Length": 39493
+})>
+DEBUG page_index: 1
+DEBUG page_index: 1
+DEBUG contents: <pikepdf.Stream(owner=<...>, data=<...>, {
+  "/Length": 39493
+})>
+DEBUG page_index: 1
+DEBUG page_index: 1
+DEBUG contents: <pikepdf.Stream(owner=<...>, data=<...>, {
+  "/Length": 39493
+})>
+DEBUG page_index: 1
+DEBUG page_index: 1
+DEBUG contents: <pikepdf.Stream(owner=<...>, data=<...>, {
+  "/Length": 39493
+})>
+DEBUG page_index: 1
+DEBUG page_index: 1
+DEBUG contents: <pikepdf.Stream(owner=<...>, data=<...>, {
+  "/Length": 39493
+})>
+DEBUG page_index: 1
+DEBUG page_index: 2
+DEBUG contents: <pikepdf.Stream(owner=<...>, data=<...>, {
+  "/Length": 44982
+})>
+DEBUG page_index: 2
+DEBUG page_index: 2
+DEBUG contents: <pikepdf.Stream(owner=<...>, data=<...>, {
+  "/Length": 44982
+})>
+DEBUG page_index: 2
+DEBUG page_index: 2
+DEBUG contents: <pikepdf.Stream(owner=<...>, data=<...>, {
+  "/Length": 44982
+})>
+DEBUG page_index: 2
+DEBUG page_index: 2
+DEBUG contents: <pikepdf.Stream(owner=<...>, data=<...>, {
+  "/Length": 44982
+})>
+DEBUG page_index: 2
+DEBUG page_index: 2
+DEBUG contents: <pikepdf.Stream(owner=<...>, data=<...>, {
+  "/Length": 44982
+})>
+DEBUG page_index: 2
+DEBUG page_index: 2
+DEBUG contents: <pikepdf.Stream(owner=<...>, data=<...>, {
+  "/Length": 44982
+})>
+DEBUG page_index: 2
+DEBUG page_index: 2
+DEBUG contents: <pikepdf.Stream(owner=<...>, data=<...>, {
+  "/Length": 44982
+})>
+DEBUG page_index: 2
+DEBUG page_index: 2
+DEBUG contents: <pikepdf.Stream(owner=<...>, data=<...>, {
+  "/Length": 44982
+})>
+DEBUG page_index: 2
+DEBUG page_index: 2
+DEBUG contents: <pikepdf.Stream(owner=<...>, data=<...>, {
+  "/Length": 44982
+})>
+DEBUG page_index: 2
+DEBUG page_index: 2
+DEBUG contents: <pikepdf.Stream(owner=<...>, data=<...>, {
+  "/Length": 44982
+})>
+DEBUG page_index: 2
+DEBUG page_index: 2
+DEBUG contents: <pikepdf.Stream(owner=<...>, data=<...>, {
+  "/Length": 44982
+})>
+DEBUG page_index: 2
+DEBUG page_index: 2
+DEBUG contents: <pikepdf.Stream(owner=<...>, data=<...>, {
+  "/Length": 44982
+})>
+DEBUG page_index: 2
+DEBUG page_index: 2
+DEBUG contents: <pikepdf.Stream(owner=<...>, data=<...>, {
+  "/Length": 44982
+})>
+DEBUG page_index: 2
+DEBUG page_index: 2
+DEBUG contents: <pikepdf.Stream(owner=<...>, data=<...>, {
+  "/Length": 44982
+})>
+DEBUG page_index: 2
+DEBUG page_index: 2
+DEBUG contents: <pikepdf.Stream(owner=<...>, data=<...>, {
+  "/Length": 44982
+})>
+DEBUG page_index: 2
+DEBUG page_index: 2
+DEBUG contents: <pikepdf.Stream(owner=<...>, data=<...>, {
+  "/Length": 44982
+})>
+DEBUG page_index: 2
+DEBUG page_index: 2
+DEBUG contents: <pikepdf.Stream(owner=<...>, data=<...>, {
+  "/Length": 44982
+})>
+DEBUG page_index: 2
+DEBUG page_index: 2
+DEBUG contents: <pikepdf.Stream(owner=<...>, data=<...>, {
+  "/Length": 44982
+})>
+DEBUG page_index: 2
+DEBUG page_index: 2
+DEBUG contents: <pikepdf.Stream(owner=<...>, data=<...>, {
+  "/Length": 44982
+})>
+DEBUG page_index: 2
+DEBUG page_index: 2
+DEBUG contents: <pikepdf.Stream(owner=<...>, data=<...>, {
+  "/Length": 44982
+})>
+DEBUG page_index: 2
+DEBUG page_index: 2
+DEBUG contents: <pikepdf.Stream(owner=<...>, data=<...>, {
+  "/Length": 44982
+})>
+DEBUG page_index: 2
+DEBUG page_index: 2
+DEBUG contents: <pikepdf.Stream(owner=<...>, data=<...>, {
+  "/Length": 44982
+})>
+DEBUG page_index: 2
+DEBUG page_index: 2
+DEBUG contents: <pikepdf.Stream(owner=<...>, data=<...>, {
+  "/Length": 44982
+})>
+DEBUG page_index: 2
+DEBUG page_index: 2
+DEBUG contents: <pikepdf.Stream(owner=<...>, data=<...>, {
+  "/Length": 44982
+})>
+DEBUG page_index: 2
+DEBUG page_index: 2
+DEBUG contents: <pikepdf.Stream(owner=<...>, data=<...>, {
+  "/Length": 44982
+})>
+DEBUG page_index: 2
+DEBUG page_index: 2
+DEBUG contents: <pikepdf.Stream(owner=<...>, data=<...>, {
+  "/Length": 44982
+})>
+DEBUG page_index: 2
+DEBUG page_index: 2
+DEBUG contents: <pikepdf.Stream(owner=<...>, data=<...>, {
+  "/Length": 44982
+})>
+DEBUG page_index: 2
+DEBUG page_index: 2
+DEBUG contents: <pikepdf.Stream(owner=<...>, data=<...>, {
+  "/Length": 44982
+})>
+DEBUG page_index: 2
+DEBUG page_index: 2
+DEBUG contents: <pikepdf.Stream(owner=<...>, data=<...>, {
+  "/Length": 44982
+})>
+DEBUG page_index: 2
+DEBUG page_index: 2
+DEBUG contents: <pikepdf.Stream(owner=<...>, data=<...>, {
+  "/Length": 44982
+})>
+DEBUG page_index: 2
+DEBUG page_index: 2
+DEBUG contents: <pikepdf.Stream(owner=<...>, data=<...>, {
+  "/Length": 44982
+})>
+DEBUG page_index: 2
+DEBUG page_index: 2
+DEBUG contents: <pikepdf.Stream(owner=<...>, data=<...>, {
+  "/Length": 44982
+})>
+DEBUG page_index: 2
+DEBUG page_index: 2
+DEBUG contents: <pikepdf.Stream(owner=<...>, data=<...>, {
+  "/Length": 44982
+})>
+DEBUG page_index: 2
+DEBUG page_index: 2
+DEBUG contents: <pikepdf.Stream(owner=<...>, data=<...>, {
+  "/Length": 44982
+})>
+DEBUG page_index: 2
+DEBUG page_index: 2
+DEBUG contents: <pikepdf.Stream(owner=<...>, data=<...>, {
+  "/Length": 44982
+})>
+DEBUG page_index: 2
+DEBUG page_index: 2
+DEBUG contents: <pikepdf.Stream(owner=<...>, data=<...>, {
+  "/Length": 44982
+})>
+DEBUG page_index: 2
+DEBUG page_index: 2
+DEBUG contents: <pikepdf.Stream(owner=<...>, data=<...>, {
+  "/Length": 44982
+})>
+DEBUG page_index: 2
+DEBUG page_index: 2
+DEBUG contents: <pikepdf.Stream(owner=<...>, data=<...>, {
+  "/Length": 44982
+})>
+DEBUG page_index: 2
+DEBUG page_index: 2
+DEBUG contents: <pikepdf.Stream(owner=<...>, data=<...>, {
+  "/Length": 44982
+})>
+DEBUG page_index: 2
+DEBUG page_index: 2
+DEBUG contents: <pikepdf.Stream(owner=<...>, data=<...>, {
+  "/Length": 44982
+})>
+DEBUG page_index: 2
+DEBUG page_index: 2
+DEBUG contents: <pikepdf.Stream(owner=<...>, data=<...>, {
+  "/Length": 44982
+})>
+DEBUG page_index: 2
+DEBUG page_index: 2
+DEBUG contents: <pikepdf.Stream(owner=<...>, data=<...>, {
+  "/Length": 44982
+})>
+DEBUG page_index: 2
+DEBUG page_index: 2
+DEBUG contents: <pikepdf.Stream(owner=<...>, data=<...>, {
+  "/Length": 44982
+})>
+DEBUG page_index: 2
+DEBUG page_index: 2
+DEBUG contents: <pikepdf.Stream(owner=<...>, data=<...>, {
+  "/Length": 44982
+})>
+DEBUG page_index: 2
+DEBUG page_index: 2
+DEBUG contents: <pikepdf.Stream(owner=<...>, data=<...>, {
+  "/Length": 44982
+})>
+DEBUG page_index: 2
+DEBUG page_index: 2
+DEBUG contents: <pikepdf.Stream(owner=<...>, data=<...>, {
+  "/Length": 44982
+})>
+DEBUG page_index: 2
+DEBUG page_index: 2
+DEBUG contents: <pikepdf.Stream(owner=<...>, data=<...>, {
+  "/Length": 44982
+})>
+DEBUG page_index: 2
+DEBUG page_index: 2
+DEBUG contents: <pikepdf.Stream(owner=<...>, data=<...>, {
+  "/Length": 44982
+})>
+DEBUG page_index: 2
+DEBUG page_index: 2
+DEBUG contents: <pikepdf.Stream(owner=<...>, data=<...>, {
+  "/Length": 44982
+})>
+DEBUG page_index: 2
+DEBUG page_index: 2
+DEBUG contents: <pikepdf.Stream(owner=<...>, data=<...>, {
+  "/Length": 44982
+})>
+DEBUG page_index: 2
+DEBUG page_index: 2
+DEBUG contents: <pikepdf.Stream(owner=<...>, data=<...>, {
+  "/Length": 44982
+})>
+DEBUG page_index: 2
+DEBUG page_index: 2
+DEBUG contents: <pikepdf.Stream(owner=<...>, data=<...>, {
+  "/Length": 44982
+})>
+DEBUG page_index: 2
+DEBUG page_index: 2
+DEBUG contents: <pikepdf.Stream(owner=<...>, data=<...>, {
+  "/Length": 44982
+})>
+DEBUG page_index: 2
+DEBUG page_index: 2
+DEBUG contents: <pikepdf.Stream(owner=<...>, data=<...>, {
+  "/Length": 44982
+})>
+DEBUG page_index: 2
+DEBUG page_index: 2
+DEBUG contents: <pikepdf.Stream(owner=<...>, data=<...>, {
+  "/Length": 44982
+})>
+DEBUG page_index: 2
+Manual raise of CouldNotCorrectDetectedViolationException in corrector identified by the nameglyph-cannot-mapped-unicode running on the element Object: 'glyph-cannot-mapped-unicode: no reliable Unicode value for character code 18; it is not mapped to a space because that would change the text read by screen readers'
+Manual raise of CouldNotCorrectDetectedViolationException in corrector identified by the nameglyph-cannot-mapped-unicode running on the element Object: 'glyph-cannot-mapped-unicode: no reliable Unicode value for character code 16; it is not mapped to a space because that would change the text read by screen readers'
+Manual raise of CouldNotCorrectDetectedViolationException in corrector identified by the nameglyph-cannot-mapped-unicode running on the element Object: 'glyph-cannot-mapped-unicode: no reliable Unicode value for character code 14; it is not mapped to a space because that would change the text read by screen readers'
+Manual raise of CouldNotCorrectDetectedViolationException in corrector identified by the nameglyph-cannot-mapped-unicode running on the element Object: 'glyph-cannot-mapped-unicode: no reliable Unicode value for character code 16; it is not mapped to a space because that would change the text read by screen readers'
+Manual raise of CouldNotCorrectDetectedViolationException in corrector identified by the nameglyph-cannot-mapped-unicode running on the element Object: 'glyph-cannot-mapped-unicode: no reliable Unicode value for character code 14; it is not mapped to a space because that would change the text read by screen readers'
+Manual raise of CouldNotCorrectDetectedViolationException in corrector identified by the nameglyph-cannot-mapped-unicode running on the element Object: 'glyph-cannot-mapped-unicode: no reliable Unicode value for character code 30; it is not mapped to a space because that would change the text read by screen readers'
+Manual raise of CouldNotCorrectDetectedViolationException in corrector identified by the nameglyph-cannot-mapped-unicode running on the element Object: 'glyph-cannot-mapped-unicode: no reliable Unicode value for character code 29; it is not mapped to a space because that would change the text read by screen readers'
+Manual raise of CouldNotCorrectDetectedViolationException in corrector identified by the nameglyph-cannot-mapped-unicode running on the element Object: 'glyph-cannot-mapped-unicode: no reliable Unicode value for character code 28; it is not mapped to a space because that would change the text read by screen readers'
+Manual raise of CouldNotCorrectDetectedViolationException in corrector identified by the nameglyph-cannot-mapped-unicode running on the element Object: 'glyph-cannot-mapped-unicode: no reliable Unicode value for character code 27; it is not mapped to a space because that would change the text read by screen readers'
+Manual raise of CouldNotCorrectDetectedViolationException in corrector identified by the nameglyph-cannot-mapped-unicode running on the element Object: 'glyph-cannot-mapped-unicode: no reliable Unicode value for character code 26; it is not mapped to a space because that would change the text read by screen readers'
+Manual raise of CouldNotCorrectDetectedViolationException in corrector identified by the nameglyph-cannot-mapped-unicode running on the element Object: 'glyph-cannot-mapped-unicode: no reliable Unicode value for character code 24; it is not mapped to a space because that would change the text read by screen readers'
+Manual raise of CouldNotCorrectDetectedViolationException in corrector identified by the nameglyph-cannot-mapped-unicode running on the element Object: 'glyph-cannot-mapped-unicode: no reliable Unicode value for character code 23; it is not mapped to a space because that would change the text read by screen readers'
+Manual raise of CouldNotCorrectDetectedViolationException in corrector identified by the nameglyph-cannot-mapped-unicode running on the element Object: 'glyph-cannot-mapped-unicode: no reliable Unicode value for character code 30; it is not mapped to a space because that would change the text read by screen readers'
+Manual raise of CouldNotCorrectDetectedViolationException in corrector identified by the nameglyph-cannot-mapped-unicode running on the element Object: 'glyph-cannot-mapped-unicode: no reliable Unicode value for character code 27; it is not mapped to a space because that would change the text read by screen readers'
+Manual raise of CouldNotCorrectDetectedViolationException in corrector identified by the nameglyph-cannot-mapped-unicode running on the element Object: 'glyph-cannot-mapped-unicode: no reliable Unicode value for character code 28; it is not mapped to a space because that would change the text read by screen readers'
+Manual raise of CouldNotCorrectDetectedViolationException in corrector identified by the nameglyph-cannot-mapped-unicode running on the element Object: 'glyph-cannot-mapped-unicode: no reliable Unicode value for character code 22; it is not mapped to a space because that would change the text read by screen readers'
+Manual raise of CouldNotCorrectDetectedViolationException in corrector identified by the nameglyph-cannot-mapped-unicode running on the element Object: 'glyph-cannot-mapped-unicode: no reliable Unicode value for character code 28; it is not mapped to a space because that would change the text read by screen readers'
+Manual raise of CouldNotCorrectDetectedViolationException in corrector identified by the nameglyph-cannot-mapped-unicode running on the element Object: 'glyph-cannot-mapped-unicode: no reliable Unicode value for character code 29; it is not mapped to a space because that would change the text read by screen readers'
+Manual raise of CouldNotCorrectDetectedViolationException in corrector identified by the nameglyph-cannot-mapped-unicode running on the element Object: 'glyph-cannot-mapped-unicode: no reliable Unicode value for character code 28; it is not mapped to a space because that would change the text read by screen readers'
+Manual raise of CouldNotCorrectDetectedViolationException in corrector identified by the nameglyph-cannot-mapped-unicode running on the element Object: 'glyph-cannot-mapped-unicode: no reliable Unicode value for character code 26; it is not mapped to a space because that would change the text read by screen readers'
+Manual raise of CouldNotCorrectDetectedViolationException in corrector identified by the nameglyph-cannot-mapped-unicode running on the element Object: 'glyph-cannot-mapped-unicode: no reliable Unicode value for character code 28; it is not mapped to a space because that would change the text read by screen readers'
+Manual raise of CouldNotCorrectDetectedViolationException in corrector identified by the nameglyph-cannot-mapped-unicode running on the element Object: 'glyph-cannot-mapped-unicode: no reliable Unicode value for character code 27; it is not mapped to a space because that would change the text read by screen readers'
+Manual raise of CouldNotCorrectDetectedViolationException in corrector identified by the nameglyph-cannot-mapped-unicode running on the element Object: 'glyph-cannot-mapped-unicode: no reliable Unicode value for character code 28; it is not mapped to a space because that would change the text read by screen readers'
+Manual raise of CouldNotCorrectDetectedViolationException in corrector identified by the nameglyph-cannot-mapped-unicode running on the element Object: 'glyph-cannot-mapped-unicode: no reliable Unicode value for character code 23; it is not mapped to a space because that would change the text read by screen readers'
+Manual raise of CouldNotCorrectDetectedViolationException in corrector identified by the nameglyph-cannot-mapped-unicode running on the element Object: 'glyph-cannot-mapped-unicode: no reliable Unicode value for character code 28; it is not mapped to a space because that would change the text read by screen readers'
+Manual raise of CouldNotCorrectDetectedViolationException in corrector identified by the nameglyph-cannot-mapped-unicode running on the element Object: 'glyph-cannot-mapped-unicode: no reliable Unicode value for character code 30; it is not mapped to a space because that would change the text read by screen readers'
+Manual raise of CouldNotCorrectDetectedViolationException in corrector identified by the nameglyph-cannot-mapped-unicode running on the element Object: 'glyph-cannot-mapped-unicode: no reliable Unicode value for character code 28; it is not mapped to a space because that would change the text read by screen readers'
+Manual raise of CouldNotCorrectDetectedViolationException in corrector identified by the nameglyph-cannot-mapped-unicode running on the element Object: 'glyph-cannot-mapped-unicode: no reliable Unicode value for character code 21; it is not mapped to a space because that would change the text read by screen readers'
+Manual raise of CouldNotCorrectDetectedViolationException in corrector identified by the nameglyph-cannot-mapped-unicode running on the element Object: 'glyph-cannot-mapped-unicode: no reliable Unicode value for character code 28; it is not mapped to a space because that would change the text read by screen readers'
+Manual raise of CouldNotCorrectDetectedViolationException in corrector identified by the nameglyph-cannot-mapped-unicode running on the element Object: 'glyph-cannot-mapped-unicode: no reliable Unicode value for character code 20; it is not mapped to a space because that would change the text read by screen readers'
+Manual raise of CouldNotCorrectDetectedViolationException in corrector identified by the nameglyph-cannot-mapped-unicode running on the element Object: 'glyph-cannot-mapped-unicode: no reliable Unicode value for character code 28; it is not mapped to a space because that would change the text read by screen readers'
+Manual raise of CouldNotCorrectDetectedViolationException in corrector identified by the nameglyph-cannot-mapped-unicode running on the element Object: 'glyph-cannot-mapped-unicode: no reliable Unicode value for character code 24; it is not mapped to a space because that would change the text read by screen readers'
+Manual raise of CouldNotCorrectDetectedViolationException in corrector identified by the nameglyph-cannot-mapped-unicode running on the element Object: 'glyph-cannot-mapped-unicode: no reliable Unicode value for character code 22; it is not mapped to a space because that would change the text read by screen readers'
+Manual raise of CouldNotCorrectDetectedViolationException in corrector identified by the nameglyph-cannot-mapped-unicode running on the element Object: 'glyph-cannot-mapped-unicode: no reliable Unicode value for character code 28; it is not mapped to a space because that would change the text read by screen readers'
+Manual raise of CouldNotCorrectDetectedViolationException in corrector identified by the nameglyph-cannot-mapped-unicode running on the element Object: 'glyph-cannot-mapped-unicode: no reliable Unicode value for character code 20; it is not mapped to a space because that would change the text read by screen readers'
+Manual raise of CouldNotCorrectDetectedViolationException in corrector identified by the nameglyph-cannot-mapped-unicode running on the element Object: 'glyph-cannot-mapped-unicode: no reliable Unicode value for character code 24; it is not mapped to a space because that would change the text read by screen readers'
+Manual raise of CouldNotCorrectDetectedViolationException in corrector identified by the nameglyph-cannot-mapped-unicode running on the element Object: 'glyph-cannot-mapped-unicode: no reliable Unicode value for character code 21; it is not mapped to a space because that would change the text read by screen readers'
+Manual raise of CouldNotCorrectDetectedViolationException in corrector identified by the nameglyph-cannot-mapped-unicode running on the element Object: 'glyph-cannot-mapped-unicode: no reliable Unicode value for character code 15; it is not mapped to a space because that would change the text read by screen readers'
+Manual raise of CouldNotCorrectDetectedViolationException in corrector identified by the nameglyph-cannot-mapped-unicode running on the element Object: 'glyph-cannot-mapped-unicode: no reliable Unicode value for character code 28; it is not mapped to a space because that would change the text read by screen readers'
+Manual raise of CouldNotCorrectDetectedViolationException in corrector identified by the nameglyph-cannot-mapped-unicode running on the element Object: 'glyph-cannot-mapped-unicode: no reliable Unicode value for character code 27; it is not mapped to a space because that would change the text read by screen readers'
+Manual raise of CouldNotCorrectDetectedViolationException in corrector identified by the nameglyph-cannot-mapped-unicode running on the element Object: 'glyph-cannot-mapped-unicode: no reliable Unicode value for character code 22; it is not mapped to a space because that would change the text read by screen readers'
+Manual raise of CouldNotCorrectDetectedViolationException in corrector identified by the nameglyph-cannot-mapped-unicode running on the element Object: 'glyph-cannot-mapped-unicode: no reliable Unicode value for character code 26; it is not mapped to a space because that would change the text read by screen readers'
+Manual raise of CouldNotCorrectDetectedViolationException in corrector identified by the nameglyph-cannot-mapped-unicode running on the element Object: 'glyph-cannot-mapped-unicode: no reliable Unicode value for character code 30; it is not mapped to a space because that would change the text read by screen readers'
+Manual raise of CouldNotCorrectDetectedViolationException in corrector identified by the nameglyph-cannot-mapped-unicode running on the element Object: 'glyph-cannot-mapped-unicode: no reliable Unicode value for character code 23; it is not mapped to a space because that would change the text read by screen readers'
+Manual raise of CouldNotCorrectDetectedViolationException in corrector identified by the nameglyph-cannot-mapped-unicode running on the element Object: 'glyph-cannot-mapped-unicode: no reliable Unicode value for character code 31; it is not mapped to a space because that would change the text read by screen readers'
+Manual raise of CouldNotCorrectDetectedViolationException in corrector identified by the nameglyph-cannot-mapped-unicode running on the element Object: 'glyph-cannot-mapped-unicode: no reliable Unicode value for character code 30; it is not mapped to a space because that would change the text read by screen readers'
+Manual raise of CouldNotCorrectDetectedViolationException in corrector identified by the nameglyph-cannot-mapped-unicode running on the element Object: 'glyph-cannot-mapped-unicode: no reliable Unicode value for character code 29; it is not mapped to a space because that would change the text read by screen readers'
+Manual raise of CouldNotCorrectDetectedViolationException in corrector identified by the nameglyph-cannot-mapped-unicode running on the element Object: 'glyph-cannot-mapped-unicode: no reliable Unicode value for character code 28; it is not mapped to a space because that would change the text read by screen readers'
+Manual raise of CouldNotCorrectDetectedViolationException in corrector identified by the nameglyph-cannot-mapped-unicode running on the element Object: 'glyph-cannot-mapped-unicode: no reliable Unicode value for character code 27; it is not mapped to a space because that would change the text read by screen readers'
+Manual raise of CouldNotCorrectDetectedViolationException in corrector identified by the nameglyph-cannot-mapped-unicode running on the element Object: 'glyph-cannot-mapped-unicode: no reliable Unicode value for character code 25; it is not mapped to a space because that would change the text read by screen readers'
+Manual raise of CouldNotCorrectDetectedViolationException in corrector identified by the nameglyph-cannot-mapped-unicode running on the element Object: 'glyph-cannot-mapped-unicode: no reliable Unicode value for character code 24; it is not mapped to a space because that would change the text read by screen readers'
+Manual raise of CouldNotCorrectDetectedViolationException in corrector identified by the nameglyph-cannot-mapped-unicode running on the element Object: 'glyph-cannot-mapped-unicode: no reliable Unicode value for character code 31; it is not mapped to a space because that would change the text read by screen readers'
+Manual raise of CouldNotCorrectDetectedViolationException in corrector identified by the nameglyph-cannot-mapped-unicode running on the element Object: 'glyph-cannot-mapped-unicode: no reliable Unicode value for character code 23; it is not mapped to a space because that would change the text read by screen readers'
+Manual raise of CouldNotCorrectDetectedViolationException in corrector identified by the nameglyph-cannot-mapped-unicode running on the element Object: 'glyph-cannot-mapped-unicode: no reliable Unicode value for character code 25; it is not mapped to a space because that would change the text read by screen readers'
+Manual raise of CouldNotCorrectDetectedViolationException in corrector identified by the nameglyph-cannot-mapped-unicode running on the element Object: 'glyph-cannot-mapped-unicode: no reliable Unicode value for character code 23; it is not mapped to a space because that would change the text read by screen readers'
+Manual raise of CouldNotCorrectDetectedViolationException in corrector identified by the nameglyph-cannot-mapped-unicode running on the element Object: 'glyph-cannot-mapped-unicode: no reliable Unicode value for character code 27; it is not mapped to a space because that would change the text read by screen readers'
+Manual raise of CouldNotCorrectDetectedViolationException in corrector identified by the nameglyph-cannot-mapped-unicode running on the element Object: 'glyph-cannot-mapped-unicode: no reliable Unicode value for character code 31; it is not mapped to a space because that would change the text read by screen readers'
+Manual raise of CouldNotCorrectDetectedViolationException in corrector identified by the nameglyph-cannot-mapped-unicode running on the element Object: 'glyph-cannot-mapped-unicode: no reliable Unicode value for character code 30; it is not mapped to a space because that would change the text read by screen readers'
+Manual raise of CouldNotCorrectDetectedViolationException in corrector identified by the nameglyph-cannot-mapped-unicode running on the element Object: 'glyph-cannot-mapped-unicode: no reliable Unicode value for character code 23; it is not mapped to a space because that would change the text read by screen readers'
+Manual raise of CouldNotCorrectDetectedViolationException in corrector identified by the nameglyph-cannot-mapped-unicode running on the element Object: 'glyph-cannot-mapped-unicode: no reliable Unicode value for character code 31; it is not mapped to a space because that would change the text read by screen readers'
+cost USD 0.00388
+== 16:35 pave pave-3
+veraPDF found 651 problem(s).
+Texts such as picture descriptions are written by: OpenRouter in the cloud, model google/gemma-4-26b-a4b-it.
+DEBUG page_index: 0
+Fonts added to the file: TimesNewRomanPS-BoldMT, Arial-BoldMT, TimesNewRomanPS-ItalicMT, ArialMT.
+Rule 7.21.4.1-1: 4 problem(s) disappeared.
+DEBUG page_index: 0
+DEBUG page_index: 0
+DEBUG page_index: 1
+Rule 7.21.4.2-2: 3 problem(s) disappeared.
+Consider using the pymupdf_layout package for a greatly improved page layout analysis.
+The file had no tags. Tags were added automatically on 3 page(s): 1 H1, 4 H2, 8 L, 37 LI, 6 Lbl, 0 Link, 20 P.
+Tags were added automatically. Please check the reading order and the headings once, for example with the tags panel of your PDF program or with a screen reader.
+Rule 7.1-11: 344 problem(s) disappeared.
+Rule 7.2-34: 298 problem(s) disappeared.
+Rule 7.1-8: 1 problem(s) disappeared.
+Rule 7.1-10: 1 problem(s) disappeared.
+The document title was taken from the largest text on page 1: 'If you had economic loss or property damage because of the Deepwater Horizon oil spill, you could get money from a class action settlement.'. Please check it.
+Rule 5-1: 1 problem(s) disappeared.
+Rule 7.1-9: 1 problem(s) disappeared.
+cost USD 0.0
+== 16:35 pave pave-4
+veraPDF found 3525 problem(s).
+Texts such as picture descriptions are written by: OpenRouter in the cloud, model google/gemma-4-26b-a4b-it.
+DEBUG page_index: 0
+Rule 7.21.4.2-2: 1 problem(s) disappeared.
+Consider using the pymupdf_layout package for a greatly improved page layout analysis.
+The file had no tags. Tags were added automatically on 3 page(s): 1 Figure, 1 H1, 2 H2, 0 Link, 2 P, 145 TD, 15 TH, 3 Table.
+Tags were added automatically. Please check the reading order and the headings once, for example with the tags panel of your PDF program or with a screen reader.
+Rule 7.1-11: 2091 problem(s) disappeared. 1 other problem(s) appeared (often only revealed by this fix); they are handled in later steps.
+This picture description was written by an AI model: 'Logo for Cycling Time Trials featuring a yellow silhouette of a cyclist in motion against a black and blue background.'. Please check it.
+Rule 7.3-1: 1 problem(s) disappeared. 1 other problem(s) appeared (often only revealed by this fix); they are handled in later steps.
+Rule 7.2-22: 1432 problem(s) disappeared.
+Rule 7.1-8: 1 problem(s) disappeared.
+Rule 7.1-10: 1 problem(s) disappeared.
+The document title was taken from the largest text on page 1: 'Risk Assessment'. Please check it.
+Rule 5-1: 1 problem(s) disappeared.
+Rule 7.1-9: 1 problem(s) disappeared.
+cost USD 0.00013
+== 16:35 pave done

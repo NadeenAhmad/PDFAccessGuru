@@ -1,6 +1,6 @@
 """
-The main results table of PDFAccessGuru 1.1.0: every set and AI setting, the original files against the fixed ones.
-Built only from the per-file tables in results/runs-1.1.0/ (run.py and no_harm.py write them).
+The main results table of PDFAccessGuru: every set and AI setting, the original files against the fixed ones.
+Built only from the per-file tables in results/runs/ (run.py and no_harm.py write them).
 
     python evaluation/summary.py
 
@@ -12,7 +12,7 @@ from __future__ import annotations
 import csv
 from pathlib import Path
 
-from paths import RESULTS, RUN_TABLES, VERSION
+from paths import RESULTS, RUN_TABLES
 
 SETS = [("kumar", "Kumar benchmark"), ("safedocs", "SafeDocs"), ("reference", "Reference Suite")]
 SETTINGS = [("rules", "none (simple rules)"), ("gemma", "Gemma 4 26B"), ("luna", "GPT-6 Luna")]
@@ -30,9 +30,9 @@ def number(text: str) -> float:
 
 
 def main() -> int:
-    lines = [f"# Results of PDFAccessGuru {VERSION}", "",
+    lines = ["# Results of PDFAccessGuru", "",
              "Original files against the files fixed by PDFAccessGuru, checked with veraPDF (PDF/UA-1). Built by",
-             "`evaluation/summary.py` from the per-file tables in `results/runs-1.1.0/`.", "",
+             "`evaluation/summary.py` from the per-file tables in `results/runs/`.", "",
              "| Set | AI for descriptions | Files | Pass PDF/UA (original → fixed) | Problems (original → fixed) "
              "| Files with more failing rules | Pages that look different | Pages whose text differs "
              "| Pictures sent to AI | Online cost (USD) | Processing time (hours, sum over files) |",
