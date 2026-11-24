@@ -1,0 +1,10 @@
+run_id,ok,error,seconds,passes_before,problems_before,rules_before,tagged_share_before,passes,problems,rules,tagged_share
+reference-bf0bf7f91b15,True,,12.6,True,0,0,0.958044509303174,True,0,0,0.9266521423384169
+reference-64b48f05fb32,True,,0.9,True,0,0,0.9841269841269841,True,0,0,1.0
+reference-a2fd446c88bc,True,,1.5,True,0,0,0.9825102880658436,True,0,0,0.5092592592592593
+reference-a24c4ae3d4af,True,,1.7,True,0,0,0.5,True,0,0,0.6228070175438597
+reference-40ecdee49303,True,,6.6,True,0,0,0.9529411764705882,True,0,0,0.8358613217768147
+reference-d36ba8c9377a,True,,2.6,True,0,0,0.9678571428571429,True,0,0,0.9464285714285714
+reference-a8c32c6ea378,True,,14.9,True,0,0,0.918711094837056,True,0,0,0.9266618497109826
+reference-5f08253bbb23,True,,15.0,True,0,0,1.0,True,0,0,0.8865248226950354
+reference-2da3c15ddee9,True,,2.3,True,0,0,0.8148148148148148,True,0,0,0.5185185185185185

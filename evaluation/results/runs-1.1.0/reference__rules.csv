@@ -1,0 +1,10 @@
+run_id,setting,ok,error,seconds,passes,problems_before,problems_after,problems_fixed,rules_before,rules_after,review_items,tagged_share_before,tagged_share_after,contrast_low,ai_text,ai_picture,paid_requests,cost_usd
+reference-2da3c15ddee9,rules,True,,3.6,True,0,0,0,0,0,0,0.8148148148148148,0.8148148148148148,0,0,0,0,0.0
+reference-40ecdee49303,rules,True,,13.9,True,0,0,0,0,0,0,0.9529411764705882,0.9529411764705882,0,0,0,0,0.0
+reference-5f08253bbb23,rules,True,,31.0,True,0,0,0,0,0,0,1.0,1.0,0,0,0,0,0.0
+reference-64b48f05fb32,rules,True,,4.5,True,0,0,0,0,0,0,0.9841269841269841,0.9841269841269841,0,0,0,0,0.0
+reference-a24c4ae3d4af,rules,True,,7.7,True,0,0,0,0,0,0,0.5,0.5,56,0,0,0,0.0
+reference-a2fd446c88bc,rules,True,,5.1,True,0,0,0,0,0,0,0.9825102880658436,0.9825102880658436,0,0,0,0,0.0
+reference-a8c32c6ea378,rules,True,,29.5,True,0,0,0,0,0,0,0.918711094837056,0.918711094837056,93,0,0,0,0.0
+reference-bf0bf7f91b15,rules,True,,51.9,True,0,0,0,0,0,0,0.958044509303174,0.958044509303174,46,0,0,0,0.0
+reference-d36ba8c9377a,rules,True,,5.7,True,0,0,0,0,0,0,0.9678571428571429,0.9678571428571429,0,0,0,0,0.0

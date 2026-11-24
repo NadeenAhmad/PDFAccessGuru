@@ -1,0 +1,16 @@
+{
+ "file": "pave-1.pdf",
+ "ok": true,
+ "error": "",
+ "passes": false,
+ "problems": 21,
+ "rules": 3,
+ "by_rule": {
+  "7.21.3.2-1": 3,
+  "7.21.7-1": 17,
+  "7.21.4.1-1": 1
+ },
+ "tagged_share": 0.9757099482050366,
+ "pages": 3,
+ "seconds": 2.7
+}
