@@ -894,7 +894,7 @@ def test_resolve_context_verapdf_ua1_example_72t39() :
 
 def test_resolve_context_verapdf_ua1_example_72t40() :
     """
-    IMPORTANT: this is a test added by Robin Hart. Because file 
+    IMPORTANT: this is an added test, because file 
     7.2-t19-fail-a.pdf does include a violation of rule 7.2-40.
     (I think it is an error with the verapdf corpus.)
 
@@ -917,7 +917,7 @@ def test_resolve_context_verapdf_ua1_example_72t41() :
     """
     Violation: 7.2-41 table-columns-different-number-rows
 
-    Comment by Robin Hart: verapdf actually detects the wrong clause here: 7.2-42 instead of 7.2-41. 
+    Comment: verapdf actually detects the wrong clause here: 7.2-42 instead of 7.2-41. 
     The file may not be usefull!
     
     Context path: root/document[0]/StructTreeRoot[0](6 0 obj PDStructTreeRoot)
@@ -1189,7 +1189,7 @@ def test_resolve_context_verapdf_ua1_example_716t01() :
     Context path: root/trailer[0]/
     Encrypt[0](30 0 obj PDEncryption)
 
-    Added by Robin Hart (08.06.2026, 23:00):
+    Comment:
     The resolved element is sufficient as 'affected element', because you can directly read out the /P key 
     in the resolved element.
     """
@@ -1223,7 +1223,7 @@ def test_resolve_context_verapdf_ua1_example_7181t02() :
     /pages[0](10 0 obj PDPage)
     /annots[0](16 0 obj PDMarkupAnnot)
 
-    Comment: (added by Robin Hart, 08.06.2026, 23:00) This one is very difficult to correct.
+    Comment: This one is very difficult to correct.
     That is because the actual difference between the failing and passing pdf (file a) does not lie inside /pages/annots but inside /StructTreeRoot (more precisely: /StructTreeRoot/K[0]/K[0](Obj 20:0).
     In the failing pdf that element does not have an /Alt tag. In the passing pdf it does have an /Alt tag containing the word "highlight".
 
