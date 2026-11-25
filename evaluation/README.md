@@ -142,8 +142,9 @@ The benchmark's authors added specific errors to some files (5 files per error).
 Two judges rated the outputs on their own, without knowing which tool made which version.
 [`results/expert-judgement/summary.md`](results/expert-judgement/summary.md) gives each judge's numbers and how far
 they agree.
-[`rating-site-sample/`](rating-site-sample) shows the rating site exactly as the judges saw it, with 6 of the
-Kumar files: the start page, all three parts and their questions.
+**[Try the rating site](https://nadeenahmad.github.io/PDFAccessGuru/evaluation/rating-site-sample/)** exactly as the judges saw it, with 6 of the Kumar files: the start page,
+all three parts and their questions. Answers stay in your browser. The pages are in
+[`rating-site-sample/`](rating-site-sample).
 
 **Picture descriptions** (the 40 pictures). For each description the judges answered "How helpful is it for someone
 who cannot see the picture?" from 1 (not at all) to 5 (very). A description *describes the picture well* when it is
@@ -282,7 +283,7 @@ scripts. The full run was not repeated.
 | [`results/kumar-criteria/`](results/kumar-criteria) | Kumar et al.'s criteria per file and tool, and how far the automatic check agrees with the experts' labels |
 | [`results/pave/`](results/pave) | The 4 PAVE documents: selection and automatic check per tool |
 | [`results/expert-judgement/`](results/expert-judgement) | The judges' answers (judges A and B; the tool of every version is given) and their scores |
-| [`rating-site-sample/`](rating-site-sample) | The rating site as the judges saw it, with 6 Kumar files (answers are not sent anywhere) |
+| [`rating-site-sample/`](rating-site-sample) | The rating site as the judges saw it, with 6 Kumar files ([open it online](https://nadeenahmad.github.io/PDFAccessGuru/evaluation/rating-site-sample/); answers are not sent anywhere) |
 | [`results/sets/`](results/sets), [`results/pictures/`](results/pictures) | The lists of test files and pictures |
 | [`logs/`](logs) | Run logs of the final run, and every paid AI request with its price |
 

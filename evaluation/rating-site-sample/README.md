@@ -11,6 +11,6 @@ The site the two judges used for the expert judgement, exactly as they saw it, w
 The versions are blind, as for the judges: letters in a random order. Which tool made which version is in
 [`../results/expert-judgement/`](../results/expert-judgement).
 
-**To open it:** download this folder and open `index.html` in a browser. The start page asks for a name; any name
-works. Answers stay in your browser and are not sent anywhere. The site said "40 pictures" and gave times for the full
+**To open it:** [open it online](https://nadeenahmad.github.io/PDFAccessGuru/evaluation/rating-site-sample/), or download this folder and open `index.html` in a browser. The start
+page asks for a name; any name works. Answers stay in your browser and are not sent anywhere. The site said "40 pictures" and gave times for the full
 rating; the yellow line at the top is the only addition.
