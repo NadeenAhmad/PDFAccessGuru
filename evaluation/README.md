@@ -22,6 +22,10 @@ A file **passes** when the PDF checker veraPDF finds no problem against PDF/UA, 
 **Problems** are the failed checks it reports. Where two numbers are given, the first is without AI and the second with
 AI. The AI only writes descriptions of pictures and formulas; everything else is the same.
 
+**How sure are the differences?** Every comparison below was tested on the same files or items (Wilcoxon
+signed-rank test for numbers, exact McNemar test for yes/no), with p corrected for all 36 tests together (Holm).
+Details: [`results/significance/summary.md`](results/significance/summary.md).
+
 ### 1. Does PDFAccessGuru make files accessible?
 
 | Test set | Files | Passing before | Passing after | Problems before | Problems after |
@@ -32,6 +36,7 @@ AI. The AI only writes descriptions of pictures and formulas; everything else is
 - No file passed before fixing.
 - After fixing, more than half of the Kumar files and about three quarters of the SafeDocs files pass.
 - About 95% of the problems are gone.
+- Both changes are significant, with and without AI (p < 0.001).
 
 ### 2. Which problems does it fix?
 
@@ -108,6 +113,8 @@ problems before on the 312 files it processed).
 
 - On the same untagged files, PDFAccessGuru leaves about 15 times fewer problems than Acrobat Pro and 12 times fewer
   than opendataloader-pdf. On all 316 files it removes about 95% of the problems; opendataloader-pdf removes about half.
+- Files passing, problems left and text reached: PDFAccessGuru is significantly better than Acrobat Pro and
+  opendataloader-pdf, with and without AI (p < 0.001 for every comparison).
 - Acrobat Pro and opendataloader-pdf tag the content, but leave the language and the document settings unset. Acrobat
   Pro also adds pictures without a description and wrongly used tags.
 - **Acrobat Pro** and **opendataloader-pdf** tag files automatically, like PDFAccessGuru.
@@ -158,6 +165,7 @@ rated 4 or 5.
 
 - *Both judges* means both rated it 4 or 5. Judge A alone: 85%, 8% and 10%; judge B alone: 90%, 12% and 10%.
 - The judges agree well: the same answer for 87% of the 120 descriptions (Cohen's kappa 0.71).
+- PDFAccessGuru with AI is significantly more helpful than both other methods (p < 0.001).
 
 **Structure of the 4 PAVE documents**, judged on PAVE 2.0's 13 criteria [[4]](#references). Per cent correct:
 correct / (correct + wrong or missing), summed over the 4 documents; the first two criteria count correct pages.
@@ -184,6 +192,8 @@ Mean of the two judges; – means no such content.
   content, figures and their descriptions, formulas and captions.
 - It is weaker on lists and headings, where opendataloader-pdf does better, and on table structure, where PAVE 2.0
   does better. No tool gets the reading order right on much more than half of the pages.
+- With only 4 documents, the difference is significant against Acrobat Pro (p = 0.031), but not against
+  opendataloader-pdf (p = 0.42) or PAVE 2.0 (p = 0.11) (paired by criterion).
 
 **Links, titles and language**: 34 links in 18 documents (30 from Kumar and SafeDocs files, 4 from one PAVE
 document), and the title and language of each document.
@@ -205,6 +215,8 @@ its 4 links, 38% say where they go, 38% partly, 25% not; its title describes the
   wrong and could not tell for 6; judge B found 13 correct and 7 wrong.
 - The judges agree well on titles (same answer for 90%, kappa 0.79) and moderately on links (60%, kappa 0.40): they
   often differ between "yes" and "partly".
+- PDFAccessGuru is significantly better than the original, Acrobat Pro and opendataloader-pdf on links (p ≤ 0.001),
+  titles (p ≤ 0.031) and language (p < 0.001).
 
 ### Where the results are
 
@@ -217,6 +229,7 @@ its 4 links, 38% say where they go, 38% partly, 25% not; its title describes the
 | 5. Benchmark errors | [`results/kumar-criteria/summary.md`](results/kumar-criteria/summary.md) |
 | 6. Cost and time | [`logs/costs.csv`](logs/costs.csv), and the `seconds` column of every table |
 | 7. Expert judgement | [`results/expert-judgement/summary.md`](results/expert-judgement/summary.md), every answer in [`results/expert-judgement/`](results/expert-judgement) |
+| Significance of all differences | [`results/significance/summary.md`](results/significance/summary.md), every test in [`results/significance/tests.csv`](results/significance/tests.csv) |
 
 **AI used:** Gemma 4 26B (`google/gemma-4-26b-a4b-it`) on all sets and GPT-6 Luna (`openai/gpt-6-luna`) on the Kumar
 set, both online through OpenRouter, with descriptions at the level "standard". The checker is veraPDF 1.30.1.
@@ -262,6 +275,7 @@ evaluation/work/venv/bin/python evaluation/kumar_criteria.py
 evaluation/work/venv/bin/python evaluation/problem_kinds.py
 python evaluation/pave_auto_check.py
 python evaluation/score_expert.py            # the judges' answers -> results/expert-judgement/summary.md
+python evaluation/significance.py            # paired tests of every difference -> results/significance/summary.md
 ```
 
 The times are for the computer used: a MacBook Pro (Intel Core i9-9880H, 8 cores, 32 GB, macOS 15.5), 3 files at a
@@ -283,6 +297,7 @@ scripts. The full run was not repeated.
 | [`results/kumar-criteria/`](results/kumar-criteria) | Kumar et al.'s criteria per file and tool, and how far the automatic check agrees with the experts' labels |
 | [`results/pave/`](results/pave) | The 4 PAVE documents: selection and automatic check per tool |
 | [`results/expert-judgement/`](results/expert-judgement) | The judges' answers (judges A and B; the tool of every version is given) and their scores |
+| [`results/significance/`](results/significance) | Paired tests of every difference in the tables above (`tests.csv`: every test with its raw and corrected p) |
 | [`rating-site-sample/`](rating-site-sample) | The rating site as the judges saw it, with 6 Kumar files ([open it online](https://nadeenahmad.github.io/PDFAccessGuru/evaluation/rating-site-sample/); answers are not sent anywhere) |
 | [`results/sets/`](results/sets), [`results/pictures/`](results/pictures) | The lists of test files and pictures |
 | [`logs/`](logs) | Run logs of the final run, and every paid AI request with its price |
@@ -312,6 +327,7 @@ by git; other folders can be set with `PDFACCESSGURU_EVAL_DATA` and `PDFACCESSGU
 | | `blip_pictures.py`, `describe_pictures.py` | Descriptions by BLIP (a non-LLM baseline) and by PDFAccessGuru |
 | Rating site | `build_rating_netlify.py`, `build_parts_23.py`, `rating_*.html` | The blind rating site for the judges |
 | Expert judgement | `score_expert.py` | Scores of the judges' answers: pictures, PAVE criteria, links, titles and language |
+| Significance | `significance.py` | Paired tests (Wilcoxon, McNemar, Holm) of every difference in the README tables; standard library only |
 
 ## References
 
