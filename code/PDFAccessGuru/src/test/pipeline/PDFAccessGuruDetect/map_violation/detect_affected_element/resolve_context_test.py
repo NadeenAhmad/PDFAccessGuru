@@ -1228,7 +1228,6 @@ def test_resolve_context_verapdf_ua1_example_7181t02() :
     In the failing pdf that element does not have an /Alt tag. In the passing pdf it does have an /Alt tag containing the word "highlight".
 
     Idea to fix: Look inside the StructTreeRoot. One child of the previously shown element does contain a link to Element "Obj 16:0" (It says "Jump to[...]"). We will have to write a custom search affected element function for this one, which takes this into account.
-    It is a possibility to ask Nadeen this one.
     
     The resolved element is NOT sufficient as 'affected element'.
     """
