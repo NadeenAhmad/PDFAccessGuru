@@ -1,0 +1,428 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Picture Description Rating</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible+Mono:wght@400;600&family=Atkinson+Hyperlegible+Next:wght@400;600;700&display=swap">
+<style>
+/* Layout: a reading desk. The figure sits on the left like a printed page; each description is a slip beside it
+   with three short questions. One picture per screen, a progress line on top, the 40 pictures as a strip below. */
+:root {
+  --bg: #f4f6f9; --surface: #ffffff; --sunk: #eaeef3; --ink: #17202b; --muted: #4a5666; --line: #d3dae3;
+  --accent: #1d5c88; --accent-soft: #dceaf5; --on-accent: #ffffff; --good: #1d7448; --good-soft: #dff1e7;
+  --warn: #9a5500; --warn-soft: #fbecd7; --focus: #e8a400;
+  --font: "Atkinson Hyperlegible Next", "Atkinson Hyperlegible", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --mono: "Atkinson Hyperlegible Mono", ui-monospace, "SF Mono", Menlo, monospace;
+  --step--1: 0.875rem; --step-0: 1rem; --step-1: 1.125rem; --step-2: 1.375rem; --step-3: 1.75rem;
+  --radius: 10px;
+}
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) {
+  --bg: #0f141b; --surface: #171f29; --sunk: #121922; --ink: #e5eaf0; --muted: #a3afbd; --line: #2b3644;
+  --accent: #74b4e2; --accent-soft: #1b3346; --on-accent: #0b1520; --good: #63c391; --good-soft: #15302a;
+  --warn: #e7a453; --warn-soft: #36280f; --focus: #f2bf3a; color-scheme: dark; } }
+:root[data-theme="dark"] {
+  --bg: #0f141b; --surface: #171f29; --sunk: #121922; --ink: #e5eaf0; --muted: #a3afbd; --line: #2b3644;
+  --accent: #74b4e2; --accent-soft: #1b3346; --on-accent: #0b1520; --good: #63c391; --good-soft: #15302a;
+  --warn: #e7a453; --warn-soft: #36280f; --focus: #f2bf3a; color-scheme: dark; }
+
+* { box-sizing: border-box; }
+body { background: var(--bg); color: var(--ink); font: 400 var(--step-0)/1.55 var(--font); margin: 0; }
+body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-area-inset-top, 0px); z-index: 10; background: var(--surface); }
+.wrap { max-width: 1240px; margin: 0 auto; padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); }
+h1, h2, h3 { text-wrap: balance; line-height: 1.25; margin: 0; }
+button, input { font: inherit; color: inherit; }
+:focus-visible { outline: 3px solid var(--focus); outline-offset: 2px; }
+.sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+
+/* top bar */
+.top { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 5; background: var(--surface); border-bottom: 1px solid var(--line); }
+.top .wrap { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 20px; padding-block: 10px; }
+.top h1 { font-size: var(--step-1); font-weight: 700; margin-right: auto; }
+.parts { display: flex; flex-wrap: wrap; gap: 6px; }
+.parts a { text-decoration: none; color: var(--accent); border: 1px solid var(--line); border-radius: 99px; padding: 3px 12px; font-size: var(--step--1); font-weight: 600; }
+.parts a[aria-current="page"] { background: var(--accent); color: var(--on-accent); border-color: var(--accent); }
+.meter { display: flex; align-items: center; gap: 10px; min-width: 0; }
+.meter-bar { width: min(220px, 40vw); height: 8px; border-radius: 99px; background: var(--sunk); overflow: hidden; }
+.meter-fill { height: 100%; width: 0; background: var(--good); transition: width .3s; }
+.meter-text { font: 600 var(--step--1)/1 var(--mono); font-variant-numeric: tabular-nums; color: var(--muted); }
+.save { font-size: var(--step--1); padding: 3px 10px; border-radius: 99px; background: var(--sunk); color: var(--muted); white-space: nowrap; }
+.save[data-state="saved"] { background: var(--good-soft); color: var(--good); }
+.save[data-state="error"], .save[data-state="local"] { background: var(--warn-soft); color: var(--warn); }
+
+.notice { margin: 16px 0 0; padding: 12px 16px; border-radius: var(--radius); background: var(--warn-soft); color: var(--ink); border: 1px solid var(--warn); }
+.notice.done { background: var(--good-soft); border-color: var(--good); }
+.notice p { margin: 0; }
+.notice button { margin-top: 8px; }
+
+/* intro */
+.intro { max-width: 70ch; margin: 28px auto 0; background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: 24px clamp(16px, 4vw, 36px); }
+.intro h2 { font-size: var(--step-3); margin-bottom: 8px; }
+.intro ol { padding-left: 1.3em; display: grid; gap: 6px; }
+.intro .facts { display: flex; flex-wrap: wrap; gap: 8px 20px; color: var(--muted); font-size: var(--step--1); margin: 12px 0 16px; }
+.primary { background: var(--accent); color: var(--on-accent); border: 0; border-radius: 8px; padding: 10px 20px; font-weight: 700; cursor: pointer; }
+.secondary { background: transparent; color: var(--accent); border: 2px solid var(--accent); border-radius: 8px; padding: 8px 16px; font-weight: 600; cursor: pointer; }
+.primary:disabled, .secondary:disabled { opacity: .45; cursor: default; }
+
+/* desk */
+.desk { display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 6fr); gap: 24px; align-items: start; margin-top: 20px; }
+.figure { position: sticky; top: calc(env(safe-area-inset-top, 0px) + 72px); background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: 16px; min-width: 0; }
+.figure h2 { font-size: var(--step-2); margin-bottom: 4px; }
+.figure .hint { color: var(--muted); font-size: var(--step--1); margin: 0 0 12px; }
+.frame { background: #ffffff; border: 1px solid var(--line); border-radius: 6px; padding: 8px; display: grid; place-items: center; max-height: 62vh; overflow: auto; }
+.frame img { display: block; max-width: 100%; height: auto; image-rendering: auto; }
+.frame.large { max-height: none; }
+.figure-tools { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 10px; }
+.figure details { margin-top: 12px; border-top: 1px solid var(--line); padding-top: 10px; }
+.figure summary { cursor: pointer; font-weight: 600; }
+.context { color: var(--muted); font-size: var(--step--1); margin: 8px 0 0; max-height: 30vh; overflow: auto; }
+
+.slips { display: grid; gap: 14px; min-width: 0; }
+.slip { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: 14px 16px 12px; min-width: 0; }
+.slip[data-done="true"] { border-color: var(--good); }
+.slip-head { display: flex; align-items: baseline; gap: 10px; flex-wrap: wrap; }
+.slip-head h3 { font-size: var(--step-1); }
+.chars { font: var(--step--1) var(--mono); color: var(--muted); font-variant-numeric: tabular-nums; }
+.state { margin-left: auto; font-size: var(--step--1); font-weight: 600; color: var(--muted); }
+.slip[data-done="true"] .state { color: var(--good); }
+.quote { font-size: var(--step-1); line-height: 1.5; margin: 8px 0 10px; padding: 10px 12px; background: var(--sunk); border-radius: 6px; overflow-wrap: anywhere; }
+fieldset { border: 0; margin: 0; padding: 6px 0; min-width: 0; }
+legend { padding: 0; font-weight: 600; font-size: var(--step--1); color: var(--muted); margin-bottom: 6px; }
+.pills { display: flex; flex-wrap: wrap; gap: 6px; align-items: center; }
+.pill { position: relative; }
+.pill input { position: absolute; opacity: 0; inset: 0; margin: 0; cursor: pointer; }
+.pill span { display: inline-block; min-width: 44px; text-align: center; padding: 7px 14px; border: 1.5px solid var(--line); border-radius: 99px; background: var(--surface); cursor: pointer; user-select: none; }
+.pill input:checked + span { background: var(--accent); border-color: var(--accent); color: var(--on-accent); font-weight: 600; }
+.pill input:focus-visible + span { outline: 3px solid var(--focus); outline-offset: 2px; }
+.pill:hover span { border-color: var(--accent); }
+.scale-end { font-size: var(--step--1); color: var(--muted); }
+.chip input:checked + span { background: var(--warn-soft); border-color: var(--warn); color: var(--ink); font-weight: 600; }
+.comment summary { cursor: pointer; font-size: var(--step--1); color: var(--accent); font-weight: 600; padding: 4px 0; }
+.comment input { width: 100%; margin-top: 6px; padding: 8px 10px; border: 1.5px solid var(--line); border-radius: 6px; background: var(--surface); }
+
+/* navigation */
+.nav { position: sticky; bottom: 0; z-index: 4; background: var(--surface); border-top: 1px solid var(--line); margin-top: 24px; padding-bottom: env(safe-area-inset-bottom, 0px); }
+.nav .wrap { display: flex; align-items: center; gap: 12px; padding-block: 10px; flex-wrap: wrap; }
+.nav .where { margin: 0 auto; text-align: center; color: var(--muted); font-size: var(--step--1); font-variant-numeric: tabular-nums; }
+.strip { display: flex; flex-wrap: wrap; gap: 6px; padding-block: 16px 8px; }
+.dot { width: 34px; height: 34px; border-radius: 8px; border: 1.5px solid var(--line); background: var(--surface); font: 600 var(--step--1)/1 var(--mono); color: var(--muted); cursor: pointer; font-variant-numeric: tabular-nums; }
+.dot[data-state="part"] { background: var(--accent-soft); border-color: var(--accent); color: var(--ink); }
+.dot[data-state="done"] { background: var(--good-soft); border-color: var(--good); color: var(--good); }
+.dot[aria-current="true"] { outline: 3px solid var(--ink); outline-offset: 1px; }
+.start-form { display: grid; gap: 8px; max-width: 420px; }
+.start-form label { font-weight: 600; }
+.start-form input { padding: 10px 12px; border: 1.5px solid var(--line); border-radius: 8px; background: var(--surface); }
+.start-form .primary { justify-self: start; margin-top: 6px; }
+.have-code summary { cursor: pointer; color: var(--accent); font-weight: 600; font-size: var(--step--1); }
+.have-code[open] { display: grid; gap: 6px; }
+.form-error { color: var(--warn); margin: 0; min-height: 1.2em; font-size: var(--step--1); }
+.code { font-family: var(--mono); letter-spacing: .04em; }
+.linkish { background: none; border: 0; padding: 0; color: var(--accent); text-decoration: underline; cursor: pointer; font: inherit; }
+.foot { color: var(--muted); font-size: var(--step--1); padding-block: 8px 24px; }
+
+@media (max-width: 860px) {
+  .desk { grid-template-columns: minmax(0, 1fr); }
+  .figure { position: static; }
+  .frame { max-height: 50vh; }
+}
+@media (prefers-reduced-motion: reduce) { .meter-fill { transition: none; } }
+</style>
+</head><body><div role="note" style="background:#fff3cd;color:#3d2f00;border-bottom:1px solid #e0c96b;padding:8px 16px;font:15px/1.4 system-ui,sans-serif;text-align:center">Sample of the rating site the judges used, with 6 files of the Kumar benchmark. Nothing you enter leaves your browser.</div>
+
+<header class="top" aria-label="Progress">
+  <div class="wrap">
+    <h1>Part 1 of 3: Pictures</h1>
+    <nav class="parts" aria-label="Parts"><a href="./" aria-current="page">1 Pictures</a><a href="structure.html">2 Structure</a><a href="links.html">3 Links, titles, language</a></nav>
+    <div class="meter" aria-live="polite">
+      <div class="meter-bar" aria-hidden="true"><div class="meter-fill" id="meter-fill"></div></div>
+      <span class="meter-text" id="meter-text">0 of 0 rated</span>
+    </div>
+    <span class="save" id="save" data-state="wait" role="status">Not started</span>
+  </div>
+</header>
+
+<div class="wrap">
+  <div id="notices"></div>
+
+  <section class="intro" id="intro" aria-labelledby="intro-h">
+    <h2 id="intro-h">Rate how well each description replaces its picture</h2>
+    <p>A screen reader reads a picture's description aloud <strong>instead of the picture</strong>. You will see 40
+      pictures from scientific papers. Each has up to three descriptions, written by different methods. They are in a random
+      order and do not say who wrote them, so you can judge them fairly.</p>
+    <div class="facts"><span id="intro-count">40 pictures</span><span>about 1 to 1.5 hours</span><span>stop and continue any time</span><span>every answer is saved by itself</span></div>
+    <ol>
+      <li><strong>Look at the picture</strong>, and if needed open “Text near the picture”.</li>
+      <li><strong>For each description</strong>, answer: is everything in it true? How helpful is it for someone who cannot see the picture? Any problems?</li>
+      <li>Judge each description <strong>on its own</strong>; two descriptions may get the same answers.</li>
+      <li>Please rate on your own and don't discuss the pictures with the other rater until you are both done.</li>
+    </ol>
+    <form id="start-form" class="start-form" novalidate>
+      <label for="who">Your name or initials</label>
+      <input id="who" name="who" type="text" autocomplete="name" maxlength="60" required placeholder="e.g. N.F.">
+      <details class="have-code"><summary>Continue with a participant code from another computer</summary>
+        <label for="code-in">Participant code</label>
+        <input id="code-in" name="code-in" type="text" maxlength="24" placeholder="e.g. K7Q2-M9XA-3PLW-T8RE"></details>
+      <p class="form-error" id="form-error" role="alert"></p>
+      <button class="primary" id="start" type="submit">Start rating</button>
+    </form>
+  </section>
+
+  <main id="work" hidden>
+    <div class="desk">
+      <section class="figure" aria-labelledby="fig-h">
+        <h2 id="fig-h">Picture 1 of 40</h2>
+        <p class="hint">A screen reader reads the description instead of this picture.</p>
+        <div class="frame" id="frame"><img id="picture" alt="" src="data:,"></div>
+        <div class="figure-tools"><button class="secondary" id="enlarge" type="button" aria-pressed="false">Show larger</button></div>
+        <details id="context-box"><summary>Text near the picture in the paper</summary><p class="context" id="context"></p></details>
+      </section>
+      <section class="slips" id="slips" aria-label="Descriptions of this picture"></section>
+    </div>
+    <nav class="strip" id="strip" aria-label="All pictures"></nav>
+    <p class="foot">Participant: <strong id="who-show"></strong> · your code <strong class="code" id="code-show"></strong>
+      (to continue on another computer) · <button class="linkish" id="backup" type="button">Download my answers (backup)</button></p>
+  </main>
+</div>
+
+<footer class="nav" id="nav" hidden>
+  <div class="wrap">
+    <button class="secondary" id="prev" type="button">Previous picture</button>
+    <p class="where" id="where" aria-live="polite"></p>
+    <button class="primary" id="next" type="button">Next picture</button>
+  </div>
+</footer>
+
+<script>window.fetch = async (url) => { const load = String(url).includes("/api/load"); return new Response(load ? "{}" : "{\"ok\":true}", { status: load ? 404 : 200, headers: { "Content-Type": "application/json" } }); };</script>
+<script>
+const ITEMS = [{"id": "p04", "img": "pictures/p04.png", "context": "3 6K. M. Lancaster, M. Roemelt, P. Ettenhuber, Y. Hu, M. W. TABLE I. Composition of the active space with 76 orbitals Ribbe, F. Neese, U. Bergmann, and S. DeBeer, Science 334, for FeMoco. 974(2011). group orbital orbitalindex 7M.Reiher,N.Wiebe,K.M.Svore,D.Wecker, andM.Troyer, Proc.Nat.Acad.Sci.18,7555(2017). leftcubane 8I.ShavittandR.J.Bartlett,Many-body methods in chemistry 1 leftend 1,2 and physics: MBPT and coupled-cluster theory (Cambridge 2 Fe13d 3,4,5,6,7 universitypress,2009). 3 S3p 8,9,10,11,12,13,14,15,16 9S.R.WhiteandR.L.Martin,J.Chem.Phys.110,4127(1999). 4 Fe23d 17,18,19,20,21 10G.K.-L.ChanandM.Head-Gordon,J.Chem.Phys.116,4462 5 Fe33d 22,23,24,25,26 (2002). 6 Fe43d 27,28,29,30,31 ", "descriptions": [{"code": "p04-X", "text": "An illustration showing six selected active orbitals for FeMoco within the CAS(113e, 76o) active space model. The panels display the spatial distribution of electron density for the left end, S 3p, C 2s2p, Fe 3d, Mo 4d, and right end orbitals, overlaid on the molecular structure of the FeMoco cluster."}, {"code": "p04-Y", "text": "Several diagrams of different types of cell structures with different numbers and colors."}, {"code": "p04-Z", "text": "FIG. 3. Illustration of some selected active orbitals for FeMoco in the active space model CAS(113e,76o) con- structed in this work."}]}, {"id": "p14", "img": "pictures/p14.png", "context": "3 6K. M. Lancaster, M. Roemelt, P. Ettenhuber, Y. Hu, M. W. TABLE I. Composition of the active space with 76 orbitals Ribbe, F. Neese, U. Bergmann, and S. DeBeer, Science 334, for FeMoco. 974 (2011). group orbital orbital index 7M. Reiher, N. Wiebe, K. M. Svore, D. Wecker, and M. Troyer, Proc. Nat. Acad. Sci. 18, 7555 (2017). left cubane 8I. Shavitt and R. J. Bartlett, Many-body methods in chemistry 1 left end 1, 2 and physics: MBPT and coupled-cluster theory (Cambridge 2 Fe1 3d 3, 4, 5, 6, 7 university press, 2009). 3 S 3p 8, 9, 10, 11, 12, 13, 14, 15, 16 9S. R. White and R. L. Martin, J. Chem. Phys. 110, 4127 (1999). 4 Fe2 3d 17, 18, 19, 20, 21 10G. K.-L. Chan and M. Head-Gordon, J. Chem. ", "descriptions": [{"code": "p14-X", "text": "Six panels showing selected active orbitals for FeMoco in the CAS(113e, 76o) active space model. The panels illustrate orbital shapes at different locations: the left end, S 3p, C 2s2p, Fe 3d, Mo 4d, and the right end, with red and blue lobes representing the orbital density over the molecular structure."}, {"code": "p14-Y", "text": "Several different types of molecular structures are shown on a white background."}, {"code": "p14-Z", "text": "FIG. 3. Illustration of some selected active orbitals for FeMoco in the active space model CAS(113e,76o) con - structed in this work."}]}, {"id": "p17", "img": "pictures/p17.png", "context": "The Scallop Theorem and Swimming at the Mesoscale M. Hubert,1,∗ O. Trosman,1,∗ Y. Collard,2,∗ A. Sukhov,3,∗ J. Harting,3,4 N. Vandewalle,2 and A.-S. Smith1,5,† 1PULS Group, Department of Physics, FAU Erlangen-Nürnberg, IZNF, Erlangen, Germany 2GRASP, Research unit CESAM, Institute of Physics B5a, Université de Liège, Liège, Belgium 3Helmholtz Institute Erlangen-Nürnberg for Renewable Energy (IEK-11), Forschungszentrum Jülich, Nürnberg, Germany 4Deptartment of Chemical and Biological Engineering & Department of Physics, FAU Erlangen-Nürnberg, Nürnberg, Germany 5Group for Computational Life Sciences, Ruđer Boskovic Institute, Zagreb, Croatia By synergistically combining modeling, simulation an", "descriptions": [{"code": "p17-X", "text": "Picture with the text: F → F → L U (a) Model µ 2 →µ 1 → a 1 a 2 U (c) Experiments x y t=0 t=T/2B z → B x(t) → B(t) → U (b) LB Simulations k 0.5 0.0 v F U"}, {"code": "p17-Y", "text": "Figure 1 shows three representations of an asymmetric swimming dumbbell. (a) A model diagram of two spheres of different sizes connected by a spring and driven by equal and opposite forces. (b) A lattice Boltzmann (LB) simulation showing the time-averaged fluid flow field around the beads. (c) Experimental snapshots of a magneto-capillary dumbbell consisting of two ferromagnetic beads at the water-air interface at the start of a cycle and halfway through."}, {"code": "p17-Z", "text": "An image of a diagram of a magnetic field with a magnet in the middle and a magnet at the bottom."}]}, {"id": "p18", "img": "pictures/p18.png", "context": "RESEARCH MEtHod S And REpoR ting Analysing indicators of performance, satisfaction, or safety using empirical logit transformation Sarah Stevens,1 ,2 Jose M Valderas,3 Tim Doran,4 Rafael Perera,1 ,2 Evangelos Kontopantelis2 ,5 1Nuffield Department of Primary Performance, satisfaction, and safety are measured for each patient, they are often only Care Health Sciences, University indicators are commonly measured on reported in aggregate form (eg, at the practice or hospi- of Oxford, Oxford, UK tal level). Therefore, an indicator that begins as a binary 2National Institute for Health a percentage scale. Such indicators are outcome (that is, the target is either met or not met for Research Schoo", "descriptions": [{"code": "p18-X", "text": "CrossMark logo, a blue circular icon containing a red ribbon, with the text CrossMark click for updates below it."}, {"code": "p18-Y", "text": "Crossmark click for updates."}, {"code": "p18-Z", "text": "Picture"}]}, {"id": "p39", "img": "pictures/p39.png", "context": "COMMUNICATION Figure 1 Structural characterizations of the BiFeO. (a) XRD patterns. (b) 3 EDS spectrum. (c) Fe 2p core level XPS spectrum. (d) Bi 4f core level XPS spectrum. The XRD patterns are shown in Figure 1a. All the diffraction peaks can be assigned to a pure rhombohedral phase of BiFeO with a space 3 group of R3c and a point group 3m (JCPDS Card no. 86-1518). In Figure 1b, the energy dispersive X-ray spectroscopy (EDS) shows the existence of Bi (8.27%), Fe (7.37%), O (67.74%), Al (15.40%) and Au (1.25%), where Al and Au come from the sample holder and the sputtered Au coating on the powder sample, respectively. XPS was used to investigate the oxidation states of the Bi and Fe element", "descriptions": [{"code": "p39-X", "text": "A collage of images showing the different materials used in the experiment."}, {"code": "p39-Y", "text": "Morphology characterizations of BiFeO3 nanosheets. (a) SEM image showing square nanosheets with an average size of approximately 380 nm. (b) TEM bright-field image of a single nanosheet with a selected area electron diffraction (SAED) pattern inset showing the [001]pc normal direction. (c) High resolution TEM image showing lattice spacings of 0.393 nm and 0.395 nm. (d) Scanning TEM image and elemental mapping showing uniform distributions of Bi, Fe, and O."}, {"code": "p39-Z", "text": "Figure 2 Morphology characterizations of the BiFeO 3 nanosheets. (a) SEM image. (b) TEM bright-field image with electron diffraction pattern as inset. (c) High resolution TEM image. (d) Scanning TEM ..."}]}, {"id": "p40", "img": "pictures/p40.png", "context": "The Journal of Clinical Investigation CONCISE COMMUNICATION Figure 2. Withdrawal severity during conditioning is associated with changes in the hypothalamic and amygdala nuclei BOLD signal in response to the naloxone-paired cue. (A) Hypothalamic cluster extracted from the BOLD signal cue × heroin-access interaction shown in Figure 1C, with a 3D rendered whole-brain underlay. A, anterior; P, posterior. (B) Mean percentage of BOLD signal change from baseline in the hypothalamic cluster to the cue-only presentations. Dot plot displays individual data for each condition. Sal, saline. (C) Scatter plot of heroin intake during naloxone condition- ing and BOLD signal response in the hypothalamic clu", "descriptions": [{"code": "p40-X", "text": "An image of a page from a book with a picture of a human brain."}, {"code": "p40-Y", "text": "This multi-panel figure shows that withdrawal severity during conditioning correlates with BOLD signal changes in the hypothalamus and amygdala. Panels A through C focus on the hypothalamus, showing its location in the brain, mean BOLD signal change for saline (Sal) and naloxone (Nx) conditions in short-access (ShA) and long-access (LgA) rats, and a positive correlation between heroin intake during naloxone conditioning and BOLD signal response."}, {"code": "p40-Z", "text": "C O N C I S E C O M M U N I C A T I O N Figure 2. Withdrawal severity during conditioning is associated with changes in the hypothalamic and amygdala nuclei BOLD signal in response to the ..."}]}] || [];
+const TOTAL = ITEMS.reduce((n, item) => n + item.descriptions.length, 0);
+const LOCAL_KEY = "picture-rating-v2";            // v2: the final design (three descriptions)
+const PROBLEMS = [["omission", "Leaves out something important"], ["invented", "Says something that is not in the picture"],
+                  ["wrong", "Gets a detail wrong (number, label, name)"], ["length", "Too long to listen to"],
+                  ["looks", "Describes looks (colours, shapes) instead of meaning"],
+                  ["abbreviation", "Uses an abbreviation without saying what it means"],
+                  ["unclear", "Hard to understand when listened to (cryptic wording or symbols)"]];
+
+let answers = {};      // code -> {t: "yes|mostly|no", h: 1-5, p: [...], c: "comment", at: ms}
+let seconds = {};      // picture id -> seconds spent
+let index = 0, started = false, who = "", participant = "";
+let pending = { answers: {}, seconds: {} }, flushing = false, flushTimer = null, shownAt = null, nameDirty = false;
+const CODES = new Set(ITEMS.flatMap((item) => item.descriptions.map((d) => d.code)));
+
+const $ = (id) => document.getElementById(id);
+
+function loadLocal() {
+  try {
+    const s = JSON.parse(localStorage.getItem(LOCAL_KEY) || "{}");
+    answers = s.answers || {}; seconds = s.seconds || {}; who = s.who || ""; participant = s.participant || "";
+    index = Math.min(Math.max(s.index || 0, 0), ITEMS.length - 1); started = !!s.started;
+  } catch (e) { }
+}
+function saveLocal() {
+  try { localStorage.setItem(LOCAL_KEY, JSON.stringify({ answers, seconds, index, started, who, participant })); } catch (e) { }
+}
+function newCode() {
+  const alphabet = "ABCDEFGHJKLMNPQRSTUVWXYZ23456789", bytes = new Uint8Array(16);
+  crypto.getRandomValues(bytes);
+  return [...bytes].map((b) => alphabet[b % alphabet.length]).join("");
+}
+const showCode = (c) => c.replace(/(.{4})(?=.)/g, "$1-");
+const isDone = (code) => !!(answers[code] && answers[code].t && answers[code].h);
+function ratedCount() { return ITEMS.reduce((n, item) => n + item.descriptions.filter((d) => isDone(d.code)).length, 0); }
+function setSave(state, text) { const el = $("save"); el.dataset.state = state; el.textContent = text; }
+function notice(html, kind) {
+  const box = document.createElement("div"); box.className = "notice" + (kind ? " " + kind : ""); box.innerHTML = html;
+  $("notices").replaceChildren(box); return box;
+}
+function updateMeter() {
+  const done = ratedCount();
+  $("meter-fill").style.width = TOTAL ? (100 * done / TOTAL) + "%" : "0";
+  $("meter-text").textContent = `${done} of ${TOTAL} rated`;
+  if (done === TOTAL && TOTAL) notice("<p><strong>All descriptions are rated. Thank you!</strong> Your answers are saved; you can still change any of them.</p>", "done");
+}
+function pill(name, value, label, type) {
+  return `<label class="pill${type === "checkbox" ? " chip" : ""}"><input type="${type}" name="${name}" id="${name}-${value}" value="${value}"><span>${label}</span></label>`;
+}
+function renderSlips() {
+  const item = ITEMS[index];
+  $("slips").replaceChildren(...item.descriptions.map((d) => {
+    const letter = d.code.split("-")[1];
+    const slip = document.createElement("article");
+    slip.className = "slip"; slip.dataset.code = d.code; slip.setAttribute("aria-labelledby", `${d.code}-h`);
+    slip.innerHTML = `
+      <div class="slip-head"><h3 id="${d.code}-h">Description ${letter}</h3>
+        <span class="chars">${d.text.length} characters</span><span class="state"></span></div>
+      <p class="quote"></p>
+      <fieldset><legend>Is everything in it true for the picture?</legend><div class="pills">
+        ${pill(d.code + "-t", "yes", "Yes", "radio")}${pill(d.code + "-t", "mostly", "Mostly", "radio")}${pill(d.code + "-t", "no", "No", "radio")}</div></fieldset>
+      <fieldset><legend>How helpful is it for someone who cannot see the picture?</legend><div class="pills">
+        <span class="scale-end" aria-hidden="true">not at all</span>
+        ${[1, 2, 3, 4, 5].map((n) => pill(d.code + "-h", String(n), String(n), "radio")).join("")}
+        <span class="scale-end" aria-hidden="true">very</span></div></fieldset>
+      <fieldset><legend>Problems (tick all that apply)</legend><div class="pills">
+        ${PROBLEMS.map(([v, l]) => pill(d.code + "-p", v, l, "checkbox")).join("")}</div></fieldset>
+      <details class="comment"><summary>Add a comment</summary>
+        <label class="sr" for="${d.code}-c">Comment on description ${letter}</label>
+        <input type="text" id="${d.code}-c" name="${d.code}-c" maxlength="500" placeholder="Optional, a few words"></details>`;
+    slip.querySelector(".quote").textContent = `“${d.text}”`;
+    const a = answers[d.code] || {};
+    if (a.t) slip.querySelector(`[name="${d.code}-t"][value="${a.t}"]`).checked = true;
+    if (a.h) slip.querySelector(`[name="${d.code}-h"][value="${a.h}"]`).checked = true;
+    (a.p || []).forEach((v) => { const b = slip.querySelector(`[name="${d.code}-p"][value="${v}"]`); if (b) b.checked = true; });
+    if (a.c) { slip.querySelector(`#${CSS.escape(d.code + "-c")}`).value = a.c; slip.querySelector("details").open = true; }
+    markSlip(slip);
+    return slip;
+  }));
+}
+function markSlip(slip) {
+  const done = isDone(slip.dataset.code);
+  slip.dataset.done = String(done);
+  slip.querySelector(".state").textContent = done ? "✓ Rated" : "Not rated yet";
+}
+function renderPicture() {
+  const item = ITEMS[index];
+  $("fig-h").textContent = `Picture ${index + 1} of ${ITEMS.length}`;
+  $("picture").src = item.img; $("picture").alt = `Picture ${index + 1}, to be described (this page is for sighted raters)`;
+  $("context").textContent = item.context || "No text near this picture.";
+  $("context-box").open = false;
+  renderSlips(); renderStrip(); renderWhere();
+  $("prev").disabled = index === 0;
+  $("next").textContent = index === ITEMS.length - 1 ? "Back to first picture" : "Next picture";
+}
+function pictureState(item) {
+  const done = item.descriptions.filter((d) => isDone(d.code)).length;
+  return done === 0 ? "none" : done === item.descriptions.length ? "done" : "part";
+}
+function renderStrip() {
+  $("strip").replaceChildren(...ITEMS.map((item, n) => {
+    const b = document.createElement("button");
+    b.type = "button"; b.className = "dot"; b.textContent = String(n + 1); b.dataset.state = pictureState(item);
+    if (n === index) b.setAttribute("aria-current", "true");
+    const done = item.descriptions.filter((d) => isDone(d.code)).length;
+    b.setAttribute("aria-label", `Picture ${n + 1}: ${done} of ${item.descriptions.length} rated`);
+    b.addEventListener("click", () => go(n));
+    return b;
+  }));
+}
+function renderWhere() {
+  const item = ITEMS[index], done = item.descriptions.filter((d) => isDone(d.code)).length;
+  $("where").textContent = `Picture ${index + 1} of ${ITEMS.length} · ${done} of ${item.descriptions.length} rated here`;
+}
+function leavePicture() {
+  if (shownAt === null) return;
+  const spent = Math.min((Date.now() - shownAt) / 1000, 900); shownAt = null;
+  if (spent < 1) return;
+  const id = ITEMS[index].id;
+  seconds[id] = Math.round((seconds[id] || 0) + spent); pending.seconds[id] = seconds[id];
+  saveLocal(); scheduleFlush();
+}
+function showPicture() { if (document.visibilityState === "visible") shownAt = Date.now(); }
+function go(n) { leavePicture(); index = (n + ITEMS.length) % ITEMS.length; saveLocal(); renderPicture(); showPicture(); window.scrollTo(0, 0); }
+
+function onAnswer(event) {
+  const slip = event.target.closest(".slip"); if (!slip) return;
+  const code = slip.dataset.code, a = { ...(answers[code] || {}) };
+  const t = slip.querySelector(`[name="${code}-t"]:checked`); a.t = t ? t.value : "";
+  const h = slip.querySelector(`[name="${code}-h"]:checked`); a.h = h ? Number(h.value) : 0;
+  a.p = [...slip.querySelectorAll(`[name="${code}-p"]:checked`)].map((x) => x.value);
+  a.c = (slip.querySelector(`#${CSS.escape(code + "-c")}`).value || "").slice(0, 500);
+  a.at = Date.now();
+  answers[code] = a; pending.answers[code] = a;
+  markSlip(slip); updateMeter(); renderStrip(); renderWhere(); saveLocal(); scheduleFlush();
+}
+
+function scheduleFlush() { setSave("wait", "Saving…"); clearTimeout(flushTimer); flushTimer = setTimeout(flush, 700); }
+const hasPending = () => nameDirty || Object.keys(pending.answers).length || Object.keys(pending.seconds).length;
+async function flush() {
+  if (flushing || !participant || !hasPending()) return;
+  const batch = pending, sendName = nameDirty; pending = { answers: {}, seconds: {} }; nameDirty = false; flushing = true;
+  try {
+    const response = await fetch("/api/save", { method: "POST", headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ participant, name: sendName ? who : undefined, answers: batch.answers, seconds: batch.seconds }) });
+    if (!response.ok) throw new Error("HTTP " + response.status);
+    setSave("saved", "All answers saved");
+  } catch (e) {
+    pending = { answers: { ...batch.answers, ...pending.answers }, seconds: { ...batch.seconds, ...pending.seconds } };
+    nameDirty = nameDirty || sendName;
+    setSave("error", "Not saved yet, trying again"); setTimeout(flush, 5000 + Math.random() * 3000);
+  } finally {
+    flushing = false;
+    if (hasPending()) { clearTimeout(flushTimer); flushTimer = setTimeout(flush, 700); }
+  }
+}
+async function loadRemote() {
+  try {
+    const response = await fetch("/api/load?p=" + encodeURIComponent(participant));
+    if (response.status === 404) { nameDirty = true; Object.assign(pending.answers, answers); Object.assign(pending.seconds, seconds); scheduleFlush(); return true; }
+    if (!response.ok) throw new Error("HTTP " + response.status);
+    const remote = await response.json();
+    for (const [code, a] of Object.entries(remote.answers || {})) {
+      if (!CODES.has(code)) continue;
+      if (!answers[code] || (a.at || 0) >= (answers[code].at || 0)) answers[code] = a; else pending.answers[code] = answers[code];
+    }
+    for (const [code, a] of Object.entries(answers)) if (!(remote.answers || {})[code]) pending.answers[code] = a;
+    for (const [p, s] of Object.entries(remote.seconds || {})) seconds[p] = Math.max(seconds[p] || 0, s);
+    if (!who && remote.name) who = remote.name;
+    if (remote.name !== who) nameDirty = true;
+    saveLocal();
+    if (hasPending()) scheduleFlush(); else setSave("saved", "All answers saved");
+    return true;
+  } catch (e) { setSave("error", "Can't reach the server yet"); return false; }
+}
+function saveFile() {
+  const rows = [["participant", "name", "code", "true", "helpful", ...PROBLEMS.map(([k]) => k), "comment"]];
+  ITEMS.forEach((item) => item.descriptions.forEach((d) => {
+    const a = answers[d.code] || {}, p = a.p || [];
+    rows.push([participant, who, d.code, a.t || "", a.h || "", ...PROBLEMS.map(([k]) => p.includes(k) ? 1 : 0), (a.c || "").replaceAll('"', "'")]);
+  }));
+  const link = document.createElement("a");
+  link.href = URL.createObjectURL(new Blob([rows.map((r) => r.map((v) => `"${v}"`).join(",")).join("\n")], { type: "text/csv" }));
+  link.download = "picture-ratings-" + (who || "participant").replace(/[^A-Za-z0-9]+/g, "-") + ".csv";
+  link.click();
+}
+
+function enterWork() {
+  $("intro").hidden = true; $("work").hidden = false; $("nav").hidden = false;
+  $("who-show").textContent = who; $("code-show").textContent = showCode(participant);
+  renderPicture(); updateMeter(); showPicture();
+}
+async function onStart(event) {
+  event.preventDefault();
+  const name = $("who").value.trim(), code = $("code-in").value.replace(/[^A-Za-z0-9]/g, "").toUpperCase();
+  if (code) {
+    if (code.length !== 16) { $("form-error").textContent = "The participant code has 16 letters and digits. Please check it."; return; }
+    if (code !== participant) { answers = {}; seconds = {}; index = 0; }
+    participant = code; if (name) who = name;
+  } else {
+    if (!name) { $("form-error").textContent = "Please enter your name or initials."; $("who").focus(); return; }
+    if (!participant) participant = newCode();
+    if (name !== who) { who = name; nameDirty = true; }
+  }
+  started = true; saveLocal();
+  setSave("wait", "Connecting…");
+  enterWork();
+  await loadRemote();
+  enterWork();
+}
+
+loadLocal();
+$("intro-count").textContent = `${ITEMS.length} pictures, ${TOTAL} descriptions`;
+if (who) $("who").value = who;
+if (started && participant) { $("start").textContent = `Continue (${ratedCount()} of ${TOTAL} rated)`; }
+$("start-form").addEventListener("submit", onStart);
+$("prev").addEventListener("click", () => go(index - 1));
+$("next").addEventListener("click", () => go(index + 1));
+$("backup").addEventListener("click", saveFile);
+$("enlarge").addEventListener("click", (e) => {
+  const large = $("frame").classList.toggle("large");
+  e.currentTarget.setAttribute("aria-pressed", String(large));
+  e.currentTarget.textContent = large ? "Show smaller" : "Show larger";
+});
+$("slips").addEventListener("change", onAnswer);
+$("slips").addEventListener("input", (e) => { if (e.target.type === "text") onAnswer(e); });
+document.addEventListener("visibilitychange", () => { if (document.visibilityState === "hidden") { leavePicture(); flush(); } else if (started) showPicture(); });
+updateMeter();
+if (started && participant) { enterWork(); loadRemote().then(() => { renderPicture(); updateMeter(); }); }
+else setSave("wait", "Not started");
+</script>
+</body></html>
