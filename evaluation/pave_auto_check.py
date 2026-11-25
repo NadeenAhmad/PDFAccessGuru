@@ -1,7 +1,7 @@
 """
 The 4 documents of the PAVE comparison: the automatic check of every tool's output, the same check as for all other
 outputs (check_one.py: veraPDF PDF/UA-1 and the share of text a screen reader reaches). How well the documents are
-tagged is judged by people (build_pave_sheet.py, score_pave.py); this is only the automatic part.
+tagged is judged by people (build_pave_sheet.py, score_expert.py); this is only the automatic part.
 
 Outputs of each tool: work/pave/outputs/TOOL/pave-N.pdf (PDFAccessGuru by run_all.sh; Acrobat via acrobat_files.py;
 opendataloader-pdf by baseline_odl.py on these files; PAVE 2.0 by hand on pave-pdf.org with all its automatic buttons).

@@ -1,7 +1,7 @@
 # Evaluation of PDFAccessGuru
 
-This folder holds everything needed to check and repeat the automatic evaluation of PDFAccessGuru:
-the scripts, the lists of test files, the result tables and the logs.
+This folder holds everything needed to check and repeat the evaluation of PDFAccessGuru:
+the scripts, the lists of test files, the result tables, the logs and the expert judges' answers.
 
 - **What was evaluated:** PDFAccessGuru, installed from [PyPI](https://pypi.org/project/pdfaccessguru/). The final run
   was on 13 November 2026.
@@ -57,8 +57,8 @@ problems.
 - veraPDF counts more font problems after fixing than before (5,243 → 16,041 without AI), although fewer files have
   them. This happens with every tool, so this table counts files.
 - The Reference Suite has no problem of any kind, before or after.
-- veraPDF only checks that a picture has a description, not whether it is useful. People judge that in the picture
-  rating.
+- veraPDF only checks that a picture has a description, not whether it is useful. The judges rate that in
+  [section 7](#7-what-do-expert-judges-say).
 
 ### 3. Does it break anything?
 
@@ -137,8 +137,71 @@ The benchmark's authors added specific errors to some files (5 files per error).
 - **Online AI:** USD 0.93 for all files and settings together, less than 1 cent per file.
 - **Time:** typically about half a minute per file without AI, and up to a minute with AI, on a 2019 laptop.
 
-The human judgements are added when the judges have finished: the picture descriptions, the PAVE criteria, and the
-links, titles and languages.
+### 7. What do expert judges say?
+
+Two judges rated the outputs on their own, without knowing which tool made which version.
+[`results/expert-judgement/summary.md`](results/expert-judgement/summary.md) gives each judge's numbers and how far
+they agree.
+
+**Picture descriptions** (the 40 pictures). For each description the judges answered "How helpful is it for someone
+who cannot see the picture?" from 1 (not at all) to 5 (very). A description *describes the picture well* when it is
+rated 4 or 5.
+
+| Description written by | Describes the picture well (both judges) | Helpfulness (mean, 1–5) |
+|---|---|---|
+| PDFAccessGuru with AI | **82%** | **4.34** |
+| PDFAccessGuru without AI (simple rules) | 2% | 1.79 |
+| BLIP (picture captioning, no large language model) | 2% | 1.90 |
+
+- *Both judges* means both rated it 4 or 5. Judge A alone: 85%, 8% and 10%; judge B alone: 90%, 12% and 10%.
+- The judges agree well: the same answer for 87% of the 120 descriptions (Cohen's kappa 0.71).
+
+**Structure of the 4 PAVE documents**, judged on PAVE 2.0's 13 criteria [[4]](#references). Per cent correct:
+correct / (correct + wrong or missing), summed over the 4 documents; the first two criteria count correct pages.
+Mean of the two judges; – means no such content.
+
+| Criterion | Acrobat Pro | opendataloader-pdf | PAVE 2.0 | PDFAccessGuru |
+|---|---|---|---|---|
+| All content tagged | 83 | 92 | 58 | **100** |
+| Reading order | 50 | 50 | 25 | **54** |
+| Headings | 11 | **46** | **46** | 37 |
+| Heading levels | 11 | 46 | 51 | **59** |
+| Tables | 45 | **100** | 50 | 75 |
+| Table structure | 10 | 25 | **50** | 33 |
+| Lists | 11 | **51** | 3 | 34 |
+| List structure | 55 | **93** | 50 | 8 |
+| Figures | 14 | 24 | 29 | **71** |
+| Figure descriptions | 40 | 0 | 57 | **92** |
+| Formulas | 0 | 0 | **75** | **75** |
+| Formula descriptions | – | – | 58 | **83** |
+| Captions | 22 | 40 | 29 | **100** |
+| **Average** | 29 | 47 | 45 | **63** |
+
+- PDFAccessGuru has the highest average, with both judges (judge A: 67, judge B: 59). It is best on tagging all
+  content, figures and their descriptions, formulas and captions.
+- It is weaker on lists and headings, where opendataloader-pdf does better, and on table structure, where PAVE 2.0
+  does better. No tool gets the reading order right on much more than half of the pages.
+
+**Links, titles and language**: 34 links in 18 documents (30 from Kumar and SafeDocs files, 4 from one PAVE
+document), and the title and language of each document.
+
+| Version | Link says where it goes: yes / partly / no | Title describes the document | Language right |
+|---|---|---|---|
+| Original | 1% / 0% / 99% | 8% | 17% |
+| Acrobat Pro | 13% / 25% / 62% | 6% | 17% |
+| opendataloader-pdf ⁵ | 31% / 44% / 25% | 9% | 18% |
+| PDFAccessGuru | **50% / 43% / 7%** | **44%** | **100%** |
+
+⁵ 32 links and 17 documents (it stopped with an error on one file). PAVE 2.0 was run only on the PAVE documents: of
+its 4 links, 38% say where they go, 38% partly, 25% not; its title describes the document and its language is right.
+
+- With PDFAccessGuru, 93% of the links tell at least partly where they go; in the originals almost none do.
+- PDFAccessGuru sets the right language in every document. Its titles describe the document in 44% of the
+  documents, much more often than the other tools, but this is still the weakest point here.
+- PDFAccessGuru also marks passages written in another language. Of 20 such passages, judge A found 11 correct, 3
+  wrong and could not tell for 6; judge B found 13 correct and 7 wrong.
+- The judges agree well on titles (same answer for 90%, kappa 0.79) and moderately on links (60%, kappa 0.40): they
+  often differ between "yes" and "partly".
 
 ### Where the results are
 
@@ -150,6 +213,7 @@ links, titles and languages.
 | 4. Other tools | [`results/acrobat/`](results/acrobat), [`results/opendataloader/`](results/opendataloader), [`results/problem-kinds/summary.md`](results/problem-kinds/summary.md), [`results/pave/auto-check.md`](results/pave/auto-check.md) |
 | 5. Benchmark errors | [`results/kumar-criteria/summary.md`](results/kumar-criteria/summary.md) |
 | 6. Cost and time | [`logs/costs.csv`](logs/costs.csv), and the `seconds` column of every table |
+| 7. Expert judgement | [`results/expert-judgement/summary.md`](results/expert-judgement/summary.md), every answer in [`results/expert-judgement/`](results/expert-judgement) |
 
 **AI used:** Gemma 4 26B (`google/gemma-4-26b-a4b-it`) on all sets and GPT-6 Luna (`openai/gpt-6-luna`) on the Kumar
 set, both online through OpenRouter, with descriptions at the level "standard". The checker is veraPDF 1.30.1.
@@ -194,6 +258,7 @@ python evaluation/acrobat_files.py check && python evaluation/acrobat_summary.py
 evaluation/work/venv/bin/python evaluation/kumar_criteria.py
 evaluation/work/venv/bin/python evaluation/problem_kinds.py
 python evaluation/pave_auto_check.py
+python evaluation/score_expert.py            # the judges' answers -> results/expert-judgement/summary.md
 ```
 
 The times are for the computer used: a MacBook Pro (Intel Core i9-9880H, 8 cores, 32 GB, macOS 15.5), 3 files at a
@@ -214,6 +279,7 @@ scripts. The full run was not repeated.
 | [`results/problem-kinds/`](results/problem-kinds) | Every problem before and after, per file, tool and rule, grouped into 8 kinds |
 | [`results/kumar-criteria/`](results/kumar-criteria) | Kumar et al.'s criteria per file and tool, and how far the automatic check agrees with the experts' labels |
 | [`results/pave/`](results/pave) | The 4 PAVE documents: selection and automatic check per tool |
+| [`results/expert-judgement/`](results/expert-judgement) | The judges' answers (judges A and B; the tool of every version is given) and their scores |
 | [`results/sets/`](results/sets), [`results/pictures/`](results/pictures) | The lists of test files and pictures |
 | [`logs/`](logs) | Run logs of the final run, and every paid AI request with its price |
 
@@ -237,10 +303,11 @@ by git; other folders can be set with `PDFACCESSGURU_EVAL_DATA` and `PDFACCESSGU
 | Problem kinds | `problem_kinds.py` | Every problem before and after, grouped into 8 kinds, for every tool |
 | Criteria | `kumar_criteria.py` | Kumar et al.'s criteria before and after fixing (the automatic part) |
 | PAVE | `pave_auto_check.py` | The automatic check of every tool's output on the 4 documents |
-| | `build_pave_sheet.py`, `score_pave.py` | PAVE 2.0's 13 criteria, judged blind by people |
+| | `build_pave_sheet.py` | PAVE 2.0's 13 criteria and the pages and screen-reader views the judges see |
 | Pictures | `select_pictures.py`, `capture_pictures.py` | The 40 rated pictures, and exactly what an AI model gets for each |
 | | `blip_pictures.py`, `describe_pictures.py` | Descriptions by BLIP (a non-LLM baseline) and by PDFAccessGuru |
 | Rating site | `build_rating_netlify.py`, `build_parts_23.py`, `rating_*.html` | The blind rating site for the judges |
+| Expert judgement | `score_expert.py` | Scores of the judges' answers: pictures, PAVE criteria, links, titles and language |
 
 ## References
 

@@ -3,7 +3,7 @@ Acrobat Pro (Autotag + tab order, guided action "PDFAccessGuruEval") next to PDF
 opendataloader-pdf, on the files Acrobat was given: the untagged Kumar and SafeDocs files. Every tool's output is
 checked the same way (veraPDF PDF/UA-1 through PDFAccessGuru's veraPDF runner, and the share of text a screen
 reader reaches): Acrobat's with acrobat_files.py check (results in work/runs-acrobat), the others by run.py and
-baseline_odl.py. The 4 PAVE documents are scored separately (score_pave.py).
+baseline_odl.py. The 4 PAVE documents are checked separately (pave_auto_check.py) and judged by people (score_expert.py).
 
     python evaluation/acrobat_summary.py
 
