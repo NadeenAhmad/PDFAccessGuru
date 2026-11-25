@@ -1,0 +1,19 @@
+judge,part,item,comment
+A,structure,pave-1 pave-2.0,Page 2 has a part about picture in the screen reader version which i am not sure. That plus (1) make the reading order in page 2 not right. And page 3 reading order should put the introduction of figure at lease after the paragraph is done
+A,structure,pave-1 pdfaccessguru,I still think the paragraph from page 2 to page 3 need to finish first before introducing figure and picture
+A,structure,pave-1 opendataloader-pdf,At this point im a bit confuse which one is a figure - [picture] or Fig. or Fig. is just a figure description
+A,structure,pave-2 pave-2.0,"Since every heading title is H2, i will asume it is correct now - i thought maybe H1 suits better"
+A,structure,pave-2 opendataloader-pdf,"I make my decision based on the current version. And the criteria might be different, not universal for all versions of 1 paper. For example, only at this one i realize the icon - which is correct."
+A,structure,pave-3 opendataloader-pdf,Table structure i identified as false but im not sure how the first header can be span over two columns
+A,structure,pave-4 acrobat,Either 1 big table or 3 table for 3 pages
+A,structure,pave-4 pdfaccessguru,"Either inner the table can each be a list, or none be a list like here"
+A,structure,pave-4 opendataloader-pdf,"Im not sure which one is list. For previous sample, same icon is not list. For this list i am not sure"
+A,links-titles-language,L01,The link description should be figure 2c
+A,links-titles-language,L04,"it should lint to figure, also the one shown in image is 1 not 1u-"
+A,links-titles-language,L06,"Since it is in the same page, and i dont see a figure in that page, so i guess it does not really go anyway"
+A,links-titles-language,L13,"How are A, B, D different"
+A,links-titles-language,L16,This kind of description is hard to understand
+A,links-titles-language,L17,"From here on, i realize annotation suits with [x]"
+A,links-titles-language,L21,Link should announced only 3.2.3
+A,links-titles-language,L26,just describe mail to nautilus
+A,links-titles-language,T03,i think should add Configuraion Manual
