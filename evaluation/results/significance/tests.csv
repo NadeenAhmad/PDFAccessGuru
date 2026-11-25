@@ -1,0 +1,37 @@
+group,comparison,measure,n,pdfaccessguru,other,p,p_holm
+4. Other tools: 156 untagged files,PDFAccessGuru without AI vs Acrobat Pro,problems left (median),156,0,269.5,3.19e-25,7.66e-24
+4. Other tools: 156 untagged files,PDFAccessGuru without AI vs Acrobat Pro,files passing,156,107,0,1.23e-32,3.33e-31
+4. Other tools: 156 untagged files,PDFAccessGuru without AI vs Acrobat Pro,text a screen reader reaches (median),156,99%,81%,1.3e-16,2.59e-15
+4. Other tools: 156 untagged files,PDFAccessGuru without AI vs opendataloader-pdf,problems left (median),152,0,215,2.53e-24,5.56e-23
+4. Other tools: 156 untagged files,PDFAccessGuru without AI vs opendataloader-pdf,files passing,152,104,0,9.86e-32,2.47e-30
+4. Other tools: 156 untagged files,PDFAccessGuru without AI vs opendataloader-pdf,text a screen reader reaches (median),152,99%,85%,5.92e-15,1.07e-13
+4. Other tools: 156 untagged files,PDFAccessGuru with AI vs Acrobat Pro,problems left (median),156,0,269.5,3.19e-25,7.66e-24
+4. Other tools: 156 untagged files,PDFAccessGuru with AI vs Acrobat Pro,files passing,156,108,0,6.16e-33,1.73e-31
+4. Other tools: 156 untagged files,PDFAccessGuru with AI vs Acrobat Pro,text a screen reader reaches (median),156,99%,81%,1.3e-16,2.59e-15
+4. Other tools: 156 untagged files,PDFAccessGuru with AI vs opendataloader-pdf,problems left (median),152,0,215,2.53e-24,5.56e-23
+4. Other tools: 156 untagged files,PDFAccessGuru with AI vs opendataloader-pdf,files passing,152,105,0,4.93e-32,1.28e-30
+4. Other tools: 156 untagged files,PDFAccessGuru with AI vs opendataloader-pdf,text a screen reader reaches (median),152,99%,85%,5.92e-15,1.07e-13
+1. Before and after fixing: all 316 files,PDFAccessGuru without AI: after vs before,problems (median),316,0,210,1.27e-50,4.06e-49
+1. Before and after fixing: all 316 files,PDFAccessGuru without AI: after vs before,files passing,316,211,9,3.11e-61,1.06e-59
+4. Other tools: all files opendataloader-pdf processed,PDFAccessGuru without AI vs opendataloader-pdf,problems left (median),312,0,87,9.17e-46,2.66e-44
+4. Other tools: all files opendataloader-pdf processed,PDFAccessGuru without AI vs opendataloader-pdf,files passing,312,208,11,9.96e-60,3.29e-58
+1. Before and after fixing: all 316 files,PDFAccessGuru with AI: after vs before,problems (median),316,0,210,1.27e-50,4.06e-49
+1. Before and after fixing: all 316 files,PDFAccessGuru with AI: after vs before,files passing,316,222,9,1.52e-64,5.47e-63
+4. Other tools: all files opendataloader-pdf processed,PDFAccessGuru with AI vs opendataloader-pdf,problems left (median),312,0,87,7.96e-47,2.39e-45
+4. Other tools: all files opendataloader-pdf processed,PDFAccessGuru with AI vs opendataloader-pdf,files passing,312,219,11,4.86e-63,1.7e-61
+7. Expert judgement: picture descriptions (40 pictures),PDFAccessGuru with AI vs PDFAccessGuru without AI,"helpfulness (mean, 1–5)",40,4.34,1.79,3.64e-12,5.82e-11
+7. Expert judgement: picture descriptions (40 pictures),PDFAccessGuru with AI vs PDFAccessGuru without AI,describes the picture well (both judges),40,33,1,4.66e-10,6.52e-09
+7. Expert judgement: picture descriptions (40 pictures),PDFAccessGuru with AI vs BLIP,"helpfulness (mean, 1–5)",40,4.34,1.90,1.98e-10,2.97e-09
+7. Expert judgement: picture descriptions (40 pictures),PDFAccessGuru with AI vs BLIP,describes the picture well (both judges),40,33,1,4.07e-09,4.89e-08
+"7. Expert judgement: structure (13 criteria, 4 documents)",PDFAccessGuru vs Acrobat Pro,"per cent correct, per criterion (mean)",12,62,29,0.00928,0.0312
+"7. Expert judgement: structure (13 criteria, 4 documents)",PDFAccessGuru vs opendataloader-pdf,"per cent correct, per criterion (mean)",12,62,47,0.424,0.424
+"7. Expert judgement: structure (13 criteria, 4 documents)",PDFAccessGuru vs PAVE 2.0,"per cent correct, per criterion (mean)",13,63,45,0.0537,0.107
+"7. Expert judgement: links, titles and language",PDFAccessGuru vs original,"link says where it goes (0–2, mean)",34,1.43,0.03,4.66e-10,6.52e-09
+"7. Expert judgement: links, titles and language",PDFAccessGuru vs original,"title describes the document (0–2, mean)",18,1.06,0.28,0.00391,0.0234
+"7. Expert judgement: links, titles and language",PDFAccessGuru vs original,language right (both judges),18,18,3,6.1e-05,0.00061
+"7. Expert judgement: links, titles and language",PDFAccessGuru vs Acrobat Pro,"link says where it goes (0–2, mean)",34,1.43,0.51,8.38e-09,9.22e-08
+"7. Expert judgement: links, titles and language",PDFAccessGuru vs Acrobat Pro,"title describes the document (0–2, mean)",18,1.06,0.19,0.00391,0.0234
+"7. Expert judgement: links, titles and language",PDFAccessGuru vs Acrobat Pro,language right (both judges),18,18,3,6.1e-05,0.00061
+"7. Expert judgement: links, titles and language",PDFAccessGuru vs opendataloader-pdf,"link says where it goes (0–2, mean)",32,1.42,1.06,0.000202,0.00142
+"7. Expert judgement: links, titles and language",PDFAccessGuru vs opendataloader-pdf,"title describes the document (0–2, mean)",17,1.00,0.29,0.00781,0.0312
+"7. Expert judgement: links, titles and language",PDFAccessGuru vs opendataloader-pdf,language right (both judges),17,17,3,0.000122,0.000977
