@@ -7,6 +7,7 @@ from pdfaccessguru.exceptions.mapping_exceptions.could_not_find_affected_element
 from pdfaccessguru.exceptions.mapping_exceptions.step_function_traversal_exception import StepFunctionTraversalException
 from pdfaccessguru.model.verapdf_violation import VeraPdfViolation
 from pdfaccessguru.pipeline.PDFAccessGuruDetect.map_violation.detect_affected_element.detect_affected_element import affected_element_detector
+from pdfaccessguru.pipeline.PDFAccessGuruDetect.map_violation.detect_affected_element.detect_affected_element import default_affected_element_detector
 from pdfaccessguru.pipeline.PDFAccessGuruDetect.map_violation.detect_affected_element.resolve_context import resolve_context_parent_element
 from pdfaccessguru.pipeline.PDFAccessGuruDetect.map_violation.detect_affected_element.resolve_context import _resolve_context
 from pdfaccessguru.pipeline.reporting.writer import report_debug
@@ -300,6 +301,25 @@ def detect_affected_element_7_2_32(veraPdf_violation: VeraPdfViolation, pdf: Pdf
 @affected_element_detector("7.2-34")
 def detect_affected_element_7_2_34(veraPdf_violation: VeraPdfViolation, pdf: Pdf) -> Object:
     return _detect_struct_element_for_mcid(veraPdf_violation, pdf)
+
+
+# 7.2-29 (invalid-lang-entry): veraPDF checks the Lang value itself (object CosLang), so the context
+# ends in ".../K[0](183 0 obj SESpan Span)/Lang[0]" and resolves to the string, not to the element
+# that holds it. Without this, the corrector fell back to the document catalog and fixed nothing
+# (e.g. 190 Spans with Lang "" in a PowerPoint export). The element is the parent on the path; for the
+# catalog's own Lang ("root/document[0]/Lang[0]") there is no parent, and the catalog is used as before.
+# The other language rules (7.2-2, 7.2-21 to 7.2-25, 7.2-30 to 7.2-34) check the element, the
+# annotation, the form field, the marked content or the metadata, never a Lang value.
+@affected_element_detector("7.2-29")
+def detect_affected_element_7_2_29(veraPdf_violation: VeraPdfViolation, pdf: Pdf) -> Object:
+    element = default_affected_element_detector(veraPdf_violation, pdf)
+    if isinstance(element, Dictionary):
+        return element
+    try:
+        parent = resolve_context_parent_element(veraPdf_violation.context, pdf)
+    except (StepFunctionTraversalException, ValueError):
+        return element
+    return parent if isinstance(parent, Dictionary) else element
 
 
 # End Riard Qupevaj
