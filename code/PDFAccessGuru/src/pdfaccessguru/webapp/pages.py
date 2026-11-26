@@ -159,6 +159,8 @@ TEXT = {
                          "once and not stored.",
         "start": "Make the PDF accessible",
         "busy": "Another file is being worked on. Please wait until it is finished.",
+        "start_needs_tools": "First download the helper programs at the top of this page.",
+        "start_waits_for_tools": "You can start as soon as the helper programs are downloaded.",
         "working_title": "Working on {name}",
         "working_help": "This can take a few minutes for long files.",
         "progress_label": "Progress",
@@ -395,6 +397,8 @@ TEXT = {
                          "verwendet und nicht gespeichert.",
         "start": "PDF barrierefrei machen",
         "busy": "Gerade wird eine andere Datei bearbeitet. Bitte warten Sie, bis sie fertig ist.",
+        "start_needs_tools": "Laden Sie zuerst oben auf dieser Seite die Hilfsprogramme herunter.",
+        "start_waits_for_tools": "Sie können starten, sobald die Hilfsprogramme geladen sind.",
         "working_title": "{name} wird bearbeitet",
         "working_help": "Bei langen Dateien kann das einige Minuten dauern.",
         "progress_label": "Fortschritt",
@@ -575,6 +579,7 @@ button.big { font-size: 1.25rem; padding: 1rem 2rem; }
 button.secondary, .button.secondary { background: var(--card); color: var(--link); }
 button:disabled { opacity: .55; cursor: not-allowed; }
 .actions { display: flex; flex-wrap: wrap; gap: 1rem; align-items: center; margin: 1.5rem 0; }
+.actions .start-reason { margin: 0; flex: 1 1 14rem; color: var(--ink); }   /* why the start button is grey */
 .status { background: var(--ok-bg); color: var(--ok-ink); padding: .9rem 1.1rem; border-radius: .7rem; margin: 0 0 1.25rem; }
 .alert { background: var(--card); border: 2px solid var(--error); color: var(--error); padding: .9rem 1.1rem;
          border-radius: .7rem; margin: 0 0 1.25rem; font-weight: 700; }

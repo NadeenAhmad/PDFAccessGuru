@@ -131,7 +131,7 @@ def test_first_start_offers_to_download_the_helper_programs(app, monkeypatch):
     monkeypatch.setattr(app, "tools_missing", lambda: True)
     page = _request(app, "GET", f"/{app.token}/?lang=en")[2].decode()
     assert "Download them now" in page
-    assert re.search(r'<button type="submit" class="big" disabled>Make the PDF accessible', page)
+    assert re.search(r'<button type="submit" class="big" id="start-button" disabled[^>]*>Make the PDF accessible', page)
 
 
 def test_a_new_version_is_announced_with_an_update_button(app):
