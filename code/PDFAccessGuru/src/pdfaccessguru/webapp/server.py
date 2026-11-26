@@ -365,9 +365,11 @@ class App:
 <form method="post" action="/{self.token}/update"><p class="help" id="update-help">{t['update_help']}</p>
 <p><button type="submit" aria-describedby="update-help">{t['update_button']}</button></p></form></section>"""
         tools_needed = self.tools_missing()
+        watch = ""
         if self.tools_state == "running":
-            notices += f'<div class="status" role="status">{html.escape(t["tools_working"].format(text=self.tools_text or "…"))}</div>'
-            notices += f'<p><a href="/{self.token}/?lang={language}">{t["progress_label"]}</a></p>'
+            notices += f'<div class="status" role="status" id="tools-status">{html.escape(t["tools_working"].format(text=self.tools_text or "…"))}</div>'
+            notices += f'<p id="tools-progress"><a href="/{self.token}/?lang={language}">{t["progress_label"]}</a></p>'
+            watch = self._tools_watch(t)
         elif self.tools_state == "failed":
             notices += f'<div class="alert" role="alert">{html.escape(t["tools_failed"].format(error=self.tools_text))}</div>'
         elif self.tools_state == "done":
@@ -375,6 +377,10 @@ class App:
         if tools_needed and self.tools_state != "running":
             notices += f"""<section class="status" aria-labelledby="tools-text"><p id="tools-text">{t['tools_needed']}</p>
 <form method="post" action="/{self.token}/install?lang={language}"><p><button type="submit">{t['tools_button']}</button></p></form></section>"""
+        if tools_needed:                          # why the start button cannot be used yet, said right next to it
+            reason = t["start_waits_for_tools"] if self.tools_state == "running" else t["start_needs_tools"]
+        else:
+            reason = t["busy"] if busy else ""
         busy = busy or tools_needed
         body = f"""
 <h1>{t['hero_title']}</h1>
@@ -408,7 +414,8 @@ class App:
   <p class="help" id="password-help">{t['password_help']}</p>
   <input type="password" id="password" name="password" autocomplete="off" aria-describedby="password-help">
 </fieldset>
-<div class="actions" id="tour-6"><button type="submit" class="big"{' disabled' if busy else ''}>{t['start']} <span aria-hidden="true">→</span></button></div>
+<div class="actions" id="tour-6"><button type="submit" class="big" id="start-button"{' disabled aria-describedby="start-reason"' if busy else ''}>{t['start']} <span aria-hidden="true">→</span></button>
+{f'<p class="help start-reason" id="start-reason">{html.escape(reason)}</p>' if busy else ''}</div>
 </form>
 <form id="key-form" method="post" action="/{self.token}/key?lang={language}"></form>
 <form id="key-remove-form" method="post" action="/{self.token}/key-remove?lang={language}"></form>
@@ -417,7 +424,35 @@ class App:
         nav = (f'<nav aria-label="{t["lang_nav"]}"><a href="/{self.token}/?lang={other}" lang="{other}">'
                f'{"Deutsch" if other == "de" else "English"}</a></nav>')
         body += tour(language, self.token, auto=not tour_seen())
-        return page(language, t["title"], body, token=self.token, nav=nav)
+        return page(language, t["title"], body, watch, token=self.token, nav=nav)
+
+    def _tools_watch(self, t: dict) -> str:
+        """
+        While the helper programs download, the start page asks every few seconds how far it is. When they are
+        ready, the start button works right away (no reload, so a file chosen meanwhile stays chosen); if the download
+        failed, the page reloads and says why. Without JavaScript, the "Progress" link above does the same.
+        """
+        data = json.dumps({"url": f"/{self.token}/tools", "working": t["tools_working"], "done": t["tools_done"]})
+        return """<script>
+(function () {
+  var d = %s, $ = function (id) { return document.getElementById(id); };
+  function poll() {
+    fetch(d.url, {cache: "no-store"}).then(function (r) { return r.json(); }).then(function (s) {
+      if (s.state === "running") {
+        if (s.text) $("tools-status").textContent = d.working.replace("{text}", s.text);
+        setTimeout(poll, 1500);
+      } else if (s.state === "done" && s.ready) {
+        $("tools-status").textContent = d.done;
+        $("tools-progress").hidden = true;
+        var button = $("start-button"), reason = $("start-reason");
+        button.disabled = false; button.removeAttribute("aria-describedby");
+        if (reason) reason.remove();
+      } else { window.location.reload(); }
+    }).catch(function () { setTimeout(poll, 3000); });
+  }
+  setTimeout(poll, 1500);
+})();
+</script>""" % data
 
     def _ai_choices(self, t: dict, ai_choice: str = "") -> str:
         """Section 2: what stays on this computer, and what is sent over the internet. Each box says
@@ -881,6 +916,12 @@ def _handler(app: App):
             if parts == ["version"]:                     # the update page asks which version answers
                 from pdfaccessguru import __version__
                 self._send(200, json.dumps({"version": __version__}).encode(), "application/json")
+                return
+            if parts == ["tools"]:                       # the start page asks whether the helper download finished
+                state = app.tools_state
+                ready = state != "running" and not app.tools_missing() and app.running_job() is None
+                data = {"state": state, "text": app.tools_text if state == "running" else "", "ready": ready}
+                self._send(200, json.dumps(data).encode(), "application/json")
                 return
             if len(parts) == 2 and parts[0] == "static":
                 kinds = {".woff2": "font/woff2", ".svg": "image/svg+xml", ".txt": "text/plain; charset=utf-8",
