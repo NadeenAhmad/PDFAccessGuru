@@ -76,3 +76,19 @@ def test_the_pipeline_keeps_these_fixes(tmp_path):
     assert "" not in _span_languages(tmp_path / "out.pdf")
     messages = [line["message"] for phase in report["phases"] for line in phase["lines"]]
     assert any("7.2-29: 3 problem(s) disappeared" in message for message in messages)
+
+
+def test_a_marked_content_number_before_the_span_does_not_shift_the_count(tmp_path):
+    """veraPDF counts only structure elements in K[n]. A marked-content number before the Span (as in list
+    bodies of a PowerPoint export) must not make the tool pick the Span before it, which was already fine."""
+    pdf = build(("Document", [("P", [1, ("Span", "First point", (72, 700)), ("Span", "Second point", (72, 660))])]))
+    pdf.Root["/Lang"] = String("en")
+    first, second = [o for o in pdf.objects if isinstance(o, pikepdf.Dictionary) and o.get("/S") == Name.Span]
+    first["/Lang"], second["/Lang"] = String("en"), String("")
+    pdf.save(tmp_path / "list.pdf")
+
+    found = [v for v in run_verapdf(str(tmp_path / "list.pdf")) if v.rule_id == "7.2-29"]
+    assert len(found) == 1 and "/K[1](" in found[0].context                # the second structure element
+    with pikepdf.open(tmp_path / "list.pdf") as pdf:
+        element = detect_affected_element(found[0], pdf)
+        assert element.get("/S") == Name.Span and str(element.get("/Lang")) == "" and list(element.K) == [2]

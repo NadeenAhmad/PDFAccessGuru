@@ -1,6 +1,6 @@
 from typing import Any, Optional
 import re
-from pikepdf import Array, Dictionary, Integer, Object, Pdf
+from pikepdf import Array, Dictionary, Integer, Name, Object, Pdf
 
 from pdfaccessguru.exceptions.mapping_exceptions.step_function_traversal_exception import StepFunctionTraversalException
 
@@ -304,17 +304,20 @@ def handle_StructTreeRoot(current, index):
 
 
 def handle_Kids(current, index):
+    """
+    K[n] in a veraPDF context is the n-th child that is a structure element: veraPDF does not count
+    marked-content numbers (MCIDs) or marked-content and object references (/MCR, /OBJR). Counting
+    from position n instead picked the element before the right one when such an entry came first.
+    """
     kids = current.get("/K") if hasattr(current, "get") else None
 
     if kids is None:
         return None
 
     if isinstance(kids, Array):
-        for i in range(index, len(kids)):
-            kid = kids[i]
-            if not isinstance(kid, int):
-                return kid
-        return None
+        elements = [kid for kid in kids
+                    if isinstance(kid, Dictionary) and kid.get("/Type") in (None, Name.StructElem)]
+        return elements[index] if 0 <= index < len(elements) else None
 
     return kids if index == 0 else None
         
